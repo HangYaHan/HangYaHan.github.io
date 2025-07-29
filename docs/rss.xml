@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Mon, 28 Jul 2025 12:13:25 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>Hello World</title><link>https://HangYaHan.github.io/post/Hello%20World.html</link><description># Test
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Tue, 29 Jul 2025 07:21:23 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>About Me</title><link>https://HangYaHan.github.io/post/About%20Me.html</link><description># People Die, but Long Live GitHub
+
+### 💬 一段对话
+
+&gt; **🤔 YaHan**: 我觉得我写的文字像一坨屎，根本没有人看，也没有任何意义。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/About%20Me.html</guid><pubDate>Tue, 29 Jul 2025 07:20:51 +0000</pubDate></item><item><title>Hello World</title><link>https://HangYaHan.github.io/post/Hello%20World.html</link><description># Test
 This is my first blog. 
 Test test test 
 
