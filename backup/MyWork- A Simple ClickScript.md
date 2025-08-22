@@ -60,6 +60,6 @@ ClickScript 是一个基于 Windows 平台的自动化点击脚本工具，支�
 
 ---
 
-仓库地址：[https://github.com/HangYaHan/ClickScript]
+仓库地址：[https://github.com/HangYaHan/ClickScript](https://github.com/HangYaHan/ClickScript)
 
 演示视频：[https://www.example.com/demo](https://www.example.com/demo)（尚未录制）
