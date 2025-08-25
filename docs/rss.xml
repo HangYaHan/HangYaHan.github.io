@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Thu, 21 Aug 2025 15:31:02 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>MyWork: A Simple ClickScript</title><link>https://HangYaHan.github.io/post/MyWork-%20A%20Simple%20ClickScript.html</link><description># ClickScript
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Mon, 25 Aug 2025 06:52:10 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>MyWork: A Simple ClickScript</title><link>https://HangYaHan.github.io/post/MyWork-%20A%20Simple%20ClickScript.html</link><description># ClickScript
 
 ## 前言
 
@@ -7,7 +7,7 @@ ClickScript 最初是在实验室中为方便测试而编写的一个点击脚�
 
 ---
 
-### 💬 一段对话
+### 💬 A Conversation
 
 &gt; **🤔 YaHan**: 我觉得我写的文字像一坨屎，根本没有人看，也没有任何意义。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/About%20Me.html</guid><pubDate>Tue, 29 Jul 2025 07:20:51 +0000</pubDate></item><item><title>Hello World</title><link>https://HangYaHan.github.io/post/Hello%20World.html</link><description># Test
 This is my first blog. 
