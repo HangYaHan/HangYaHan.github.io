@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Mon, 25 Aug 2025 07:02:39 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>风雅涵章: 哲学本</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-zhe-xue-ben.html</link><description># 哲学本
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Thu, 28 Aug 2025 16:01:39 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>风雅涵章: 用class写C的我</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html</link><description># A Conversation
+
+&gt; **Kakurin**: Pure C as opposed to C++. No idea why. Please don't talk about portability, it's BS.
+&gt;
+&gt; **Linus**: YOU are full of bullshit. C++ is a horrible language. It's made more horrible by the fact that a lot of substandard programmers use it.
+
+---
+
+# 自我分析
+
+昨日拜读陈皓先生的博客，仿佛被卡密尔精准礼仪般的真实伤害击中，让我在屏幕前陷入了长久的沉思。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html</guid><pubDate>Thu, 28 Aug 2025 15:54:53 +0000</pubDate></item><item><title>风雅涵章: 哲学本</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-zhe-xue-ben.html</link><description># 哲学本
 
 ---
 
