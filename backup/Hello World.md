@@ -1,8 +1,10 @@
 # Test
 This is my first blog. 
 Test test test 
+The catelog is available on the right side.
 
 # There will be a image here
+Click the image to view it in full size.
 ![None](https://HangYaHan.github.io/TestImage/Test.png)
 
 # Emphassis Message Test
