@@ -20,7 +20,7 @@
 
 唉，要学的东西还有很多很多，长路漫漫。
 
-正如Chaucer所言：“The lyf so short, the craft so long to lerne.”（生命如此短暂，技艺如此漫长。）
+想起陈浩先生博客中摘录的Chaucer所言：“The lyf so short, the craft so long to lerne.”（生命如此短暂，技艺如此漫长。）
 
 ---
 
@@ -57,11 +57,13 @@
 > 我们的教育的确很“废柴”，但这不是我们成为“废柴”的原因。
 > 我们身边有很多很多优秀的人，网上有很多优秀的文章，书店里也有很多不错的书，而且我们的软件开发日趋成熟，如果我们还学不好的话，那么我们就是在犯罪！
 
-陈皓先生已于2023年5月已经离世，向他致敬。
+陈皓先生已于2023年5月离世，向他致敬。
 
 ---
 
 # TODO 
+> Shit, here we go again. - Carl Jason
+既然我只是在用C++的语法写C，那么我就再次从C语言出发吧。学习任何东西给我的感觉都是常看常新，学海无涯。There is always more to learn.
 书单（暂时先把这些看完吧）：
 [ ] 《The C Programming Language》
 [ ] 《Algorithms in C》
