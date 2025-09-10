@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/168107882?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
+<meta property="og:title" content="涵卷雅思- Linux基础入门_学习手记">
+<meta property="og:description" content="
+我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/168107882?v=4">
+<title>涵卷雅思- Linux基础入门_学习手记</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">涵卷雅思- Linux基础入门_学习手记</h1>
+<div class="title-right">
+    <a href="https://HangYaHan.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HangYaHan/HangYaHan.github.io/issues/9" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：<a href="https://subingwen.cn/" rel="nofollow">https://subingwen.cn/)</a>，本文的整理大部分都来自于它的博客。</p>
+<h2>目录</h2>
+<ul>
+<li>Linux系统简介</li>
+<li>文件管理命令</li>
+<li>用户管理命令</li>
+<li>压缩命令</li>
+<li>查找命令</li>
+<li>Vim 的使用</li>
+<li>gcc/g++</li>
+<li>静态库和动态库制作和使用</li>
+<li>Makefile</li>
+<li>GDB 调试</li>
+</ul>
+<h2>Linux系统简介</h2>
+<h3>Linux的诞生</h3>
+<p>1991年，GNU计划已经开发出了许多工具软件，最受期盼的GNU C编译器已经出现。GNU的操作系统核心HURD一直处于实验阶段（GNU工程从1984年起就在做这件事），没有任何可用性，实质上也没能开发出完整的GNU操作系统。</p>
+<p>也是这一年，Linux诞生了。Linux是UNIX操作系统的一个克隆系统，但是Linux是开源的。那时候它只是一个系统内核，没有与之配套的应用软件。这时候Linux和GNU一拍即合，就有了我们现在使用的操作系统。GNU奠定了Linux用户基础和开发环境。</p>
+<h3>Linux时间线</h3>
+<ul>
+<li><strong>1991年初</strong>：林纳斯·托瓦兹开始在一台386sx兼容微机上学习minix操作系统。</li>
+<li><strong>1991年4月</strong>：林纳斯·托瓦兹开始酝酿并着手编制自己的操作系统。</li>
+<li><strong>1991年4月13日</strong>：在comp.os.minix上发布说自己已经成功地将bash移植到了minix上，而且已经爱不释手、不能离开这个shell软件了。</li>
+<li><strong>1991年10月5日</strong>：林纳斯·托瓦兹在comp.os.minix新闻组上发布消息，正式向外宣布Linux内核的诞生。</li>
+<li><strong>1992年</strong>：Linux与其他GNU软件结合，完全自由的操作系统正式诞生。该操作系统往往被称为“GNU/Linux”。</li>
+<li><strong>1993年</strong>：大约有100余名程序员参与了Linux内核代码编写/修改工作，其中核心组由5人组成。此时Linux 0.99的代码大约有十万行，用户大约有10万左右。</li>
+<li><strong>1994年3月</strong>：Linux1.0发布，代码量17万行。当时是按照完全自由免费的协议发布，随后正式采用GPL协议。</li>
+</ul>
+<h3>Linux主要特性</h3>
+<ul>
+<li>Linux是一个基于文件的操作系统。
+<ul>
+<li>操作系统需要和硬件进行交互，对应Linux来说这些硬件都是文件。例如：操作系统会将硬盘、鼠标、键盘、显示屏等抽象成一个设备文件来进行管理。</li>
+</ul>
+</li>
+<li>Linux操作系统是一种自由软件，是免费的，并且公开源代码。</li>
+<li>可以同时登陆多个用户，并且每个用户可以同时运行多个应用程序。</li>
+<li>提供了友好的图形用户界面，操作简单，易于快速上手。</li>
+<li>支持多平台（这里指的是基于不同CPU架构的平台，比如国产Linux使用的龙芯等）。</li>
+</ul>
+<h3></h3>
+<ul>
+<li><strong>GNU</strong>：Gnu’s Not Unix。可以理解成一种口号，最早由Richard Stallman呼吁并倡导的，号召软件自由。</li>
+<li><strong>GPL</strong>：General Public License。GNU通用公共许可证，GPL授予程序的接受方下述的权利，即GPL所倡导的“自由”：
+<ul>
+<li>可以以任何目的运行所购买的程序。</li>
+<li>在得到程序代码的前提下，可以以学习为目的，对源程序进行修改。</li>
+<li>可以对复制件进行再发行。</li>
+<li>对所购买的程序进行改进，并进行公开发布。</li>
+</ul>
+</li>
+<li><strong>LGPL (GNU Lesser General Public License)</strong>：LGPL是GPL的一个为主要为类库使用设计的开源协议。
+<ul>
+<li>LGPL允许商业软件通过类库引用(link)方式使用LGPL类库而不需要开源商业软件的代码。</li>
+<li>采用LGPL协议的开源代码可以被商业软件作为类库引用并发布和销售。</li>
+</ul>
+</li>
+<li><strong>BSD开源协议</strong>：BSD开源协议是一个给于使用者很大自由的协议。基本上使用者可以“为所欲为”。以BSD协议代码为基础做二次开发自己的产品时，需要满足三个条件：
+<ul>
+<li>如果再发布的产品中包含源代码，则在源代码中必须带有原来代码中的BSD协议。</li>
+<li>不可以用开源代码的作者/机构名字和原来产品的名字做市场推广。</li>
+<li>BSD代码鼓励代码共享，但需要尊重代码作者的著作权。</li>
+</ul>
+</li>
+<li><strong>FSF</strong>：自由软件基本会，给GNU提供资金支付的，毕竟没钱难成事啊。</li>
+<li><strong>自由软件</strong>：GNU项目下的所有软件都基于GPL许可证（非GNU项目也可使用GPL），都是自由软件。</li>
+<li><strong>开源软件</strong>：是美国Open Source Initiative协会定义，软件开放源代码。</li>
+<li><strong>POSIX</strong>：（Portable Operating System Interface for Computing Systems）是由IEEE和ISO/IEC开发的一套标准。POSIX标准是对UNIX操作系统的经验和实践的总结，对操作系统调用的服务接口进行了标准化，保证所编制的应用程序在源代码一级可以在多种操作系统上进行移植。</li>
+</ul>
+<h2>Linux发行版</h2>
+<p>Linux的发行版本众多，曾有人收集过超过300种的发行版本。这里对最常用的发行版本进行简单的介绍，下表为用户经常使用的版本。大家可以去相关网址查找，选择适合的版本使用。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>版本名称</th>
+<th>网址</th>
+<th>特点</th>
+<th>软件包管理器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Debian Linux</td>
+<td><a href="http://www.debian.org" rel="nofollow">www.debian.org</a></td>
+<td>开放的开发模式，并且易于进行软件包升级</td>
+<td>apt</td>
+</tr>
+<tr>
+<td>Fedora Core</td>
+<td><a href="http://www.redhat.com" rel="nofollow">www.redhat.com</a></td>
+<td>拥有数量庞大的用户，优秀的社区技术支持，并且有许多创新</td>
+<td>up2date（rpm）, yum（rpm）</td>
+</tr>
+<tr>
+<td>CentOS</td>
+<td><a href="http://www.centos.org" rel="nofollow">www.centos.org</a></td>
+<td>CentOS是一种对RHEL（Red Hat Enterprise Linux）源代码再编译的产物</td>
+<td>rpm</td>
+</tr>
+<tr>
+<td>SUSE Linux</td>
+<td><a href="http://www.suse.com" rel="nofollow">www.suse.com</a></td>
+<td>专业的操作系统，易用的YaST软件包管理系统</td>
+<td>YaST（rpm）</td>
+</tr>
+<tr>
+<td>Gentoo Linux</td>
+<td><a href="http://www.gentoo.org" rel="nofollow">www.gentoo.org</a></td>
+<td>高度的可定制性，使用手册完整</td>
+<td>portage</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td><a href="http://www.ubuntu.com" rel="nofollow">www.ubuntu.com</a></td>
+<td>优秀易用的桌面环境，基于Debian构建</td>
+<td>apt</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>想要安装稳定版的Ubuntu，应该如何选择版本呢？</p>
+<p>官方每年会发布两个版本，每个版本的版本号由两部分组成：主版本号 + 副版本号。</p>
+<ul>
+<li>主版本号为当年年份，长期支持版的年份为偶数，测试版年份为奇数。</li>
+<li>副版本号为月份，在4月份发布的为相对稳定版，在10月份发布的为测试版。</li>
+</ul>
+<p>因此应当选择主版本号为偶数，副版本号为04的版本，进行安装使用。</p>
+<h2>Linux内核</h2>
+<p>Linux系统从应用角度来看，分为内核空间和用户空间两个部分。内核空间是Linux操作系统的主要部分，但是仅有内核的操作系统是不能完成用户任务的。丰富并且功能强大的应用程序包是一个操作系统成功的必要条件。</p>
+<p>Linux的内核主要由5个子系统组成：进程调度、内存管理、虚拟文件系统、网络接口、进程间通信。下面将依次讲解这5个子系统。</p>
+<h3>进程调度 SCHED</h3>
+<p>进程调度指的是系统对进程的多种状态之间转换的策略。Linux下的进程调度有3种策略：SCHED_OTHER、SCHED_FIFO和SCHED_RR。</p>
+<ul>
+<li><strong>SCHED_OTHER</strong>：分时调度策略（默认），是用于针对普通进程的时间片轮转调度策略。
+<ul>
+<li><strong>原理</strong>：系统为每个进程分配一个时间片，进程用完时间片后会被挂起，CPU切换到下一个进程。这样可以让所有进程公平地使用CPU资源。</li>
+<li><strong>例子</strong>：你在Linux桌面同时打开了浏览器、播放器和终端，这些普通应用进程就采用SCHED_OTHER策略，系统会自动轮流让它们运行。</li>
+</ul>
+</li>
+<li><strong>SCHED_FIFO</strong>：实时调度策略，是针对运行的实时性要求比较高、运行时间短的进程调度策略。
+<ul>
+<li><strong>原理</strong>：采用先进先出（FIFO）方式，优先级高的进程会一直运行，直到主动放弃CPU或被更高优先级的进程抢占。不会被普通进程抢占。</li>
+<li><strong>例子</strong>：工业控制、音视频采集等对响应速度要求极高的任务，可以设置为SCHED_FIFO，这样能保证任务及时被处理。</li>
+</ul>
+</li>
+<li><strong>SCHED_RR</strong>：实时调度策略，是针对实时性要求比较高、运行时间比较长的进程调度策略。
+<ul>
+<li><strong>原理</strong>：和SCHED_FIFO类似，但同一优先级的实时进程之间采用时间片轮转，防止某个进程长时间独占CPU。</li>
+<li><strong>例子</strong>：多个实时音频处理进程同时运行时，可以用SCHED_RR，保证它们轮流获得CPU，互不饿死。</li>
+</ul>
+</li>
+</ul>
+<p><strong>补充说明：</strong></p>
+<ul>
+<li>实时调度策略（SCHED_FIFO、SCHED_RR）通常只允许root用户设置，防止普通用户进程影响系统稳定性。</li>
+<li>可以通过<code class="notranslate">chrt</code>命令设置进程的调度策略，例如：<br>
+<code class="notranslate">sudo chrt -f 99 ./myrealtimeapp</code>  （将进程设置为SCHED_FIFO，优先级99）</li>
+</ul>
+<h3>内存管理 MMU</h3>
+<p>内存管理是多个进程间的内存共享策略。在Linux中，内存管理主要说的是虚拟内存。</p>
+<ul>
+<li>
+<p><strong>原理说明：</strong><br>
+虚拟内存是一种将物理内存与进程实际可用内存空间分离的技术。每个进程都拥有独立的虚拟地址空间，操作系统通过内存管理单元（MMU, Memory Management Unit）将虚拟地址映射到实际的物理内存地址。这样，进程之间的内存互不干扰，提高了系统的安全性和稳定性。</p>
+</li>
+<li>
+<p><strong>为什么虚拟内存可以比实际物理内存还多？</strong><br>
+虚拟内存的大小由操作系统和CPU的寻址能力决定，通常远大于实际物理内存。操作系统会把暂时不用的数据（如不活跃的程序、文件缓存等）存放到硬盘上的交换空间（swap），当需要时再调回物理内存。这样，系统就能“假装”有比实际物理内存更多的可用内存，允许更多程序同时运行，提高了资源利用率。</p>
+</li>
+<li>
+<p><strong>例子：</strong><br>
+比如你的电脑有4GB物理内存，但虚拟内存可以设置为8GB甚至更大。当你同时打开多个大型应用时，操作系统会自动把暂时不用的部分“换出”到硬盘，腾出物理内存给当前活跃的程序使用。这样即使物理内存不够，也不会立刻导致程序崩溃或</p>
+</li>
+</ul>
+<h3>虚拟文件系统 VFS</h3>
+<p><strong>虚拟文件系统（VFS, Virtual File System）</strong> 是Linux内核中的一个抽象层，用于屏蔽不同文件系统之间的差异，为用户和应用程序提供统一的文件操作接口。</p>
+<h4>为什么一定要有VFS？</h4>
+<ul>
+<li><strong>统一接口</strong>：不同的文件系统（如ext4、NTFS、FAT等）底层实现各不相同，VFS为上层应用提供统一的API，简化了开发和使用。</li>
+<li><strong>兼容性和扩展性</strong>：有了VFS，Linux可以同时支持多种文件系统，用户可以在同一台机器上挂载和访问不同类型的分区和设备。</li>
+<li><strong>灵活性</strong>：VFS让文件系统的开发和维护变得更容易，可以随时添加或移除对新文件系统的支持，而不会影响到内核的其他部分。</li>
+</ul>
+<h4>为什么会有好几种文件系统？</h4>
+<ul>
+<li><strong>历史和兼容性</strong>：不同操作系统、硬件平台和历史时期发展出了不同的文件系统格式。</li>
+<li><strong>功能需求不同</strong>：有的文件系统追求高性能，有的追求安全性，有的适合嵌入式设备，有的适合大容量存储。</li>
+<li><strong>跨平台需求</strong>：比如U盘常用FAT32或exFAT，Windows常用NTFS，Linux常用ext系列。</li>
+</ul>
+<h4>常见文件系统及其特点</h4>
+<ul>
+<li><strong>ext2/ext3/ext4</strong>：Linux下最常用的文件系统，ext4是ext3的升级版，支持大文件、日志功能、性能更好。</li>
+<li><strong>FAT32/exFAT</strong>：兼容性极好，适合U盘、SD卡等移动设备，但不支持大于4GB的单个文件（FAT32）。</li>
+<li><strong>NTFS</strong>：Windows系统默认文件系统，支持大文件、权限管理、日志等，Linux可读写但性能略低。</li>
+<li><strong>XFS</strong>：高性能日志型文件系统，适合大容量存储和高并发场景。</li>
+<li><strong>Btrfs</strong>：新一代Linux文件系统，支持快照、压缩、子卷等高级功能，适合需要数据保护和灵活管理的场景。</li>
+<li><strong>ISO9660</strong>：光盘文件系统标准，用于CD/DVD等光盘介质。</li>
+<li><strong>proc</strong>：虚拟文件系统，不存储实际数据，用于内核和进程信息的交互。</li>
+</ul>
+<h3>网络接口</h3>
+<p>Linux是在Internet飞速发展的时期成长起来的，所以Linux支持多种网络接口和协议。网络接口分为网络协议和驱动程序，网络协议是一种网络传输的通信标准，而网络驱动则是对硬件设备的驱动程序。Linux支持的网络设备多种多样，几乎目前所有网络设备都有驱动程序。</p>
+<h3>进程间通信</h3>
+<p>Linux操作系统支持多进程，进程之间需要进行数据的交流才能完成控制、协同工作等功能。Linux的进程间通信是从UNIX系统继承过来的。Linux下的进程间的通信方式主要有管道、信号、消息队列、共享内存和套接字等方法。</p>
+<h4>1. 管道（Pipe）</h4>
+<ul>
+<li><strong>特点</strong>：管道是一种半双工通信方式，只能用于具有亲缘关系的进程（如父子进程）。数据单向流动，通常用于命令之间的数据传递。</li>
+<li><strong>应用场景</strong>：常见于shell命令的“|”操作，例如：<code class="notranslate">ls | grep txt</code>。</li>
+<li><strong>类型</strong>：
+<ul>
+<li><strong>无名管道</strong>：只能在父子进程间使用。</li>
+<li><strong>有名管道（FIFO）</strong>：可以在无亲缘关系的进程间通信，需通过文件系统创建。</li>
+</ul>
+</li>
+</ul>
+<h4>2. 信号（Signal）</h4>
+<ul>
+<li><strong>特点</strong>：信号是一种异步通信机制，用于通知进程发生了某种事件。信号本身只携带很少的信息（信号编号）。</li>
+<li><strong>应用场景</strong>：进程终止、暂停、继续、定时器超时等事件通知。例如：<code class="notranslate">kill -9 1234</code> 向进程1234发送SIGKILL信号。</li>
+</ul>
+<h4>3. 消息队列（Message Queue）</h4>
+<ul>
+<li><strong>特点</strong>：消息队列允许进程以消息为单位进行通信，支持随机读写和消息优先级。可以在无亲缘关系的进程间通信。</li>
+<li><strong>应用场景</strong>：需要可靠、结构化数据传递的场合，如多进程服务器、任务调度系统。</li>
+</ul>
+<h4>4. 共享内存（Shared Memory）</h4>
+<ul>
+<li><strong>特点</strong>：共享内存是最快的进程间通信方式，允许多个进程直接访问同一块物理内存区域。需要配合信号量等同步机制保证数据一致性。</li>
+<li><strong>应用场景</strong>：大量数据、高速通信需求，如多进程数据库、视频处理等。</li>
+</ul>
+<h4>5. 套接字（Socket）</h4>
+<ul>
+<li><strong>特点</strong>：套接字支持本地和网络进程间通信，既可以用于同一台主机上的进程，也可以用于不同主机间的进程。支持面向连接（TCP）和无连接（UDP）两种方式。</li>
+<li><strong>应用场景</strong>：网络通信、分布式系统、客户端-服务器模型等。</li>
+</ul>
+<hr>
+<h3>Linux目录</h3>
+<p>与Windows下的文件组织结构不同，Linux不使用磁盘分区符号来访问文件系统，而是将整个文件系统表示成树状的结构。Linux系统每增加一个文件系统都会将其加入到这个树中。</p>
+<p>操作系统文件结构的开始，只有一个单独的顶级目录结构，叫做根目录。所有一切都从“根”开始，用“/”代表，并且延伸到子目录。Linux则通过“挂接”的方式把所有分区都放置在“根”下各个目录里。</p>
+<h4>Linux目录结构</h4>
+<p>在Linux中根目录的子目录结构相对是固定的（名字固定），不同的目录功能也是固定的。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>目录</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin</td>
+<td>binary，二进制文件目录，存储了可执行程序。常用的命令对应的可执行程序都在这个目录中。</td>
+</tr>
+<tr>
+<td>sbin</td>
+<td>super binary，root用户使用的一些二进制可执行程序。</td>
+</tr>
+<tr>
+<td>etc</td>
+<td>配置文件目录，系统的或者用户自己安装的应用程序的配置文件都存储在这个目录中。</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>library，存储了一些动态库和静态库，给系统或者安装的软件使用。</td>
+</tr>
+<tr>
+<td>media</td>
+<td>挂载目录，挂载外部设备，比如：光驱、扫描仪。</td>
+</tr>
+<tr>
+<td>mnt</td>
+<td>临时挂载目录，比如我们可以将U盘临时挂载到这个目录下。</td>
+</tr>
+<tr>
+<td>proc</td>
+<td>内存使用的一个映射目录，给操作系统使用的。</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>临时目录，存放临时数据，重启电脑数据就被自动删除了。</td>
+</tr>
+<tr>
+<td>boot</td>
+<td>存储了开机相关的设置。</td>
+</tr>
+<tr>
+<td>home</td>
+<td>存储了普通用户的家目录，家目录名和用户名相同。</td>
+</tr>
+<tr>
+<td>root</td>
+<td>root用户的家目录。</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>device，设备目录。Linux中一切皆文件，所有的硬件会抽象成文件存储起来，比如：键盘、鼠标。</td>
+</tr>
+<tr>
+<td>lost+found</td>
+<td>一般时候是空的。电脑异常关闭/崩溃时用来存储这些无家可归的文件，用于用户系统恢复。</td>
+</tr>
+<tr>
+<td>opt</td>
+<td>第三方软件的安装目录。</td>
+</tr>
+<tr>
+<td>var</td>
+<td>存储了系统使用的一些经常会发生变化的文件，比如：日志文件。</td>
+</tr>
+<tr>
+<td>usr</td>
+<td>unix system resource，系统的资源目录。</td>
+</tr>
+<tr>
+<td>/usr/bin</td>
+<td>可执行的二进制应用程序。</td>
+</tr>
+<tr>
+<td>/usr/games</td>
+<td>游戏目录。</td>
+</tr>
+<tr>
+<td>/usr/include</td>
+<td>包含的标准头文件目录。</td>
+</tr>
+<tr>
+<td>/usr/local</td>
+<td>和opt目录作用相同，安装第三方软件。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>对于用户自己的文件，一般都是存放到自己的家目录中，也就是<code class="notranslate">/home/用户名</code>里边。通过指定的相应的路径就可以找到这个文件了。关于路径的指定有两种方式：相对路径和绝对路径。</p>
+<h4>绝对路径</h4>
+<p>绝对路径：从系统磁盘起始节点开始描述的路径。</p>
+<ul>
+<li><strong>Linux</strong>：起始节点为根目录 <code class="notranslate">/</code>，如 <code class="notranslate">/home/user/docs/file.txt</code></li>
+<li><strong>Windows</strong>：起始节点为某个磁盘的盘符，如 <code class="notranslate">C:\Users\user\docs\file.txt</code></li>
+</ul>
+<p><strong>优点</strong>：在操作系统的任意位置都可以通过绝对路径访问到对应的文件。<br>
+<strong>缺点</strong>：字符串较长，书写起来比较麻烦，看起来也不够简洁。</p>
+<p><strong>例子：</strong></p>
+<ul>
+<li>Linux 下访问 <code class="notranslate">/etc/passwd</code> 文件，无论你当前在哪个目录，输入 <code class="notranslate">cat /etc/passwd</code> 都能正确访问。</li>
+<li>Windows 下访问 <code class="notranslate">C:\Windows\System32\cmd.exe</code>，无论当前目录如何，输入完整路径都能访问。</li>
+</ul>
+<h4>相对路径</h4>
+<p>相对路径：相对于当前工作目录的路径。在Linux中有两个表示路径的特殊符号：</p>
+<ul>
+<li><code class="notranslate">./</code>：代表目前所在的目录，也可以使用<code class="notranslate">.</code>表示。</li>
+<li><code class="notranslate">../</code>：代表当前目录的上一层目录，也可以使用<code class="notranslate">..</code>表示。</li>
+</ul>
+<p><strong>优点</strong>：简洁，目录相对较短，书写方便。<br>
+<strong>缺点</strong>：变更工作目录之后，使用相同的相对路径就找不到原来的文件了。</p>
+<p><strong>例子：</strong></p>
+<ul>
+<li>当前目录为 <code class="notranslate">/home/user</code>，要访问 <code class="notranslate">docs/file.txt</code>，可以用相对路径：<code class="notranslate">docs/file.txt</code> 或 <code class="notranslate">./docs/file.txt</code></li>
+<li>当前目录为 <code class="notranslate">/home/user/docs</code>，要访问上一级目录下的 <code class="notranslate">readme.md</code>，可以用相对路径：<code class="notranslate">../readme.md</code></li>
+</ul>
+<h3>命令解析器</h3>
+<p>在Linux中需要通过终端执行对应的命令来完成某些操作，那么这些命令是如何被执行的呢？</p>
+<p>这些命令都是通过命令解析器解析完成并执行的。如果用户在终端输入是正确的内部指令，命令解析器就执行这个命令；如果不是正确的指令，则提示命令无法解析。</p>
+<h4>工作原理</h4>
+<p>命令解析器在Linux操作系统中其实就是一个进程（运行的应用程序），它的名字叫做bash（Bourne Again SHell），我们通常也称其为shell（即：sh）。shell最早由Unix系统的伯恩（Bourne）编写，命名为sh。后来，随着Linux的发展，伯恩对sh进行了增强和改写，形成了bash。bash相比sh功能更强大，支持更多的命令行编辑、历史记录、自动补全等特性，因此成为了Linux系统中默认的命令解析器。当然，Linux也支持其他类型的shell，比如sh、zsh、csh等，用户可以根据自己的需求进行切换。</p>
+<p>当用户打开一个终端窗口，并输入相关指令后，按下回车键，这时命令解析器就开始工作了。其工作流程大致如下：</p>
+<ol>
+<li><strong>读取命令</strong>：shell会读取用户输入的命令行内容。</li>
+<li><strong>解析命令</strong>：shell会判断输入的是内部命令（如cd、exit等）还是外部命令（如ls、cat等）。</li>
+<li><strong>查找命令路径</strong>：对于外部命令，shell会根据PATH环境变量中指定的目录，依次查找是否存在该命令对应的可执行文件。PATH变量中保存了一系列系统目录（如<code class="notranslate">/bin</code>、<code class="notranslate">/usr/bin</code>等），Windows系统中也有类似的Path变量。</li>
+<li><strong>执行命令</strong>：如果找到了对应的可执行文件，shell会创建一个新的进程来运行该程序，并将执行结果返回到终端。如果没有找到，shell会提示“命令未找到”，表示无法执行该命令。</li>
+<li><strong>返回结果</strong>：命令执行结束后，shell会将输出结果显示在终端，并等待用户输入下一条命令。</li>
+</ol>
+<p><strong>举例说明：</strong></p>
+<ul>
+<li>当你在终端输入<code class="notranslate">ls</code>并回车时，shell会在PATH指定的目录中查找<code class="notranslate">ls</code>命令的可执行文件（通常在<code class="notranslate">/bin/ls</code>），找到后执行它，并将当前目录下的文件列表显示出来。</li>
+<li>如果你输入一个不存在的命令，比如<code class="notranslate">abcxyz</code>，shell会在PATH中的所有目录查找，找不到后提示“command not found”。</li>
+</ul>
+<p><strong>补充说明：</strong></p>
+<ul>
+<li>shell不仅能执行单条命令，还支持命令组合、管道、重定向、变量、脚本编程等强大功能，是Linux系统中用户与操作系统交互的重要桥梁。</li>
+<li>用户可以通过修改PATH变量，添加自定义命令的路径，实现个性化的命令环境。就像在Windows系统中，如果你将某些库或应用程序的路径添加到环境变量Path中，那么你就可以在命令行窗口（如cmd或PowerShell）中直接输入程序名来运行它们，而不需要输入完整路径。这种机制极大地方便了软件的调用和管理，提高了操作效率。</li>
+</ul>
+<h4>命令行快捷键</h4>
+<p>在命令行输入一些指令的时候，经常需要移动光标，或者删除一些字符。对应的一些快捷键操作如下表：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>命令自动补齐</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl+p</td>
+<td>显示输入的上一个历史命令</td>
+<td>也可以使用↑键</td>
+</tr>
+<tr>
+<td>Ctrl+n</td>
+<td>显示输入的下一个历史命令</td>
+<td>也可以使用↓键</td>
+</tr>
+<tr>
+<td>Ctrl+a</td>
+<td>光标移动到命令行首</td>
+<td>也可以使用Home键</td>
+</tr>
+<tr>
+<td>Ctrl+e</td>
+<td>光标移动到命令行尾</td>
+<td>也可以使用End键</td>
+</tr>
+<tr>
+<td>Ctrl+u</td>
+<td>删除光标前的部分字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl+k</td>
+<td>删除光标后的部分字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>→</td>
+<td>光标向右移动一个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>←</td>
+<td>光标向左移动一个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>Backspace/Delete</td>
+<td>删除光标前/后的一个</td>
+<td></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>关于Tab的补充：<br>
+由于很多shell命令的开头字母是相同的，在这种情况下，按一次Tab是不会自动补齐的。我们可以<strong>连续按两次Tab</strong>键，在当前终端中就可以显示出所有匹配成功的shell命令。为了能够快速补全shell指令，我们可以多输入一些前缀字符之后，再按Tab键。</p>
+<h2>文件管理命令</h2>
+<h2>用户管理命令</h2>
+<h2>压缩命令</h2>
+<h2>查找命令</h2>
+<h2>Vim 的使用</h2>
+<h2>gcc/g++</h2>
+<h2>静态库和动态库制作和使用</h2>
+<h2>Makefile</h2>
+<h2>GDB 调试</h2></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HangYaHan.github.io">HangYaHan's Blog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("07/25/2025"!=""){
+    var startSite=new Date("07/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HangYaHan/HangYaHan.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
+
+</html>
