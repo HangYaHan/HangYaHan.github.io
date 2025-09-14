@@ -10,11 +10,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="
-我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
+<meta name="description" content="我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
 <meta property="og:title" content="涵卷雅思- Linux基础入门_学习手记">
-<meta property="og:description" content="
-我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
+<meta property="og:description" content="我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/168107882?v=4">
@@ -76,7 +74,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：<a href="https://subingwen.cn/" rel="nofollow">https://subingwen.cn/)</a>，本文的整理大部分都来自于它的博客。</p>
-<h2>目录</h2>
+<h1>目录</h1>
 <ul>
 <li>Linux系统简介</li>
 <li>文件管理命令</li>
@@ -89,6 +87,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>Makefile</li>
 <li>GDB 调试</li>
 </ul>
+<hr>
+<h1>Linux系统简介</h1>
 <h2>Linux系统简介</h2>
 <h3>Linux的诞生</h3>
 <p>1991年，GNU计划已经开发出了许多工具软件，最受期盼的GNU C编译器已经出现。GNU的操作系统核心HURD一直处于实验阶段（GNU工程从1984年起就在做这件事），没有任何可用性，实质上也没能开发出完整的GNU操作系统。</p>
@@ -307,8 +307,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>特点</strong>：套接字支持本地和网络进程间通信，既可以用于同一台主机上的进程，也可以用于不同主机间的进程。支持面向连接（TCP）和无连接（UDP）两种方式。</li>
 <li><strong>应用场景</strong>：网络通信、分布式系统、客户端-服务器模型等。</li>
 </ul>
-<hr>
-<h3>Linux目录</h3>
+<h2>Linux目录</h2>
 <p>与Windows下的文件组织结构不同，Linux不使用磁盘分区符号来访问文件系统，而是将整个文件系统表示成树状的结构。Linux系统每增加一个文件系统都会将其加入到这个树中。</p>
 <p>操作系统文件结构的开始，只有一个单独的顶级目录结构，叫做根目录。所有一切都从“根”开始，用“/”代表，并且延伸到子目录。Linux则通过“挂接”的方式把所有分区都放置在“根”下各个目录里。</p>
 <h4>Linux目录结构</h4>
@@ -518,7 +517,459 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </table></markdown-accessiblity-table>
 <p>关于Tab的补充：<br>
 由于很多shell命令的开头字母是相同的，在这种情况下，按一次Tab是不会自动补齐的。我们可以<strong>连续按两次Tab</strong>键，在当前终端中就可以显示出所有匹配成功的shell命令。为了能够快速补全shell指令，我们可以多输入一些前缀字符之后，再按Tab键。</p>
+<hr>
 <h2>文件管理命令</h2>
+<h3>1. cd（Change Directory）</h3>
+<ul>
+<li>切换目录：<code class="notranslate">cd 目录名</code></li>
+<li>上级目录：<code class="notranslate">cd ..</code></li>
+<li>当前目录：<code class="notranslate">cd .</code></li>
+<li>家目录：<code class="notranslate">cd</code> 或 <code class="notranslate">cd ~</code> 或 <code class="notranslate">cd /home/用户名</code></li>
+<li>上次目录：<code class="notranslate">cd -</code></li>
+</ul>
+<h3>2. ls（List）</h3>
+<ul>
+<li>查看目录/文件：<code class="notranslate">ls [参数] [目录|文件]</code></li>
+<li>显示所有（含隐藏）：<code class="notranslate">ls -a</code></li>
+<li>详细信息：<code class="notranslate">ls -l</code></li>
+<li>人类可读大小：<code class="notranslate">ls -lh</code></li>
+<li>目录后缀：<code class="notranslate">ls -F</code></li>
+<li>文件类型：<code class="notranslate">-</code> 普通，<code class="notranslate">d</code> 目录，<code class="notranslate">l</code> 软链，<code class="notranslate">c</code> 字符设备，<code class="notranslate">b</code> 块设备，<code class="notranslate">p</code> 管道，<code class="notranslate">s</code> 套接字</li>
+<li>权限：<code class="notranslate">r</code> 读，<code class="notranslate">w</code> 写，<code class="notranslate">x</code> 执行，<code class="notranslate">-</code> 无</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>--all</td>
+<td>显示所有文件（含隐藏文件）</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--long</td>
+<td>以详细信息列表显示</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--human-readable</td>
+<td>以人类可读方式显示文件大小</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>--classify</td>
+<td>在目录等后加上类型标记符号</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--directory</td>
+<td>仅显示目录本身而非内容</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--recursive</td>
+<td>递归显示子目录内容</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--sort=size</td>
+<td>按文件大小排序</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--sort=time</td>
+<td>按修改时间排序</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>--reverse</td>
+<td>反向排序</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--inode</td>
+<td>显示文件的 inode 号</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--size</td>
+<td>显示文件大小（块数）</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>--almost-all</td>
+<td>显示除 . 和 .. 以外的所有文件</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>--no-group</td>
+<td>不显示组信息</td>
+</tr>
+<tr>
+<td>-1</td>
+<td></td>
+<td>每行只显示一个文件名</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>3. mkdir / rm（Make Directory / Remove）</h3>
+<ul>
+<li>创建目录：<code class="notranslate">mkdir 目录名</code>，多级：<code class="notranslate">mkdir -p parent/child</code></li>
+<li>删除空目录：<code class="notranslate">rmdir 目录名</code></li>
+<li>递归删除：<code class="notranslate">rm -r 目录名</code></li>
+<li>强制/提示：<code class="notranslate">rm -f</code> / <code class="notranslate">rm -i</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mkdir</td>
+<td>-p</td>
+<td>--parents</td>
+<td>递归创建多级目录</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>-r</td>
+<td>--recursive</td>
+<td>递归删除目录及内容</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>-f</td>
+<td>--force</td>
+<td>强制删除，不提示</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>-i</td>
+<td>--interactive</td>
+<td>删除前进行确认</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td></td>
+<td></td>
+<td>删除空目录</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>4. cp（Copy）</h3>
+<ul>
+<li>拷贝文件：<code class="notranslate">cp 源 目标</code></li>
+<li>拷贝目录：<code class="notranslate">cp -r 源目录 目标目录</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cp</td>
+<td>-r</td>
+<td>--recursive</td>
+<td>递归复制目录及其内容</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-a</td>
+<td>--archive</td>
+<td>归档模式，等同于 -dR --preserve=all</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-f</td>
+<td>--force</td>
+<td>强制覆盖已存在的目标文件</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-i</td>
+<td>--interactive</td>
+<td>覆盖前进行确认</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-u</td>
+<td>--update</td>
+<td>只复制源文件比目标文件新的或目标文件不存在的文件</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-v</td>
+<td>--verbose</td>
+<td>显示复制过程</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-p</td>
+<td>--preserve</td>
+<td>保留文件属性</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-b</td>
+<td>--backup</td>
+<td>覆盖前先备份目标文件</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-d</td>
+<td>--no-dereference</td>
+<td>不跟随符号链接</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-l</td>
+<td>--link</td>
+<td>对源文件建立硬链接而非复制</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-s</td>
+<td>--symbolic-link</td>
+<td>对源文件建立符号链接而非复制</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：cp -a（或 --archive）的应用场景主要是需要完整复制目录结构和文件属性时使用，确保目标目录与源目录在内容和属性上保持一致。常见于备份、迁移数据等操作。</p>
+<h3>5. mv（Move/Rename）</h3>
+<ul>
+<li>移动：<code class="notranslate">mv 源 目标目录</code></li>
+<li>重命名：<code class="notranslate">mv 原名 新名</code></li>
+<li>覆盖：<code class="notranslate">mv 文件A 文件B</code>（A覆盖B）</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mv</td>
+<td>-f</td>
+<td>--force</td>
+<td>强制覆盖已存在的目标文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-i</td>
+<td>--interactive</td>
+<td>覆盖前进行确认</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-n</td>
+<td>--no-clobber</td>
+<td>不覆盖已存在的目标文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-u</td>
+<td>--update</td>
+<td>只移动比目标文件新的或目标文件不存在的文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-v</td>
+<td>--verbose</td>
+<td>显示移动过程</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-b</td>
+<td>--backup</td>
+<td>覆盖前先备份目标文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-t</td>
+<td>--target-directory</td>
+<td>指定目标目录</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-T</td>
+<td>--no-target-directory</td>
+<td>把目标视为普通文件</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：mv -T（或 --no-target-directory）的应用场景主要是防止目标是目录时发生“移动到目录下”这种行为，而是强制把目标当作普通文件名处理。常见于脚本或自动化操作，确保行为一致、可控。</p>
+<h3>6. 查看文件内容</h3>
+<ul>
+<li>全部显示：<code class="notranslate">cat 文件</code></li>
+<li>分页：<code class="notranslate">more 文件</code> 或 <code class="notranslate">less 文件</code></li>
+<li>前N行：<code class="notranslate">head -n N 文件</code></li>
+<li>后N行：<code class="notranslate">tail -n N 文件</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat</td>
+<td>无</td>
+<td>concatenate</td>
+<td>连接并显示文件内容</td>
+</tr>
+<tr>
+<td>more</td>
+<td>无</td>
+<td>more</td>
+<td>分页显示文件内容</td>
+</tr>
+<tr>
+<td>less</td>
+<td>无</td>
+<td>less</td>
+<td>分页显示文件内容（可前后翻页）</td>
+</tr>
+<tr>
+<td>head</td>
+<td>-n</td>
+<td>--lines</td>
+<td>显示文件的前N行</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>-n</td>
+<td>--lines</td>
+<td>显示文件的后N行</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>-f</td>
+<td>--follow</td>
+<td>实时输出文件新增内容</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：tail -f 的典型应用场景是实时查看文件内容的新增部分，常用于监控日志文件的最新输出。</p>
+<h3>7. 链接</h3>
+<ul>
+<li>软链接：<code class="notranslate">ln -s 源 软链接名</code></li>
+<li>硬链接：<code class="notranslate">ln 源 硬链接名</code>（目录不可用）</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ln</td>
+<td>-s</td>
+<td>--symbolic</td>
+<td>创建符号链接（软链接）</td>
+</tr>
+<tr>
+<td>ln</td>
+<td>无</td>
+<td>无</td>
+<td>创建硬链接（默认行为）</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：软链接 ≈ Windows“快捷方式”，指向路径，原文件删了就失效；硬链接 是同一个文件的多个名字，原文件删了数据还在，和 Windows 快捷方式不同。<br>
+软链接常用于需要跨目录、跨分区引用文件的场景；硬链接常用于需要多个名字访问同一数据的场景。硬链接（Hard Link）是对同一个文件内容的另一个引用（指向同一个 inode）。删除原文件，硬链接依然可以访问数据，只有所有硬链接都删除后，文件才真正被删除。</p>
+<h3>8. 文件属性</h3>
+<ul>
+<li>权限（符号法）：<code class="notranslate">chmod who [+|-|=] mod 文件</code></li>
+<li>权限（数字法）：<code class="notranslate">chmod nnn 文件</code></li>
+<li>改所有者：<code class="notranslate">sudo chown 用户 文件</code> 或 <code class="notranslate">sudo chown 用户:组 文件</code></li>
+<li>改组：<code class="notranslate">sudo chgrp 组 文件</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chmod</td>
+<td>who, [+</td>
+<td>-</td>
+<td>=], mod</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>nnn</td>
+<td>无</td>
+<td>数字法修改权限（如 755, 644）</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>无</td>
+<td>change owner</td>
+<td>更改文件所有者</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>:</td>
+<td></td>
+<td>更改文件所属组（与用户一起用）</td>
+</tr>
+<tr>
+<td>chgrp</td>
+<td>无</td>
+<td>change group</td>
+<td>更改文件所属组</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>9. 其他常用命令</h3>
+<ul>
+<li>树状目录：<code class="notranslate">tree [-L n] [目录]</code></li>
+<li>当前目录：<code class="notranslate">pwd</code></li>
+<li>创建空文件/更新时间：<code class="notranslate">touch 文件</code></li>
+<li>查命令路径：<code class="notranslate">which 命令</code></li>
+<li>输出重定向：<code class="notranslate">命令 &gt; 文件</code>（覆盖），<code class="notranslate">命令 &gt;&gt; 文件</code>（追加）<br>
+| 命令   | 参数   | 英文全称           | 含义说明                         |<br>
+| ------ | ------ | ------------------ | -------------------------------- |<br>
+| tree   | -L n   | level, --max-depth=n      | 限制显示目录层级                 |<br>
+| pwd    | 无     | print working directory | 显示当前工作目录             |<br>
+| touch  | 无     | 无                 | 创建空文件或更新时间戳            |<br>
+| which  | 无     | 无                 | 显示命令的可执行文件路径          |<br>
+| &gt;      | 无     | 无                 | 输出重定向（覆盖）                |<br>
+| &gt;&gt;     | 无     | 无                 | 输出重定向（追加）                |</li>
+</ul>
 <h2>用户管理命令</h2>
 <h2>压缩命令</h2>
 <h2>查找命令</h2>
