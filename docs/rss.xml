@@ -1,5 +1,82 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Sun, 14 Sep 2025 16:26:21 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>风雅涵章: 东湖往事</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html</link><description>武汉的夏秋之交，总是被热浪不请自来地占据。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html</guid><pubDate>Sun, 14 Sep 2025 13:17:44 +0000</pubDate></item><item><title>涵卷雅思: Linux基础入门_学习手记</title><link>https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html</link><description>我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html</guid><pubDate>Wed, 10 Sep 2025 15:41:00 +0000</pubDate></item><item><title>涵卷雅思: The C Programming Language_从零开始</title><link>https://HangYaHan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html</link><description>&gt; 好的书就是你一看就会，不看还真就不会。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html</guid><pubDate>Sat, 06 Sep 2025 10:11:32 +0000</pubDate></item><item><title>风雅涵章: 福兮祸兮_DiskFailure</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html</link><description># Timeline of Disk Failure Incident
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Mon, 15 Sep 2025 16:00:30 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>研涵雅致: BiliBili_DownloadFileProcessor</title><link>https://HangYaHan.github.io/post/yan-han-ya-zhi--%20BiliBili_DownloadFileProcessor.html</link><description># BiliBili_DownloadFileProcessor
+A naive app to process download files from BiliBili app and turns them into available mp4 or mp3 automatically.
+Link: [https://github.com/HangYaHan/BiliBili_DownloadFileProcessor](https://github.com/HangYaHan/BiliBili_DownloadFileProcessor)
+
+## Features
+- Automatically scans and processes BiliBili app download folders
+- Converts .m4s files to .mp4
+- Extracts audio and converts .mp4 to .mp3 using FFmpeg
+- Results are named by its video title
+- Supports Chinese filenames
+- Simple command-line interface
+
+## Dependencies
+- [FFmpeg](https://ffmpeg.org/) (for media conversion)
+- [nlohmann/json](https://github.com/nlohmann/json) (for JSON parsing)
+- C++17 or later
+- CMake 3.10 or later
+&gt; Only Windows is supported currently, older versions of dependencies might work but are not tested.
+
+## Installation &amp; Build
+1. Clone this repository.
+   &gt; **nlohmann/json** is header-only and already included in the `include` folder.
+   &gt; **FFmpeg** is not included due to its size. Please download `ffmpeg.exe` manually (see the link above) and place it in the `ffmpeg` directory. Alternatively, you can run the provided `download_ffmpeg.bat` script to fetch it automatically.
+
+   Or, if you prefer:
+   &gt; Download the release package from the `release` section of this repository. All required files are included—no need to build, so you can skip step 2 below. Simply extract everything to your Bilibili download folder. For details, see the **Usage** section below.
+
+2. Build with CMake:
+   ```sh
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build .
+   ```
+   &gt; If you already have FFmpeg installed, just copy `ffmpeg.exe` (and any required .dll files) to the `ffmpeg` directory. For details, see the **Usage** section below.
+
+## Usage
+I strongly recommend you to see the video tutorial first: [https://www.example.com](https://www.example.com) (Not available now)
+
+1. Place the executable `BiliBili_DownloadFileProcessor.exe` and the folder `ffmpeg` to **the Bilibili download directory**. Please ensure the `ffmpeg` folder contains `ffmpeg.exe`, and don't forget any required .dll files if there are any.
+2. Run the executable file **BiliBili_DownloadFileProcessor.exe**, it will automatically process all relevant files in the directory. (**ffmpeg.exe** is dependence, must be in the same directory and don't run it.)
+3. Processed mp4 and mp3 files will be output to the `Result` directory. (If the directory doesn't exist, it will be created automatically.)
+
+Here is an example of the folder structure after placing the executable and `ffmpeg` folder:
+```
+[**video offline download folder**]
+├── some_video_folder/something
+├── BiliBili_DownloadFileProcessor.exe
+└── ffmpeg/
+    ├── ffmpeg.exe
+    └── (any required .dll files if there are any)
+```
+
+## Directory Structure
+```
+BiliBili_DownloadFileProcessor/
+├── include/         # Header files
+├── src/             # Source files
+├── bin/             # The executables will be generated here
+├── CMakeLists.txt   # Build configuration
+├── README.md        # Project documentation
+```
+
+## License
+- This project uses [FFmpeg](https://ffmpeg.org/) (GPL-3.0 License).
+- It also uses [nlohmann/json](https://github.com/nlohmann/json) (MIT License).
+- All other source code in this repository is licensed under the MIT License unless otherwise specified.
+
+## Acknowledgements
+- [FFmpeg](https://ffmpeg.org/)
+- [nlohmann/json](https://github.com/nlohmann/json)
+
+## Contact
+For questions or suggestions, please open an issue on GitHub.
+
+## Todo
+- If there is no ffmpeg.exe found, the program should display an error message and exit gracefully.
+。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/yan-han-ya-zhi--%20BiliBili_DownloadFileProcessor.html</guid><pubDate>Mon, 15 Sep 2025 15:59:59 +0000</pubDate></item><item><title>风雅涵章: 东湖往事</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html</link><description>武汉的夏秋之交，总是被热浪不请自来地占据。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html</guid><pubDate>Sun, 14 Sep 2025 13:17:44 +0000</pubDate></item><item><title>涵卷雅思: Linux基础入门_学习手记</title><link>https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html</link><description>我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html</guid><pubDate>Wed, 10 Sep 2025 15:41:00 +0000</pubDate></item><item><title>涵卷雅思: The C Programming Language_从零开始</title><link>https://HangYaHan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html</link><description>&gt; 好的书就是你一看就会，不看还真就不会。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html</guid><pubDate>Sat, 06 Sep 2025 10:11:32 +0000</pubDate></item><item><title>风雅涵章: 福兮祸兮_DiskFailure</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html</link><description># Timeline of Disk Failure Incident
 &gt;2025.09.03 - 下午 ： 电脑突然蓝屏，重启也进不了系统，但是能进入PE。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html</guid><pubDate>Fri, 05 Sep 2025 07:34:52 +0000</pubDate></item><item><title>风雅涵章: 用class写C的我</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html</link><description># A Conversation
 
 &gt; **Kakurin**: Pure C as opposed to C++. No idea why. Please don't talk about portability, it's BS.
