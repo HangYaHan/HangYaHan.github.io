@@ -59,9 +59,11 @@
 ## 📝 [风雅涵章] - 生活思考碎片
 > 记录平时生活中的思考与感悟
 
-- [ ] 片语人生
-- [ ] 用class写C的我
-- [ ] 福兮祸兮_DiskFailure
+- [x] 片语人生
+- [x] 用class写C的我
+- [x] 福兮祸兮_DiskFailure
+- [x] 东湖往事
+- [x] 2024年度投资复盘
 - [ ] ...
 
 ## 🎮 [雅涵游记] - 游戏感想回忆
@@ -76,8 +78,9 @@
 ## 📚 [涵卷雅思] - 读书笔记
 > 读书心得与思考总结
 
-- [x] 《别做正常的傻瓜》
-- [ ] 《The C Programming Language》
+- [x] 《别做正常的傻瓜_理性与人性的温和博弈》
+- [x] 《The C Programming Language》
+- [x] 《Linux基础入门_学习手记》
 - [ ] 《Just for Fun》
 - [ ] 《人类群星闪耀时》
 - [ ] ...
@@ -85,9 +88,9 @@
 ## 🔬 [研涵雅致] - 研究内容与个人项目
 > 记录我的研究内容、github项目
 
-- [ ] My Research - 毕业设计相关
 - [x] Click Script
-- [ ] BiliBiliVideo_to_mp3
+- [x] BiliBiliVideo_to_mp3
+- [ ] My Research - 毕业设计相关
 - [ ] ...
 
 ---
