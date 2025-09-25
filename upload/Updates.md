@@ -1,10 +1,9 @@
 # Global
-add links to **navigation**
 clickscript has been updated
 
 
 # About me
-在赚够了钱并且完成前面的旅行目标以后，想经营一家自行车店or农庄
+
 
 # The C Programming Language
 .append
