@@ -51,6 +51,7 @@
 - [ ] 在沿海城市拥有一座舒适宽敞的居所
 - [ ] 辞去工作，在新疆、西藏进行一次自驾游，直至尽兴而归
 - [ ] 可能同样是在辞去工作的情况下去英法俄旅行
+- [ ] 在赚够了钱并且完成前面的旅行目标以后，想经营一家自行车店or农庄
 
 ---
 
@@ -59,11 +60,13 @@
 ## 📝 [风雅涵章] - 生活思考碎片
 > 记录平时生活中的思考与感悟
 
-- [x] 片语人生
-- [x] 用class写C的我
-- [x] 福兮祸兮_DiskFailure
-- [x] 东湖往事
-- [x] 2024年度投资复盘
+- [x] [片语人生](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-pian-yu-ren-sheng.html)
+- [x] [藏书阁](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-cang-shu-ge.html)
+- [x] [贮影轩](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-zhu-ying-xuan.html)
+- [x] [用class写C的我](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html)
+- [x] [福兮祸兮_DiskFailure](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html)
+- [x] [东湖往事](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html)
+- [x] [2024年度投资复盘](https://hangyahan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html)
 - [ ] ...
 
 ## 🎮 [雅涵游记] - 游戏感想回忆
@@ -78,9 +81,9 @@
 ## 📚 [涵卷雅思] - 读书笔记
 > 读书心得与思考总结
 
-- [x] 《别做正常的傻瓜_理性与人性的温和博弈》
-- [x] 《The C Programming Language》
-- [x] 《Linux基础入门_学习手记》
+- [x] [《别做正常的傻瓜_理性与人性的温和博弈》](https://hangyahan.github.io/post/han-juan-ya-si--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html)
+- [x] [《The C Programming Language》](https://hangyahan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html)
+- [x] [《Linux基础入门_学习手记》](https://hangyahan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html)
 - [ ] 《Just for Fun》
 - [ ] 《人类群星闪耀时》
 - [ ] ...
@@ -88,8 +91,8 @@
 ## 🔬 [研涵雅致] - 研究内容与个人项目
 > 记录我的研究内容、github项目
 
-- [x] Click Script
-- [x] BiliBiliVideo_to_mp3
+- [x] [Click Script](https://hangyahan.github.io/post/yan-han-ya-zhi--%20A%20Simple%20ClickScript.html)
+- [x] [BiliBiliVideo_to_mp3](https://hangyahan.github.io/post/yan-han-ya-zhi--%20BiliBili_DownloadFileProcessor.html)
 - [ ] My Research - 毕业设计相关
 - [ ] ...
 
