@@ -1,4 +1,5 @@
-我所观看的课程是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。
+> [!IMPORTANT]
+> 我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。
 
 # 目录
 - Linux系统简介
