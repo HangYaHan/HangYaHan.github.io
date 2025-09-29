@@ -67,6 +67,7 @@
 - [x] [福兮祸兮_DiskFailure](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html)
 - [x] [东湖往事](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html)
 - [x] [2024年度投资复盘](https://hangyahan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html)
+- [x] [迟到的语文课](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-dao-de-yu-wen-ke.html) 
 - [ ] ...
 
 ## 🎮 [雅涵游记] - 游戏感想回忆
