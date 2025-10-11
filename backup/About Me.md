@@ -36,7 +36,7 @@
 
 下面这段话令我印象深刻，我认为它非常精确地命中了我想在 GitHub 上写Blog的感受：
 
->人总想留下某种痕迹，证明自己活过，然而事实上，99.999% 的普通人就这么被历史遗忘了——曾经是这样。我们处在信息时代的早期，同样也处在人类文明的早期。从今往后，被数字化的东西只会越来越多。既然有人意识到了 GitHub 的独特性，随着时间推移，越来越多的人总会意识到。那时候会发生什么？自然是，越来越多的人会把自己的信息搬到 GitHub 上，依托 GitHub 实现曾经人们可望而不可及的"永生"。人有两次死亡，第一次是肉体，第二次是被人忘记。我忘记这句话是谁说的了，但现在我们已经可以回避第二次。只要 GitHub 支持，就一定会有人这么做，至少我是其中之一。几十几百年后，GitHub 将成为世界上最大的数字公墓，注册用户大部分都已去世，然而个人主页，项目，commit 历史 还述说着他们生前做过的事——就比如 Joe 的博客。这虽然是个比较 creepy 的推论，但从另一个角度想，却证明了人类的巨大进步：对抗死亡是人类文明的永恒主题，而我们已经实现了阶段性胜利。现在是文章、照片、视频，也许还有以个人习惯作为输入训练的模型。再往后呢？会不会有基因信息，乃至意识的完整复制呢？依托于稳定的存储，我们能做的事情实在太多了。反例是现在的一些 Memorial Websites，他们把逝者的信息放在自己网站上供亲友吊唁。这不能说没用，但在我看来去使用这类服务实在有些草率——就算他们再信誓旦旦，也摆脱不了某一天关站的风险，那时候还指望他们好好管理这些数据？没可能的。既然 GitHub 变成数字公墓是一种必然，我对他们的唯一希望，就是保持某种道德义务。我完全可以想象某一天他们出台一个政策，把二十年内没有活动迹象的账户全部 archive，GitHub Pages 全部下线。那就实在太恐怖了。我祈祷那一天不会到来。 --- From [laike9m]
+>人总想留下某种痕迹，证明自己活过，然而事实上，99.999% 的普通人就这么被历史遗忘了——曾经是这样。我们处在信息时代的早期，同样也处在人类文明的早期。从今往后，被数字化的东西只会越来越多。既然有人意识到了 GitHub 的独特性，随着时间推移，越来越多的人总会意识到。那时候会发生什么？自然是，越来越多的人会把自己的信息搬到 GitHub 上，依托 GitHub 实现曾经人们可望而不可及的"永生"。人有两次死亡，第一次是肉体，第二次是被人忘记。我忘记这句话是谁说的了，但现在我们已经可以回避第二次。只要 GitHub 支持，就一定会有人这么做，至少我是其中之一。几十几百年后，GitHub 将成为世界上最大的数字公墓，注册用户大部分都已去世，然而个人主页，项目，commit 历史 还述说着他们生前做过的事——就比如 Joe 的博客。这虽然是个比较 creepy 的推论，但从另一个角度想，却证明了人类的巨大进步：对抗死亡是人类文明的永恒主题，而我们已经实现了阶段性胜利。现在是文章、照片、视频，也许还有以个人习惯作为输入训练的模型。再往后呢？会不会有基因信息，乃至意识的完整复制呢？依托于稳定的存储，我们能做的事情实在太多了。反例是现在的一些 Memorial Websites，他们把逝者的信息放在自己网站上供亲友吊唁。这不能说没用，但在我看来去使用这类服务实在有些草率——就算他们再信誓旦旦，也摆脱不了某一天关站的风险，那时候还指望他们好好管理这些数据？没可能的。既然 GitHub 变成数字公墓是一种必然，我对他们的唯一希望，就是保持某种道德义务。我完全可以想象某一天他们出台一个政策，把二十年内没有活动迹象的账户全部 archive，GitHub Pages 全部下线。那就实在太恐怖了。我祈祷那一天不会到来。 --- From [laike9m](https://laike9m.com/blog/people-die-but-long-live-github,122/)
 
 ---
 
@@ -50,63 +50,10 @@
 
 # Bucket List
 
-- [ ] 完成一次全程马拉松
-- [ ] 从零开始手搓设计并制作一款战旗策略游戏（类《高级战争》）
-- [ ] 在沿海城市拥有一座舒适宽敞的居所
-- [ ] 辞去工作，在新疆、西藏进行一次自驾游，直至尽兴而归
-- [ ] 同样是在辞去工作的情况下去英法俄旅行，直至尽兴而归
-- [ ] 在赚够了钱并且完成前面的旅行目标以后，想经营一家自行车店or农庄
+- [  ] 完成一次全程马拉松
+- [  ] 从零开始手搓设计并制作一款战旗策略游戏（类《高级战争》）
+- [  ] 在沿海城市拥有一座舒适宽敞的居所
+- [  ] 辞去工作，在新疆、西藏进行一次自驾游，直至尽兴而归
+- [  ] 同样是在辞去工作的情况下去英法俄旅行，直至尽兴而归
+- [  ] 在赚够了钱并且完成前面的旅行目标以后，想经营一家自行车店or农庄
 
----
-
-# Navigation
-
-## 📝 [风雅涵章] - 生活思考碎片
-> 记录平时生活中的思考与感悟
-
-- [x] [片语人生](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-pian-yu-ren-sheng.html)
-- [x] [藏书阁](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-cang-shu-ge.html)
-- [x] [贮影轩](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-zhu-ying-xuan.html)
-- [x] [用class写C的我](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html)
-- [x] [福兮祸兮_DiskFailure](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html)
-- [x] [东湖往事](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html)
-- [x] [2024年度投资复盘](https://hangyahan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html)
-- [x] [迟到的语文课](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-dao-de-yu-wen-ke.html) 
-- [x] [秋日别后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-qiu-ri-bie-hou.html) 
-- [ ] ...
-
-## 🎮 [雅涵游记] - 游戏感想回忆
-> 记录游戏中的思考与回忆
-
-- [ ] StarCraft / StarCraft II
-- [ ] Red Alert 系列全集
-- [ ] Civilization 6
-- [ ] Age of Empires IV
-- [ ] ...
-
-## 📚 [涵卷雅思] - 读书笔记
-> 读书心得与思考总结
-
-- [x] [《别做正常的傻瓜_理性与人性的温和博弈》](https://hangyahan.github.io/post/han-juan-ya-si--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html)
-- [x] [《The C Programming Language》](https://hangyahan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html)
-- [x] [《Linux基础入门_学习手记》](https://hangyahan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html)
-- [ ] 《Just for Fun》
-- [ ] 《人类群星闪耀时》
-- [ ] ...
-
-## 🔬 [研涵雅致] - 研究内容与个人项目
-> 记录我的研究内容、github项目
-
-- [x] [Click Script](https://hangyahan.github.io/post/yan-han-ya-zhi--%20A%20Simple%20ClickScript.html)
-- [x] [BiliBiliVideo_to_mp3](https://hangyahan.github.io/post/yan-han-ya-zhi--%20BiliBili_DownloadFileProcessor.html)
-- [ ] My Research - 毕业设计相关
-- [ ] ...
-
----
-
-## Ref. 
-https://laike9m.com/blog/people-die-but-long-live-github,122/
-
-## 花絮
-![None](https://HangYaHan.github.io/pics/1.png)
-哈哈，Copilot的Completion莫名戳中笑点，一个主打写代码的AI，连安慰功能都包含了吗，真是先进。
