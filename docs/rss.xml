@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Thu, 30 Oct 2025 15:50:21 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>风雅涵章: 扭伤之后</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html</link><description>&gt; “被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html</guid><pubDate>Thu, 30 Oct 2025 15:49:53 +0000</pubDate></item><item><title>风雅涵章: 羽毛球场上蠕动的我</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html</link><description>&gt; [!NOTE]
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Sat, 01 Nov 2025 15:33:32 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>风雅涵章: 扭伤之后</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html</link><description>&gt; “被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html</guid><pubDate>Thu, 30 Oct 2025 15:49:53 +0000</pubDate></item><item><title>风雅涵章: 羽毛球场上蠕动的我</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html</link><description>&gt; [!NOTE]
 &gt; 本文主要记录本人在羽毛球场上蠕动的过程，一些愚昧的理解和可笑的成长之路，轻喷。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html</guid><pubDate>Tue, 21 Oct 2025 15:43:40 +0000</pubDate></item><item><title>风雅涵章: YaHan的私人垃圾桶</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20YaHan-de-si-ren-la-ji-tong.html</link><description>&gt; [!NOTE]
 &gt; 本篇主要记录一些生活中的碎碎念，说白了就是讲废话。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20YaHan-de-si-ren-la-ji-tong.html</guid><pubDate>Sun, 19 Oct 2025 15:47:40 +0000</pubDate></item><item><title>涵卷雅思: Practice_The C Programming Language</title><link>https://HangYaHan.github.io/post/han-juan-ya-si--%20Practice_The%20C%20Programming%20Language.html</link><description>&gt; 但卑意欲少年为学者, 每一书皆作数过尽之. 书富如入海, 百货皆有, 人之精力, 不能兼收尽取, 但得其所欲求者尔. 故愿学者每次作一意求之. 如欲求古今兴亡治乱、圣贤作用、但作此意求之, 勿生余念. 又别作一次, 求事迹故实典章文物之类, 亦如之. 他皆仿此. 此虽迂钝, 而他日学成, 八面受敌, 与涉猎者不可同日而语也
 &gt; ———— 苏轼, 又答王庠书
@@ -19,7 +19,7 @@
 
 ### 将要更新的文章
 - [ ] BeyondTheHype_我对AI的观察与思考
-- [ ] 羽毛球场上蠕动的我
+- [ ] 路过青岛
 - [ ] ...
 
 ### 持续更新的文章
@@ -37,6 +37,8 @@
 - [x] [2024年度投资复盘](https://hangyahan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html)
 - [x] [秋日别后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-qiu-ri-bie-hou.html) 
 - [x] [迟叩文心](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-kou-wen-xin.html) 
+- [x] [羽毛球场上蠕动的我](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html)
+- [x] [扭伤之后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html)
 - [ ] ...
 
 ## 🎮 [雅涵游记] - 游戏感想回忆
@@ -64,14 +66,14 @@
 - [ ] ...
   
 ### 持续更新的文章
-- [x] [《Linux基础入门_学习手记》](https://hangyahan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html)
+- [x] [Linux基础入门_学习手记](https://hangyahan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html)
 - [x] [Practice_The C Programming Language](https://hangyahan.github.io/post/han-juan-ya-si--%20Practice_The%20C%20Programming%20Language.html)
 - [ ] ...
 
 ### 已经完结的文章
-- [x] [《别做正常的傻瓜_理性与人性的温和博弈》](https://hangyahan.github.io/post/han-juan-ya-si--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html)
-- [x] [《The C Programming Language》](https://hangyahan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html)
-- [x] [《人类群星闪耀时》](https://hangyahan.github.io/post/han-juan-ya-si--%20-ren-lei-qun-xing-shan-yao-shi-_-dan-que-wei-neng-dian-liang-wo-de-yue-du-ti-yan.html)
+- [x] [别做正常的傻瓜_理性与人性的温和博弈](https://hangyahan.github.io/post/han-juan-ya-si--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html)
+- [x] [The C Programming Language](https://hangyahan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html)
+- [x] [人类群星闪耀时](https://hangyahan.github.io/post/han-juan-ya-si--%20-ren-lei-qun-xing-shan-yao-shi-_-dan-que-wei-neng-dian-liang-wo-de-yue-du-ti-yan.html)
 - [ ] ...
 
 ## 🔬 [研涵雅致] - 研究内容与个人项目
