@@ -8,7 +8,6 @@
 
 ### 将要更新的文章
 - [ ] BeyondTheHype_我对AI的观察与思考
-- [ ] 路过青岛
 - [ ] ...
 
 ### 持续更新的文章
@@ -26,6 +25,8 @@
 - [x] [秋日别后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-qiu-ri-bie-hou.html) 
 - [x] [迟叩文心](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-kou-wen-xin.html) 
 - [x] [扭伤之后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html)
+- [x] [路过青岛](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-lu-guo-qing-dao.html)
+- [x] [音乐收集](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yin-le-shou-ji.html) 
 - [ ] ...
 
 ## 🎮 [雅涵游记] - 游戏感想回忆
@@ -56,13 +57,15 @@
 - [x] [Linux基础入门_学习手记](https://hangyahan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html)
 - [x] [Practice_The C Programming Language](https://hangyahan.github.io/post/han-juan-ya-si--%20Practice_The%20C%20Programming%20Language.html)
 - [x] [羽毛球场上蠕动的我](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html)
-- [x] [迟到的语文课](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-dao-de-yu-wen-ke.html)
+- [x] [人月神话](https://hangyahan.github.io/post/han-juan-ya-si--%20-ren-yue-shen-hua.html)
 - [ ] ...
 
 ### 已经完结的文章
 - [x] [别做正常的傻瓜_理性与人性的温和博弈](https://hangyahan.github.io/post/han-juan-ya-si--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html)
 - [x] [The C Programming Language](https://hangyahan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html)
 - [x] [人类群星闪耀时](https://hangyahan.github.io/post/han-juan-ya-si--%20-ren-lei-qun-xing-shan-yao-shi-_-dan-que-wei-neng-dian-liang-wo-de-yue-du-ti-yan.html)
+- [x] [迟到的语文课](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-dao-de-yu-wen-ke.html)
+- [x] [Docker初见](https://hangyahan.github.io/post/han-juan-ya-si--%20Docker-chu-jian.html) 
 - [ ] ...
 
 ## 🔬 [研涵雅致] - 研究内容与个人项目
