@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Wed, 10 Dec 2025 15:43:30 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>研涵雅致: Beruto-v1.0</title><link>https://HangYaHan.github.io/post/yan-han-ya-zhi--%20Beruto-v1.0.html</link><description># Beruto v1.0
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Thu, 11 Dec 2025 06:33:28 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>雅望停云: 序章</title><link>https://HangYaHan.github.io/post/ya-wang-ting-yun--%20-xu-zhang.html</link><description>```
+
+停云
+晋·陶渊明
+
+停云，思亲友也。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ya-wang-ting-yun--%20-xu-zhang.html</guid><pubDate>Thu, 11 Dec 2025 06:32:51 +0000</pubDate></item><item><title>研涵雅致: Beruto-v1.0</title><link>https://HangYaHan.github.io/post/yan-han-ya-zhi--%20Beruto-v1.0.html</link><description># Beruto v1.0
 
 仓库地址: [Beruto](https://github.com/HangYaHan/Beruto)
 发布日期: 2025-12-09
