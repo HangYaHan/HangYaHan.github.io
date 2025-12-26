@@ -1084,11 +1084,3 @@ GDB是GNU调试器，用于调试C/C++等程序，是Linux开发的重要工具�
 | | info locals | | 查看局部变量 |
 | 内存 | x | | 查看内存 |
 | | info registers | | 查看寄存器 |
-
----
-
-The most powerful programming language is English。
-
-Use programming to be a mirror of your thought process,to actually learn how to think.
-
-我们准备学习的，是有关计算过程的知识。
