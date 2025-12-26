@@ -1,0 +1,2922 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/168107882?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="> [!IMPORTANT]
+> 我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
+<meta property="og:title" content="涵卷雅思: Linux入门">
+<meta property="og:description" content="> [!IMPORTANT]
+> 我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)，本文的整理大部分都来自于它的博客。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HangYaHan.github.io/post/han-juan-ya-si--%20Linux-ru-men.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/168107882?v=4">
+<title>涵卷雅思: Linux入门</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-important {border-left-color:var(--borderColor-done-emphasis, var(--color-done-emphasis));background-color:var(--color-done-subtle);}.markdown-alert.markdown-alert-important .markdown-alert-title {color: var(--fgColor-done,var(--color-done-fg));}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">涵卷雅思: Linux入门</h1>
+<div class="title-right">
+    <a href="https://HangYaHan.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HangYaHan/HangYaHan.github.io/issues/9" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：<a href="https://subingwen.cn/" rel="nofollow">https://subingwen.cn/)</a>，本文的整理大部分都来自于它的博客。<br>
+大部分内容都可以在互联网上轻易搜索到，只是为了加强记忆而整理</p>
+</div>
+<h1>目录</h1>
+<ul>
+<li>Linux系统简介</li>
+<li>文件管理命令</li>
+<li>用户管理命令</li>
+<li>压缩命令</li>
+<li>查找命令</li>
+<li>Vim 的使用</li>
+<li>gcc/g++</li>
+<li>静态库和动态库制作和使用</li>
+<li>Makefile</li>
+<li>GDB 调试</li>
+</ul>
+<hr>
+<h1>Linux系统简介</h1>
+<p>1991年，GNU计划已经开发出了许多工具软件，最受期盼的GNU C编译器已经出现。GNU的操作系统核心HURD一直处于实验阶段（GNU工程从1984年起就在做这件事），没有任何可用性，实质上也没能开发出完整的GNU操作系统。也是这一年，Linux诞生了。Linux是UNIX操作系统的一个克隆系统，但是Linux是开源的。那时候它只是一个系统内核，没有与之配套的应用软件。这时候Linux和GNU一拍即合，就有了我们现在使用的操作系统。GNU奠定了Linux用户基础和开发环境。（GNU 是 GNU's Not Unix 的递归缩写，是一种口号，最早由 Richard Stallman 呼吁并倡导的，号召软件自由。）</p>
+<p><strong>Linux时间线</strong></p>
+<ul>
+<li><strong>1991年初</strong>：林纳斯·托瓦兹开始在一台386sx兼容微机上学习minix操作系统。</li>
+<li><strong>1991年4月</strong>：林纳斯·托瓦兹开始酝酿并着手编制自己的操作系统。</li>
+<li><strong>1991年4月13日</strong>：在comp.os.minix上发布说自己已经成功地将bash移植到了minix上，而且已经爱不释手、不能离开这个shell软件了。</li>
+<li><strong>1991年10月5日</strong>：林纳斯·托瓦兹在comp.os.minix新闻组上发布消息，正式向外宣布Linux内核的诞生。</li>
+<li><strong>1992年</strong>：Linux与其他GNU软件结合，完全自由的操作系统正式诞生。该操作系统往往被称为“GNU/Linux”。</li>
+<li><strong>1993年</strong>：大约有100余名程序员参与了Linux内核代码编写/修改工作，其中核心组由5人组成。此时Linux 0.99的代码大约有十万行，用户大约有10万左右。</li>
+<li><strong>1994年3月</strong>：Linux1.0发布，代码量17万行。当时是按照完全自由免费的协议发布，随后正式采用GPL协议。</li>
+</ul>
+<p><strong>Linux发行版</strong></p>
+<p>官方每年会发布两个Linux版本，每个版本的版本号由两部分组成：主版本号 + 副版本号。</p>
+<ul>
+<li>主版本号为当年年份，长期支持版的年份为偶数，测试版年份为奇数。</li>
+<li>副版本号为月份，在4月份发布的为相对稳定版，在10月份发布的为测试版。</li>
+</ul>
+<p>因此应当选择主版本号为偶数，副版本号为04的版本，进行安装使用。</p>
+<p><strong>Linux内核</strong></p>
+<p>Linux系统从应用角度来看，分为内核空间和用户空间两个部分。内核空间是Linux操作系统的主要部分，但是仅有内核的操作系统是不能完成用户任务的。丰富并且功能强大的应用程序包是一个操作系统成功的必要条件。</p>
+<p>Linux内核主要由五个子系统组成：进程调度、内存管理、虚拟文件系统、网络接口和进程间通信。以下是对每个子系统的详细描述：</p>
+<ul>
+<li>
+<p>进程调度是Linux内核的核心功能之一，它负责管理系统中所有进程的运行状态和资源分配。进程调度的主要任务是确保所有进程能够公平地使用CPU资源，同时满足实时性要求。Linux支持三种调度策略：SCHED_OTHER、SCHED_FIFO和SCHED_RR。SCHED_OTHER是默认的分时调度策略，适用于普通进程，通过时间片轮转的方式让所有进程公平地使用CPU资源。SCHED_FIFO是一种实时调度策略，采用先进先出的方式，优先级高的进程会一直运行，直到主动放弃CPU或被更高优先级的进程抢占。SCHED_RR与SCHED_FIFO类似，但同一优先级的实时进程之间采用时间片轮转，防止某个进程长时间独占CPU。实时调度策略通常只允许root用户设置，以防止普通用户进程影响系统稳定性。</p>
+</li>
+<li>
+<p>内存管理是Linux内核的另一个重要子系统，它通过虚拟内存技术实现了多个进程之间的内存共享和隔离。虚拟内存将物理内存与进程实际可用的内存空间分离，每个进程都拥有独立的虚拟地址空间。操作系统通过内存管理单元（MMU）将虚拟地址映射到实际的物理内存地址，从而提高了系统的安全性和稳定性。虚拟内存的大小通常远大于实际物理内存，操作系统会将暂时不用的数据存放到硬盘上的交换空间（swap），当需要时再调回物理内存。这种机制允许更多程序同时运行，提高了资源利用率。</p>
+</li>
+<li>
+<p>虚拟文件系统（VFS）是Linux内核中的一个抽象层，用于屏蔽不同文件系统之间的差异，为用户和应用程序提供统一的文件操作接口。VFS的存在使得Linux能够同时支持多种文件系统，例如ext4、NTFS和FAT等。通过VFS，开发者可以在不关心底层文件系统实现的情况下，使用统一的API进行文件操作。VFS还提高了系统的兼容性和扩展性，使得Linux可以轻松添加对新文件系统的支持。此外，VFS的灵活性也让文件系统的开发和维护变得更加简单。</p>
+</li>
+<li>
+<p>网络接口是Linux内核的重要组成部分，它支持多种网络协议和设备驱动程序，使得Linux能够在各种网络环境中运行。网络接口分为网络协议和驱动程序两部分，网络协议定义了数据传输的通信标准，而驱动程序则负责与硬件设备的交互。Linux支持的网络设备种类繁多，几乎涵盖了所有主流的网络硬件。通过强大的网络接口支持，Linux在服务器、路由器和嵌入式设备等领域得到了广泛应用。</p>
+</li>
+<li>
+<p>进程间通信（IPC）是Linux内核提供的另一项关键功能，它允许多个进程之间进行数据交换和协作。Linux继承了UNIX系统的IPC机制，支持多种通信方式，包括管道、信号、消息队列、共享内存和套接字。管道是一种半双工通信方式，适用于具有亲缘关系的进程；信号是一种异步通信机制，用于通知进程发生了某种事件；消息队列允许进程以消息为单位进行通信，支持随机读写和消息优先级；共享内存是最快的IPC方式，允许多个进程直接访问同一块物理内存区域；套接字则支持本地和网络进程间的通信，是网络编程的基础。通过这些多样化的通信方式，Linux能够高效地支持复杂的多进程应用。</p>
+</li>
+</ul>
+<p><strong>Linux目录</strong></p>
+<p>与Windows下的文件组织结构不同，Linux不使用磁盘分区符号来访问文件系统，而是将整个文件系统表示成树状的结构。Linux系统每增加一个文件系统都会将其加入到这个树中。操作系统文件结构的开始，只有一个单独的顶级目录结构，叫做根目录。所有一切都从“根”开始，用“/”代表，并且延伸到子目录。Linux则通过“挂接”的方式把所有分区都放置在“根”下各个目录里。</p>
+<p>在Linux中根目录的子目录结构相对是固定的（名字固定），不同的目录功能也是固定的。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>目录</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin</td>
+<td>binary，二进制文件目录，存储了可执行程序。常用的命令对应的可执行程序都在这个目录中。</td>
+</tr>
+<tr>
+<td>sbin</td>
+<td>super binary，root用户使用的一些二进制可执行程序。</td>
+</tr>
+<tr>
+<td>etc</td>
+<td>配置文件目录，系统的或者用户自己安装的应用程序的配置文件都存储在这个目录中。</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>library，存储了一些动态库和静态库，给系统或者安装的软件使用。</td>
+</tr>
+<tr>
+<td>media</td>
+<td>挂载目录，挂载外部设备，比如：光驱、扫描仪。</td>
+</tr>
+<tr>
+<td>mnt</td>
+<td>临时挂载目录，比如我们可以将U盘临时挂载到这个目录下。</td>
+</tr>
+<tr>
+<td>proc</td>
+<td>内存使用的一个映射目录，给操作系统使用的。</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>临时目录，存放临时数据，重启电脑数据就被自动删除了。</td>
+</tr>
+<tr>
+<td>boot</td>
+<td>存储了开机相关的设置。</td>
+</tr>
+<tr>
+<td>home</td>
+<td>存储了普通用户的家目录，家目录名和用户名相同。</td>
+</tr>
+<tr>
+<td>root</td>
+<td>root用户的家目录。</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>device，设备目录。Linux中一切皆文件，所有的硬件会抽象成文件存储起来，比如：键盘、鼠标。</td>
+</tr>
+<tr>
+<td>lost+found</td>
+<td>一般时候是空的。电脑异常关闭/崩溃时用来存储这些无家可归的文件，用于用户系统恢复。</td>
+</tr>
+<tr>
+<td>opt</td>
+<td>第三方软件的安装目录。</td>
+</tr>
+<tr>
+<td>var</td>
+<td>存储了系统使用的一些经常会发生变化的文件，比如：日志文件。</td>
+</tr>
+<tr>
+<td>usr</td>
+<td>unix system resource，系统的资源目录。</td>
+</tr>
+<tr>
+<td>/usr/bin</td>
+<td>可执行的二进制应用程序。</td>
+</tr>
+<tr>
+<td>/usr/games</td>
+<td>游戏目录。</td>
+</tr>
+<tr>
+<td>/usr/include</td>
+<td>包含的标准头文件目录。</td>
+</tr>
+<tr>
+<td>/usr/local</td>
+<td>和opt目录作用相同，安装第三方软件。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>命令解析器</strong></p>
+<p>在Linux中，命令解析器（通常称为shell）是用户与操作系统交互的重要桥梁。shell是一个进程，负责解析并执行用户在终端输入的命令。Linux默认使用bash（Bourne Again SHell）作为命令解析器，它是sh的增强版，支持命令行编辑、历史记录和自动补全等功能。此外，Linux还支持其他类型的shell，如zsh和csh，用户可以根据需求切换使用。</p>
+<p>当用户在终端输入命令并按下回车键时，shell会启动一系列流程。首先，它读取用户输入的内容，并判断是内部命令（如cd、exit）还是外部命令（如ls、cat）。对于外部命令，shell会根据PATH环境变量中指定的目录，依次查找对应的可执行文件。如果找到，shell会创建一个新进程运行该程序，并将结果返回到终端；如果未找到，则提示“命令未找到”。</p>
+<p>shell不仅能执行单条命令，还支持命令组合、管道、重定向、变量和脚本编程等强大功能。用户还可以通过修改PATH变量，添加自定义命令路径，实现个性化的命令环境。这种机制类似于Windows中的Path变量，极大地方便了软件的调用和管理，提高了操作效率。例如，在终端输入<code class="notranslate">ls</code>时，shell会在PATH目录中查找<code class="notranslate">ls</code>命令的可执行文件（通常在<code class="notranslate">/bin/ls</code>），找到后执行并显示结果；而输入不存在的命令时，则会提示错误信息。</p>
+<p><strong>命令行快捷键</strong></p>
+<p>在命令行输入一些指令的时候，经常需要移动光标，或者删除一些字符。对应的一些快捷键操作如下表：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>命令自动补齐</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl+p</td>
+<td>显示输入的上一个历史命令</td>
+<td>也可以使用↑键</td>
+</tr>
+<tr>
+<td>Ctrl+n</td>
+<td>显示输入的下一个历史命令</td>
+<td>也可以使用↓键</td>
+</tr>
+<tr>
+<td>Ctrl+a</td>
+<td>光标移动到命令行首</td>
+<td>也可以使用Home键</td>
+</tr>
+<tr>
+<td>Ctrl+e</td>
+<td>光标移动到命令行尾</td>
+<td>也可以使用End键</td>
+</tr>
+<tr>
+<td>Ctrl+u</td>
+<td>删除光标前的部分字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl+k</td>
+<td>删除光标后的部分字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>→</td>
+<td>光标向右移动一个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>←</td>
+<td>光标向左移动一个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>Backspace/Delete</td>
+<td>删除光标前/后的一个</td>
+<td></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>关于Tab的补充：<br>
+由于很多shell命令的开头字母是相同的，在这种情况下，按一次Tab是不会自动补齐的。我们可以<strong>连续按两次Tab</strong>键，在当前终端中就可以显示出所有匹配成功的shell命令。为了能够快速补全shell指令，我们可以多输入一些前缀字符之后，再按Tab键。</p>
+<hr>
+<h1>文件管理命令</h1>
+<p><strong>cd（Change Directory）</strong></p>
+<ul>
+<li>切换目录：<code class="notranslate">cd 目录名</code></li>
+<li>上级目录：<code class="notranslate">cd ..</code></li>
+<li>当前目录：<code class="notranslate">cd .</code></li>
+<li>家目录：<code class="notranslate">cd</code> 或 <code class="notranslate">cd ~</code> 或 <code class="notranslate">cd /home/用户名</code></li>
+<li>上次目录：<code class="notranslate">cd -</code></li>
+</ul>
+<p><strong>ls（List）</strong></p>
+<ul>
+<li>查看目录/文件：<code class="notranslate">ls [参数] [目录|文件]</code></li>
+<li>显示所有（含隐藏）：<code class="notranslate">ls -a</code></li>
+<li>详细信息：<code class="notranslate">ls -l</code></li>
+<li>人类可读大小：<code class="notranslate">ls -lh</code></li>
+<li>目录后缀：<code class="notranslate">ls -F</code></li>
+<li>文件类型：<code class="notranslate">-</code> 普通，<code class="notranslate">d</code> 目录，<code class="notranslate">l</code> 软链，<code class="notranslate">c</code> 字符设备，<code class="notranslate">b</code> 块设备，<code class="notranslate">p</code> 管道，<code class="notranslate">s</code> 套接字</li>
+<li>权限：<code class="notranslate">r</code> 读，<code class="notranslate">w</code> 写，<code class="notranslate">x</code> 执行，<code class="notranslate">-</code> 无</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>--all</td>
+<td>显示所有文件（含隐藏文件）</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>--long</td>
+<td>以详细信息列表显示</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>--human-readable</td>
+<td>以人类可读方式显示文件大小</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>--classify</td>
+<td>在目录等后加上类型标记符号</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>--directory</td>
+<td>仅显示目录本身而非内容</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>--recursive</td>
+<td>递归显示子目录内容</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>--sort=size</td>
+<td>按文件大小排序</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>--sort=time</td>
+<td>按修改时间排序</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>--reverse</td>
+<td>反向排序</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>--inode</td>
+<td>显示文件的 inode 号</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>--size</td>
+<td>显示文件大小（块数）</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>--almost-all</td>
+<td>显示除 . 和 .. 以外的所有文件</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>--no-group</td>
+<td>不显示组信息</td>
+</tr>
+<tr>
+<td>-1</td>
+<td></td>
+<td>每行只显示一个文件名</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>mkdir / rm（Make Directory / Remove）</strong></p>
+<ul>
+<li>创建目录：<code class="notranslate">mkdir 目录名</code>，多级：<code class="notranslate">mkdir -p parent/child</code></li>
+<li>删除空目录：<code class="notranslate">rmdir 目录名</code></li>
+<li>递归删除：<code class="notranslate">rm -r 目录名</code></li>
+<li>强制/提示：<code class="notranslate">rm -f</code> / <code class="notranslate">rm -i</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mkdir</td>
+<td>-p</td>
+<td>--parents</td>
+<td>递归创建多级目录</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>-r</td>
+<td>--recursive</td>
+<td>递归删除目录及内容</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>-f</td>
+<td>--force</td>
+<td>强制删除，不提示</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>-i</td>
+<td>--interactive</td>
+<td>删除前进行确认</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td></td>
+<td></td>
+<td>删除空目录</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>cp（Copy）</strong></p>
+<ul>
+<li>拷贝文件：<code class="notranslate">cp 源 目标</code></li>
+<li>拷贝目录：<code class="notranslate">cp -r 源目录 目标目录</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cp</td>
+<td>-r</td>
+<td>--recursive</td>
+<td>递归复制目录及其内容</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-a</td>
+<td>--archive</td>
+<td>归档模式，等同于 -dR --preserve=all</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-f</td>
+<td>--force</td>
+<td>强制覆盖已存在的目标文件</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-i</td>
+<td>--interactive</td>
+<td>覆盖前进行确认</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-u</td>
+<td>--update</td>
+<td>只复制源文件比目标文件新的或目标文件不存在的文件</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-v</td>
+<td>--verbose</td>
+<td>显示复制过程</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-p</td>
+<td>--preserve</td>
+<td>保留文件属性</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-b</td>
+<td>--backup</td>
+<td>覆盖前先备份目标文件</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-d</td>
+<td>--no-dereference</td>
+<td>不跟随符号链接</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-l</td>
+<td>--link</td>
+<td>对源文件建立硬链接而非复制</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>-s</td>
+<td>--symbolic-link</td>
+<td>对源文件建立符号链接而非复制</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：cp -a（或 --archive）的应用场景主要是需要完整复制目录结构和文件属性时使用，确保目标目录与源目录在内容和属性上保持一致。常见于备份、迁移数据等操作。</p>
+<p><strong>mv（Move/Rename）</strong></p>
+<ul>
+<li>移动：<code class="notranslate">mv 源 目标目录</code></li>
+<li>重命名：<code class="notranslate">mv 原名 新名</code></li>
+<li>覆盖：<code class="notranslate">mv 文件A 文件B</code>（A覆盖B）</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mv</td>
+<td>-f</td>
+<td>--force</td>
+<td>强制覆盖已存在的目标文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-i</td>
+<td>--interactive</td>
+<td>覆盖前进行确认</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-n</td>
+<td>--no-clobber</td>
+<td>不覆盖已存在的目标文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-u</td>
+<td>--update</td>
+<td>只移动比目标文件新的或目标文件不存在的文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-v</td>
+<td>--verbose</td>
+<td>显示移动过程</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-b</td>
+<td>--backup</td>
+<td>覆盖前先备份目标文件</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-t</td>
+<td>--target-directory</td>
+<td>指定目标目录</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>-T</td>
+<td>--no-target-directory</td>
+<td>把目标视为普通文件</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：mv -T（或 --no-target-directory）的应用场景主要是防止目标是目录时发生“移动到目录下”这种行为，而是强制把目标当作普通文件名处理。常见于脚本或自动化操作，确保行为一致、可控。</p>
+<p><strong>查看文件内容</strong></p>
+<ul>
+<li>全部显示：<code class="notranslate">cat 文件</code></li>
+<li>分页：<code class="notranslate">more 文件</code> 或 <code class="notranslate">less 文件</code></li>
+<li>前N行：<code class="notranslate">head -n N 文件</code></li>
+<li>后N行：<code class="notranslate">tail -n N 文件</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat</td>
+<td>无</td>
+<td>concatenate</td>
+<td>连接并显示文件内容</td>
+</tr>
+<tr>
+<td>more</td>
+<td>无</td>
+<td>more</td>
+<td>分页显示文件内容</td>
+</tr>
+<tr>
+<td>less</td>
+<td>无</td>
+<td>less</td>
+<td>分页显示文件内容（可前后翻页）</td>
+</tr>
+<tr>
+<td>head</td>
+<td>-n</td>
+<td>--lines</td>
+<td>显示文件的前N行</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>-n</td>
+<td>--lines</td>
+<td>显示文件的后N行</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>-f</td>
+<td>--follow</td>
+<td>实时输出文件新增内容</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：tail -f 的典型应用场景是实时查看文件内容的新增部分，常用于监控日志文件的最新输出。</p>
+<p><strong>链接</strong></p>
+<ul>
+<li>软链接：<code class="notranslate">ln -s 源 软链接名</code></li>
+<li>硬链接：<code class="notranslate">ln 源 硬链接名</code>（目录不可用）</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ln</td>
+<td>-s</td>
+<td>--symbolic</td>
+<td>创建符号链接（软链接）</td>
+</tr>
+<tr>
+<td>ln</td>
+<td>无</td>
+<td>无</td>
+<td>创建硬链接（默认行为）</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>注：软链接 ≈ Windows“快捷方式”，指向路径，原文件删了就失效；硬链接 是同一个文件的多个名字，原文件删了数据还在，和 Windows 快捷方式不同。<br>
+软链接常用于需要跨目录、跨分区引用文件的场景；硬链接常用于需要多个名字访问同一数据的场景。硬链接（Hard Link）是对同一个文件内容的另一个引用（指向同一个 inode）。删除原文件，硬链接依然可以访问数据，只有所有硬链接都删除后，文件才真正被删除。</p>
+<p><strong>文件属性</strong></p>
+<ul>
+<li>权限（符号法）：<code class="notranslate">chmod who [+|-|=] mod 文件</code></li>
+<li>权限（数字法）：<code class="notranslate">chmod nnn 文件</code></li>
+<li>改所有者：<code class="notranslate">sudo chown 用户 文件</code> 或 <code class="notranslate">sudo chown 用户:组 文件</code></li>
+<li>改组：<code class="notranslate">sudo chgrp 组 文件</code></li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chmod</td>
+<td>who, [+</td>
+<td>-</td>
+<td>=], mod</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>nnn</td>
+<td>无</td>
+<td>数字法修改权限（如 755, 644）</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>无</td>
+<td>change owner</td>
+<td>更改文件所有者</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>:</td>
+<td></td>
+<td>更改文件所属组（与用户一起用）</td>
+</tr>
+<tr>
+<td>chgrp</td>
+<td>无</td>
+<td>change group</td>
+<td>更改文件所属组</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>其他常用命令</strong></p>
+<ul>
+<li>树状目录：<code class="notranslate">tree [-L n] [目录]</code></li>
+<li>当前目录：<code class="notranslate">pwd</code></li>
+<li>创建空文件/更新时间：<code class="notranslate">touch 文件</code></li>
+<li>查命令路径：<code class="notranslate">which 命令</code></li>
+<li>输出重定向：<code class="notranslate">命令 &gt; 文件</code>（覆盖），<code class="notranslate">命令 &gt;&gt; 文件</code>（追加）</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tree</td>
+<td>-L n</td>
+<td>level, --max-depth=n</td>
+<td>限制显示目录层级</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>无</td>
+<td>print working directory</td>
+<td>显示当前工作目录</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>无</td>
+<td>无</td>
+<td>创建空文件或更新时间戳</td>
+</tr>
+<tr>
+<td>which</td>
+<td>无</td>
+<td>无</td>
+<td>显示命令的可执行文件路径</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>无</td>
+<td>无</td>
+<td>输出重定向（覆盖）</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>无</td>
+<td>无</td>
+<td>输出重定向（追加）</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<h1>用户管理命令</h1>
+<p><strong>用户切换</strong></p>
+<p>Linux 是多用户操作系统，可以同时登录多个用户。常见用户切换命令如下：</p>
+<ul>
+<li>切换用户：<code class="notranslate">su 用户名</code>
+<ul>
+<li>只切换用户，工作目录不变。</li>
+</ul>
+</li>
+<li>切换用户并切换到家目录：<code class="notranslate">su - 用户名</code>
+<ul>
+<li>切换用户，同时进入该用户的家目录。</li>
+</ul>
+</li>
+<li>返回上一个用户：<code class="notranslate">exit</code></li>
+</ul>
+<p><strong>添加与删除用户</strong></p>
+<ul>
+<li>添加用户：<code class="notranslate">sudo adduser 用户名</code>
+<ul>
+<li>有些 Linux 发行版会提示设置密码和用户信息，有些则直接创建。</li>
+<li>新用户家目录会自动创建在 <code class="notranslate">/home/用户名</code>，可通过切换用户或查看 <code class="notranslate">/etc/passwd</code> 文件验证。</li>
+</ul>
+</li>
+<li>删除用户：<code class="notranslate">sudo userdel 用户名</code>
+<ul>
+<li>删除用户但保留家目录。</li>
+</ul>
+</li>
+<li>删除用户并删除家目录：<code class="notranslate">sudo userdel -r 用户名</code></li>
+<li>使用 <code class="notranslate">deluser</code> 命令（部分发行版支持）：
+<ul>
+<li><code class="notranslate">sudo deluser 用户名</code> 只删除用户，不删除家目录。</li>
+<li>若需删除家目录，需手动执行：<code class="notranslate">sudo rm -r /home/用户名</code></li>
+<li>CentOS 通常只支持 <code class="notranslate">userdel</code>，Ubuntu 支持 <code class="notranslate">userdel</code> 和 <code class="notranslate">deluser</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>用户组管理</strong></p>
+<ul>
+<li>添加用户组：<code class="notranslate">sudo groupadd 组名</code></li>
+<li>删除用户组：<code class="notranslate">sudo groupdel 组名</code></li>
+<li>用户组信息可在 <code class="notranslate">/etc/group</code> 文件中查看。</li>
+</ul>
+<p><strong>密码管理</strong></p>
+<ul>
+<li>修改当前用户密码：<code class="notranslate">passwd</code></li>
+<li>管理员修改其他用户密码：<code class="notranslate">sudo passwd 用户名</code></li>
+<li>管理员修改 root 密码：<code class="notranslate">sudo passwd root</code></li>
+</ul>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>普通用户默认没有使用 <code class="notranslate">sudo</code> 的权限，需管理员授权。</li>
+<li>授权普通用户执行管理员命令存在安全风险，实际工作中需谨慎操作。</li>
+</ul>
+<hr>
+<h1>压缩命令</h1>
+<p>在Linux系统中，压缩和解压缩是常见的文件操作。Linux支持多种压缩格式，每种格式都有相应的工具。</p>
+<p><strong>tar（打包+压缩）</strong></p>
+<p>tar负责打包，配合 gzip/bzip2 完成压缩，常见输出为 .tar.gz/.tgz 或 .tar.bz2。</p>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>打包压缩：tar c[z|j]vf 压缩包.tar.gz/.tar.bz2 要压缩的文件或目录</li>
+<li>解压：tar x[z|j]vf 压缩包.tar.gz/.tar.bz2 [-C 目标目录]</li>
+</ul>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>create</td>
+<td>创建打包文件</td>
+</tr>
+<tr>
+<td>x</td>
+<td>extract</td>
+<td>解包/解压文件</td>
+</tr>
+<tr>
+<td>z</td>
+<td>gzip</td>
+<td>使用 gzip 方式（.tar.gz/.tgz）</td>
+</tr>
+<tr>
+<td>j</td>
+<td>bzip2</td>
+<td>使用 bzip2 方式（.tar.bz2）</td>
+</tr>
+<tr>
+<td>v</td>
+<td>verbose</td>
+<td>显示处理过程</td>
+</tr>
+<tr>
+<td>f</td>
+<td>file</td>
+<td>指定压缩包文件名</td>
+</tr>
+<tr>
+<td>C</td>
+<td>directory</td>
+<td>指定解压或打包时的工作目录</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>示例场景</strong></p>
+<ul>
+<li>备份目录（gzip）：tar czvf etc-backup.tar.gz /etc</li>
+<li>高压缩率备份（bzip2）：tar cjvf logs.tar.bz2 /var/log</li>
+<li>解压到指定目录：tar xzvf etc-backup.tar.gz -C /tmp/review</li>
+</ul>
+<p><strong>zip</strong></p>
+<p>zip跨平台通用，常与Windows互传文件。提示：压缩目录时务必加 <code class="notranslate">-r</code>，否则只会压缩目录占位。</p>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>压缩：zip [-r] 压缩包名.zip 要压缩的文件或目录</li>
+<li>解压：unzip 压缩包名.zip [-d 目标目录]</li>
+</ul>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zip</td>
+<td>-r</td>
+<td>--recursive</td>
+<td>递归压缩目录内容</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>-9</td>
+<td>--best</td>
+<td>最大压缩率（牺牲速度）</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>-q</td>
+<td>--quiet</td>
+<td>静默压缩，不显示过程</td>
+</tr>
+<tr>
+<td>unzip</td>
+<td>-d</td>
+<td>--directory</td>
+<td>解压到指定目录</td>
+</tr>
+<tr>
+<td>unzip</td>
+<td>-l</td>
+<td>--list</td>
+<td>仅列出压缩包内文件，不解压</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>示例场景</strong></p>
+<ul>
+<li>备份配置：zip -r config-backup.zip /etc/nginx</li>
+<li>指定目录解压：unzip config-backup.zip -d /tmp/review</li>
+</ul>
+<p><strong>rar</strong></p>
+<p>rar在Windows兼容性和加密压缩上优势明显，Linux需先安装 <code class="notranslate">rar/unrar</code>。</p>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>压缩：rar a 压缩包名.rar 要压缩的文件或目录 [-r]</li>
+<li>解压：rar x 压缩包名.rar [目标目录]（unrar x 亦可）</li>
+</ul>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rar</td>
+<td>a</td>
+<td>add</td>
+<td>追加/创建压缩包</td>
+</tr>
+<tr>
+<td>rar</td>
+<td>-r</td>
+<td>recursive</td>
+<td>递归压缩目录</td>
+</tr>
+<tr>
+<td>rar</td>
+<td>-p</td>
+<td>password</td>
+<td>交互式设置压缩包密码</td>
+</tr>
+<tr>
+<td>rar</td>
+<td>-v</td>
+<td>volume</td>
+<td>按指定大小分卷（如 -v10m）</td>
+</tr>
+<tr>
+<td>rar</td>
+<td>-m5</td>
+<td>max</td>
+<td>最大压缩率（0-5，5最高）</td>
+</tr>
+<tr>
+<td>rar</td>
+<td>-x</td>
+<td>exclude</td>
+<td>排除匹配的文件（支持通配符）</td>
+</tr>
+<tr>
+<td>rar</td>
+<td>-o+</td>
+<td>overwrite</td>
+<td>解压时自动覆盖</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>示例场景</strong></p>
+<ul>
+<li>加密打包：rar a backup.rar data/ -r -p</li>
+<li>分卷备份：rar a logs.rar /var/log -r -v50m</li>
+</ul>
+<p><strong>xz（.tar.xz）</strong></p>
+<p>tar.xz追求极高压缩率，适合软件分发或体积敏感场景。流程为“先打包后压缩”：tar 打包，xz 做高压缩。</p>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>压缩：tar cvf 文件名.tar 要压缩的文件或目录 → xz -z 文件名.tar → 生成 文件名.tar.xz</li>
+<li>解压：xz -d 文件名.tar.xz → tar xvf 文件名.tar</li>
+</ul>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>工具</th>
+<th>参数</th>
+<th>英文全称</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xz</td>
+<td>-z</td>
+<td>compress</td>
+<td>将 .tar 压缩为 .tar.xz</td>
+</tr>
+<tr>
+<td>xz</td>
+<td>-d</td>
+<td>decompress</td>
+<td>解压 .tar.xz 还原为 .tar</td>
+</tr>
+<tr>
+<td>xz</td>
+<td>-T n</td>
+<td>threads</td>
+<td>指定线程数，提升压缩/解压速率</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>示例场景</strong></p>
+<ul>
+<li>发布包：tar cvf release.tar dist/ &amp;&amp; xz -zT4 release.tar</li>
+<li>解压审阅：xz -d release.tar.xz &amp;&amp; tar xvf release.tar -C /tmp/check</li>
+</ul>
+<h2>压缩格式对比</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>格式</th>
+<th>工具</th>
+<th>压缩率</th>
+<th>速度</th>
+<th>常用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.tar.gz</td>
+<td>tar + gzip</td>
+<td>中等</td>
+<td>较快</td>
+<td>Linux系统通用，文件备份</td>
+</tr>
+<tr>
+<td>.tar.bz2</td>
+<td>tar + bzip2</td>
+<td>较高</td>
+<td>较慢</td>
+<td>需要高压缩率时</td>
+</tr>
+<tr>
+<td>.zip</td>
+<td>zip/unzip</td>
+<td>中等</td>
+<td>中等</td>
+<td>跨平台共享文件</td>
+</tr>
+<tr>
+<td>.rar</td>
+<td>rar/unrar</td>
+<td>高</td>
+<td>较慢</td>
+<td>Windows兼容，加密压缩</td>
+</tr>
+<tr>
+<td>.tar.xz</td>
+<td>tar + xz</td>
+<td>很高</td>
+<td>慢</td>
+<td>软件分发，需要极致压缩时</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>注：</strong> 实际工作中，<code class="notranslate">.tar.gz</code> 和 <code class="notranslate">.zip</code> 是最常用的格式，具有较好的兼容性和性能平衡。</p>
+<hr>
+<h1>查找命令</h1>
+<p>在Linux系统中，查找文件是常见操作。根据需求复杂度，可以使用不同的查找命令。</p>
+<p><strong>find（高级文件查找）</strong></p>
+<p>find是功能强大的文件查找工具，可根据多种属性查找文件。</p>
+<p><strong>文件名查找（-name）</strong></p>
+<p>根据文件名搜索，支持精确查询与通配符模糊匹配。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>通配符</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>匹配零个或多个字符</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配单个字符</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>find 搜索路径 -name "文件名模式"</li>
+</ul>
+<p><strong>注：</strong> 模糊查询时将模式放入引号中以避免解析错误。</p>
+<p><strong>文件类型查找（-type）</strong></p>
+<p>根据文件类型查找，Linux有7种文件类型：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>文件类型</th>
+<th>类型字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通文件</td>
+<td>f</td>
+<td>Regular file</td>
+</tr>
+<tr>
+<td>目录</td>
+<td>d</td>
+<td>Directory</td>
+</tr>
+<tr>
+<td>软链接</td>
+<td>l</td>
+<td>Symbolic link</td>
+</tr>
+<tr>
+<td>字符设备</td>
+<td>c</td>
+<td>Character device</td>
+</tr>
+<tr>
+<td>块设备</td>
+<td>b</td>
+<td>Block device</td>
+</tr>
+<tr>
+<td>管道</td>
+<td>p</td>
+<td>Named pipe</td>
+</tr>
+<tr>
+<td>套接字</td>
+<td>s</td>
+<td>Socket</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>find 搜索路径 -type 类型字符</li>
+</ul>
+<p><strong>文件大小查找（-size）</strong></p>
+<p>根据文件大小查找，支持不同单位和范围。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>符号</th>
+<th>含义说明</th>
+<th>示例范围（以4k为例）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无符号</td>
+<td>精确大小区间</td>
+<td>(3k, 4k]</td>
+</tr>
+<tr>
+<td>-</td>
+<td>小于等于</td>
+<td>[0k, 3k]</td>
+</tr>
+<tr>
+<td>+</td>
+<td>大于</td>
+<td>(4k, ∞)</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>find 搜索路径 -size [+|-]大小单位</li>
+</ul>
+<p><strong>单位说明</strong></p>
+<ul>
+<li>k（小写）：KB；M（大写）：MB；G（大写）：GB</li>
+</ul>
+<p><strong>目录层级查找</strong></p>
+<p>限制搜索的目录深度。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-maxdepth n</td>
+<td>最多搜索到第n层目录</td>
+</tr>
+<tr>
+<td>-mindepth n</td>
+<td>从第n层开始搜索</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>find 搜索路径 -maxdepth n -其他条件</li>
+<li>find 搜索路径 -mindepth n -其他条件</li>
+</ul>
+<p><strong>执行多个操作</strong></p>
+<p>find支持在查找后执行其他命令，有三种方式：</p>
+<p><strong>exec参数</strong></p>
+<p><strong>基础语法（exec）</strong></p>
+<ul>
+<li>find 路径 条件 -exec 命令 {} ;</li>
+</ul>
+<p><strong>注：</strong> <code class="notranslate">{}</code> 为查找结果占位符，<code class="notranslate">\;</code> 为 -exec 结束标记。</p>
+<p><strong>ok参数（交互式）</strong></p>
+<p><strong>基础语法（ok，交互式）</strong></p>
+<ul>
+<li>find 路径 条件 -ok 命令 {} ;</li>
+</ul>
+<p><strong>xargs参数（高效）</strong></p>
+<p><strong>基础语法（xargs，高效批量）</strong></p>
+<ul>
+<li>find 路径 条件 | xargs 命令</li>
+</ul>
+<p><strong>效率对比：</strong></p>
+<ul>
+<li><code class="notranslate">-exec</code>: 逐条传递结果给后续命令</li>
+<li><code class="notranslate">xargs</code>: 批量传递结果给后续命令（更高效）</li>
+</ul>
+<p><strong>grep（文件内容查找）</strong></p>
+<p>grep用于在文件中查找符合条件的字符串。</p>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-r</td>
+<td>递归搜索目录中的文件</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>反向匹配（显示不包含的行）</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>只显示包含匹配项的文件名</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>grep "搜索内容" 文件/路径 [参数]</li>
+</ul>
+<p><strong>注：</strong> 将搜索内容置于引号中以避免特殊字符被误解析。</p>
+<p><strong>locate（快速文件查找）</strong></p>
+<p>locate通过搜索本地数据库快速查找文件，效率高于find，但数据可能不是最新的。</p>
+<p><strong>更新数据库</strong></p>
+<p>更新本地文件数据库（需要管理员权限）：Ubuntu/Debian 使用 updatedb（可加 sudo），CentOS 在 root 用户下执行。</p>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>-n N</td>
+<td>显示前N个结果</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>使用正则表达式</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>只显示匹配数量</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>locate 关键词/路径片段 [参数]</li>
+</ul>
+<p><strong>命令对比</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>查找对象</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>find</td>
+<td>文件属性</td>
+<td>功能强大，实时查找，支持复杂条件</td>
+<td>需要根据多种属性精确查找</td>
+</tr>
+<tr>
+<td>grep</td>
+<td>文件内容</td>
+<td>查找文件中的字符串</td>
+<td>需要在文件中搜索特定内容</td>
+</tr>
+<tr>
+<td>locate</td>
+<td>文件名</td>
+<td>快速，基于数据库，非实时</td>
+<td>快速查找已知文件名的位置</td>
+</tr>
+<tr>
+<td>which</td>
+<td>命令文件</td>
+<td>查找可执行命令的路径</td>
+<td>查找命令的安装位置</td>
+</tr>
+<tr>
+<td>whereis</td>
+<td>命令文件</td>
+<td>查找命令的二进制、源码和手册页</td>
+<td>查找命令相关文件</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>实用技巧</strong></p>
+<ul>
+<li>组合查找：使用 find 结果配合 grep 进行内容过滤与定位。</li>
+<li>安全删除：通过 -ok 交互式确认删除满足条件的旧文件。</li>
+<li>空对象识别：利用 -empty/-type f/-type d 分别筛选空文件与空目录。</li>
+<li>时间维度：结合 -mtime/-newer 等参数按修改时间范围筛选。</li>
+<li>数量与统计：与 wc 等统计工具搭配，进行文件数量与行数统计。</li>
+</ul>
+<p><strong>注：</strong> find 功能最强但学习曲线较陡；快速定位用 locate，内容搜索用 grep，复杂条件与批量处理使用 find。</p>
+<hr>
+<h1>Vim 的使用</h1>
+<p>Vim是Linux中功能强大的文本编辑器，支持丰富的插件和高度定制化。</p>
+<p><strong>安装 Vim</strong></p>
+<ul>
+<li>安装：通过发行版包管理器安装（apt、yum）。</li>
+<li>验证：查看版本 vim --version；内置教程 vimtutor。</li>
+</ul>
+<p><strong>Vim 三种模式</strong></p>
+<p>Vim有三种主要模式，使用中需要经常切换：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>模式</th>
+<th>功能描述</th>
+<th>进入方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令模式</td>
+<td>默认模式，进行查看、搜索、光标移动等操作</td>
+<td>打开vim默认进入</td>
+</tr>
+<tr>
+<td>编辑模式</td>
+<td>修改和添加文件内容</td>
+<td>从命令模式按特定键进入</td>
+</tr>
+<tr>
+<td>末行模式</td>
+<td>执行命令、保存文件、行跳转、分屏等</td>
+<td>从命令模式按 <code class="notranslate">:</code> 进入</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>注：</strong> 编辑模式与末行模式不可直接相互切换；需回到命令模式。</p>
+<p><strong>命令模式操作</strong></p>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>打开/创建文件：vim 文件名（保存后创建新文件）。</li>
+</ul>
+<p><strong>保存退出</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">ZZ</code></td>
+<td>保存并退出</td>
+<td>按住Shift连续按两次Z</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>代码格式化</strong></p>
+<ul>
+<li>格式化整文件：gg=G（gg 到文件头；= 格式化；G 到文件尾）。</li>
+</ul>
+<p><strong>光标移动</strong></p>
+<p><strong>基本移动</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">h</code></td>
+<td>左移</td>
+</tr>
+<tr>
+<td><code class="notranslate">j</code></td>
+<td>下移</td>
+</tr>
+<tr>
+<td><code class="notranslate">k</code></td>
+<td>上移</td>
+</tr>
+<tr>
+<td><code class="notranslate">l</code></td>
+<td>右移</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>快速跳转</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">0</code></td>
+<td>移动到行首</td>
+<td>数字0</td>
+</tr>
+<tr>
+<td><code class="notranslate">$</code></td>
+<td>移动到行尾</td>
+<td>Shift+4</td>
+</tr>
+<tr>
+<td><code class="notranslate">gg</code></td>
+<td>移动到文件头</td>
+<td>第一行开始</td>
+</tr>
+<tr>
+<td><code class="notranslate">G</code></td>
+<td>移动到文件尾</td>
+<td>最后一行开始</td>
+</tr>
+<tr>
+<td><code class="notranslate">nG</code></td>
+<td>跳转到第n行</td>
+<td>n为行号</td>
+</tr>
+<tr>
+<td><code class="notranslate">n+回车</code></td>
+<td>向下跳n行</td>
+<td>n为整数</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>删除（剪切）命令</strong></p>
+<p>Vim中的"删除"实际上是剪切，被删内容可粘贴。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">x</code></td>
+<td>删除光标后的字符</td>
+<td>小写x</td>
+</tr>
+<tr>
+<td><code class="notranslate">X</code></td>
+<td>删除光标前的字符</td>
+<td>大写X</td>
+</tr>
+<tr>
+<td><code class="notranslate">dw</code></td>
+<td>删除单词</td>
+<td>光标需在单词首字母</td>
+</tr>
+<tr>
+<td><code class="notranslate">d0</code></td>
+<td>删除光标前到行首</td>
+<td></td>
+</tr>
+<tr>
+<td><code class="notranslate">d$</code> 或 <code class="notranslate">D</code></td>
+<td>删除光标后到行尾</td>
+<td></td>
+</tr>
+<tr>
+<td><code class="notranslate">dd</code></td>
+<td>删除光标所在行</td>
+<td></td>
+</tr>
+<tr>
+<td><code class="notranslate">ndd</code></td>
+<td>删除n行</td>
+<td>从当前行开始</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>撤销和反撤销</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+<th>对应Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">u</code></td>
+<td>撤销</td>
+<td>Ctrl+Z</td>
+</tr>
+<tr>
+<td><code class="notranslate">Ctrl+r</code></td>
+<td>反撤销</td>
+<td>Ctrl+Y</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>复制和粘贴</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">p</code></td>
+<td>粘贴到光标后/下边</td>
+<td>小写p</td>
+</tr>
+<tr>
+<td><code class="notranslate">P</code></td>
+<td>粘贴到光标前/上边</td>
+<td>大写P</td>
+</tr>
+<tr>
+<td><code class="notranslate">yy</code></td>
+<td>复制光标所在行</td>
+<td></td>
+</tr>
+<tr>
+<td><code class="notranslate">nyy</code></td>
+<td>向下复制n行</td>
+<td>n为整数</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>可视模式</strong></p>
+<p>用于选择非整行的文本块。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>进入方式</th>
+<th>模式类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">v</code></td>
+<td>字符可视模式</td>
+<td>以字符为单位选择</td>
+</tr>
+<tr>
+<td><code class="notranslate">V</code></td>
+<td>行可视模式</td>
+<td>以行为单位选择</td>
+</tr>
+<tr>
+<td><code class="notranslate">Ctrl+v</code></td>
+<td>块可视模式</td>
+<td>选择矩形文本块</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>可视模式下操作</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">h/j/k/l</code></td>
+<td>移动光标选择文本</td>
+</tr>
+<tr>
+<td><code class="notranslate">d</code></td>
+<td>删除选中文本</td>
+</tr>
+<tr>
+<td><code class="notranslate">y</code></td>
+<td>复制选中文本</td>
+</tr>
+<tr>
+<td><code class="notranslate">p/P</code></td>
+<td>粘贴</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>技巧提示</strong></p>
+<ul>
+<li>块可视模式（Ctrl+v）可批量为多行添加或删除前缀以实现注释与反注释。</li>
+</ul>
+<p><strong>替换</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">r</code></td>
+<td>替换光标后单个字符</td>
+<td></td>
+</tr>
+<tr>
+<td><code class="notranslate">R</code></td>
+<td>替换光标后多个字符</td>
+<td>按Esc结束</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>查找</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>搜索方式</th>
+<th>快捷键</th>
+<th>遍历方向</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>向下搜索</td>
+<td><code class="notranslate">/</code></td>
+<td><code class="notranslate">n</code>向下，<code class="notranslate">N</code>向上</td>
+<td>从当前位置向下搜索</td>
+</tr>
+<tr>
+<td>向上搜索</td>
+<td><code class="notranslate">?</code></td>
+<td><code class="notranslate">n</code>向上，<code class="notranslate">N</code>向下</td>
+<td>从当前位置向上搜索</td>
+</tr>
+<tr>
+<td>关键字搜索</td>
+<td><code class="notranslate">#</code></td>
+<td><code class="notranslate">n</code>向上，<code class="notranslate">N</code>向下</td>
+<td>光标需放在关键字上</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>注：</strong> <code class="notranslate">#</code> 直接搜索光标下单词，无需输入关键字。</p>
+<p><strong>查看 man 文档</strong></p>
+<p>man文档有9个章节：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>章节</th>
+<th>内容说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Linux所有shell命令</td>
+</tr>
+<tr>
+<td>2</td>
+<td>系统函数（内核提供）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>库函数（程序库）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>特殊文件（/dev目录）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>系统配置文件格式</td>
+</tr>
+<tr>
+<td>6</td>
+<td>游戏（如果有）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>杂项（宏包和约定）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>系统管理命令（root用户）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>内核例程（非标准）</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>终端查看：man [章节] 关键词（章节 1-9）。</li>
+<li>Vim 内查看：光标置于关键词处，按章节号（可选）+ <code class="notranslate">K</code>。</li>
+</ul>
+<p><strong>切换到编辑模式</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">i</code></td>
+<td>光标前插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">a</code></td>
+<td>光标后插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">o</code></td>
+<td>当前行下新建行插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">s</code></td>
+<td>删除光标后字符并插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">I</code></td>
+<td>行首插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">A</code></td>
+<td>行尾插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">O</code></td>
+<td>当前行上新建行插入</td>
+</tr>
+<tr>
+<td><code class="notranslate">S</code></td>
+<td>删除当前行并插入</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>返回命令模式</strong></p>
+<ul>
+<li>按 <code class="notranslate">Esc</code> 键。</li>
+</ul>
+<p><strong>末行模式操作</strong></p>
+<p><strong>模式切换</strong></p>
+<ul>
+<li>命令模式进入末行：输入 <code class="notranslate">:</code>（冒号）。</li>
+<li>末行返回命令：按两次 <code class="notranslate">Esc</code> 或执行完成自动返回。</li>
+</ul>
+<p><strong>保存退出（末行）</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">q</code></td>
+<td>退出（未保存时提示）</td>
+</tr>
+<tr>
+<td><code class="notranslate">q!</code></td>
+<td>强制退出，不保存</td>
+</tr>
+<tr>
+<td><code class="notranslate">w</code></td>
+<td>保存，不退出</td>
+</tr>
+<tr>
+<td><code class="notranslate">wq</code></td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td><code class="notranslate">x</code></td>
+<td>保存并退出（同wq）</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>替换（末行）</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令格式</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">s/old/new/g</code></td>
+<td>替换当前行所有old为new</td>
+</tr>
+<tr>
+<td><code class="notranslate">1,10s/old/new/g</code></td>
+<td>替换1-10行所有old为new</td>
+</tr>
+<tr>
+<td><code class="notranslate">%s/old/new/g</code></td>
+<td>替换全文所有old为new</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>注：</strong> 未加 <code class="notranslate">/g</code> 仅替换每行首个匹配项。</p>
+<p><strong>分屏</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">sp</code></td>
+<td>水平分屏（上下窗口）</td>
+</tr>
+<tr>
+<td><code class="notranslate">vsp</code></td>
+<td>垂直分屏（左右窗口）</td>
+</tr>
+<tr>
+<td><code class="notranslate">Ctrl+w+w</code></td>
+<td>切换窗口</td>
+</tr>
+<tr>
+<td><code class="notranslate">qall</code></td>
+<td>退出所有窗口</td>
+</tr>
+<tr>
+<td><code class="notranslate">wqall</code></td>
+<td>保存并退出所有窗口</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>启动分屏：<code class="notranslate">-o</code>（水平）或 <code class="notranslate">-O</code>（垂直）打开多个文件。</li>
+</ul>
+<p><strong>行跳转</strong></p>
+<ul>
+<li>末行输入 <code class="notranslate">:行号</code> 跳转到指定行。</li>
+</ul>
+<p><strong>执行 shell 命令</strong></p>
+<ul>
+<li>末行输入 <code class="notranslate">:!命令</code> 执行外部命令。</li>
+</ul>
+<p><strong>Vim 配置文件</strong></p>
+<p>Vim有两个级别的配置文件：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>配置文件</th>
+<th>作用范围</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">~/.vimrc</code></td>
+<td>用户级别，只对当前用户有效</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code class="notranslate">/etc/vim/vimrc</code></td>
+<td>系统级别，对所有用户有效</td>
+<td>低</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>常用配置项</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>选项</th>
+<th>英文说明</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number</td>
+<td>show number</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>syntax on</td>
+<td>syntax</td>
+<td>开启语法高亮</td>
+</tr>
+<tr>
+<td>autoindent</td>
+<td>auto indent</td>
+<td>自动缩进</td>
+</tr>
+<tr>
+<td>tabstop=4</td>
+<td>tab stop</td>
+<td>设置 Tab 显示宽度为 4</td>
+</tr>
+<tr>
+<td>ignorecase</td>
+<td>ignore case</td>
+<td>搜索时忽略大小写</td>
+</tr>
+<tr>
+<td>laststatus=2</td>
+<td>last status</td>
+<td>显示状态栏</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>Vim 学习建议</strong></p>
+<ol>
+<li><strong>循序渐进</strong>：先掌握基本操作（i、Esc、:wq、hjkl）</li>
+<li><strong>多用教程</strong>：<code class="notranslate">vimtutor</code> 是很好的学习工具</li>
+<li><strong>练习常用命令</strong>：dd、yy、p、u、Ctrl+r</li>
+<li><strong>习惯命令模式</strong>：减少鼠标依赖，提高效率</li>
+<li><strong>自定义配置</strong>：创建自己的 <code class="notranslate">.vimrc</code> 文件</li>
+</ol>
+<p><strong>注：</strong> Vim学习有陡峭的学习曲线，但熟练掌握后编辑效率会极大提升。</p>
+<hr>
+<h1>gcc/g++</h1>
+<p>GCC（GNU Compiler Collection）提供 C/C++ 等编译器；g++ 内部调用 gcc，但默认链接 C++ 标准库并定义 <code class="notranslate">__cplusplus</code>。</p>
+<p><strong>安装与验证</strong></p>
+<ul>
+<li>Ubuntu/Debian：sudo apt update；sudo apt install gcc g++；版本查看：gcc --version，g++ --version</li>
+<li>CentOS/RHEL：sudo yum update；sudo yum install gcc g++</li>
+</ul>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>编译单文件：gcc 源.c -o 输出 [选项]</li>
+<li>仅编译不链接：gcc -c 源.c -o 源.o</li>
+<li>多文件编译：gcc 源1 源2 ... -o 输出</li>
+<li>指定标准：gcc -std=c99 源.c -o 输出；C++ 用 g++ -std=c++17 源.cpp -o 输出</li>
+</ul>
+<p><strong>编译流程</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>阶段</th>
+<th>选项</th>
+<th>输出</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预处理</td>
+<td>-E</td>
+<td>.i</td>
+<td>展开头文件与宏，去注释</td>
+</tr>
+<tr>
+<td>编译</td>
+<td>-S</td>
+<td>.s</td>
+<td>生成汇编</td>
+</tr>
+<tr>
+<td>汇编</td>
+<td>-c</td>
+<td>.o</td>
+<td>生成目标文件</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>默认</td>
+<td>可执行文件</td>
+<td>生成最终产物</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-g</td>
+<td>生成调试信息</td>
+<td>调试版必开</td>
+</tr>
+<tr>
+<td>-Wall -Wextra</td>
+<td>打开常见/额外警告</td>
+<td>代码质量检查</td>
+</tr>
+<tr>
+<td>-O0/-O1/-O2/-O3</td>
+<td>优化等级</td>
+<td>开发/发布切换</td>
+</tr>
+<tr>
+<td>-std=c99/c11/c++17</td>
+<td>语言标准</td>
+<td>规范编译</td>
+</tr>
+<tr>
+<td>-I 路径</td>
+<td>追加头文件目录</td>
+<td>非系统包含目录</td>
+</tr>
+<tr>
+<td>-L 路径</td>
+<td>追加库目录</td>
+<td>自定义库搜索</td>
+</tr>
+<tr>
+<td>-l 名称</td>
+<td>链接指定库</td>
+<td>如 -lm、-lpthread</td>
+</tr>
+<tr>
+<td>-D NAME[=val]</td>
+<td>定义宏</td>
+<td>功能开关、版本号</td>
+</tr>
+<tr>
+<td>-fPIC</td>
+<td>生成位置无关代码</td>
+<td>制作共享库</td>
+</tr>
+<tr>
+<td>-shared</td>
+<td>生成共享库</td>
+<td>输出 .so</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>多文件与库</strong></p>
+<ul>
+<li>直接编译：gcc a.c b.c -o app</li>
+<li>分步编译：gcc -c a.c -o a.o；gcc -c b.c -o b.o；gcc a.o b.o -o app</li>
+<li>头文件目录：-I ./include；库目录：-L ./lib；链接库：-lxxx</li>
+</ul>
+<p><strong>gcc 与 g++ 对比</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>对比项</th>
+<th>gcc</th>
+<th>g++</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编译 C 程序</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>编译 C++ 程序</td>
+<td>需手动链接 -lstdc++</td>
+<td>直接支持</td>
+</tr>
+<tr>
+<td>默认定义 <code class="notranslate">__cplusplus</code></td>
+<td>依据文件后缀</td>
+<td>始终定义</td>
+</tr>
+<tr>
+<td>链接 C++ 标准库</td>
+<td>需显式 -lstdc++</td>
+<td>自动</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>调试与发布习惯</strong></p>
+<ul>
+<li>调试：-g -O0 -Wall -Wextra，必要时加 -fsanitize=address</li>
+<li>发布：-O2/-O3，移除 -g，按需保留 -DNDEBUG</li>
+</ul>
+<p><strong>快捷技巧</strong></p>
+<ul>
+<li>预处理结果：gcc -E 源.c -o 源.i</li>
+<li>汇编输出：gcc -S 源.c -o 源.s</li>
+<li>生成共享库：gcc -fPIC -shared 源.c -o libxxx.so</li>
+<li>链接数学库：gcc 源.c -lm -o app；线程库：-pthread</li>
+</ul>
+<hr>
+<h1>静态库和动态库制作和使用</h1>
+<p>库是预编译的代码集合，用于复用与封装，分静态库（.a）和动态库（.so）。</p>
+<p><strong>静态库（.a）</strong></p>
+<ul>
+<li>命名：libxxx.a（Linux），libxxx.lib（Windows）</li>
+<li>基础流程：gcc -c 源文件 -I 包含目录 → ar rcs libxxx.a *.o → gcc main.c -L路径 -lxxx -o app</li>
+<li>适用：发布简单、无外部依赖、加载快</li>
+</ul>
+<p><strong>动态库（.so）</strong></p>
+<ul>
+<li>命名：libxxx.so（Linux），libxxx.dll（Windows）</li>
+<li>基础流程：gcc -c -fPIC 源文件 -I 包含目录 → gcc -shared *.o -o libxxx.so → gcc main.c -L路径 -lxxx -o app [-Wl,-rpath=库路径]</li>
+<li>适用：节省内存、易升级、支持插件式加载</li>
+</ul>
+<p><strong>常用参数</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>工具/选项</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ar rcs libxxx.a *.o</td>
+<td>打包静态库</td>
+<td>r 替换、c 创建、s 建索引</td>
+</tr>
+<tr>
+<td>-fPIC</td>
+<td>生成位置无关代码</td>
+<td>动态库必备</td>
+</tr>
+<tr>
+<td>-shared</td>
+<td>生成共享库</td>
+<td>输出 .so</td>
+</tr>
+<tr>
+<td>-L 路径</td>
+<td>追加库搜索路径</td>
+<td>与 -l 配合</td>
+</tr>
+<tr>
+<td>-l 名称</td>
+<td>链接库</td>
+<td>名称去掉前缀 lib 与后缀</td>
+</tr>
+<tr>
+<td>-Wl,-rpath=路径</td>
+<td>写入运行时库搜索路径</td>
+<td>便于部署</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>动态库加载与搜索</strong></p>
+<ul>
+<li>搜索顺序：可执行文件 DT_RPATH → 环境变量 LD_LIBRARY_PATH → /etc/ld.so.cache → /lib、/usr/lib</li>
+<li>常用方案：
+<ul>
+<li>临时：导出 LD_LIBRARY_PATH=...:库路径</li>
+<li>持久：/etc/ld.so.conf.d/xxx.conf 添加路径后 ldconfig</li>
+<li>直接放置：将 .so 拷贝或链接到 /usr/lib 并 ldconfig</li>
+<li>编译期写入：-Wl,-rpath=库路径 绑定运行时搜索路径</li>
+</ul>
+</li>
+</ul>
+<p><strong>依赖检查</strong></p>
+<ul>
+<li>可执行文件依赖：ldd 可执行文件</li>
+<li>动态库信息：readelf -d libxxx.so；objdump -p libxxx.so</li>
+</ul>
+<p><strong>静态库 vs 动态库</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>对比项</th>
+<th>静态库</th>
+<th>动态库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接时机</td>
+<td>编译时</td>
+<td>运行时</td>
+</tr>
+<tr>
+<td>体积/内存</td>
+<td>可执行大、内存多份</td>
+<td>可执行小、内存共享</td>
+</tr>
+<tr>
+<td>加载速度</td>
+<td>快</td>
+<td>稍慢</td>
+</tr>
+<tr>
+<td>更新方式</td>
+<td>需重编可执行</td>
+<td>替换库即可</td>
+</tr>
+<tr>
+<td>部署复杂度</td>
+<td>低</td>
+<td>需确保库路径</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>选择与实践</strong></p>
+<ul>
+<li>系统核心/长期维护：动态库方便升级</li>
+<li>闭源分发：多提供动态库以控制更新</li>
+<li>嵌入式或极简部署：倾向静态库减少依赖</li>
+<li>性能敏感启动场景：可选静态链接关键模块</li>
+</ul>
+<hr>
+<h1>Makefile</h1>
+<p>Makefile 用于声明依赖和命令，让 <code class="notranslate">make</code> 自动决定哪些文件需要重新构建。</p>
+<p><strong>规则骨架</strong></p>
+<ul>
+<li>结构：目标: 依赖 → 命令（命令行以 Tab 开头）</li>
+<li>第一条规则为默认目标；不生成文件的目标应标记 <code class="notranslate">.PHONY</code></li>
+<li>例：app: main.c utils.c → gcc main.c utils.c -o app</li>
+</ul>
+<p><strong>执行机制</strong></p>
+<ul>
+<li>依赖不存在时递归寻找可生成它的规则</li>
+<li>通过时间戳判断是否重建：目标比任一依赖旧或缺失则执行命令</li>
+<li>内置推导：若无规则，make 默认知道 <code class="notranslate">.c → .o</code> 的编译方式</li>
+</ul>
+<p><strong>常用变量</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>变量</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CC/CXX</td>
+<td>C/C++ 编译器</td>
+<td>gcc / g++</td>
+</tr>
+<tr>
+<td>CFLAGS/CXXFLAGS</td>
+<td>编译选项</td>
+<td>-Wall -O2</td>
+</tr>
+<tr>
+<td>LDFLAGS</td>
+<td>链接选项</td>
+<td>-L./lib -lfoo</td>
+</tr>
+<tr>
+<td>AR</td>
+<td>静态库打包器</td>
+<td>ar</td>
+</tr>
+<tr>
+<td>RM</td>
+<td>删除命令</td>
+<td>rm -f</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>自动变量</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+<th>常见用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$@</td>
+<td>目标</td>
+<td>生成文件名</td>
+</tr>
+<tr>
+<td>$&lt;</td>
+<td>第一个依赖</td>
+<td>单文件编译</td>
+</tr>
+<tr>
+<td>$^</td>
+<td>所有不重复依赖</td>
+<td>链接阶段</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>比目标新的依赖</td>
+<td>增量构建</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>模式规则与函数</strong></p>
+<ul>
+<li>通用规则：<code class="notranslate">%.o: %.c → $(CC) $(CFLAGS) -c $&lt; -o $@</code></li>
+<li>常用函数：
+<ul>
+<li><code class="notranslate">wildcard</code> 收集匹配文件（例：SRC=$(wildcard src/*.c)）</li>
+<li><code class="notranslate">patsubst</code> 替换模式（例：OBJ=$(patsubst %.c,%.o,$(SRC))）</li>
+</ul>
+</li>
+</ul>
+<p><strong>写法演进思路</strong></p>
+<ul>
+<li>直接编译：目标: 所有源文件 → 一条 gcc 命令</li>
+<li>分步：先生成 .o，再链接，避免全量重编</li>
+<li>抽象：用变量和模式规则消除重复</li>
+<li>自动收集：wildcard+patsubst 自动生成 OBJ</li>
+<li>伪目标：clean/install/info 等使用 <code class="notranslate">.PHONY</code></li>
+</ul>
+<p><strong>多目标与多目录要点</strong></p>
+<ul>
+<li>同时生成静态库/动态库/可执行：all: libstatic libdynamic app</li>
+<li>多目录源：CFLAGS/CXXFLAGS 加 <code class="notranslate">-I./include</code>，模式规则写成 src/%.o: src/%.c</li>
+<li>条件编译：DEBUG ?= 0；ifeq/else 设置调试或优化参数</li>
+<li>安装/卸载：install/uninstall 目标封装复制与删除</li>
+</ul>
+<p><strong>常用 make 命令</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>make</td>
+<td>执行默认目标</td>
+</tr>
+<tr>
+<td>make clean</td>
+<td>清理中间文件/产物</td>
+</tr>
+<tr>
+<td>make -jN</td>
+<td>并行构建（N 线程）</td>
+</tr>
+<tr>
+<td>make -n</td>
+<td>仅打印将执行的命令</td>
+</tr>
+<tr>
+<td>make -B</td>
+<td>强制重建所有目标</td>
+</tr>
+<tr>
+<td>make -f File</td>
+<td>指定使用的 Makefile</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>使用建议</strong></p>
+<ul>
+<li>保持规则简洁，尽量抽象通用逻辑</li>
+<li>关键目标使用注释说明，避免隐藏依赖</li>
+<li>清理、安装、信息等非文件目标全部列入 <code class="notranslate">.PHONY</code></li>
+<li>复杂项目可拆分多级 Makefile 或过渡到 CMake/Meson</li>
+</ul>
+<hr>
+<h1>GDB 调试</h1>
+<p>GDB是GNU调试器，用于调试C/C++等程序，是Linux开发的重要工具。</p>
+<p><strong>调试准备</strong></p>
+<p><strong>基础语法</strong></p>
+<ul>
+<li>编译：gcc -g -Wall -O0 源码 -o 可执行文件</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>选项</th>
+<th>英文说明</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-g</td>
+<td>debug</td>
+<td>生成调试信息</td>
+</tr>
+<tr>
+<td>-Wall</td>
+<td>warnings</td>
+<td>打开常见警告</td>
+</tr>
+<tr>
+<td>-O0</td>
+<td>no optimize</td>
+<td>关闭优化，便于调试</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>启动与参数</strong></p>
+<ul>
+<li>启动：gdb 可执行文件</li>
+<li>设置参数：set args 参数列表；查看：show args</li>
+<li>运行：run（停在首个断点）；start（停在 main 第一行）；退出：quit</li>
+</ul>
+<p><strong>代码查看</strong></p>
+<ul>
+<li>list / list 行号 / list 函数名 / list 文件:行号 / 文件:函数</li>
+<li>set listsize N；show listsize</li>
+</ul>
+<p><strong>断点管理</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>类型</th>
+<th>命令格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行断点</td>
+<td>break 行号</td>
+<td>当前文件行</td>
+</tr>
+<tr>
+<td>函数断点</td>
+<td>break 函数名</td>
+<td>入口断点</td>
+</tr>
+<tr>
+<td>文件行</td>
+<td>break 文件:行</td>
+<td>跨文件断点</td>
+</tr>
+<tr>
+<td>条件断点</td>
+<td>break 位置 if 条件</td>
+<td>条件满足才中断</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<ul>
+<li>查看断点：info breakpoints</li>
+<li>删除断点：delete [编号/范围]；禁用/启用：disable/enable 编号</li>
+</ul>
+<p><strong>运行控制</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>continue (c)</td>
+<td>继续运行至下一断点</td>
+</tr>
+<tr>
+<td>until</td>
+<td>运行到指定行/跳出循环</td>
+</tr>
+<tr>
+<td>return</td>
+<td>强制从当前函数返回</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>单步执行</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>step (s)</td>
+<td>单步，进入函数</td>
+<td>跟踪调用</td>
+</tr>
+<tr>
+<td>next (n)</td>
+<td>单步，不入函数</td>
+<td>快速步进</td>
+</tr>
+<tr>
+<td>finish</td>
+<td>运行至当前函数返回</td>
+<td>跳出函数</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>变量与内存</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>print/ptype</td>
+<td>打印值或类型（p、ptype）</td>
+</tr>
+<tr>
+<td>set var</td>
+<td>修改变量值</td>
+</tr>
+<tr>
+<td>display / info display</td>
+<td>自动显示变量及列表</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>内存查看</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x/格式 地址</td>
+<td>查看内存；格式形如 N F U（数量/格式/单元大小）</td>
+</tr>
+<tr>
+<td>常用格式</td>
+<td>F：x十六进制 d十进制 u无符号 o八进制 t二进制 a地址 c字符 f浮点；U：b字节 h半字 w字 g双字</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>堆栈与线程</strong></p>
+<ul>
+<li>调用栈：backtrace（bt）；frame N 切换栈帧；info locals/info args 查看局部和参数</li>
+<li>线程：info threads；thread N 切换；scheduler-locking on/off/step 控制调度</li>
+</ul>
+<p><strong>高级断点与命令</strong></p>
+<ul>
+<li>条件：break 位置 if 条件；命中计数：ignore 编号 次数</li>
+<li>命令断点：commands 编号 … end（中断时自动执行命令）</li>
+</ul>
+<p><strong>常用调试流程</strong></p>
+<ul>
+<li>编译加 -g -Wall -O0 → gdb 程序 → break main/关键行 → set args … → run/start → step/next/continue → print/display 变量 → need 时调整代码再 make / run。</li>
+</ul>
+<p><strong>GDB 命令速查表</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>分类</th>
+<th>命令</th>
+<th>简写</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动退出</td>
+<td>run</td>
+<td>r</td>
+<td>运行程序</td>
+</tr>
+<tr>
+<td></td>
+<td>start</td>
+<td></td>
+<td>停在 main 首行</td>
+</tr>
+<tr>
+<td></td>
+<td>quit</td>
+<td>q</td>
+<td>退出 gdb</td>
+</tr>
+<tr>
+<td>断点</td>
+<td>break</td>
+<td>b</td>
+<td>设置断点/条件断点</td>
+</tr>
+<tr>
+<td></td>
+<td>info breakpoints</td>
+<td>i b</td>
+<td>查看断点</td>
+</tr>
+<tr>
+<td></td>
+<td>delete</td>
+<td>d</td>
+<td>删除断点</td>
+</tr>
+<tr>
+<td></td>
+<td>disable/enable</td>
+<td></td>
+<td>禁用/启用断点</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>list</td>
+<td>l</td>
+<td>查看源码</td>
+</tr>
+<tr>
+<td></td>
+<td>set listsize</td>
+<td></td>
+<td>设置显示行数</td>
+</tr>
+<tr>
+<td>单步</td>
+<td>step</td>
+<td>s</td>
+<td>单步进入</td>
+</tr>
+<tr>
+<td></td>
+<td>next</td>
+<td>n</td>
+<td>单步跳过</td>
+</tr>
+<tr>
+<td></td>
+<td>continue</td>
+<td>c</td>
+<td>继续运行</td>
+</tr>
+<tr>
+<td></td>
+<td>finish</td>
+<td></td>
+<td>跳出函数</td>
+</tr>
+<tr>
+<td></td>
+<td>until</td>
+<td></td>
+<td>跳到行/出循环</td>
+</tr>
+<tr>
+<td>变量</td>
+<td>print</td>
+<td>p</td>
+<td>打印变量</td>
+</tr>
+<tr>
+<td></td>
+<td>ptype</td>
+<td></td>
+<td>查看类型</td>
+</tr>
+<tr>
+<td></td>
+<td>display</td>
+<td></td>
+<td>自动显示</td>
+</tr>
+<tr>
+<td></td>
+<td>info display</td>
+<td></td>
+<td>查看自动显示</td>
+</tr>
+<tr>
+<td></td>
+<td>set var</td>
+<td></td>
+<td>修改变量</td>
+</tr>
+<tr>
+<td>堆栈</td>
+<td>backtrace</td>
+<td>bt</td>
+<td>查看调用栈</td>
+</tr>
+<tr>
+<td></td>
+<td>frame</td>
+<td></td>
+<td>选择栈帧</td>
+</tr>
+<tr>
+<td></td>
+<td>info locals</td>
+<td></td>
+<td>查看局部变量</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>x</td>
+<td></td>
+<td>查看内存</td>
+</tr>
+<tr>
+<td></td>
+<td>info registers</td>
+<td></td>
+<td>查看寄存器</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<p>The most powerful programming language is English。</p>
+<p>Use programming to be a mirror of your thought process,to actually learn how to think.</p>
+<p>我们准备学习的，是有关计算过程的知识。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HangYaHan.github.io">HangYaHan's Blog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("07/25/2025"!=""){
+    var startSite=new Date("07/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HangYaHan/HangYaHan.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
+
+</html>
