@@ -2,7 +2,7 @@
 > 我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)。
 > Linux部分的内容相关知识可以查看：[https://subingwen.cn/categories/Linux/](https://subingwen.cn/categories/Linux/)
 
-# 目录
+# 看完的内容
 - Linux系统简介
 - 文件管理命令
 - 用户管理命令
@@ -15,4 +15,3 @@
 - GDB 调试
 
 ---
-
