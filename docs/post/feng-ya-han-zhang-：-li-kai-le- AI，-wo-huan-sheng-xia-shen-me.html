@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/168107882?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="> “聪明”的努力，最后只值一句 prompt。">
+<meta property="og:title" content="风雅涵章：离开了 AI，我还剩下什么">
+<meta property="og:description" content="> “聪明”的努力，最后只值一句 prompt。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HangYaHan.github.io/post/feng-ya-han-zhang-%EF%BC%9A-li-kai-le-%20AI%EF%BC%8C-wo-huan-sheng-xia-shen-me.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/168107882?v=4">
+<title>风雅涵章：离开了 AI，我还剩下什么</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">风雅涵章：离开了 AI，我还剩下什么</h1>
+<div class="title-right">
+    <a href="https://HangYaHan.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HangYaHan/HangYaHan.github.io/issues/42" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>“聪明”的努力，最后只值一句 prompt。<br>
+这是我这次面试之后，脑海里反复浮现的一句话。</p>
+</blockquote>
+<p>这次字节的面试，对我来说不是一次普通的失利，而更像是一次迎面而来的打击。它击碎的不只是我对这场面试结果的期待，更是我过去一段时间里对自己能力的想象。面试结束之后，我整个人几乎是瘫倒在椅子上，一种非常强烈的无力感扑面而来：明明很多问题都不算特别偏、不算特别难，甚至都没有超出我原本的预期范围，可我就是答不上来。</p>
+<p>这种感觉比“遇到了不会的难题”更难受。真正让人沮丧的，从来不是完全陌生的东西，而是那些仿佛近在咫尺、自己似乎本该会，却偏偏没有答出来的东西。我的准备并不充分，不仅一般意义上的“不够努力”，而且某些能力已经在不知不觉中退化了。</p>
+<h2>面试暴露出来的问题，比结果本身更值得反思</h2>
+<p>回头看这次面试，我觉得自己暴露出了几个非常明显的问题。</p>
+<p>第一，是编码能力的退化。<br>
+这可能是我最不愿意承认、但又最无法回避的一点。过去一段几个月里，我越来越习惯借助 AI 来补全代码、生成实现。久而久之，我似乎默认了一种工作方式：遇到问题时，先丢给Agent看看能不能直接解决；遇到错误，直接把错误复制黏贴丢给AI，放弃思考。这样做在完成任务时确实非常高效，甚至会给人一种“我做得还不错”的错觉，但面试这种场景会非常残酷地揭穿这一点。因为面试不看你能不能调出一个可运行的结果，而是看你能不能在没有外部支撑的情况下，自己独立建模、拆解问题、组织语言、一步步把代码写出来。</p>
+<p>第二，是算法题准备得太少。<br>
+这次面试里，算法题并没有难到离谱，甚至可以说就是很典型的面试题范畴。所谓的 hot 题，之所以是 hot，本来就是因为它们高频、经典、有代表性。某种意义上，面试考察的内容并没有超纲。如果认真刷过 LeetCode hot100，或者对常见题型有比较扎实的训练，大概率是不会像这次这样慌乱的。</p>
+<p>第三，是基础知识准备不足，或者说，缺少真正内化后的理解。<br>
+所谓的“四件套”——数据结构与算法、计算机网络、操作系统、数据库——其实一直都是技术面试里最核心的基础内容。这次面试里还问到了多线程相关的基础概念，以及数据库经历，而我的回答很难说令人满意。尤其是数据库，当我说自己没有做过的时候，我能明显感觉到自己的简历和能力画像一下子变得单薄起来。很多知识其实并没有进入我的理解系统里，没有形成稳定的、可以被随时调动的能力。换句话说，没有固化在我的脑海里。</p>
+<h2>新技术出现，不等于旧能力可以被跳过</h2>
+<p>这次面试之后，我越来越强烈地意识到一件事：AI 再强，也不意味着基础能力就不重要了。</p>
+<p>有些东西，本来就不应该完全外包给 AI。至少对于程序员来说，基础的编码能力、算法能力、系统知识，仍然是不可被跳过的底座。新的、更高层的技术出现了，并不意味着原有的能力就可以被淘汰。恰恰相反，越是工具强大，越要求使用它的人知道自己在做什么。AI能发挥出的能量取决于它的使用者，这点我深有感触，但我似乎太执着于虚无缥缈的东西以至于丢失了基本功。</p>
+<p>如果一个 C/C++ 程序员完全没有底层意识，那会很危险；如果一个做数字 IC 的人连真值表、时序逻辑这些基础都没有建立起来，再高级的工具也只是把问题隐藏，而不是解决。编程也是一样。面试官给出的算法题，并没有要求手搓多么庞大、多么复杂的工程系统，它考察的只是最基本的思维组织和编码表达能力。连这些都要依赖 AI 去“代劳”，那说明缺的已经不是技巧，而是根基本身。</p>
+<p>所以问题并不在于“能不能用 AI”，而在于“什么东西不能交给 AI”。如果一个人把本该自己经历的训练过程直接跳过，把所有困难都转化为一句 prompt，那么最后留下来的，很可能只是任务完成的表象，而不是能力的增长。</p>
+<h2>面试官最后那几句话，其实比整场面试更让我警醒</h2>
+<p>面试结束时，和面试官有一段简短的交流。现在回想起来，那几句话反而是这次面试里最值得记住的部分。</p>
+<p>他先说，我不能太依赖 AI。<br>
+然后又说，项目不在多，而在于有没有真正把一个知识点搞懂。</p>
+<p>这两句话很短，却几乎正中问题的核心。</p>
+<p>我过去其实也隐约知道自己有依赖 AI 的倾向，但我一直没有真正把这件事当成一个严重的问题。因为在很多实际情境里，它确实是有帮助的：能提高效率，能快速验证思路，能把一些原本需要查很久的内容迅速整理出来。AI呢能够相对稳定地输出“正确答案”，远远好过我的答案。问题在于，当“提高效率”逐渐演变成“替代思考”，当“辅助实现”慢慢变成“跳过训练”，人就会在一种表面高产的状态里，悄悄失去本来应该自己长出来的能力。</p>
+<p>而“项目不在多，在于是否真正理解”，则是对我另一种焦虑的回应。现在很多时候，我会下意识觉得自己项目太过于naive、非科班、做的东西不够“像样”，于是总想赶紧再堆一个项目、再做一个系统、再补一个技术栈。但如果只是表面上做了很多，实际上每一个都停留在“能跑起来”的程度，没有真正理解设计取舍、边界条件、实现细节和底层原理，那么这些项目未必真的能说明什么。表面花哨的东西毫无意义，吃透了知识点才是项目背后的价值。</p>
+<h2>“第一次面试都会这样”也许是真的，但这不能成为安慰自己的理由</h2>
+<p>有人说，第一次面试表现成这样很正常，大家都会紧张，都会发挥失常。这话也许没错。可我发现，这种说法并不能真正安慰到我。</p>
+<p>因为我知道自己难受，并不只是因为“第一次所以没发挥好”，而是因为我心里很清楚：这次暴露出来的很多问题，不是偶然，而是真实存在的短板。它们并不是因为紧张才突然出现，而是一直在那里，只不过在面试这个高压场景下被集中放大了。</p>
+<p>我很清楚自己不是那种特别聪明、看一遍就能记住、学一遍就能举一反三的人。相反，我一直都更像是那种“笨小孩”——记忆力不算好，不内化、不理解的东西，基本就是看了就忘。所以很多知识，我必须花比别人更多的时间去反复理解、反复练习，才能真正变成自己的东西。从这个角度来说，我更没有资格依赖那些看起来省力的捷径。因为对我这样的人来说，一旦跳过了理解和训练的环节，最后几乎什么也留不下来。</p>
+<h2>这场面试也让我开始重新思考：我到底为什么要去大厂？</h2>
+<p>这次面试之后，我还开始反思另一个问题：我真的一定要进入互联网大厂吗？</p>
+<p>这个问题以前我很少认真问自己。好像在周围的叙事里，“进大厂”天然就是一条更体面、更正确、更值得努力的路。可是这次面试之后，我开始有点去魅了。如果最终考察的主要还是这些内容，如果这个体系要求你不断在高频题、热点八股、标准答案中重复竞争，那我为什么一定要拼命卷进去？是为了那个看起来更光鲜的标签？为了别人眼中“不错”的工作？可很多时候，事实上 Nobody cares。外界的认可并不会替你承受长期透支、持续焦虑和高压竞争带来的代价。</p>
+<p>这并不是说大厂就没有价值，也不是说以后绝不考虑这样的机会，而是我开始意识到：如果我只是因为一种抽象的“正确人生模板”去追逐它，那这件事本身就值得怀疑。任何选择都应该建立在更清楚的自我认识之上，而不是盲目地被某种主流叙事牵着走。</p>
+<h2>但无论如何，持续学习这件事没有退路</h2>
+<p>不过，去魅归去魅，反思归反思，有一件事情我反而比以前更确定了：我必须持续学习。</p>
+<p>我可以怀疑某种路径是否适合自己，可以重新评估所谓“大厂”“体面”“成功”的意义，但我不能因此放弃成长本身。因为无论最终走向哪条路，真正能支撑我长期生活和工作的，始终还是那些属于我自己的能力。</p>
+<p>问题在于，我过去可能花了太多时间在休闲娱乐上，也总是安慰自己说“我每天也有在学一些东西”。可现在想来，“一些”实在是太少了。更关键的是，我的大脑似乎把学习这件事二元化了：要么就觉得自己今天学了，因此可以心安理得；要么就觉得今天没做到理想状态，于是干脆陷入放弃。可学习从来不是一个“有或没有”的问题，它本质上是一个时间分配的问题，是一个积累速度的问题。</p>
+<p>真正重要的，不是“我今天有没有学”，而是“我今天投入了多少有效时间，我的训练有没有形成连续性，我的能力有没有一点点往前推进”。说到底，还是时间。It’s about time. 我必须更严肃地面对这个问题：如何在有限的时间里，稳定地完成学习和工作，如何让自己的精力真正向重要的事情倾斜，而不是被碎片化消耗掉。</p>
+<h2>我现在需要的，不是新的焦虑，而是一份真正能执行的计划</h2>
+<p>所以，与其继续沉浸在失败感里，不如开始制定一个真正可以执行的计划。</p>
+<p>目前我想到的方向有这些：</p>
+<ol>
+<li>
+<p><strong>系统刷 LeetCode</strong><br>
+至少先把高频题、经典题型和 hot100 认真过一遍，不是为了机械背答案，而是为了恢复最基本的算法思维和手写能力。我要做到的不只是“看懂题解”，而是自己能独立写出来，能解释思路，能在限定时间内完成表达。</p>
+</li>
+<li>
+<p><strong>扩展项目，补足数据库相关经验</strong><br>
+比如让 Beruto 这个项目往数据库方向做一些延伸，哪怕只是从最基础的存储设计、查询逻辑、索引理解做起，也比“完全没做过”要强得多。数据库不能一直是我的空白项。</p>
+</li>
+<li>
+<p><strong>再做一个更完整的项目，比如音乐库</strong><br>
+这个方向对我来说可能更有兴趣驱动，也更容易长期投入。重点不只是做出功能，而是借机练习完整的软件设计、数据组织、性能考虑和迭代过程。</p>
+</li>
+<li>
+<p><strong>正式开始搭建自己的博客网站</strong><br>
+一方面，我太过依赖固有的博客框架了，实际上我完全有能力去学习如何从零搭建一个网站并且这是十分有意义的；另一方面，输出更多的文章，对我这种“必须内化才能记住”的人来说，写作本身就是学习的一部分。把知识写出来，才能逼迫自己真正理解。</p>
+</li>
+<li>
+<p><strong>继续读书，把 Rust 系统地看完</strong><br>
+Rust 对我来说不该只是“看过一点”“写过一点”，而应该成为一次更扎实的语言和系统能力训练。尤其是所有权、借用、并发安全这些部分，本来就和我想加强的方向高度相关。</p>
+</li>
+<li>
+<p><strong>多学语文，多看看书</strong><br>
+语文永远值得我学习。</p>
+</li>
+</ol>
+<h2>但我真正绕不过去的，还是 AI 时代的学习焦虑</h2>
+<p>说到底，我现在最深的焦虑并不是这次面试本身，而是一个更大的问题：在 AI 时代，我到底应该如何学习代码？</p>
+<p>这件事一直盘旋在我的脑海里。因为现实是，AI 确实已经能写出大量看起来不错的代码。尤其是在 toy program、练手项目、标准化任务里，AI 往往比人的初稿更快、更完整，甚至更漂亮。这就带来一种非常强烈的挫败感：我不会的东西，AI 能做；我会的东西，AI 似乎做得比我更好。于是人很容易掉进一个漩涡里——既然我不会的都可以交给 AI，我为什么还要痛苦地去学？可一旦这样想，能力就会进一步退化；而能力越退化，就越离不开 AI。最后，仿佛所有东西都变成了悖论：什么都应该学，但又什么都好像没有学习的必要。</p>
+<p>从结果导向上看，似乎真的可以像一个“领导”那样去指挥 AI：我只要知道这件事能不能做、应该往哪个方向做，并且把需求描述清楚，很多任务就可以被推进下去。可问题是，如果我始终只停留在这个层面，我就永远成不了一个真正高级的 C++ 或 Rust 程序员。我对并发、多线程、内存模型、生命周期这些内容的理解，就会永远停留在“让 AI 帮我完成某项工作”的层面，而不是我自己真正拥有的能力。</p>
+<p>一旦走到这一步，人就会产生一种非常可怕的错觉：AI 能做，等于我能做；AI 不能做，等于我不能做。这样一来，我自己仿佛失去了存在的意义。</p>
+<h2>真正痛苦的地方，不是 AI 比我强，而是它拿走了本该属于我的训练过程</h2>
+<p>后来我慢慢意识到，我最痛苦的地方其实不是“AI 比我强”，而是 AI 把我原本应该亲自经历的训练过程拿走了。</p>
+<p>过去学习编程时，一个人通常会经历这样一整条链路：不会、查资料、尝试、写错、调试、返工、再理解。真正让人变强的，从来都不是最后“代码跑起来”的那一刻，而是中间不断犯错、不断修正、不断重建理解的过程。可现在，AI 往往会在我还没来得及真正思考之前，就先把一个看起来完整的答案摆在我面前。项目可能做成了，功能也许也跑起来了，但我的能力并没有同步长出来。结果与能力之间出现了割裂，这种割裂会带来非常强的空虚感。</p>
+<p>所以问题不在于 AI 是否存在，而在于我如何使用它。<br>
+如果我把 AI 当成“代做者”，那它大概率会让我退化；但如果我把它当成老师、陪练、审稿人，它反而可能成为一种很强的放大器。</p>
+<p>我可以先自己设计思路，再让 AI 帮我 review。<br>
+我可以先自己实现，再让 AI 帮我指出 bug 和坏味道。<br>
+我甚至可以明确要求它不要直接给最终答案，只给提示、反问、局部修正和测试建议。<br>
+这样一来，最关键的训练部分——独立思考、独立建模、独立判断——就还掌握在我自己手里。</p>
+<p>AI 可以帮我提速，但不能替我思考。<br>
+AI 可以帮我实现，但不能替我做关键判断。<br>
+AI 可以是工具，但不能成为我能力的替身。</p>
+<h2>真正不会过时的，依然是理解、判断和验证的能力</h2>
+<p>如果我真的想成为一个更成熟的工程师，那么未来真正要建立起来的，不会只是“让 AI 帮我写出代码”的能力，而是那些即使 AI 非常强大，也依然无法替我拥有的能力。</p>
+<p>比如，对底层机制的理解。<br>
+比如，对生命周期、内存管理、线程安全、原子操作、错误边界的直觉。<br>
+比如，对系统设计中抽象、约束、取舍的判断。<br>
+比如，在复杂场景里发现问题、定位问题、验证问题的能力。</p>
+<p>因为真实工程里，最难的部分从来都不只是“把代码写出来”，而是在不确定性中分辨什么是正确的，什么是危险的，什么是看起来能跑、但长期一定会出问题的方案。高级工程师也从来不是写代码最快的人，而是那个在复杂约束之下，仍然能够做出正确判断、承担后果并收拾残局的人。</p>
+<p>从这个意义上说，未来人与 AI 拼的并不是谁输出得更快，而是谁能更好地定义问题、审查方案、识别边界、验证结果。如果一个人只是 AI 的传话筒，那么他的价值确实会越来越低；但如果一个人能看懂系统本质、看穿 AI 的错误、在故障出现时真正把系统救回来，那么 AI 只会让他的价值变得更高。</p>
+<h2>这次面试的意义，也许不是失败，而是把我从错觉里叫醒</h2>
+<p>现在回头看，这次面试当然让我痛苦，也确实击碎了不少自信。但它的意义，也许恰恰在于它把我从某种错觉里叫醒了。</p>
+<p>我原本以为，只要我能借助工具把事情做完，能力迟早会自然跟上；可现在我发现，结果并不会自动转化为能力。<br>
+我原本以为，大家都在用 AI，所以自己这样做也没什么问题；可现在我发现，工具的普及并不能掩盖基础退化的事实。<br>
+我原本以为，只要持续接触新东西，自己就算是在进步；可现在我发现，不经过内化和反复训练，很多“学过”的东西其实根本不属于我。</p>
+<p>因此，这次经历真正留给我的，也许不是一句“你不够好”，而是一个更具体的问题：从现在开始，我到底要怎么重新训练自己？</p>
+<p>答案可能并不复杂。<br>
+少一点幻想，少一点自我安慰，少一点把困难外包给 AI。<br>
+多一点独立写代码的时间，多一点从零思考和调试的过程，多一点对基础知识的回炉重造，多一点真正长期、稳定、可执行的积累。</p>
+<p>我可能不是那种最聪明、最有天赋的人，但至少我应该成为一个愿意慢慢把东西学扎实的人。<br>
+我也许一时还找不到最终想去的方向，但我至少要先把那些真正属于自己的能力重新捡起来。</p>
+<p>面试失败并不可怕。<br>
+可怕的是，在一次失败之后，仍然不肯看清自己真正的问题。</p>
+<p>所以，离开了 AI，我还有什么？</p>
+<p>我想，至少我还应该有这些：<br>
+重新学习的勇气，承认不足的诚实，慢慢积累的耐心，以及把能力一点一点练回来的决心。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HangYaHan.github.io">HangYaHan's Blog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("07/25/2025"!=""){
+    var startSite=new Date("07/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HangYaHan/HangYaHan.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
+
+</html>
