@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/168107882?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="> 我们准备学习的，是有关计算过程的知识。">
+<meta property="og:title" content="风雅涵章: BeyondTheHype_我对AI的观察与思考">
+<meta property="og:description" content="> 我们准备学习的，是有关计算过程的知识。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HangYaHan.github.io/post/feng-ya-han-zhang--%20BeyondTheHype_-wo-dui-AI-de-guan-cha-yu-si-kao.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/168107882?v=4">
+<title>风雅涵章: BeyondTheHype_我对AI的观察与思考</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">风雅涵章: BeyondTheHype_我对AI的观察与思考</h1>
+<div class="title-right">
+    <a href="https://HangYaHan.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HangYaHan/HangYaHan.github.io/issues/34" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>我们准备学习的，是有关计算过程的知识。</p>
+</blockquote>
+<h1>序言</h1>
+<p>很长时间这篇文章就静静地躺在我的草稿本里等待成文，因为我实在想不到什么好的观点,平铺直叙的文字有些过于简单朴素没有什么养分，所以等待一个时机。直到看到那个男人对于Vibe codeing的评论，我想也是时候开始动笔完成这篇文章了。也很凑巧的是，正巧最近看了一些关于如何使用AI的提示词(prompt)的文章和视频，觉得收获颇丰，也想把我自己的一些使用经验和心得总结出来，用来以后查看。</p>
+<h1>初见</h1>
+<p>我第一次感受到大型语言模型（LLM）所带来的强烈震撼，是在2023年的春天。那时，ChatGPT刚刚问世不久，访问它还需要克服网络限制。即便在那种条件下，它所展现出的能力已足够令人惊叹。那时的我就被chatgpt强大的能力所震撼，我印象很深的是当时感觉它“不像是这个时代的产物”，即使用现在看来一点也不为过。它真的像是一个“活”的东西一样。</p>
+<p>一方面是，是令人震撼的理解能力。 我们日常使用的自然语言，与编程语言有天壤之别。前者词汇海量，语法灵活，充满歧义与潜台词；后者则规则严苛，逻辑精确，容不得半点含糊，不符合规则的指令连编译都过不了，更不用说运行了。因此当时的我在接触到chatgpt时，第一反应就是“卧槽，这东西居然能听懂我说的话”，这对我当时的认知来说，已经是一件极其不可思议，震撼的事情了。</p>
+<p>另一方面是，它的强大的创造力。如果说“理解”让我看到了AI技术的巍峨高山，那么它随之给出的“回答”，则让我窥见了山巅之上的奇幻云海。它还能给出非常合理的回答，甚至是一些我都没有想到的点子和思路，这更让我觉得不可思议。我完全无法想象它是如何做到的，就是一点idea都没有。就像前面说的，对于“理解”部分，我还能想象它的困难性，但对于“回答”部分，我当时只觉得这是魔法，实在是无法想象。</p>
+<h1>共生</h1>
+<p>自那之后，AI助手就已经成为我工作和生活中不可或缺的一部分了。无论是写代码、打磨文稿，还是分析问题，甚至在面对一些个人思考与情绪上的迷惘时，我都会自然而然地转向它，开启一场对话。在ChatGPT引爆市场后，全球科技公司纷纷跟进，推出了各自的大模型产品，开源社区也异常活跃。一时间，各类模型层出不穷，版本迭代速度令人目不暇接。印象最深的是有一个叫“大模型竞技场”的网站，里面收集了各种各样的模型，通过比较同一提示词的不同回答，让用户打分，评测模型的能力。AI助手的能力在许多场景下确实超越了传统的搜索引擎，特别是在处理需要整合、推理或创造的简单问题上。就我的个人体验而言，它在代码生成与调试、文本写作与润色方面的表现最为突出。其次，我也时常将它作为一个随时可问的、知识渊博的“百科全书”来使用。它带来的一大转变，是赋予了用户“追问的权力”。在面对一个复杂问题时，我可以不断提出后续问题，层层深入，直到获得满意的解答。这种互动式的探索过程，与传统搜索引擎那种被动接收海量且质量参差不齐的链接列表的体验，有着本质的区别。</p>
+<p>这种技术浪潮也带来了工具层面的爆发。除了大模型本身，围绕其构建的各种插件、应用和工具链也如雨后春笋般涌现，真正让人感到应接不暇。往往是还没有开始熟练使用一个工具，新的工具就已经出现了。新的工具可能会具有更强的能力，但是仍然也要付出学习成本。而就我个人而言，跳出原始工具的舒适圈，去学习新的工具，往往是一个比较痛苦的过程。然后还有那些什么几分钟教会你xxx的什么AI工具的视频，往往看完之后发现并没有什么卵用，反而浪费了时间；还有什么各种AI使用技巧，真的看着厌烦。我逐渐意识到，最重要的或许不是追逐工具本身，而是提升使用者自身的能力，不一味地依赖AI。AI是副驾驶（Copilot），这个称谓本身就提醒我们，仍然需要一名飞行员（Pilot）。AI所能发挥的作用上限，最终取决于使用者的判断力、专业知识和提问能力。正如后面会提到的Linus的观点，AI工具或许能帮你快速完成工作的90%，但剩下的10%才是真正凝聚了多年经验与深度的部分。</p>
+<h1>危机？</h1>
+<p>随着大模型技术的持续演进和普及，关于人工智能的社会性讨论也日益热烈。人们开始严肃地思考这项技术带来的双重影响：机遇与挑战，尤其是在就业领域。一个核心的议题是：AI会取代人类的工作吗？如果会，我们该如何应对可能出现的结构性失业？反之，在这个过程中，AI又可能创造出哪些前所未有的新岗位和新机会？</p>
+<p>我的观点是：在这个时代，学会与AI高效协作，并在此过程中不断提升自己的高阶思维与全局驾驭能力，才是应对变革的关键。有些人误以为自己正在进行深刻的独立思考，但实际上可能只是在重复AI模型基于已有数据生成的、或是网络上广为流传的现成结论。真正的思考，始于对信息的批判性审视和创造性重构。</p>
+<p>我认为，人工智能不会导致大规模失业，反而有可能创造更多新的就业形态。历史经验表明，每一次重大的技术革命在自动化部分原有工作的同时，都会催生出全新的任务类别和劳动力需求。AI确实能够替代一些程式化的、重复性的认知型任务，但一个完整的岗位通常由多项复杂任务构成，AI很难一次性覆盖所有环节。相反，它通过提升某些环节的效率，可能会放大其他环节的价值，从而带动整体人力需求的变化。</p>
+<p>这正如Linus所说的：AI是一种强大的工具，但不会取代程序员。就像高级语言编译器“消灭”了手写汇编语言的需求，却并没有消灭程序员这个职业，反而因为开发效率的提升，使得更多、更复杂的软件得以被创造出来。我猜想AI的路径也会类似，它让人们从繁琐的实现细节中解放出来，将更多精力集中于架构设计、问题定义和创造性思考上，从而使更多的想法有机会被实现。软件工程领域没有“银弹”，AI也不会是那枚银弹。</p>
+<h1>缺陷</h1>
+<p>随着使用时间的增长和场景的深入，我逐渐清晰地认识到当前大模型技术存在的一些固有局限。</p>
+<p>首先，是“幻觉”与过度自信的问题。生成式AI通常以高度自信、流畅连贯的方式输出信息，这种表达风格容易令用户不假思索地接纳其内容，忽略其中可能存在的事实错误、逻辑漏洞或隐含偏见。这种“看似权威的谬误”一旦在信息传播中被放大，可能加速错误观点的扩散，甚至污染后续用于训练模型的数据，形成一种不断自我强化的认知偏差循环，对公共讨论与事实判断构成深层干扰。</p>
+<p>其次，是对于创新本质的疑问。AI依赖对海量数据中模式的识别与复现来生成内容，其过程近似于一种高效率的模仿学习。这就引出一个根本性问题：这样的机制是否在本质上制约了它进行突破性、范式级别的创新？人类历史上许多重大科学发现——例如青霉素的诞生——往往源于偶然的观察或实验中的“意外”。人类具有从错误与反常中洞见新可能的独特心智，而当前的AI系统在设计上倾向于排除或纠正那些不符合统计规律的异常输出。这种对“错误”的包容、以及由不确定性所激发的好奇与探索，恰恰是人类创造力的核心来源，也是当前AI技术尚难以真正复现的特质。</p>
+<p>最后，是不可复现性与不稳定性问题。AI生成的内容常常带有一定的随机与多样性，即使在相同的输入条件下，多次请求也可能得到差异显著的结果。更值得关注的是，提示词（prompt）表述上极其细微的差别，有时会导致完全不同的输出走向。这种内在的不确定性让我感到某种深层的不安。因为其它局限——如前文所述的“幻觉”问题与创新边界——或许能通过更精准的提示词设计得到一定程度的缓解或引导，但“不可复现性”本身，恰恰直指提示词使用过程中的根本困境。它意味着，即便两个人使用完全相同的提示词，也无法保证获得一致的答案。这给协作、交流与知识传递带来了实质困难：我们无法轻易地说，“你按顺序问这些问题，就能得到和我一样的回答”。当结果无法预期、过程难以追溯，建立在共享理解与可重复验证基础上的合作，便面临结构性的挑战。</p>
+<hr>
+<h1>关于那个男人</h1>
+<p><strong>AI是工具，不会取代程序员</strong></p>
+<blockquote>
+<p><strong>Dirk Hodel：</strong> 另一个大家常讨论的点是 AI 写代码。工具在代码补全方面确实很强，甚至能帮人快速构建 demo。你会玩吗？</p>
+<p><strong>Linus Torvalds：</strong> 我完全没玩。我相信有人尝试把它用在内核上，但内核太特殊了，不太适合 vibecoding。反倒是在个人项目、小玩具项目上我觉得它很好。我年轻时，是在电脑杂志上照着打代码入门的。今天的电脑太复杂了，入门门槛比过去高太多。我反而觉得 vibecoding 可能在严肃项目里是灾难，但对新手入门是好事。让人能很快看到电脑做点东西，这是激动、有趣的。我认为是积极的。当然，也有人以为用 AI 一周就能做出十亿美元公司，那是另一个故事了。</p>
+<p><strong>Dirk Hodel：</strong> AI 工具能让你快速完成 90%，但剩下 10% 才是吃掉 35 年的东西。</p>
+<p><strong>Linus Torvalds：</strong> 对，那最后 10% 就是你这 35 年里真正干的活。</p>
+<p><strong>Dirk Hodel：</strong> 但现在我们看到软件行业裁员严重，很多人担心 AI 会影响就业。学生们会不会更难进入这个行业？</p>
+<p><strong>Linus Torvalds：</strong> 我不知道，需要几年才能看清。但我直觉是：AI 是工具，不会取代程序员。就像编译器消灭了手写汇编，却没有消灭程序员；反而让更多软件被写出来。我猜 AI 也是这样，让人更高效，但软件需求变大，到最后程序员数量只会更多。</p>
+<p><strong>Dirk Hodel：</strong> 我也这么认为，提升生产力后，你要么减少人，要么做更多事。而做更多事往往更诱人。对学生来说，你能快速做出 demo，比 20 年前手写冒泡排序重要多了。</p>
+</blockquote>
+<hr>
+<h1>一些观点和提示词</h1>
+<blockquote>
+<p>核心想法：AI 不是我，也不是人。不要假设它“知道我的上下文”。我的需求必须被精确描述。<br>
+我觉得RUST就是AI时代的未来，严格的编译器使得程序员必须在编写代码时就考虑到各种边界情况和潜在的错误，并且能和AI无缝对接，利用AI的强大能力来辅助编程。</p>
+</blockquote>
+<blockquote>
+<p>绿导师：AI给了我们一个好的起点，你总是可以现在开始做一些事而不是这篇文章好长，明天再看吧 。</p>
+</blockquote>
+<blockquote>
+<p>绿导师：你现在有一个比较复杂的任务，你只要相信这个任务是能完成的，并且把这个任务说清楚，你基本上就能做完。在AI时代，你只需要知道能做什么，该做什么，剩下tedious的事情就交给AI吧</p>
+</blockquote>
+<blockquote>
+<p>我在做 X。如果你是一个专家，你会怎么做?</p>
+<ul>
+<li>被动:学习CodingAgent所做的“正确的事”</li>
+<li>主动:让 Copilot不停地追问，并实时给出建议都可以帮助你建立正确的概念</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>绿导师：Principle: Think step by step and build a plan first.</p>
+</blockquote>
+<blockquote>
+<p>绿导师：人的记忆就像是AI的工作区上下文。（人的一生能算是一个repo.吗）</p>
+</blockquote>
+<h3>基础规则</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>规则</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用最简洁、最平实的语言回答。</td>
+<td>降低歧义，便于复用与粘贴。</td>
+</tr>
+<tr>
+<td>只陈述事实与逻辑，禁用比喻/类比/故事。</td>
+<td>保持客观、可核验与可追溯。</td>
+</tr>
+<tr>
+<td>常识问题直接提问。</td>
+<td>提高效率，避免过度设定。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>通用提示框架（角色 + 任务 + 目标 + 背景 + 格式）</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>要素</th>
+<th>写法要点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>角色</td>
+<td>“我是 [岗位/领域]，本提示用于 [用途]。”</td>
+<td>固定口径，召回相关知识与风格。</td>
+</tr>
+<tr>
+<td>任务</td>
+<td>用 1-2 句说明要做什么，先搭框架。</td>
+<td>先框后细，避免跑题。</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>定性/定量标准，引用行业/国家/单位指标。</td>
+<td>可检验、可对齐期望。</td>
+</tr>
+<tr>
+<td>背景</td>
+<td>已做工作、已有材料、遇到的具体问题与限制。</td>
+<td>提供足够上下文，减少猜测。</td>
+</tr>
+<tr>
+<td>格式</td>
+<td>指定输出为表格/清单/段落；字数；层级；禁用词。</td>
+<td>直接产出可用交付物。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>生成提示词模板</h3>
+<pre lang="text" class="notranslate"><code class="notranslate">我是一名[角色]，现在要完成[任务]。
+背景：[已有信息/材料/限制]
+目标：[定性/定量标准/对齐指标]
+请按以下格式输出：[表格/清单/分节 + 小标题顺序 + 字数范围]
+要求：[禁比喻；只写事实与推理；标注引用来源/假设]
+输入将提供：[一段话/一个文件/数据字段清单]
+</code></pre>
+<h3>写作整理模板</h3>
+<pre lang="text" class="notranslate"><code class="notranslate">我将提供一组无序的片段，请：
+1) 归纳主题与结构；2) 合理排序并补齐过渡；3) 扩写为完整文章；
+注意：用简洁语言；避免比喻；所有结论给出依据；段落顺畅衔接。
+</code></pre>
+<h3>学术场景范式（初始问题 → 常见问题 → 优化指令）</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>场景</th>
+<th>常见问题</th>
+<th>优化指令（摘要）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCI 文献全文讲解</td>
+<td>结构松散，层级不清，变成泛泛总结。</td>
+<td>按论文逻辑讲解：研究背景与问题定义；思路与技术路线；关键方法与设计依据；核心结果及其物理/化学/光学含义；作者认为的创新点与结论；仅客观复述，不引入假设。</td>
+</tr>
+<tr>
+<td>文献配图讲解</td>
+<td>只描述“看起来是什么”，未对齐正文论证。</td>
+<td>翻译图题与图注；逐子图说明坐标/要素的物理含义、控制变量与对比关系、在论证中的作用；整图支持的结论；不超出原文结论范围。</td>
+</tr>
+<tr>
+<td>检索相关 SCI 文献</td>
+<td>检索标准缺失，易“猜文献”。</td>
+<td>仅列可核验的期刊论文；限定期刊范围；给出题目、作者、期刊、年份；不确定时明确标注，不虚构参考文献。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>SCI 写作（翻译/润色/降重）</h3>
+<ul>
+<li>英文模板：</li>
+</ul>
+<pre lang="text" class="notranslate"><code class="notranslate">I'm writing a paper on [topic] for a leading [discipline] academic journal.
+What I tried to say in the following section is [specific point].
+Please rephrase it for clarity, coherence, and conciseness, ensuring
+each paragraph flows into the next. Remove jargon. Use a professional tone.
+</code></pre>
+<ul>
+<li>中文模板：</li>
+</ul>
+<pre lang="text" class="notranslate"><code class="notranslate">我正在为顶级[学科]期刊撰写一篇关于[主题]的论文。
+本段想表达的核心观点是：[具体论点]。
+请优化表达，提升清晰度、连贯性与简洁性，保证段落顺畅衔接，去除非专业表达。
+</code></pre>
+<h2>prompt要素与对应风险</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>要素</th>
+<th>说明</th>
+<th>缺失风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出结构与格式</td>
+<td>需要条列、表格或分节，说明是否可直接粘贴使用。</td>
+<td>总结变推测，分析变方案，输出不可控、难复用。</td>
+</tr>
+<tr>
+<td>禁止事项</td>
+<td>禁止虚构文献、数据、实验条件；禁止夸大创新性与结论强度。</td>
+<td>风格不匹配，论文用语不规范或组会解释不清，无法直接使用。</td>
+</tr>
+<tr>
+<td>需要写清楚什么</td>
+<td>明确是翻译、讲解、对比、方案、数据分析或写作，说明期望产出物。</td>
+<td>无来源的内容会被引入，研究决策可能偏离。</td>
+</tr>
+<tr>
+<td>用途与风格</td>
+<td>指明用于组会、开题、论文或实验记录，并写清风格与深度要求。</td>
+<td>结论不可核验，组会或审稿追问时无法定位依据。</td>
+</tr>
+<tr>
+<td>资料边界</td>
+<td>仅可基于给定文献、数据或公认理论，禁止引入未提供的信息。</td>
+<td>推测当事实、讨论当结论，机理解释强度失控，科研可信度下降。</td>
+</tr>
+<tr>
+<td>来源标注</td>
+<td>关键结论需标注来源（哪篇、哪节、哪图表），无法确认的要注明。</td>
+<td>伪确定性：错误结论被当作已证实，后续实验浪费。</td>
+</tr>
+<tr>
+<td>事实与推导</td>
+<td>区分原文事实、作者结论与理论推导，推导需写清假设。</td>
+<td>停留在概念层，无对照无指标，难以转化为实验或论文论证。</td>
+</tr>
+<tr>
+<td>不确定性</td>
+<td>信息不足时要明确不确定，并列出缺失信息及影响。</td>
+<td>信息散乱，信息密度不均，难比较、难引用，整理成本高。</td>
+</tr>
+<tr>
+<td>可落地性</td>
+<td>给出变量、对照组、评价指标或判据，保证可落地。</td>
+<td>容易出现硬伤，形成“看起来对但实际上错”的结论。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>提示编写规则</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>规则</th>
+<th>要点说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用行为规则代替愿望描述</td>
+<td>把“更专业/更深入”改成可执行要求，如必须给证据、步骤或表格字段。</td>
+</tr>
+<tr>
+<td>先写输入契约</td>
+<td>明确用户要提供的字段，缺少则先询问或列出“缺失信息清单”，不要让模型猜。</td>
+</tr>
+<tr>
+<td>再写输出契约</td>
+<td>说明交付物类型（清单/表格/报告）、固定小标题与顺序，是否需要简版/详版。</td>
+</tr>
+<tr>
+<td>写清优先级与取舍</td>
+<td>正确性 &gt; 可执行性 &gt; 简洁；遇到不确定先声明，不强行下结论。</td>
+</tr>
+<tr>
+<td>加不确定/失败策略</td>
+<td>信息不足→标注不确定并附补充清单；超范围→说明边界并给替代输出。</td>
+</tr>
+<tr>
+<td>用正反例锚定预期</td>
+<td>提供一个想要的输出和一个不想要的输出，并点明差异点。</td>
+</tr>
+<tr>
+<td>固化语言的禁用词与格式规则</td>
+<td>如禁用“明显/较大”等空泛词，要求给数值；术语首次中英对照；编号风格固定。</td>
+</tr>
+<tr>
+<td>触发词做模式切换</td>
+<td>使用“论文模式/组会模式/教学模式”等触发词，避免单一规则套用所有场景。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>提示要素与作用</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>要素</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>角色定位</td>
+<td>固定专业身份与写作口径，减少发散。</td>
+</tr>
+<tr>
+<td>任务菜单与边界</td>
+<td>明确能做/不做，控制结论强度。</td>
+</tr>
+<tr>
+<td>输入契约</td>
+<td>让用户喂对信息，保证可比性与可计算。</td>
+</tr>
+<tr>
+<td>输出契约</td>
+<td>让输出成为可直接写进论文的交付物。</td>
+</tr>
+<tr>
+<td>质量标准</td>
+<td>定义“好输出”的判据，提升可信度。</td>
+</tr>
+<tr>
+<td>失败与不确定性策略</td>
+<td>防止装懂，保证严谨。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HangYaHan.github.io">HangYaHan's Blog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("07/25/2025"!=""){
+    var startSite=new Date("07/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HangYaHan/HangYaHan.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
+
+</html>

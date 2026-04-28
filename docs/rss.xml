@@ -1,2 +1,291 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Mon, 27 Apr 2026 17:37:18 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HangYaHan's Blog</title><link>https://HangYaHan.github.io</link><description>I'm going to share some ideas and my notes here. Keep learning. :-&gt;</description><copyright>HangYaHan's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/168107882?v=4</url><title>avatar</title><link>https://HangYaHan.github.io</link></image><lastBuildDate>Tue, 28 Apr 2026 17:53:18 +0000</lastBuildDate><managingEditor>HangYaHan's Blog</managingEditor><ttl>60</ttl><webMaster>HangYaHan's Blog</webMaster><item><title>风雅涵章：离开了 AI，我还剩下什么</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang-%EF%BC%9A-li-kai-le-%20AI%EF%BC%8C-wo-huan-sheng-xia-shen-me.html</link><description>&gt; “聪明”的努力，最后只值一句 prompt。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang-%EF%BC%9A-li-kai-le-%20AI%EF%BC%8C-wo-huan-sheng-xia-shen-me.html</guid><pubDate>Mon, 13 Apr 2026 16:49:38 +0000</pubDate></item><item><title>涵芬撷英: 迟到的语文课（2）</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-chi-dao-de-yu-wen-ke-%EF%BC%882%EF%BC%89.html</link><description># “不成功”的生活，还有价值吗？｜课堂实录 51
+
+越长大，似乎越不快乐。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-chi-dao-de-yu-wen-ke-%EF%BC%882%EF%BC%89.html</guid><pubDate>Mon, 13 Apr 2026 07:12:42 +0000</pubDate></item><item><title>雅望停云：记一次葬礼</title><link>https://HangYaHan.github.io/post/ya-wang-ting-yun-%EF%BC%9A-ji-yi-ci-zang-li.html</link><description>坦白地说，收到爷爷去世的消息，刚回到老家奔丧时，我是带着一种“现代人的傲慢”的。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ya-wang-ting-yun-%EF%BC%9A-ji-yi-ci-zang-li.html</guid><pubDate>Mon, 16 Mar 2026 16:09:45 +0000</pubDate></item><item><title>风雅涵章: 春节小记</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-chun-jie-xiao-ji.html</link><description>春节一如既往地一眨眼就这么过去了。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-chun-jie-xiao-ji.html</guid><pubDate>Fri, 27 Feb 2026 07:58:34 +0000</pubDate></item><item><title>风雅涵章: 2025年度投资复盘（草稿）</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%202025-nian-du-tou-zi-fu-pan-%EF%BC%88-cao-gao-%EF%BC%89.html</link><description>It ain't what you don't know that gets you into trouble. It's what you know for sure that just ain't so. -- Mark Twain
+
+烧冷灶 + 先收集筹码，然后在高位卖出寻求做t的机会，如果没有做t成功，也可以做到lock profit的作用。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%202025-nian-du-tou-zi-fu-pan-%EF%BC%88-cao-gao-%EF%BC%89.html</guid><pubDate>Mon, 16 Feb 2026 17:02:20 +0000</pubDate></item><item><title>涵芬撷英: 《魁拔》与《魁拔之书》</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20%E3%80%8A-kui-ba-%E3%80%8B-yu-%E3%80%8A-kui-ba-zhi-shu-%E3%80%8B.html</link><description>阅读《魁拔之书》的契机，源于高中同学群里的一次闲聊。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20%E3%80%8A-kui-ba-%E3%80%8B-yu-%E3%80%8A-kui-ba-zhi-shu-%E3%80%8B.html</guid><pubDate>Thu, 05 Feb 2026 17:34:57 +0000</pubDate></item><item><title>风雅涵章: 2025年度总结</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%202025-nian-du-zong-jie.html</link><description>&gt; 要爱具体的人，不要爱抽象的人，要爱生活，不要爱生活的意义
+
+回顾这一年，我最后的学生时代也已经过半。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%202025-nian-du-zong-jie.html</guid><pubDate>Sat, 03 Jan 2026 15:48:03 +0000</pubDate></item><item><title>涵芬撷英: 入门基础教程Qt5</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-ru-men-ji-chu-jiao-cheng-Qt5.html</link><description>&gt; [!IMPORTANT]
+&gt; 我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-ru-men-ji-chu-jiao-cheng-Qt5.html</guid><pubDate>Mon, 29 Dec 2025 13:13:56 +0000</pubDate></item><item><title>风雅涵章: BeyondTheHype_我对AI的观察与思考</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20BeyondTheHype_-wo-dui-AI-de-guan-cha-yu-si-kao.html</link><description>&gt; 我们准备学习的，是有关计算过程的知识。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20BeyondTheHype_-wo-dui-AI-de-guan-cha-yu-si-kao.html</guid><pubDate>Fri, 26 Dec 2025 15:52:03 +0000</pubDate></item><item><title>雅望停云: 慧</title><link>https://HangYaHan.github.io/post/ya-wang-ting-yun--%20-hui.html</link><description>数学课下课铃响了。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ya-wang-ting-yun--%20-hui.html</guid><pubDate>Tue, 16 Dec 2025 06:25:12 +0000</pubDate></item><item><title>雅望停云: 序章</title><link>https://HangYaHan.github.io/post/ya-wang-ting-yun--%20-xu-zhang.html</link><description>```
+
+停云
+晋·陶渊明
+
+停云，思亲友也。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ya-wang-ting-yun--%20-xu-zhang.html</guid><pubDate>Thu, 11 Dec 2025 06:32:51 +0000</pubDate></item><item><title>格物致雅: Beruto-v1.0</title><link>https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20Beruto-v1.0.html</link><description># Beruto v1.0
+
+仓库地址: [Beruto](https://github.com/HangYaHan/Beruto)
+发布日期: 2025-12-09
+
+## 概要
+- 首个可运行的端到端版本：支持加载任务、拉取历史行情、运行策略回测、生成资金曲线，并通过 CLI 与绘图工具交互。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20Beruto-v1.0.html</guid><pubDate>Wed, 10 Dec 2025 15:42:59 +0000</pubDate></item><item><title>风雅涵章: Beruto开发随笔</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20Beruto-kai-fa-sui-bi.html</link><description>&gt; Talk is cheap. Show me the code. -- Linus Torvalds
+
+Beruto是一个“自己玩”的量化交易模型系统，基础回测已跑通。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20Beruto-kai-fa-sui-bi.html</guid><pubDate>Wed, 10 Dec 2025 15:38:59 +0000</pubDate></item><item><title>涵芬撷英: 万千微尘纷坠心田</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-wan-qian-wei-chen-fen-zhui-xin-tian.html</link><description># 摘抄
+
+“即使最精密的数学仪器也无能为力，尽管它们能记录中国的地震，却无法测定这类事情的震动”，在那些阅读到令人忘我的时刻，正是文学有别于其他人文社科的魅力绽出，它们往往勘到心灵深处最隐秘的震动。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-wan-qian-wei-chen-fen-zhui-xin-tian.html</guid><pubDate>Sun, 30 Nov 2025 16:15:36 +0000</pubDate></item><item><title>涵芬撷英: 选择做富人</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-xuan-ze-zuo-fu-ren.html</link><description>&gt; 你说的很对，那我什么时候能完成原始资本的积累呢？
+
+# 摘抄
+
+- 魔鬼从来都是在人们最乐观的时候发动攻击的。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-xuan-ze-zuo-fu-ren.html</guid><pubDate>Sun, 30 Nov 2025 16:12:09 +0000</pubDate></item><item><title>风雅涵章: 音乐收集</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yin-le-shou-ji.html</link><description>截至我写下这篇文章时，我的音乐云盘已静静躺着5.1G、共计1052首歌曲了。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yin-le-shou-ji.html</guid><pubDate>Sun, 23 Nov 2025 14:36:42 +0000</pubDate></item><item><title>涵芬撷英: 人月神话_跨越半世纪的洞见</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-ren-yue-shen-hua-_-kua-yue-ban-shi-ji-de-dong-jian.html</link><description># 摘抄
+
+## 第一章 - **焦油坑**
+  - 卷首语：前车之覆，后车之鉴。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-ren-yue-shen-hua-_-kua-yue-ban-shi-ji-de-dong-jian.html</guid><pubDate>Mon, 17 Nov 2025 09:09:33 +0000</pubDate></item><item><title>风雅涵章: 路过青岛</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-lu-guo-qing-dao.html</link><description>&gt; 青春太好，好到你无论怎么过都觉浪掷，回头一看，都要生悔。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-lu-guo-qing-dao.html</guid><pubDate>Wed, 05 Nov 2025 07:25:11 +0000</pubDate></item><item><title>格物致雅: Docker初见</title><link>https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20Docker-chu-jian.html</link><description>&gt; 吾尝终日而思矣，不如须臾之所学也。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20Docker-chu-jian.html</guid><pubDate>Mon, 03 Nov 2025 09:28:50 +0000</pubDate></item><item><title>风雅涵章: 扭伤之后</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html</link><description>&gt; “被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html</guid><pubDate>Thu, 30 Oct 2025 15:49:53 +0000</pubDate></item><item><title>游艺: 羽毛球场上蠕动的我</title><link>https://HangYaHan.github.io/post/you-yi--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html</link><description>&gt; [!NOTE]
+&gt; 本文主要记录本人在羽毛球场上蠕动的过程，一些愚昧的理解和可笑的成长之路，轻喷。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/you-yi--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html</guid><pubDate>Tue, 21 Oct 2025 15:43:40 +0000</pubDate></item><item><title>风雅涵章: YaHan的私人垃圾桶</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20YaHan-de-si-ren-la-ji-tong.html</link><description>&gt; [!NOTE]
+&gt; 本篇主要记录一些生活中的碎碎念，说白了就是讲废话。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20YaHan-de-si-ren-la-ji-tong.html</guid><pubDate>Sun, 19 Oct 2025 15:47:40 +0000</pubDate></item><item><title>涵芬撷英: Practice_The C Programming Language</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20Practice_The%20C%20Programming%20Language.html</link><description>&gt; 但卑意欲少年为学者, 每一书皆作数过尽之. 书富如入海, 百货皆有, 人之精力, 不能兼收尽取, 但得其所欲求者尔. 故愿学者每次作一意求之. 如欲求古今兴亡治乱、圣贤作用、但作此意求之, 勿生余念. 又别作一次, 求事迹故实典章文物之类, 亦如之. 他皆仿此. 此虽迂钝, 而他日学成, 八面受敌, 与涉猎者不可同日而语也
+&gt; ———— 苏轼, 又答王庠书
+
+# Chapter 1
+
+## Exercises
+[x] 1-7 编写一个打印EOF的程序
+[x] 1-11 你准备如何测试单词计数程序？如果程序中存在某种错误，那么什么样的输入最可能发现这类错误呢？
+[ ] 1-13 编写一个程序，打印输入中单词长度的直方图。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20Practice_The%20C%20Programming%20Language.html</guid><pubDate>Thu, 16 Oct 2025 15:45:46 +0000</pubDate></item><item><title>风雅涵章: 迟叩文心</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-chi-kou-wen-xin.html</link><description>&gt; 语文是一门经验性的学科，只有当你的人生阅历积累到一定程度，才能真正读懂一篇文章、一首诗所要表达的究竟是什么。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-chi-kou-wen-xin.html</guid><pubDate>Mon, 13 Oct 2025 11:06:18 +0000</pubDate></item><item><title>Catalog</title><link>https://HangYaHan.github.io/post/Catalog.html</link><description>&gt; [!IMPORTANT]
+&gt; 如有对于本站内容的任何勘误或建议，欢迎通过邮箱与我联系，非常感谢！我的邮箱是：hangyahan3438@gmail.com
+
+# Navigation
+
+## 📝 [风雅涵章] - 生活思考碎片
+&gt; 记录平时生活中的思考与感悟
+
+### 将要更新的文章
+- [ ] BeyondTheHype_我对AI的观察与思考
+- [ ] ...
+
+### 持续更新的文章
+- [x] [片语人生](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-pian-yu-ren-sheng.html)
+- [x] [藏书阁](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-cang-shu-ge.html)
+- [x] [贮影轩](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-zhu-ying-xuan.html)
+- [x] [YaHan的私人垃圾桶](https://hangyahan.github.io/post/feng-ya-han-zhang--%20YaHan-de-si-ren-la-ji-tong.html) 
+- [ ] ...
+
+### 已经完结的文章
+- [x] [用class写C的我](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html)
+- [x] [福兮祸兮_DiskFailure](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html)
+- [x] [东湖往事](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html)
+- [x] [2024年度投资复盘](https://hangyahan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html)
+- [x] [秋日别后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-qiu-ri-bie-hou.html) 
+- [x] [迟叩文心](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-kou-wen-xin.html) 
+- [x] [扭伤之后](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-niu-shang-zhi-hou.html)
+- [x] [路过青岛](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-lu-guo-qing-dao.html)
+- [x] [音乐收集](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yin-le-shou-ji.html) 
+- [ ] ...
+
+## 🎮 [雅涵游记] - 游戏感想回忆
+&gt; 记录游戏中的思考与回忆
+
+### 将要更新的文章
+- [ ] StarCraft / StarCraft II
+- [ ] Red Alert 系列全集
+- [ ] Civilization 6
+- [ ] Age of Empires IVV
+- [ ] ...
+
+### 持续更新的文章
+- [ ] ...
+
+### 已经完结的文章
+- [ ] ...
+
+
+## 📚 [涵卷雅思] - 读书笔记
+&gt; 读书心得与思考总结
+
+### 将要更新的文章
+- [ ] Just for Fun
+- [ ] ...
+  
+### 持续更新的文章
+- [x] [Linux基础入门_学习手记](https://hangyahan.github.io/post/han-juan-ya-si--%20Linux-ji-chu-ru-men-_-xue-xi-shou-ji.html)
+- [x] [Practice_The C Programming Language](https://hangyahan.github.io/post/han-juan-ya-si--%20Practice_The%20C%20Programming%20Language.html)
+- [x] [羽毛球场上蠕动的我](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-yu-mao-qiu-chang-shang-ru-dong-de-wo.html)
+- [x] [人月神话](https://hangyahan.github.io/post/han-juan-ya-si--%20-ren-yue-shen-hua.html)
+- [ ] ...
+
+### 已经完结的文章
+- [x] [别做正常的傻瓜_理性与人性的温和博弈](https://hangyahan.github.io/post/han-juan-ya-si--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html)
+- [x] [The C Programming Language](https://hangyahan.github.io/post/han-juan-ya-si--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html)
+- [x] [人类群星闪耀时](https://hangyahan.github.io/post/han-juan-ya-si--%20-ren-lei-qun-xing-shan-yao-shi-_-dan-que-wei-neng-dian-liang-wo-de-yue-du-ti-yan.html)
+- [x] [迟到的语文课](https://hangyahan.github.io/post/feng-ya-han-zhang--%20-chi-dao-de-yu-wen-ke.html)
+- [x] [Docker初见](https://hangyahan.github.io/post/han-juan-ya-si--%20Docker-chu-jian.html) 
+- [ ] ...
+
+## 🔬 [研涵雅致] - 研究内容与个人项目
+&gt; 记录我的研究内容、github项目
+
+### 将要更新的文章
+- [ ] 色彩科学入门
+- [ ] 计算光谱入门
+- [ ] ...
+
+### 持续更新的文章
+- [ ] ...
+
+### 已经完结的文章
+- [x] [Click Script](https://hangyahan.github.io/post/yan-han-ya-zhi--%20A%20Simple%20ClickScript.html)
+- [x] [BiliBiliVideo_to_mp3](https://hangyahan.github.io/post/yan-han-ya-zhi--%20BiliBili_DownloadFileProcessor.html)
+- [ ] ...
+
+
+
+
+。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/Catalog.html</guid><pubDate>Sat, 11 Oct 2025 05:15:55 +0000</pubDate></item><item><title>涵芬撷英: 人类群星闪耀时_但却未能点亮我的阅读体验</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-ren-lei-qun-xing-shan-yao-shi-_-dan-que-wei-neng-dian-liang-wo-de-yue-du-ti-yan.html</link><description>我对这本书的总体评价是“差强人意”。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-ren-lei-qun-xing-shan-yao-shi-_-dan-que-wei-neng-dian-liang-wo-de-yue-du-ti-yan.html</guid><pubDate>Thu, 09 Oct 2025 15:40:02 +0000</pubDate></item><item><title>风雅涵章: 秋日别后</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-qiu-ri-bie-hou.html</link><description>&gt; 此情可待成追忆，只是当时已惘然。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-qiu-ri-bie-hou.html</guid><pubDate>Tue, 07 Oct 2025 13:46:59 +0000</pubDate></item><item><title>涵芬撷英: 迟到的语文课</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-chi-dao-de-yu-wen-ke.html</link><description>&gt; [!IMPORTANT]
+&gt; 我所观看的是B站一位名叫“教语文的萱萱萱ww”的讲解，本文整理的几乎所有内容都来自她在B站发布的视频。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-chi-dao-de-yu-wen-ke.html</guid><pubDate>Mon, 29 Sep 2025 16:05:45 +0000</pubDate></item><item><title>风雅涵章: 贮影轩</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-zhu-ying-xuan.html</link><description>
+本页面记录了这些年我看过的一些电影和电视剧。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-zhu-ying-xuan.html</guid><pubDate>Wed, 24 Sep 2025 14:09:27 +0000</pubDate></item><item><title>风雅涵章: 藏书阁</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-cang-shu-ge.html</link><description># 已读
+《别做正常的傻瓜》
+《士兵突击》 - 兰晓龙
+《亮剑》 - 都梁
+《局外人》 - 阿尔贝·加缪
+《活着》 - 余华
+《暗时间》 - 刘未鹏
+《人类群星闪耀时》 - 斯蒂芬·茨威格
+《人类简史》- ？
+
+&gt;**有的看过的想不起来了...，想起来了再补上去**
+
+---
+
+# 阅读中
+《Just for Fun》 - Linus Torvalds &amp; David Diamond
+《The C Programming Language》 - Brian W. Kernighan &amp; Dennis M. Ritchie？
+
+---
+
+# 待阅读
+《禅与摩托车维修艺术》 - 罗伯特·M·皮尔西格？
+《选择做富人》
+《Algorithms in C》
+《算法导论》
+《C++ Primer》
+《Effective C++》
+《More Effective C++》
+《数学与猜想-合情推理模式》
+《数学与猜想-数学中的归纳与类比》
+《啊哈，灵机一动》
+《Clean Code》。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-cang-shu-ge.html</guid><pubDate>Wed, 24 Sep 2025 14:07:31 +0000</pubDate></item><item><title>风雅涵章: 2024年度投资复盘</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html</link><description>&gt; 如果你真的想赢，从来该抄底的不是股票，而是你那点可怜的知识。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%202024-nian-du-tou-zi-fu-pan.html</guid><pubDate>Thu, 18 Sep 2025 15:02:43 +0000</pubDate></item><item><title>格物致雅: BiliBili_DownloadFileProcessor</title><link>https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20BiliBili_DownloadFileProcessor.html</link><description># BiliBili_DownloadFileProcessor
+A naive app to process download files from BiliBili app and turns them into available mp4 or mp3 automatically.
+Link: [https://github.com/HangYaHan/BiliBili_DownloadFileProcessor](https://github.com/HangYaHan/BiliBili_DownloadFileProcessor)
+
+## Features
+- Automatically scans and processes BiliBili app download folders
+- Converts .m4s files to .mp4
+- Extracts audio and converts .mp4 to .mp3 using FFmpeg
+- Results are named by its video title
+- Supports Chinese filenames
+- Simple command-line interface
+
+## Dependencies
+- [FFmpeg](https://ffmpeg.org/) (for media conversion)
+- [nlohmann/json](https://github.com/nlohmann/json) (for JSON parsing)
+- C++17 or later
+- CMake 3.10 or later
+&gt; Only Windows is supported currently, older versions of dependencies might work but are not tested.
+
+## Installation &amp; Build
+1. Clone this repository.
+   &gt; **nlohmann/json** is header-only and already included in the `include` folder.
+   &gt; **FFmpeg** is not included due to its size. Please download `ffmpeg.exe` manually (see the link above) and place it in the `ffmpeg` directory. Alternatively, you can run the provided `download_ffmpeg.bat` script to fetch it automatically.
+
+   Or, if you prefer:
+   &gt; Download the release package from the `release` section of this repository. All required files are included—no need to build, so you can skip step 2 below. Simply extract everything to your Bilibili download folder. For details, see the **Usage** section below.
+
+2. Build with CMake:
+   ```sh
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build .
+   ```
+   &gt; If you already have FFmpeg installed, just copy `ffmpeg.exe` (and any required .dll files) to the `ffmpeg` directory. For details, see the **Usage** section below.
+
+## Usage
+I strongly recommend you to see the video tutorial first: [https://www.example.com](https://www.example.com) (Not available now)
+
+1. Place the executable `BiliBili_DownloadFileProcessor.exe` and the folder `ffmpeg` to **the Bilibili download directory**. Please ensure the `ffmpeg` folder contains `ffmpeg.exe`, and don't forget any required .dll files if there are any.
+2. Run the executable file **BiliBili_DownloadFileProcessor.exe**, it will automatically process all relevant files in the directory. (**ffmpeg.exe** is dependence, must be in the same directory and don't run it.)
+3. Processed mp4 and mp3 files will be output to the `Result` directory. (If the directory doesn't exist, it will be created automatically.)
+
+Here is an example of the folder structure after placing the executable and `ffmpeg` folder:
+```
+[**video offline download folder**]
+├── some_video_folder/something
+├── BiliBili_DownloadFileProcessor.exe
+└── ffmpeg/
+    ├── ffmpeg.exe
+    └── (any required .dll files if there are any)
+```
+
+## Directory Structure
+```
+BiliBili_DownloadFileProcessor/
+├── include/         # Header files
+├── src/             # Source files
+├── bin/             # The executables will be generated here
+├── CMakeLists.txt   # Build configuration
+├── README.md        # Project documentation
+```
+
+## License
+- This project uses [FFmpeg](https://ffmpeg.org/) (GPL-3.0 License).
+- It also uses [nlohmann/json](https://github.com/nlohmann/json) (MIT License).
+- All other source code in this repository is licensed under the MIT License unless otherwise specified.
+
+## Acknowledgements
+- [FFmpeg](https://ffmpeg.org/)
+- [nlohmann/json](https://github.com/nlohmann/json)
+
+## Contact
+For questions or suggestions, please open an issue on GitHub.
+
+## Todo
+- If there is no ffmpeg.exe found, the program should display an error message and exit gracefully.
+。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20BiliBili_DownloadFileProcessor.html</guid><pubDate>Mon, 15 Sep 2025 15:59:59 +0000</pubDate></item><item><title>风雅涵章: 东湖往事</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html</link><description>武汉的夏秋之交，总是被热浪不请自来地占据。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-dong-hu-wang-shi.html</guid><pubDate>Sun, 14 Sep 2025 13:17:44 +0000</pubDate></item><item><title>涵芬撷英: Linux入门</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20Linux-ru-men.html</link><description>&gt; [!IMPORTANT]
+&gt; 我所观看的是B站一位名叫“爱编程的大丙”的讲解，这是他的个人博客：[https://subingwen.cn/)](https://subingwen.cn/)。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20Linux-ru-men.html</guid><pubDate>Wed, 10 Sep 2025 15:41:00 +0000</pubDate></item><item><title>涵芬撷英: The C Programming Language_从零开始</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html</link><description>&gt; 好的书就是你一看就会，不看还真就不会。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20The%20C%20Programming%20Language_-cong-ling-kai-shi.html</guid><pubDate>Sat, 06 Sep 2025 10:11:32 +0000</pubDate></item><item><title>风雅涵章: 福兮祸兮_DiskFailure</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html</link><description># Timeline of Disk Failure Incident
+&gt;2025.09.03 - 下午 ： 电脑突然蓝屏，重启也进不了系统，但是能进入PE。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-fu-xi-huo-xi-_DiskFailure.html</guid><pubDate>Fri, 05 Sep 2025 07:34:52 +0000</pubDate></item><item><title>风雅涵章: 用class写C的我</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html</link><description># A Conversation
+
+&gt; **Kakurin**: Pure C as opposed to C++. No idea why. Please don't talk about portability, it's BS.
+&gt;
+&gt; **Linus**: YOU are full of bullshit. C++ is a horrible language. It's made more horrible by the fact that a lot of substandard programmers use it.
+
+---
+
+# 自我分析
+
+昨日拜读陈皓先生的博客，仿佛被卡密尔精准礼仪般的真实伤害击中，让我在屏幕前陷入了长久的沉思。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-yong-class-xie-C-de-wo.html</guid><pubDate>Thu, 28 Aug 2025 15:54:53 +0000</pubDate></item><item><title>风雅涵章: 片语人生</title><link>https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-pian-yu-ren-sheng.html</link><description># 片语人生
+
+---
+
+这一篇章的由来要从“哲学本”说起，它最初是我高中时期用来摘抄喜欢句子的笔记本，最初只是为了写作积累素材，后来慢慢变成了收集“至理名言”的小小宝库。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/feng-ya-han-zhang--%20-pian-yu-ren-sheng.html</guid><pubDate>Mon, 25 Aug 2025 06:53:17 +0000</pubDate></item><item><title>格物致雅: A Simple ClickScript</title><link>https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20A%20Simple%20ClickScript.html</link><description># ClickScript
+
+## 前言
+
+ClickScript 最初是在实验室中为方便测试而编写的一个点击脚本工具。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/ge-wu-zhi-ya--%20A%20Simple%20ClickScript.html</guid><pubDate>Thu, 21 Aug 2025 15:30:35 +0000</pubDate></item><item><title>涵芬撷英: 别做正常的傻瓜_理性与人性的温和博弈</title><link>https://HangYaHan.github.io/post/han-fen-xie-ying--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html</link><description>多年前的高中时期，我初次读到这本书——由《暗时间》推荐而来，印象至今深刻。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/han-fen-xie-ying--%20-bie-zuo-zheng-chang-de-sha-gua-_-li-xing-yu-ren-xing-de-wen-he-bo-yi.html</guid><pubDate>Tue, 29 Jul 2025 07:21:35 +0000</pubDate></item><item><title>About Me</title><link>https://HangYaHan.github.io/post/About%20Me.html</link><description>&gt; People Die, but Long Live GitHub
+
+---
+
+# 💬 A Conversation
+
+&gt; **🤔 YaHan**: 我觉得我写的文字像一坨屎，根本没有人看，也没有任何意义。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/About%20Me.html</guid><pubDate>Tue, 29 Jul 2025 07:20:51 +0000</pubDate></item><item><title>Hello World</title><link>https://HangYaHan.github.io/post/Hello%20World.html</link><description># Test
+This is my first blog. 
+Test test test 
+The catelog is available on the right side.
+
+# There will be a image here
+Click the image to view it in full size.
+![None](https://HangYaHan.github.io/TestImage/Test.png)
+
+# Emphassis Message Test
+&gt; [!NOTE]
+&gt; Useful information that users should know, even when skimming content.
+
+&gt; [!TIP]
+&gt; Helpful advice for doing things better or more easily.
+
+&gt; [!IMPORTANT]
+&gt; Key information users need to know to achieve their goal.
+
+&gt; [!WARNING]
+&gt; Urgent info that needs immediate user attention to avoid problems.
+
+&gt; [!CAUTION]
+&gt; Advises about risks or negative outcomes of certain actions.
+
+。</description><guid isPermaLink="true">https://HangYaHan.github.io/post/Hello%20World.html</guid><pubDate>Thu, 24 Jul 2025 15:01:08 +0000</pubDate></item></channel></rss>

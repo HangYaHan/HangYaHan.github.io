@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/168107882?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="> Talk is cheap. Show me the code. -- Linus Torvalds
+
+Beruto是一个“自己玩”的量化交易模型系统，基础回测已跑通。">
+<meta property="og:title" content="风雅涵章: Beruto开发随笔">
+<meta property="og:description" content="> Talk is cheap. Show me the code. -- Linus Torvalds
+
+Beruto是一个“自己玩”的量化交易模型系统，基础回测已跑通。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HangYaHan.github.io/post/feng-ya-han-zhang--%20Beruto-kai-fa-sui-bi.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/168107882?v=4">
+<title>风雅涵章: Beruto开发随笔</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">风雅涵章: Beruto开发随笔</h1>
+<div class="title-right">
+    <a href="https://HangYaHan.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HangYaHan/HangYaHan.github.io/issues/30" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>Talk is cheap. Show me the code. -- Linus Torvalds</p>
+</blockquote>
+<p>Beruto是一个“自己玩”的量化交易模型系统，基础回测已跑通。初衷是跳出刷题/Toy Program 的循环，做点能落地的东西。在 AI 时代，技术赋予每个人近乎无限的创造力和可能性；而将想法化为实实在在的代码，才是验证与进化的开始。Linus的话常常提醒着我：言谈为轻，务实为重。这即是项目的宗旨，也是我对自己的要求。</p>
+<p>每每在项目中碰壁，一个念头总会在我脑海浮现：我是多么希望能够有一个志同道合的人和我一起开发这个项目啊！我常常想象那样的场景——有人可以一起深入讨论某个技术难题，能够提交代码不仅分担压力，更带来意外的灵感与惊喜。但现实是，这条路上只有我自己。这种渴望同伴的感觉，让我想到了游戏里总是不敢打单排的我，哪怕实力足够，也宁愿忍受队友的不可预测，好像身边有个人，就能分担那份面对胜负的沉重压力。</p>
+<p>可惜，开源项目不像游戏，没有匹配系统，也难以轻易遇到愿意共同奋斗的伙伴，很多时候我只能孤军奋战。有些事情终究要一个人面对，对我来说，孤独可能不是一个选择，而是一个必经的过程。当我开始接受“大概真的要一个人走完”这个事实时，反而感觉轻松了一些。如果从一开始就知道不会有同伴，也许脚步会更加坚定。</p>
+<p>仔细想想，这也容易理解：需要这个项目来积累经验的人，可能还不知道如何为这样的系统贡献代码；而有能力贡献的人，通常已经有了自己的方向，不再需要这样一个初具雏形的项目。我恰好卡在中间——比新手懂得多些，比高手欠缺得多。这个区间里本来人就少，能遇见的概率就更小了。</p>
+<p>有趣的是，当我起初开始往这个空地里添置东西时，正反馈居然来得比想象中快。看到回测K线绘制出第一张图表，命令行蹦出回测结果的瞬间，实实在在的成就感就涌了上来。毕竟，研究这个是真有可能帮自己赚钱的——虽然我也知道，要找到一个长期有效的策略，“很蓝的啦”。但至少，我不再手足无措了。现在房子刚搭好框架，后面还有太多事要做。需要完善策略库，需要接入数据分析，需要做UI，需要接入机器学习……正因为想做的事情变多了，那个“要是有个伙伴就好了”的念头，偶尔还是会冒出来。</p>
+<p>是的，我的项目目前依然简单。它只是一个初步成型的框架，像一栋刚刚搭好梁柱的房子，里面仍空荡荡的，等待着填充与完善。从一片茫然到有了清晰的方向，想做的事情一件件浮现出来，这种“有路可走”的感觉，本身就是一种力量。而且这一路走来，我的确获得了实实在在的成长，沿途的风景与挑战，都让我变成了更好的开发者。</p>
+<p><em>Starcraft-II</em> 中的一句话在我的脑海里回响：“一代又一代的勇士们，选择了黑暗圣堂之路。” 这句台词描绘的，是那些主动脱离“卡拉”连接、在阴影中独自磨砺的战士。斩断神经锁链，并不意味着迷失；相反，一代又一代的黑暗圣堂武士凭着内心的荣誉与传承，在孤独中找到了自己的道路，并因此变得更强大。</p>
+<p>看着从零开始构建的回测系统，我忽然觉得，或许我正走着自己的“黑暗圣堂之路”。孤军奋战，是事实；但我也从未真的孤军奋战——这个世界有无数开源资料供我学习，有强大的 AI 助手随时答疑，有社区里看不见却存在的同行者。或许这条路上注定没有实时相伴的队友，但我并不孤独。</p>
+<p>让代码继续说话吧，这座房子，总会慢慢“生长”出它该有的样子。或许有一天，它会成为一个温暖的家，迎接那些愿意加入进来的人们。</p>
+<p>仓库地址：<a href="https://github.com/HangYaHan/Beruto">Beruto</a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HangYaHan.github.io">HangYaHan's Blog</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("07/25/2025"!=""){
+    var startSite=new Date("07/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HangYaHan/HangYaHan.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>
+
+</html>
