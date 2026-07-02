@@ -93,7 +93,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>数目没变，不等于价值没变——一年后的 1000 块和今天的 1000 块，能买的东西不一样。但我们先不管购买力。只管数目。数目不变这件事太显然了，显然到你不觉得它是一个"结论"。但它是一个起点：<strong>如果你希望一年后数目变多，你必须做点什么。</strong></p>
 <p>借钱给别人，就是一种"做点什么"。</p>
 <hr>
-<h2>钱放着不动，会发生什么？<em>[Build]</em></h2>
+<h2>钱放着不动，会发生什么？</h2>
 <p>YaHan 想试试看：如果他什么都不做，1000 块一年后还是 1000 块。这件事太简单了，简单到不值得写成公式。但把它写出来是有用的——它是一个参照系。后面所有"钱变多"的情况，都是在这个参照系上叠加了别的东西。</p>
 <p>用 $P$ 表示今天的本金 (Principal)，用 $A$ 表示未来的金额 (Amount)。什么交易都没发生的时候：</p>
 <p>$$A = P$$</p>
@@ -110,7 +110,7 @@ Future amount (Amount, A): 1000
 <p>钱不会自己变多。任何收益都来自你把钱交给了别人使用。闲置就是选择收益为零。</p>
 </blockquote>
 <hr>
-<h2>你开口借钱，YaHan 犹豫了一下*[Build]*</h2>
+<h2>你开口借钱，YaHan 犹豫了一下</h2>
 <p>你对 YaHan 说：借我 1000 块，过段时间还你。</p>
 <p>YaHan 犹豫了。不是不信任你——是他把 1000 块给你以后，有几样东西就没了：</p>
 <ol>
@@ -134,7 +134,7 @@ Interest (Interest, I): 50
 </code></pre>
 <p>利息是"货币的时间价值"最原始的形态。后面的一切——债券、远期、互换、期权——都在这个公式上面搭积木。</p>
 <hr>
-<h2>一定是50元利息吗？<em>[Build]</em></h2>
+<h2>一定是50元利息吗？</h2>
 <p>50 块是多还是少？</p>
 <p>如果本金是 100 块，多还 50 块等于赚了 50%——很厉害。如果本金是 10000 块，多还 50 块等于只赚了 0.5%——不如存银行。所以光看利息的绝对数没有意义，需要把它和本金放在一起看。</p>
 <p>多还的比例叫<strong>期间利率 (Period Rate)</strong>：$r = (A - P) / P$。YaHan 这笔借款的期间利率是 5%。</p>
@@ -156,7 +156,7 @@ As percentage: 5.0%
 </ol>
 </blockquote>
 <hr>
-<h2>没有时间坐标，一切利率都是空话*[Build]*</h2>
+<h2>没有时间坐标，一切利率都是空话</h2>
 <p>金融里的大多数错误都来自省略了时间。YaHan 决定从这一秒开始，以后每一笔钱都标注"发生在什么时候"。</p>
 <p>用 $t = 0$ 表示现在。$t = 1$ 表示一年后。$t = 0.5$ 是半年后。画出来是一条轴：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">0      0.5      1.0      1.5      2.0
@@ -178,7 +178,7 @@ As percentage: 5.0%
 </code></pre>
 <p>有了这条轴，YaHan 的借款就可以精确描述了：$t=0$ 时借出 1000，$t=1$ 时收回 1050。</p>
 <hr>
-<h2>怎么记录一笔"钱要发生"？<em>[Build]</em></h2>
+<h2>怎么记录一笔"钱要发生"？</h2>
 <p>YaHan 决定用一个简单的记账法：<strong>流入记正，流出记负。</strong></p>
 <p>他的借款就是两笔记录：$t=0$ 时 $-1000$，$t=1$ 时 $+1050$。每笔记录有三个要素：时间、金额、说明。在代码里就是三个字段：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">CashFlow</span>:
@@ -191,7 +191,7 @@ CashFlow(time=1, amount=1050, label='you repay')
 </code></pre>
 <p>YaHan 发现，他用这个东西可以表示任何一笔"钱在某时发生"的事件。银行房贷的月供、公司债的利息支付、VC 投给创业公司的那笔钱——全是 CashFlow，只是时间和金额不同。</p>
 <hr>
-<h2>一笔交易里藏着不止一笔现金流*[Build]*</h2>
+<h2>一笔交易里藏着不止一笔现金流</h2>
 <p>YaHan 的借款有两笔现金流。但如果是一笔分期贷款呢？或者一张每年付息的债券呢？会有很多笔。</p>
 <p>他把一组现金流装进一个表——<strong>现金流表 (CashFlowSchedule)</strong>。这个表可以做两件事：把所有金额直接加起来（名义总和），或者把未来每一笔都贴现到现在再加起来（净现值）。后者比前者有用得多——但目前他还不知道"贴现"这个词。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">CashFlowSchedule</span>:
@@ -211,7 +211,7 @@ Nominal sum: 50
 </code></pre>
 <p>名义总和是 50——但这 50 不是"今天的 50"。1050 发生在一年后，不能和今天的 -1000 直接加。YaHan 隐约觉得这里有个问题，但暂时搁置——先处理另一个更紧急的麻烦。</p>
 <hr>
-<h2>你给了 YaHan 三种还款方案*[Verify]*</h2>
+<h2>你给了 YaHan 三种还款方案</h2>
 <p>你又来了，给了 YaHan 三个选择：</p>
 <ul>
 <li><strong>A</strong>：借 1000，半年后还 1030。（多还 30。）</li>
@@ -227,7 +227,7 @@ Deal C: T=2.0yr, period rate=0.1200 (12.0%)
 </code></pre>
 <p>A 半年赚 3%，B 一年赚 6%，C 两年赚 12%——但时间长度不一样，没法直接说"哪个利率更高"。</p>
 <hr>
-<h2>如何比较三个收益率呢？<em>[Build]</em></h2>
+<h2>如何比较三个收益率呢？</h2>
 <p>最简单的换算：假设收益按时间线性增长。半年 3%，那一年就是 2 × 3% = 6%。这叫<strong>简单年化 (Simple Annualised Rate)</strong>。</p>
 <p>YaHan 用这个公式把三笔借款都换算成一年：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">Deal A: simple annual rate = 0.060000 (6.0000%)
@@ -239,7 +239,7 @@ Deal C: simple annual rate = 0.060000 (6.0000%)
 <p>简单年化把"利息本身也能生利息"这件事忽略了。YaHan 想了想："半年赚到的 30 块，下半年也可以继续借给别人啊。"</p>
 <p>这个想法有一个名字。叫<strong>复利 (Compounding)</strong>。</p>
 <hr>
-<h2>半年赚 3% 等于一年 6% ？<em>[Verify]</em></h2>
+<h2>半年赚 3% 等于一年 6% ？</h2>
 <p>如果每一期赚到的利息都能加入本金继续赚钱，年化的公式就变了。不再是简单的除以时间，而是开方：</p>
 <p>$$r_{\text{compound}} = \left(\frac{A}{P}\right)^{1/T} - 1$$</p>
 <p>用这个重新算：</p>
@@ -251,7 +251,7 @@ Deal C: compound annual rate = 0.058301 (5.8301%)
 <p>这里有一个普遍的规律：<strong>在正常市场里，长期利率通常高于短期利率。</strong> 2023 年 10 月，美国 3 个月期国债收益率 5.5%，10 年期只有 4.8%——短高长低，这叫收益率曲线倒挂，通常被视为衰退信号。但在 2021 年，3 个月期接近 0%，10 年期 1.5%——正常的向上倾斜。YaHan 还不知道"收益率曲线"这个词，但他已经在做这个计算了。</p>
 <p>到这里，YaHan 手上有了四个可以反复用的东西：时间轴、单笔现金流、现金流表、利率（期间和年化）。这些是最小的积木。但他还有一个问题悬着——<strong>一年后的 1050，今天值多少？</strong></p>
 <hr>
-<h2>把明年的 1050 搬回今天*[Build]*</h2>
+<h2>把明年的 1050 搬回今天</h2>
 <p>YaHan 现在能比较不同期限的利率了。但他还有一个问题悬着。他手里有一张借条——一年后收回1050。这张借条是一张纸，但纸上的"1050"不是今天的1050。要确定它今天的价值，需要回答一个问题：在今天的环境里，用今天的利率，让一年后恰好变成1050，今天需要多少钱。</p>
 <p>市场上有一个稳妥的投资机会：今天投入 1000，一年后拿回 1100。年回报 10%。</p>
 <p>那如果一年后有人承诺给你 1100 元，这个承诺今天值多少？答案是 1000——因为你可以用同样的 1000 元复制出这个结果。</p>
@@ -273,7 +273,7 @@ FV=1000, r=0.10, T=5yr -&gt; PV=620.92
 <p>5 年后的 1000 元，在 10% 的利率下，今天只值 620。因为 620 存五年按 10% 复利刚好变成 1000。</p>
 <p>这个逻辑在现实中每天都在发生。2023 年，一家初创公司以 10 亿美元估值融资——投资者投的不是"今天值 10 亿"，而是"5 年后这家公司值 50 亿，贴现回来今天值 10 亿"。VC 的整个定价模型就是一个高级版的 <code class="notranslate">present_value</code> 函数，只是参数不是利率，而是风险调整后的预期回报。</p>
 <hr>
-<h2>YaHan 把你的借款每条线都折回今天*[Verify]*</h2>
+<h2>YaHan 把你的借款每条线都折回今天</h2>
 <p>回到你借 YaHan 1000 元、一年后还 1050 的交易。它有两笔现金流。把每一笔都贴现到 $t=0$ 再加起来——叫<strong>净现值 (Net Present Value, NPV)</strong>。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">npv</span>(<span class="pl-s1">cashflow_schedule</span>, <span class="pl-s1">rate</span>):
     <span class="pl-s1">total</span> <span class="pl-c1">=</span> <span class="pl-c1">0.0</span>
@@ -298,7 +298,7 @@ Discount rate 0.1: NPV = -45.4545
 <p>一年后的 100 块不等于今天的 100 块。差额就是利率。时间越长、利率越高，未来的钱今天就越不值钱。</p>
 </blockquote>
 <hr>
-<h2>如果定价的对象不是"钱"，而是"别的东西"？<em>[Build]</em></h2>
+<h2>如果定价的对象不是"钱"，而是"别的东西"？</h2>
 <p>YaHan 发现他一直在处理"钱本身"——借出 1000、收回 1050。但市场上有太多东西不是钱：苹果公司的股票、德州的原油、芝加哥的玉米、加密交易所里的比特币。</p>
 <p>它们有一个共同点：<strong>在某个时间点有一个价格。</strong> YaHan 只需要一个最简单的类：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">AssetPrice</span>:
@@ -310,7 +310,7 @@ Discount rate 0.1: NPV = -45.4545
 </code></pre>
 <p>YaHan 现在不研究股票为什么涨跌。他只确定一件事：后面要讲的期货、期权、远期——所有这些衍生品——都是基于某个标的物 (Underlying Asset) 在未来某个时间的价格来设计合约的。2020 年 4 月 20 日，WTI 原油期货价格跌到 <strong>-$37.63</strong>——人类历史上第一次出现负油价。这个价格荒诞到像是一个 bug，但它恰好说明了一件事：衍生品合约的价值完全依赖标的物在特定时间点的价格。标的物价格可以变成负数，衍生品的 payoff 就跟着变成负数。</p>
 <hr>
-<h2>你一定会还钱吗？<em>[Build]</em></h2>
+<h2>你一定会还钱吗？</h2>
 <p>一直到现在，YaHan 都假设你一定会履行承诺——到时必定还 1050。</p>
 <p>这次不一样。你说你要拿这 1000 块去做生意。一年后结果取决于生意的好坏：</p>
 <ul>
@@ -321,7 +321,7 @@ Discount rate 0.1: NPV = -45.4545
 <p>YaHan 意识到他之前处理的都是"确定"的现金流。这一次，未来还款金额是一个<strong>随机变量 (Random Variable)</strong>——现在不知道具体是多少，但知道可能有哪些结果，每种结果的概率是多少。</p>
 <p>这不是一个奇怪的例外。<strong>每一次借钱、每一次投资、每一次签合约，未来都不完全确定。</strong> 2020 年 3 月，新冠疫情爆发时，全球市场在一个月内蒸发了 30% 的市值。没人能预测这个——但所有人都知道"有时候会发生这种事"。不确定性是金融的默认状态，确定性才是特例。真实的未来比三种可能结果复杂得多。股价不是只涨到120或跌到80——它可以在中间任何一个位置停下来，每天的涨跌互相影响。完整的"连续不确定性"需要随机微积分来刻画，那是后面章节的事。现在，YaHan 只需要一个最朴素的起点：在已知可能结果和概率的前提下，算一个平均。</p>
 <hr>
-<h2>"平均下来"能还多少？<em>[Verify]</em></h2>
+<h2>"平均下来"能还多少？</h2>
 <p>三种结果，概率分别 20%、60%、20%。加权平均——<strong>期望值 (Expected Value)</strong>：</p>
 <p>$$E[X] = 0.2 \times 800 + 0.6 \times 1050 + 0.2 \times 1300 = 1050$$</p>
 <pre lang="text" class="notranslate"><code class="notranslate">Expected repayment: 1050.0
@@ -329,7 +329,7 @@ Expected return vs principal: 0.0500
 </code></pre>
 <p>期望还款恰好也是 1050——跟确定还款一样。但 YaHan 注意到了区别：<strong>确定还 1050 没有坏情况。随机还 1050 有 20% 的概率只还 800。</strong> 期望值相同，风险不同。这件事在整个金融工程里反复出现——价格是一个数，风险是一整个分布。只盯着期望值不看分布，就跟只看平均水位不过问洪水概率一样。</p>
 <hr>
-<h2>怎么模拟"不知道的未来"？一颗骰子*[Build]*</h2>
+<h2>怎么模拟"不知道的未来"？一颗骰子</h2>
 <p>YaHan 想模拟那个不确定的未来。他需要随机数——但不想用 Python 自带的 <code class="notranslate">random</code>。</p>
 <p>他手搓了一个最简单的<strong>线性同余发生器 (Linear Congruential Generator)</strong>。原理是递推：$x_{n+1} = (a \cdot x_n + c) \bmod m$。除以 m 就得到一个 0 到 1 之间的数。这不是高质量随机数——但在 1960 年代，兰德公司就是用类似的方法生成随机数来做核战争模拟的。对 YaHan 的目的来说够用了。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">LinearCongruentialGenerator</span>:
@@ -347,7 +347,7 @@ Expected return vs principal: 0.0500
 0.465976
 </code></pre>
 <hr>
-<h2>YaHan 丢了十次骰子*[Verify]*</h2>
+<h2>YaHan 丢了十次骰子</h2>
 <p>规则：随机数小于 0.2 → 还 800；0.2 到 0.8 之间 → 还 1050；大于 0.8 → 还 1300。连续抽十次：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">Trial 1: 1050
 Trial 2: 1050
@@ -362,7 +362,7 @@ Trial 10: 1050
 </code></pre>
 <p>十次里有三次偏离了 1050——两次偏高（1300）、一次偏低（800）。单次看，什么都有可能。但 YaHan 想知道的是抽很多次以后的行为。</p>
 <hr>
-<h2>抽一次靠运气，抽一万次靠数学——蒙特卡洛*[Verify]*</h2>
+<h2>抽一次靠运气，抽一万次靠数学——蒙特卡洛</h2>
 <p>10 次、100 次、1000 次、10000 次——每次重新播种、独立抽样，取平均值：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">Trials:    10, average repayment: 1000.00
 Trials:   100, average repayment: 1050.00
@@ -375,7 +375,7 @@ Trials: 10000, average repayment: 1049.38
 <p>期望值相同的两个投资，风险可以完全不同。做决策的时候，分布比均值重要。</p>
 </blockquote>
 <hr>
-<h2>复利次数越多越好吗？<em>[Build]</em></h2>
+<h2>复利次数越多越好吗？</h2>
 <p>回来后利息。年利率 10%、本金 1000、一年到期。一年结一次：拿 1100。半年结一次（每半年利率 5%）：$1000 \times 1.05^2 = 1102.5$。多出 2.5 块。如果按月结？按天结？</p>
 <pre lang="text" class="notranslate"><code class="notranslate">Compounds/yr:    1, future value: 1100.000000
 Compounds/yr:    2, future value: 1102.500000
@@ -384,7 +384,7 @@ Compounds/yr:  365, future value: 1105.155782
 </code></pre>
 <p>结算次数越多，最终拿的越多——但增长在减速。一年结 365 次（每天）和一年结 2 次（每半年）差 2.66 块；一年结 10000 次和连续复利几乎没差别。它似乎逼近了一个极限。</p>
 <hr>
-<h2>如果结算次数无穷多会怎样？<em>[Build]</em></h2>
+<h2>如果结算次数无穷多会怎样？</h2>
 <p>当结算次数趋向无穷，公式收敛到一个数学常数 $e$：</p>
 <p>$$FV_{\text{continuous}} = P \cdot e^{rT}$$</p>
 <p>YaHan 不用 <code class="notranslate">math.exp</code>。他用泰勒级数自己搓了 $e^x$——取 30 项已经非常准。1000 块、10% 利率、一年，连续复利 = 1105.1709。比每天结算只多 0.000015 元。</p>
@@ -400,7 +400,7 @@ continuous      1105.170918
 <p>连续复利是一个数学极限，不是现实。它存在是因为公式简洁，不是因为真实。</p>
 </blockquote>
 <hr>
-<h2>小试牛刀*[Challenge]*</h2>
+<h2>小试牛刀</h2>
 <p>你把 YaHan 的 1000 元拿去做生意，一年后还款不确定：</p>
 <ul>
 <li>20% 概率还 800</li>
@@ -418,7 +418,7 @@ Expected NPV: 0.0000
 </code></pre>
 <p>期望还款 1050，按 5% 折现后恰好等于借出的 1000——净现值为零。在平均意义上，借和不借一样。但 NPV = 0 不代表没有风险：20% 的概率只还 800，YaHan 净亏 200 的现值。这件事提醒了一个区分：<strong>均值告诉你平均结果，分布告诉你有多大的概率偏离平均。</strong> 金融危机、创业失败、自然灾害——都是分布的尾部在起作用。只看均值不管分布的人，在 2008 年之前以为房价只涨不跌。</p>
 <hr>
-<h2>本章回顾*[Recap]*</h2>
+<h2>本章回顾</h2>
 <p>YaHan 手里现在有这些可以反复调用的积木：</p>
 <p>时间轴、单笔现金流、现金流表、期间利率、简单年化、复利年化、贴现因子、现值、净现值、标的物价格、不确定性和期望值、随机数发生器、还款抽样、蒙特卡洛模拟、离散复利、连续复利。</p>
 <p>这些就是后面所有章节的"原语"。它们单独看什么都不是，但它们拼在一起就是债券、远期、互换、期权。</p>
