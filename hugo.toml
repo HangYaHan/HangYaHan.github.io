@@ -1,0 +1,238 @@
+# ============================================
+#  基础设置 — 这些你必须自己改
+# ============================================
+baseURL = "https://hangyahan.github.io/"
+title = "涵舍"
+theme = "LoveIt"
+
+# 默认语言 — 你的内容以中文为主
+defaultContentLanguage = "zh-cn"
+locale = "zh-CN"
+hasCJKLanguage = true                     # 中文/日文/韩文支持
+
+enableRobotsTXT = true
+enableEmoji = true
+
+# ============================================
+#  导航菜单 — 根据你的内容结构调整
+# ============================================
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+  [[menu.main]]
+    weight = 2
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+  [[menu.main]]
+    weight = 3
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+  [[menu.main]]
+    weight = 4
+    identifier = "curated"
+    name = "Curated"
+    url = "/curated/"
+
+# ============================================
+#  LoveIt 主题参数
+# ============================================
+[params]
+  defaultTheme = "auto"                    # 跟随系统明暗
+  dateFormat = "2006-01-02"
+  title = "涵舍"
+  description = ""                         # ← 改：一句话描述你的网站
+
+  # --- 作者 ---
+  [params.author]
+    name = "HangYaHan"                     # ← 改
+    email = ""
+    link = ""
+
+  # --- 顶部导航栏 ---
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+    [params.header.title]
+      logo = ""
+      name = "涵舍"
+      pre = ""
+      post = ""
+      typeit = false
+
+  # --- 底部 ---
+  [params.footer]
+    enable = true
+    hugo = false
+    copyright = true
+    author = true
+    since = 2025                           # ← 改：你的建站年份
+    icp = ""
+    license = ""
+
+  # --- 搜索（Fuse.js，不需要外部服务）---
+  [params.search]
+    enable = true
+    type = "fuse"
+    contentLength = 4000
+    placeholder = ""
+    maxResultLength = 10
+    snippetLength = 30
+    highlightTag = "em"
+    absoluteURL = false
+    [params.search.fuse]
+      isCaseSensitive = false
+      minMatchCharLength = 2
+      findAllMatches = false
+      location = 0
+      threshold = 0.3
+      distance = 100
+      ignoreLocation = false
+
+  # --- 文章列表页（/posts/） ---
+  [params.section]
+    paginate = 100                       # 52 篇文章一页全显示
+
+  # --- 分类/标签列表页 ---
+  [params.list]
+    paginate = 50                        # 5 个分类一页全显示
+
+  # --- 首页 ---
+  [params.home]
+    rss = 10
+    [params.home.profile]
+      enable = true
+      gravatarEmail = ""
+      avatarURL = ""                       # ← 改：你的头像URL
+      title = ""
+      subtitle = ""                        # ← 改：首页副标题
+      typeit = true
+      social = true
+      disclaimer = ""
+    [params.home.posts]
+      enable = true
+      paginate = 6
+
+  # --- 社交链接（暂时留空，以后填） ---
+  [params.social]
+    GitHub = ""                            # ← 改
+    Email = ""
+    RSS = true
+    Bilibili = ""
+
+  # --- 文章页面 ---
+  [params.page]
+    hiddenFromHomePage = false
+    hiddenFromSearch = false
+    twemoji = false
+    lightgallery = false
+    ruby = true
+    fraction = true
+    fontawesome = true
+    linkToMarkdown = true
+    rssFullText = false
+    [params.page.toc]
+      enable = true
+      keepStatic = false
+      auto = true
+    [params.page.code]
+      copy = true
+      maxShownLines = 50
+      [params.page.code.render]
+        goat = true
+        mermaid = true
+    [params.page.math]
+      enable = false
+      copyTex = true
+      mhchem = true
+    # 文章分享
+    [params.page.share]
+      enable = true
+      X = true
+      Facebook = false
+      Linkedin = false
+      Telegram = false
+      Weibo = true
+    # 评论 — 全部关闭（你说不做留言板）
+    [params.page.comment]
+      enable = false
+
+  # --- 打字机动画 ---
+  [params.typeit]
+    speed = 100
+    cursorSpeed = 1000
+    cursorChar = "|"
+    duration = -1
+
+  # --- CDN（加速第三方库加载）---
+  [params.cdn]
+    data = "jsdelivr.yml"
+
+# ============================================
+#  Markdown 解析
+# ============================================
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+# ============================================
+#  文章 URL 模式
+# ============================================
+[permalinks]
+  posts = ":contentbasename"              # 每篇文章的文件名即为 URL
+
+# ============================================
+#  输出设置
+# ============================================
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+
+# ============================================
+#  多语言（只保留中文即可，需要英文时再加）
+# ============================================
+[languages]
+  [languages.zh-cn]
+    weight = 1
+    locale = "zh-CN"
+    label = "简体中文"
+    hasCJKLanguage = true
+    [languages.zh-cn.params]
+      [languages.zh-cn.params.home]
+        rss = 10
+        [languages.zh-cn.params.home.profile]
+          enable = true
+          avatarURL = ""                   # ← 改
+          title = ""
+          subtitle = ""                    # ← 改
+          typeit = true
+          social = true
+      [languages.zh-cn.params.social]
+        GitHub = ""                        # ← 改
+        Email = ""
+        Bilibili = ""
+        RSS = true

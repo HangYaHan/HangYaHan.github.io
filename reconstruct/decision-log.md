@@ -195,7 +195,34 @@ SSG 的起源可以追溯到 2008 年的 Jekyll——GitHub 联合创始人 Tom 
 
 ---
 
-## 十、待定事项
+## 十、实施进度
+
+### 2026-08-09：项目初始化
+
+- ✅ Hugo 0.164.0 已安装（winget）
+- ✅ Hugo 项目在 repo 根目录初始化（分支：`reconstruct_LoveIt`）
+- ✅ 选定主题：LoveIt（dillonzq/LoveIt）
+- ✅ `hugo.toml` 已从零写好（中文默认，搜索用 Fuse.js，评论全关闭）
+- ✅ `content/` 目录结构已建好：about / curated / utility
+- ✅ 示例页面已创建：about/index.md, curated/index.md, utility/index.md
+- ✅ LoveIt 官方示例配置已保存到 `reconstruct/loveit-example-config.toml`（参考用）
+- ⏳ **等待用户操作：** 克隆 LoveIt 主题到 `themes/LoveIt`
+
+### 下一步：本地预览
+
+用户克隆完主题后，运行：
+```powershell
+hugo server
+```
+浏览器打开 `http://localhost:1313`，应该能看到 LoveIt 主题的博客界面。
+
+### 再下一步：迁移文章
+
+把 `backup/` 下的 markdown 文章按分类复制到 `content/posts/<分类>/`，并给每篇加上 Hugo front matter（标题、日期、分类、标签）。
+
+---
+
+## 十一、待定事项
 
 - 网站的主名称（需要定一个不同于当前 "HangYaHan's Blog" 的新名字）
 - 主题风格（等选 Hugo 主题时决定）
