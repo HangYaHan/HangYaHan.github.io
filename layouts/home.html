@@ -1,0 +1,164 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+    <div class="page home"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+        {{- if or (not .Paginator.HasPrev) (not .Paginator) -}}
+
+        <div class="home-layout">
+            {{- /* ========== Left Sidebar: Profile ========== */ -}}
+            <aside class="home-sidebar">
+                {{- $avatar := $profile.avatarURL -}}
+                {{- with $profile.gravatarEmail -}}
+                    {{- $avatar = md5 . | printf "https://www.gravatar.com/avatar/%v?s=240&d=mp" -}}
+                {{- end -}}
+                {{- if $avatar -}}
+                <div class="home-sidebar-avatar">
+                    {{- dict "Src" $avatar | partial "plugin/img.html" -}}
+                </div>
+                {{- end -}}
+
+                <div class="home-sidebar-name">{{ .Site.Title }}</div>
+
+                {{- with .Site.Params.author.name -}}
+                <div class="home-sidebar-author">{{ . }}</div>
+                {{- end -}}
+
+                {{- with $profile.subtitle -}}
+                <div class="home-sidebar-bio">{{ . | safeHTML }}</div>
+                {{- end -}}
+
+                {{- if $profile.social -}}
+                <div class="home-sidebar-links">
+                    {{- $socialMap := resources.Get "data/social.yml" | transform.Unmarshal -}}
+                    {{- $socialArr := slice -}}
+                    {{- range $key, $value := .Site.Params.social -}}
+                        {{- $social := $key | lower | index $socialMap | default dict -}}
+                        {{- with $social.Alias -}}
+                            {{- $social = index $socialMap . | default dict -}}
+                        {{- end -}}
+                        {{- if $value -}}
+                            {{- if reflect.IsMap $value -}}
+                                {{- with $value.id -}}{{- $social = dict "Id" . | merge $social -}}{{- end -}}
+                            {{- else if ne $value true -}}
+                                {{- $social = dict "Id" $value | merge $social -}}
+                            {{- end -}}
+                            {{- if $social.Icon.Simpleicons -}}
+                                {{- $prefix := ($.Scratch.Get "cdn" | default dict).simpleIconsPrefix -}}
+                                {{- $social = dict "Prefix" $prefix | dict "Icon" | merge $social -}}
+                            {{- end -}}
+                            {{- $socialArr = $socialArr | append $social -}}
+                        {{- end -}}
+                    {{- end -}}
+                    {{- range sort $socialArr "Weight" -}}
+                        {{- partial "plugin/social.html" . -}}
+                    {{- end -}}
+                </div>
+                {{- end -}}
+
+                {{- $postCount := len (where .Site.RegularPages "Type" "posts") -}}
+                {{- $catCount := len .Site.Taxonomies.categories -}}
+                {{- $since := .Site.Params.footer.since | default "2025" -}}
+                <div class="home-sidebar-stats">
+                    <span>{{ $postCount }} posts</span>
+                    <span>{{ $catCount }} categories</span>
+                    <span>Since {{ $since }}</span>
+                </div>
+            </aside>
+
+            {{- /* ========== Right: Main Content ========== */ -}}
+            <div class="home-main">
+
+            {{- /* Now / 此刻 */ -}}
+            {{- with .Site.Params.home.now -}}
+            <div class="home-now">
+                <span class="home-now-label">Now / 此刻</span>
+                <span class="home-now-text">{{ . | markdownify }}</span>
+            </div>
+            {{- end -}}
+
+            {{- /* Two-Column: About + (Recent + Pinned) */ -}}
+            <div class="home-row">
+                <div class="home-card home-about">
+                    <h2 class="home-card-title">About / 关于本站</h2>
+                    <div class="home-card-body">
+                        {{- if .Content -}}
+                            {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                        {{- end -}}
+                    </div>
+                </div>
+
+                <div class="home-right-col">
+                    {{- $recentPosts := first 3 (where .Site.RegularPages "Type" "posts") -}}
+                    {{- if $recentPosts -}}
+                    <div class="home-card home-recent">
+                        <div class="home-card-header">
+                            <h2 class="home-card-title">Recent / 最近更新</h2>
+                            {{- with index $recentPosts 0 -}}
+                            <span class="home-recent-date">Last updated: {{ .Date.Format "2006-01-02" }}</span>
+                            {{- end -}}
+                        </div>
+                        <div class="home-card-body">
+                            <ul class="home-recent-list">
+                                {{- range $recentPosts -}}
+                                <li class="home-recent-item">
+                                    <span class="home-recent-item-date">{{ .Date.Format "2006-01-02" }}</span>
+                                    <a href="{{ .RelPermalink }}" class="home-recent-item-link">{{ .Title }}</a>
+                                </li>
+                                {{- end -}}
+                            </ul>
+                            <a href="/posts/" class="home-recent-more">View all posts / 查看全部 →</a>
+                        </div>
+                    </div>
+                    {{- end -}}
+
+                    {{- $pinned := where (where .Site.RegularPages "Type" "posts") "Params.pinned" true -}}
+                    {{- if $pinned -}}
+                    <div class="home-card home-pinned">
+                        <h2 class="home-card-title">Pinned / 置顶</h2>
+                        <div class="home-card-body">
+                            <ul class="home-recent-list">
+                                {{- range $pinned -}}
+                                <li class="home-recent-item">
+                                    <span class="home-recent-item-date">{{ .Date.Format "2006-01-02" }}</span>
+                                    <a href="{{ .RelPermalink }}" class="home-recent-item-link">{{ .Title }}</a>
+                                </li>
+                                {{- end -}}
+                            </ul>
+                        </div>
+                    </div>
+                    {{- end -}}
+                </div>
+            </div>
+
+            {{- /* Navigation */ -}}
+            {{- $navItems := slice
+                (dict "url" "/posts/" "icon" "fa-regular fa-newspaper" "name" "Posts / 文章" "desc" "All articles")
+                (dict "url" "/categories/" "icon" "fa-regular fa-folder-open" "name" "Categories / 分类" "desc" "Browse by topic")
+                (dict "url" "/about/" "icon" "fa-regular fa-user" "name" "About / 关于" "desc" "Who I am")
+                (dict "url" "/curated/" "icon" "fa-regular fa-star" "name" "Curated / 收藏" "desc" "Things I like")
+            -}}
+            <div class="home-card home-nav">
+                <h2 class="home-card-title">Explore / 探索</h2>
+                <div class="home-nav-grid">
+                    {{- range $navItems -}}
+                    <a href="{{ .url }}" class="home-nav-card">
+                        <div class="home-nav-card-icon">
+                            <i class="{{ .icon }}" aria-hidden="true"></i>
+                        </div>
+                        <div class="home-nav-card-text">
+                            <span class="home-nav-card-name">{{ .name }}</span>
+                            <span class="home-nav-card-desc">{{ .desc }}</span>
+                        </div>
+                    </a>
+                    {{- end -}}
+                </div>
+            </div>
+
+            </div>{{- /* end home-main */ -}}
+        </div>{{- /* end home-layout */ -}}
+
+        {{- end -}}{{/* end first-page-only */ -}}
+    </div>
+{{- end -}}
