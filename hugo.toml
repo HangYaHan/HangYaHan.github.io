@@ -107,7 +107,7 @@ enableEmoji = true
     rss = 10
     # "Now" section — a one-line status update on the homepage
     # "此刻" — 首页的一行状态更新
-    now = "📖 在读《xxx》&nbsp;&nbsp;·&nbsp;&nbsp;💻 学 Rust 中"
+    now = "📖 在读《共同基金常识》&nbsp;&nbsp;·&nbsp;&nbsp;🎓 准备秋招中"
     [params.home.profile]
       enable = true
       gravatarEmail = ""
