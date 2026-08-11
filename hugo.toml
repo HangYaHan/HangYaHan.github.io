@@ -128,6 +128,36 @@ enableEmoji = true
     Bilibili = "19353940"
     RSS = true
 
+  # --- 文章页面 ---
+  [params.page.share]
+    enable = false
+    X = false
+    Threads = false
+    Facebook = false
+    Linkedin = false
+    Whatsapp = false
+    Pinterest = false
+    Tumblr = false
+    HackerNews = false
+    Reddit = false
+    VK = false
+    Buffer = false
+    Xing = false
+    Line = false
+    Instapaper = false
+    Pocket = false
+    Flipboard = false
+    Weibo = false
+    Blogger = false
+    Baidu = false
+    Odnoklassniki = false
+    Evernote = false
+    Skype = false
+    Trello = false
+    Diaspora = false
+    Mix = false
+    Telegram = false
+
 # ============================================
 #  多语言
 # ============================================

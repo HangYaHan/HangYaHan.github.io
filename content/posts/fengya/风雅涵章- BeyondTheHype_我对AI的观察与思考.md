@@ -2,7 +2,6 @@
 title: "[风雅涵章] BeyondTheHype_我对AI的观察与思考"
 date: 2025-12-26
 draft: false
-pinned: true
 categories: ["风雅涵章"]
 tags: ["风雅涵章"]
 ---
