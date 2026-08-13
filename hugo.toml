@@ -108,6 +108,8 @@ enableEmoji = true
     # "Now" section — a one-line status update on the homepage
     # "此刻" — 首页的一行状态更新
     now = "📖 在读《共同基金常识》&nbsp;&nbsp;·&nbsp;&nbsp;🎓 准备秋招中"
+    # Personal tags in sidebar / 侧栏个人标签
+    tags = ["C/C++", "金融", "读书", "羽毛球", "写作", "reader", "builder"]
     [params.home.profile]
       enable = true
       gravatarEmail = ""
@@ -127,6 +129,16 @@ enableEmoji = true
     Email = "18930093438@163.com"
     Bilibili = "19353940"
     RSS = true
+
+  # --- 友链 / Friend links ---
+  [[params.friends]]
+    name = "示例友链一"
+    url = "https://example.com"
+    desc = "替换成你的朋友"
+  [[params.friends]]
+    name = "示例友链二"
+    url = "https://example.org"
+    desc = "再替换一个"
 
   # --- 文章页面 ---
   [params.page.share]

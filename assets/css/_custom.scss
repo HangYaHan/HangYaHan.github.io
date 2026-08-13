@@ -105,6 +105,30 @@
     html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
 }
 
+/* --- Personal tags in sidebar --- */
+.home-sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+}
+
+.home-sidebar-tag {
+    font-size: 0.68rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: $global-background-color;
+    border: 1px solid $global-border-color;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & {
+        background: $global-background-color-dark;
+        border-color: $global-border-color-dark;
+        color: $global-font-secondary-color-dark;
+    }
+}
+
 /* --- Main content area --- */
 .home-main {
     flex: 1;
@@ -398,4 +422,80 @@
         align-items: flex-start;
         gap: 0.2rem;
     }
+}
+
+/* ============================================
+   Friends dropdown / 友链下拉
+   ============================================ */
+.friends-toggle {
+    cursor: pointer;
+}
+
+.friends-dropdown {
+    position: fixed;
+    top: calc(var(--header-height) + 0.5rem);
+    right: 1rem;
+    z-index: 999;
+    min-width: 180px;
+    padding: 0.4rem 0;
+    background: $global-background-color;
+    border: 1px solid $global-border-color;
+    border-radius: 0.5rem;
+    @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.1));
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+
+    html[data-theme="dark"] & {
+        background: $global-background-color-dark;
+        border-color: $global-border-color-dark;
+        @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+    }
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    a {
+        display: flex;
+        flex-direction: column;
+        padding: 0.45rem 1rem;
+        text-decoration: none;
+        transition: background 0.15s;
+
+        &:hover {
+            background: $header-background-color;
+
+            html[data-theme="dark"] & {
+                background: $header-background-color-dark;
+            }
+        }
+    }
+}
+
+.friend-name {
+    font-size: 0.85rem;
+    color: $global-font-color;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.friend-desc {
+    font-size: 0.72rem;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.friends-mobile-title {
+    font-weight: 600;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.friends-mobile-item {
+    padding-left: 1.5rem !important;
 }

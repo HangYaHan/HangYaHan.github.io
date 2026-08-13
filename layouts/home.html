@@ -57,6 +57,14 @@
                 </div>
                 {{- end -}}
 
+                {{- with .Site.Params.home.tags -}}
+                <div class="home-sidebar-tags">
+                    {{- range . -}}
+                    <span class="home-sidebar-tag">{{ . }}</span>
+                    {{- end -}}
+                </div>
+                {{- end -}}
+
                 {{- $postCount := len (where .Site.RegularPages "Type" "posts") -}}
                 {{- $catCount := len .Site.Taxonomies.categories -}}
                 {{- $since := .Site.Params.footer.since | default "2025" -}}
@@ -134,9 +142,9 @@
 
             {{- /* Navigation */ -}}
             {{- $navItems := slice
+                (dict "url" "/about/" "icon" "fa-regular fa-user" "name" "About / 关于" "desc" "Who I am")
                 (dict "url" "/posts/" "icon" "fa-regular fa-newspaper" "name" "Posts / 文章" "desc" "All articles")
                 (dict "url" "/categories/" "icon" "fa-regular fa-folder-open" "name" "Categories / 分类" "desc" "Browse by topic")
-                (dict "url" "/about/" "icon" "fa-regular fa-user" "name" "About / 关于" "desc" "Who I am")
                 (dict "url" "/curated/" "icon" "fa-regular fa-star" "name" "Curated / 收藏" "desc" "Things I like")
             -}}
             <div class="home-card home-nav">
