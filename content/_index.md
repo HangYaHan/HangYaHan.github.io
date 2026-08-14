@@ -3,8 +3,16 @@ title: ""
 date: 2025-07-25
 ---
 
-涵舍是我的赛博树洞. 这里存放着我的读书笔记、技术记录、生活观察，以及一些碎片式的思考。
+First time here? → [About / 关于](/about/)
 
-I write about books I read, things I build, and thoughts I stumble into. No niche, no schedule—just whatever I'm learning at the moment.
+想看我的个人品味收藏？→ [Curated / 收藏](/curated/)
 
-Built with [Hugo](https://gohugo.io/) and the [LoveIt](https://github.com/dillonzq/LoveIt) theme. Hosted on GitHub Pages.
+---
+
+**Posts / 文章** 🚧 施工中
+
+我自己写的思考，正在归档中。
+
+**Categories / 分类** 🚧 施工中
+
+笔记与知识整理，正在归档中。

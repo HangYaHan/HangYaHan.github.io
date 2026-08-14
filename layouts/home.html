@@ -89,7 +89,7 @@
             {{- /* Two-Column: About + (Recent + Pinned) */ -}}
             <div class="home-row">
                 <div class="home-card home-about">
-                    <h2 class="home-card-title">About / 关于本站</h2>
+                    <h2 class="home-card-title">Navigation / 导航</h2>
                     <div class="home-card-body">
                         {{- if .Content -}}
                             {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
