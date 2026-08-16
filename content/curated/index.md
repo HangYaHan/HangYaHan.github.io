@@ -28,24 +28,24 @@ Last Updated: 2026.08.11 -- Tracks: 1224
 
 ### Languages / 语种
 
-华语 Mandarin  ██████████████████████████░░░░░░  ~55%
-英语 English   ████████████████░░░░░░░░░░░░░░░  ~32%
-粤语 Cantonese ████░░░░░░░░░░░░░░░░░░░░░░░░░░  ~8%
-日语 Japanese  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~4%
-其他 Other     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~1%
+<div class="bar-row"><span class="bar-label">华语 Mandarin</span><span class="bar-track"><span class="bar-fill" style="width:55%"></span></span><span class="bar-pct">~55%</span></div>
+<div class="bar-row"><span class="bar-label">英语 English</span><span class="bar-track"><span class="bar-fill" style="width:32%"></span></span><span class="bar-pct">~32%</span></div>
+<div class="bar-row"><span class="bar-label">粤语 Cantonese</span><span class="bar-track"><span class="bar-fill" style="width:8%"></span></span><span class="bar-pct">~8%</span></div>
+<div class="bar-row"><span class="bar-label">日语 Japanese</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-pct">~4%</span></div>
+<div class="bar-row"><span class="bar-label">其他 Other</span><span class="bar-track"><span class="bar-fill" style="width:1%"></span></span><span class="bar-pct">~1%</span></div>
 
 ### Genres / 曲风
 
-情歌 Ballad     ████████████████████████░░░░░  ~40%
-流行 Pop        ██████████████░░░░░░░░░░░░░░░  ~25%
-电子 EDM        ████████████░░░░░░░░░░░░░░░░░  ~18%
-摇滚 Rock       ████░░░░░░░░░░░░░░░░░░░░░░░░░  ~6%
-民谣 Folk       ███░░░░░░░░░░░░░░░░░░░░░░░░░░  ~4%
-原声 OST        ███░░░░░░░░░░░░░░░░░░░░░░░░░░  ~4%
-Hip-Hop / Rap   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~1%
-其他 Other      █░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~2%
+<div class="bar-row"><span class="bar-label">情歌 Ballad</span><span class="bar-track"><span class="bar-fill" style="width:40%"></span></span><span class="bar-pct">~40%</span></div>
+<div class="bar-row"><span class="bar-label">流行 Pop</span><span class="bar-track"><span class="bar-fill" style="width:25%"></span></span><span class="bar-pct">~25%</span></div>
+<div class="bar-row"><span class="bar-label">电子 EDM</span><span class="bar-track"><span class="bar-fill" style="width:18%"></span></span><span class="bar-pct">~18%</span></div>
+<div class="bar-row"><span class="bar-label">摇滚 Rock</span><span class="bar-track"><span class="bar-fill" style="width:6%"></span></span><span class="bar-pct">~6%</span></div>
+<div class="bar-row"><span class="bar-label">民谣 Folk</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-pct">~4%</span></div>
+<div class="bar-row"><span class="bar-label">原声 OST</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-pct">~4%</span></div>
+<div class="bar-row"><span class="bar-label">Hip-Hop / Rap</span><span class="bar-track"><span class="bar-fill" style="width:1%"></span></span><span class="bar-pct">~1%</span></div>
+<div class="bar-row"><span class="bar-label">其他 Other</span><span class="bar-track"><span class="bar-fill" style="width:2%"></span></span><span class="bar-pct">~2%</span></div>
 
-[Full list / 完整列表](music_list.txt)
+[Full list / 完整列表](/music_list.txt)
 
 ## Film & TV / 🎬 影视
 

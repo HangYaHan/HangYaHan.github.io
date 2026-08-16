@@ -1,0 +1,351 @@
+<style>
+.tool-root {
+  --tool-bg: #f5f6f8;
+  --tool-card-bg: #ffffff;
+  --tool-text: #1a1d24;
+  --tool-muted: #6b7280;
+  --tool-border: #e5e7eb;
+  --tool-primary: #2563eb;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"],
+.tool-root .tool-field select {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus,
+.tool-root .tool-field select:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-field input[readonly] {
+  background: var(--tool-bg);
+  color: var(--tool-muted);
+  cursor: default;
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 12px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-value.gain {
+  color: var(--tool-gain);
+}
+.tool-root .tool-value.loss {
+  color: var(--tool-loss);
+}
+.tool-root .tool-chart {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin-top: 12px;
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>输入参数</h2>
+
+    <div class="tool-field">
+      <label for="mortgage-price">房价</label>
+      <input type="number" id="mortgage-price" value="300" min="1" step="10">
+      <span class="tool-unit">万元</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="mortgage-down">首付比例</label>
+      <input type="number" id="mortgage-down" value="30" min="0" max="100" step="5">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="mortgage-years">贷款年限</label>
+      <input type="number" id="mortgage-years" value="30" min="1" max="50" step="1">
+      <span class="tool-unit">年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="mortgage-ref">年利率</label>
+      <select id="mortgage-ref">
+        <option value="">自定义…</option>
+        <option value="3.1" selected>中国 LPR ≈3.1%</option>
+        <option value="6.5">美国 ≈6.5%</option>
+        <option value="1.0">日本 ≈1.0%</option>
+        <option value="3.5">德国 ≈3.5%</option>
+      </select>
+      <input type="number" id="mortgage-rate" value="3.1" min="0" max="30" step="0.01">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="mortgage-method">还款方式</label>
+      <select id="mortgage-method">
+        <option value="equalPayment" selected>等额本息</option>
+        <option value="equalPrincipal">等额本金</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>结果</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item">
+        <div class="tool-label">贷款总额</div>
+        <div class="tool-value" id="mortgage-r-loan">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">首付金额</div>
+        <div class="tool-value" id="mortgage-r-down">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">月供</div>
+        <div class="tool-value" id="mortgage-r-monthly">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">总还款额</div>
+        <div class="tool-value" id="mortgage-r-total">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">总利息</div>
+        <div class="tool-value loss" id="mortgage-r-interest">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">利息 / 本金比</div>
+        <div class="tool-value loss" id="mortgage-r-ratio">0%</div>
+      </div>
+    </div>
+    <p class="tool-note" id="mortgage-note"></p>
+  </div>
+
+  <div class="tool-card">
+    <h2>逐年还款分解</h2>
+    <div class="tool-chart">
+      <canvas id="mortgage-chart"></canvas>
+    </div>
+    <p class="tool-note">红色是利息，蓝色是本金。把利率调到前几年的 5.88%，或者年限拉到 30 年，看看红色部分会涨到多大。</p>
+  </div>
+
+</div>
+
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const priceEl = $('mortgage-price');
+  const downEl = $('mortgage-down');
+  const yearsEl = $('mortgage-years');
+  const rateEl = $('mortgage-rate');
+  const refEl = $('mortgage-ref');
+  const methodEl = $('mortgage-method');
+
+  let chart;
+
+  function fmt(n) {
+    if (!isFinite(n)) return '¥0';
+    return '¥' + Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function calc() {
+    const price = (parseFloat(priceEl.value) || 0) * 10000;
+    const downRatio = Math.max(0, Math.min(100, parseFloat(downEl.value) || 0)) / 100;
+    const years = Math.max(1, parseInt(yearsEl.value) || 1);
+    const annualRate = Math.max(0, parseFloat(rateEl.value) || 0) / 100;
+    const method = methodEl.value;
+
+    const down = price * downRatio;
+    const principal = price - down;
+    const r = annualRate / 12;
+    const n = years * 12;
+
+    let monthly;
+    let totalPayment;
+    let totalInterest;
+
+    if (method === 'equalPayment') {
+      if (r === 0) {
+        monthly = principal / n;
+      } else {
+        const growth = Math.pow(1 + r, n);
+        monthly = principal * r * growth / (growth - 1);
+      }
+      totalPayment = monthly * n;
+      totalInterest = totalPayment - principal;
+    } else {
+      const monthlyPrincipal = principal / n;
+      monthly = monthlyPrincipal + principal * r;
+      totalInterest = principal * r * (n + 1) / 2;
+      totalPayment = principal + totalInterest;
+    }
+
+    const yearlyPrincipal = [];
+    const yearlyInterest = [];
+    let remaining = principal;
+    for (let y = 0; y < years; y++) {
+      let yp = 0, yi = 0;
+      for (let m = 0; m < 12; m++) {
+        const interest = remaining * r;
+        let p;
+        if (method === 'equalPayment') {
+          p = monthly - interest;
+        } else {
+          p = principal / n;
+        }
+        yp += p;
+        yi += interest;
+        remaining -= p;
+      }
+      yearlyPrincipal.push(Math.round(yp));
+      yearlyInterest.push(Math.round(yi));
+    }
+
+    const ratio = principal > 0 ? totalInterest / principal : 0;
+
+    $('mortgage-r-loan').textContent = fmt(principal);
+    $('mortgage-r-down').textContent = fmt(down);
+    $('mortgage-r-monthly').textContent = fmt(monthly);
+    $('mortgage-r-total').textContent = fmt(totalPayment);
+    $('mortgage-r-interest').textContent = fmt(totalInterest);
+    $('mortgage-r-ratio').textContent = (ratio * 100).toFixed(1) + '%';
+    $('mortgage-note').textContent = method === 'equalPayment'
+      ? '等额本息：每月还款额固定。'
+      : '等额本金：显示的是首月月供，之后逐月递减。';
+
+    draw(yearlyPrincipal, yearlyInterest);
+  }
+
+  function draw(yearlyPrincipal, yearlyInterest) {
+    const labels = yearlyPrincipal.map((_, i) => (i + 1) + '年');
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: '本金',
+          data: yearlyPrincipal,
+          backgroundColor: '#2563eb',
+          stack: 's',
+        },
+        {
+          label: '利息',
+          data: yearlyInterest,
+          backgroundColor: '#dc2626',
+          stack: 's',
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.dataset.label + '：¥' + Math.round(ctx.parsed.y).toLocaleString('zh-CN'),
+          },
+        },
+      },
+      scales: {
+        x: { stacked: true, title: { display: true, text: '时间' } },
+        y: {
+          stacked: true,
+          title: { display: true, text: '金额（元）' },
+          ticks: {
+            callback: (v) => {
+              if (v >= 10000) return (v / 10000).toFixed(0) + '万';
+              return v;
+            },
+          },
+        },
+      },
+    };
+
+    if (chart) chart.destroy();
+    chart = new Chart($('mortgage-chart'), { type: 'bar', data, options });
+  }
+
+  rateEl.readOnly = refEl.value !== '';
+
+  refEl.addEventListener('change', () => {
+    if (refEl.value !== '') {
+      rateEl.value = refEl.value;
+      rateEl.readOnly = true;
+      calc();
+    } else {
+      rateEl.readOnly = false;
+    }
+  });
+
+  rateEl.addEventListener('input', () => {
+    refEl.value = '';
+    calc();
+  });
+  rateEl.addEventListener('change', calc);
+
+  [priceEl, downEl, yearsEl, methodEl].forEach((el) => {
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>

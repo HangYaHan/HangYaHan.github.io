@@ -499,3 +499,90 @@
 .friends-mobile-item {
     padding-left: 1.5rem !important;
 }
+
+/* ============================================
+   Header subtitle / 顶栏副标题
+   ============================================ */
+:root {
+    --header-height: 4.5rem;
+}
+
+.header-title {
+    line-height: 1.4;
+    white-space: normal;
+    overflow: visible;
+}
+
+.header-title-post {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.66rem;
+    font-weight: normal;
+    color: $global-font-secondary-color;
+    margin-left: 0.8rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+
+    html[data-theme="dark"] & {
+        color: $global-font-secondary-color-dark;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-title-post {
+        display: none;
+    }
+}
+
+/* ============================================
+   Curated 页面 — 进度条（语种/曲风）
+   ============================================ */
+.bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.45rem;
+}
+
+.bar-label {
+    flex: 0 0 10.5rem;
+    font-size: 0.85rem;
+    color: $global-font-color;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.bar-track {
+    flex: 1;
+    height: 0.55rem;
+    background: $global-border-color;
+    border-radius: 999px;
+    overflow: hidden;
+
+    html[data-theme="dark"] & { background: $global-border-color-dark; }
+}
+
+.bar-fill {
+    display: block;
+    height: 100%;
+    background: $single-link-color;
+    border-radius: 999px;
+
+    html[data-theme="dark"] & { background: $single-link-color-dark; }
+}
+
+.bar-pct {
+    flex: 0 0 3.2rem;
+    text-align: right;
+    font-size: 0.82rem;
+    color: $global-font-secondary-color;
+    font-variant-numeric: tabular-nums;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+@media (max-width: 768px) {
+    .bar-label {
+        flex-basis: 7rem;
+    }
+}

@@ -1,0 +1,392 @@
+<style>
+.tool-root {
+  --tool-bg: #f5f6f8;
+  --tool-card-bg: #ffffff;
+  --tool-text: #1a1d24;
+  --tool-muted: #6b7280;
+  --tool-border: #e5e7eb;
+  --tool-primary: #2563eb;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"],
+.tool-root .tool-field select {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus,
+.tool-root .tool-field select:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-field input[readonly] {
+  background: var(--tool-bg);
+  color: var(--tool-muted);
+  cursor: default;
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 12px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-value.gain {
+  color: var(--tool-gain);
+}
+.tool-root .tool-value.loss {
+  color: var(--tool-loss);
+}
+.tool-root .tool-chart {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin-top: 12px;
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>输入参数</h2>
+
+    <div class="tool-field">
+      <label for="dca-initial">初始资金</label>
+      <input type="number" id="dca-initial" value="10000" min="0" step="1000">
+      <span class="tool-unit">元</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="dca-per-period">每期投入</label>
+      <input type="number" id="dca-per-period" value="2000" min="0" step="100">
+      <span class="tool-unit">元</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="dca-freq">定投频率</label>
+      <select id="dca-freq">
+        <option value="daily">每日</option>
+        <option value="threeDays">每三天</option>
+        <option value="weekly">每周</option>
+        <option value="monthly" selected>每月</option>
+        <option value="yearly">每年</option>
+      </select>
+    </div>
+
+    <div class="tool-field">
+      <label for="dca-years">投资年限</label>
+      <input type="number" id="dca-years" value="30" min="1" max="80" step="1">
+      <span class="tool-unit">年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="dca-ref">年化收益率</label>
+      <select id="dca-ref">
+        <option value="">自定义…</option>
+        <optgroup label="预设">
+          <option value="4">保守 4%</option>
+          <option value="7" selected>中性 7%</option>
+          <option value="10">乐观 10%</option>
+        </optgroup>
+        <optgroup label="S&amp;P 500">
+          <option value="20">近 1 年 ≈20%</option>
+          <option value="25">近 2 年 ≈25%</option>
+          <option value="15">近 5 年 ≈15%</option>
+          <option value="12">近 10 年 ≈12%</option>
+        </optgroup>
+        <optgroup label="纳斯达克">
+          <option value="25">近 1 年 ≈25%</option>
+          <option value="30">近 2 年 ≈30%</option>
+          <option value="18">近 5 年 ≈18%</option>
+          <option value="16">近 10 年 ≈16%</option>
+        </optgroup>
+        <optgroup label="道琼斯">
+          <option value="15">近 1 年 ≈15%</option>
+          <option value="15">近 2 年 ≈15%</option>
+          <option value="10">近 5 年 ≈10%</option>
+          <option value="9">近 10 年 ≈9%</option>
+        </optgroup>
+        <optgroup label="上证综指">
+          <option value="12">近 1 年 ≈12%</option>
+          <option value="8">近 2 年 ≈8%</option>
+          <option value="3">近 5 年 ≈3%</option>
+          <option value="5">近 10 年 ≈5%</option>
+        </optgroup>
+      </select>
+      <input type="number" id="dca-rate" value="7" min="0" max="100" step="0.1">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="dca-rf">无风险利率</label>
+      <input type="number" id="dca-rf" value="2" min="0" max="30" step="0.1">
+      <span class="tool-unit">%（国债 / 存款 / 货基）</span>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>结果</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item">
+        <div class="tool-label">期末总额（投资）</div>
+        <div class="tool-value" id="dca-r-final">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">存银行（无风险）</div>
+        <div class="tool-value" id="dca-r-rf">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">累计投入本金</div>
+        <div class="tool-value" id="dca-r-invested">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">收益（相对本金）</div>
+        <div class="tool-value gain" id="dca-r-gain">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">收益倍数</div>
+        <div class="tool-value" id="dca-r-multiple">0.0 倍</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">超额收益（相对无风险）</div>
+        <div class="tool-value gain" id="dca-r-excess">¥0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>增长曲线</h2>
+    <div class="tool-chart">
+      <canvas id="dca-chart"></canvas>
+    </div>
+    <p class="tool-note">蓝 = 投资复利，绿 = 存银行无风险，灰 = 真正不动（本金）。绿线和灰线之间的差，是无风险利率白送的；蓝线和绿线之间的差，才是你承担市场风险真正多赚的钱。</p>
+  </div>
+
+</div>
+
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const initialEl = $('dca-initial');
+  const perPeriodEl = $('dca-per-period');
+  const freqEl = $('dca-freq');
+  const yearsEl = $('dca-years');
+  const rateEl = $('dca-rate');
+  const rfEl = $('dca-rf');
+  const refEl = $('dca-ref');
+
+  const freqPerYear = {
+    daily: 365,
+    threeDays: 365 / 3,
+    weekly: 52,
+    monthly: 12,
+    yearly: 1,
+  };
+
+  let chart;
+
+  function fmt(n) {
+    if (!isFinite(n)) return '¥0';
+    return '¥' + Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function fvSeries(initial, perPeriod, years, perYear, rate) {
+    const r = rate / perYear;
+    const out = [];
+    for (let y = 0; y <= years; y++) {
+      const t = y * perYear;
+      const inv = initial + perPeriod * t;
+      if (r === 0) {
+        out.push(inv);
+      } else {
+        const growth = Math.pow(1 + r, t);
+        out.push(initial * growth + perPeriod * ((growth - 1) / r));
+      }
+    }
+    return out;
+  }
+
+  function calc() {
+    const initial = parseFloat(initialEl.value) || 0;
+    const perPeriod = parseFloat(perPeriodEl.value) || 0;
+    const years = Math.max(0, parseInt(yearsEl.value) || 0);
+    const annualRate = Math.max(0, parseFloat(rateEl.value) || 0) / 100;
+    const rfRate = Math.max(0, parseFloat(rfEl.value) || 0) / 100;
+    const perYear = freqPerYear[freqEl.value] || 12;
+
+    const labels = [];
+    for (let y = 0; y <= years; y++) labels.push(y + '年');
+
+    const invested = [];
+    for (let y = 0; y <= years; y++) invested.push(initial + perPeriod * (y * perYear));
+
+    const value = fvSeries(initial, perPeriod, years, perYear, annualRate);
+    const rfValue = fvSeries(initial, perPeriod, years, perYear, rfRate);
+
+    const finalValue = value[value.length - 1];
+    const finalRf = rfValue[rfValue.length - 1];
+    const totalInvested = invested[invested.length - 1];
+    const gain = finalValue - totalInvested;
+    const excess = finalValue - finalRf;
+    const multiple = totalInvested > 0 ? finalValue / totalInvested : 0;
+
+    $('dca-r-final').textContent = fmt(finalValue);
+    $('dca-r-rf').textContent = fmt(finalRf);
+    $('dca-r-invested').textContent = fmt(totalInvested);
+    $('dca-r-gain').textContent = fmt(gain);
+    $('dca-r-multiple').textContent = multiple.toFixed(2) + ' 倍';
+    $('dca-r-excess').textContent = fmt(excess);
+
+    draw(labels, invested, rfValue, value);
+  }
+
+  function draw(labels, invested, rfValue, value) {
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: '投资复利',
+          data: value,
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.10)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          borderWidth: 2,
+        },
+        {
+          label: '存银行（无风险）',
+          data: rfValue,
+          borderColor: '#059669',
+          backgroundColor: 'rgba(5, 150, 105, 0.05)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          borderWidth: 2,
+        },
+        {
+          label: '真正不动（本金）',
+          data: invested,
+          borderColor: '#9ca3af',
+          backgroundColor: 'rgba(156, 163, 175, 0.05)',
+          fill: false,
+          tension: 0.3,
+          pointRadius: 0,
+          borderWidth: 1.5,
+          borderDash: [6, 4],
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.dataset.label + '：¥' + Math.round(ctx.parsed.y).toLocaleString('zh-CN'),
+          },
+        },
+      },
+      scales: {
+        x: { title: { display: true, text: '时间' } },
+        y: {
+          title: { display: true, text: '金额（元）' },
+          ticks: {
+            callback: (v) => {
+              if (v >= 10000) return (v / 10000).toFixed(0) + '万';
+              return v;
+            },
+          },
+        },
+      },
+    };
+
+    if (chart) chart.destroy();
+    chart = new Chart($('dca-chart'), { type: 'line', data, options });
+  }
+
+  rateEl.readOnly = refEl.value !== '';
+
+  refEl.addEventListener('change', () => {
+    if (refEl.value !== '') {
+      rateEl.value = refEl.value;
+      rateEl.readOnly = true;
+      calc();
+    } else {
+      rateEl.readOnly = false;
+    }
+  });
+
+  rateEl.addEventListener('input', () => {
+    refEl.value = '';
+    calc();
+  });
+  rateEl.addEventListener('change', calc);
+
+  [initialEl, perPeriodEl, freqEl, yearsEl, rfEl].forEach((el) => {
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>

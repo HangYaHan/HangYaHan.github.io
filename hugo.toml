@@ -8,7 +8,7 @@ theme = "LoveIt"
 # 默认语言 — 你的内容以中文为主
 defaultContentLanguage = "zh-cn"
 locale = "zh-CN"
-hasCJKLanguage = true                     # 中文/日文/韩文支持
+hasCJKLanguage = true
 
 enableRobotsTXT = true
 enableEmoji = true
@@ -37,19 +37,24 @@ enableEmoji = true
     identifier = "curated"
     name = "Curated"
     url = "/curated/"
+  [[menu.main]]
+    weight = 5
+    identifier = "utility"
+    name = "Utility"
+    url = "/utility/"
 
 # ============================================
 #  LoveIt 主题参数
 # ============================================
 [params]
-  defaultTheme = "auto"                    # 跟随系统明暗
+  defaultTheme = "auto"
   dateFormat = "2006-01-02"
   title = "涵舍"
-  description = ""                         # ← 改：一句话描述你的网站
+  description = "Keep learning. (◍•ᴗ•◍)"
 
   # --- 作者 ---
   [params.author]
-    name = "HangYaHan"                     # ← 改
+    name = "HangYaHan"
     email = ""
     link = ""
     avatar = "https://avatars.githubusercontent.com/u/168107882?v=4"
@@ -62,7 +67,7 @@ enableEmoji = true
       logo = ""
       name = "涵舍"
       pre = ""
-      post = ""
+      post = "- 年轻的我对现实的恐怖一无所知。<br>- Too young too simple, sometimes naive.<br>"
       typeit = false
 
   # --- 底部 ---
@@ -71,7 +76,7 @@ enableEmoji = true
     hugo = false
     copyright = true
     author = true
-    since = 2025                           # ← 改：你的建站年份
+    since = 2025
     icp = ""
     license = ""
 
@@ -96,11 +101,11 @@ enableEmoji = true
 
   # --- 文章列表页（/posts/） ---
   [params.section]
-    paginate = 100                       # 52 篇文章一页全显示
+    paginate = 100
 
   # --- 分类/标签列表页 ---
   [params.list]
-    paginate = 50                        # 5 个分类一页全显示
+    paginate = 50
 
   # --- 首页 ---
   [params.home]
@@ -115,7 +120,7 @@ enableEmoji = true
       gravatarEmail = ""
       avatarURL = "https://avatars.githubusercontent.com/u/168107882?v=4"
       title = ""
-      subtitle = ""                        # ← 改：首页副标题
+      subtitle = ""
       typeit = true
       social = true
       disclaimer = ""
@@ -194,3 +199,11 @@ enableEmoji = true
         Email = "18930093438@163.com"
         Bilibili = "19353940"
         RSS = true
+
+# ============================================
+#  Markup — 允许 raw HTML（工具页内嵌 HTML/JS）
+# ============================================
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

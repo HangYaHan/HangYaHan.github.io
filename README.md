@@ -1,6 +1,36 @@
-# HangYaHan's Blog :link: https://HangYaHan.github.io 
-### :page_facing_up: [53](https://HangYaHan.github.io/tag.html) 
-### :speech_balloon: 4 
-### :hibiscus: 320283 
-### :alarm_clock: 2026-07-14 13:45:28 
-### Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)
+# 涵舍 · HangYaHan's Blog
+
+https://HangYaHan.github.io
+
+个人博客，记录生活思考、读书笔记、技术整理与项目随笔。
+
+## 技术栈
+
+- 静态站点生成器：[Hugo](https://gohugo.io/)，主题 [LoveIt](https://hugoloveit.com/)
+- 部署：[GitHub Pages](https://pages.github.com/)，CI 自动构建（`.github/workflows/hugo.yml`）
+
+## 文章分类
+
+| 目录 | 分类 |
+|------|------|
+| `fengya` | 风雅涵章 · 生活思考碎片 |
+| `gewu` | 格物致雅 · 技术项目 |
+| `hanfen` | 涵芬撷英 · 读书笔记 |
+| `yawang` | 雅望停云 · 记录 |
+| `youyi` | 游艺 · 杂记 |
+
+## 写文章
+
+在 `content/posts/<分类>/` 下新建 `.md` 文件，front matter 用 YAML：
+
+```yaml
+---
+title: "[风雅涵章] 文章标题"
+date: 2025-08-15
+draft: false
+categories: ["风雅涵章"]
+tags: ["风雅涵章"]
+---
+```
+
+push 到 `main` 分支后，GitHub Actions 自动构建并部署。
