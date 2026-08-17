@@ -1,0 +1,680 @@
+<style>
+.tool-root {
+  --tool-bg: #f5f6f8;
+  --tool-card-bg: #ffffff;
+  --tool-text: #1a1d24;
+  --tool-muted: #6b7280;
+  --tool-border: #e5e7eb;
+  --tool-primary: #2563eb;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"],
+.tool-root .tool-field select {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus,
+.tool-root .tool-field select:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 12px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-value.gain {
+  color: var(--tool-gain);
+}
+.tool-root .tool-value.loss {
+  color: var(--tool-loss);
+}
+.tool-root .tool-chart {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin-top: 12px;
+}
+
+/* --- 策略说明 --- */
+.option-desc {
+  background: var(--tool-bg);
+  border-left: 3px solid var(--tool-primary);
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin-bottom: 16px;
+  color: var(--tool-text);
+}
+
+/* --- 组合参数 --- */
+.option-params {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.param-field label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.param-field input {
+  width: 100%;
+  padding: 7px 9px;
+  font-size: 0.9rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 6px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.param-field input:focus {
+  border-color: var(--tool-primary);
+}
+
+/* --- 自由腿列表 --- */
+.option-legs {
+  margin-bottom: 12px;
+}
+.option-leg {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.option-leg select,
+.option-leg input {
+  flex: 1;
+  min-width: 70px;
+  padding: 7px 9px;
+  font-size: 0.9rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 6px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.option-leg select:focus,
+.option-leg input:focus {
+  border-color: var(--tool-primary);
+}
+.option-leg input[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.option-leg .leg-remove {
+  flex: 0 0 30px;
+  height: 30px;
+  border: 1px solid var(--tool-border);
+  border-radius: 6px;
+  background: var(--tool-bg);
+  color: var(--tool-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+.option-leg .leg-remove:hover {
+  color: var(--tool-loss);
+  border-color: var(--tool-loss);
+}
+.option-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.option-add-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border: 1px dashed var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-primary);
+  cursor: pointer;
+}
+.option-add-btn:hover {
+  border-color: var(--tool-primary);
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>策略</h2>
+
+    <div class="tool-field">
+      <label for="option-preset">经典组合</label>
+      <select id="option-preset">
+        <option value="free">自由组合（手动加腿）</option>
+        <optgroup label="基础单腿">
+          <option value="long-call">买入看涨 Long Call</option>
+          <option value="long-put">买入看跌 Long Put</option>
+          <option value="short-call">卖出看涨 Short Call</option>
+          <option value="short-put">卖出看跌 Short Put</option>
+        </optgroup>
+        <optgroup label="波动率策略">
+          <option value="straddle">跨式 Straddle</option>
+          <option value="strangle">宽跨式 Strangle</option>
+        </optgroup>
+        <optgroup label="价差策略">
+          <option value="bull-spread">牛市价差 Bull Spread</option>
+          <option value="bear-spread">熊市价差 Bear Spread</option>
+          <option value="butterfly">蝶式 Butterfly</option>
+          <option value="iron-butterfly">铁蝶 Iron Butterfly</option>
+          <option value="iron-condor">铁鹰 Iron Condor</option>
+        </optgroup>
+        <optgroup label="股票 + 期权">
+          <option value="covered-call">备兑看涨 Covered Call</option>
+          <option value="protective-put">保护性看跌 Protective Put</option>
+          <option value="collar">领口 Collar</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="option-desc" id="option-desc"></div>
+
+    <div class="option-params" id="option-params"></div>
+
+    <div id="option-legs-wrap" style="display:none;">
+      <div class="option-legs" id="option-legs"></div>
+      <div class="option-actions">
+        <button class="option-add-btn" id="option-add">+ 添加腿</button>
+        <span class="tool-note">类型选"股票"时无权利金；行权价即成本价。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>结果</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item">
+        <div class="tool-label">盈亏平衡点</div>
+        <div class="tool-value" id="option-r-breakeven">—</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">最大收益</div>
+        <div class="tool-value gain" id="option-r-max">—</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">最大损失</div>
+        <div class="tool-value loss" id="option-r-min">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>Payoff 曲线</h2>
+    <div class="tool-chart">
+      <canvas id="option-chart"></canvas>
+    </div>
+    <p class="tool-note">横轴 = 到期标的价，纵轴 = 到期盈亏。灰色虚线是 0 盈亏线。所有价格与权利金都是"点数"。</p>
+  </div>
+
+</div>
+
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const presetEl = $('option-preset');
+  const descEl = $('option-desc');
+  const paramsEl = $('option-params');
+  const legsWrapEl = $('option-legs-wrap');
+  const legsEl = $('option-legs');
+  const addBtn = $('option-add');
+
+  // ============ 策略数据 ============
+  const strategies = {
+    'long-call': {
+      name: '买入看涨 Long Call',
+      desc: '买入看涨期权，赌标的大涨。涨过行权价后开始盈利，涨得越多赚得越多；最大损失就是权利金。适合强烈看多、但不想承担正股下行风险的情况。',
+      params: [{ key: 'K', label: '行权价', def: 100 }, { key: 'prem', label: '权利金', def: 5, step: 0.5 }],
+      legs: (p) => [{ type: 'call', dir: 'long', K: p.K, premium: p.prem, qty: 1 }],
+    },
+    'long-put': {
+      name: '买入看跌 Long Put',
+      desc: '买入看跌期权，赌标的大跌。跌破行权价后开始盈利；最大损失是权利金。适合看空，或给已有持仓买一份"保险"。',
+      params: [{ key: 'K', label: '行权价', def: 100 }, { key: 'prem', label: '权利金', def: 5, step: 0.5 }],
+      legs: (p) => [{ type: 'put', dir: 'long', K: p.K, premium: p.prem, qty: 1 }],
+    },
+    'short-call': {
+      name: '卖出看涨 Short Call',
+      desc: '裸卖看涨，赌标的不会大涨。赚权利金，但上涨时损失无上限——这是所有策略里风险最不对称的一个，新手慎碰。',
+      params: [{ key: 'K', label: '行权价', def: 100 }, { key: 'prem', label: '权利金', def: 5, step: 0.5 }],
+      legs: (p) => [{ type: 'call', dir: 'short', K: p.K, premium: p.prem, qty: 1 }],
+    },
+    'short-put': {
+      name: '卖出看跌 Short Put',
+      desc: '裸卖看跌，赌标的不会大跌（或愿意在低位接货）。赚权利金；最坏情况是标的跌到 0，损失 = 行权价 − 权利金。',
+      params: [{ key: 'K', label: '行权价', def: 100 }, { key: 'prem', label: '权利金', def: 5, step: 0.5 }],
+      legs: (p) => [{ type: 'put', dir: 'short', K: p.K, premium: p.prem, qty: 1 }],
+    },
+    'straddle': {
+      name: '跨式 Straddle',
+      desc: '同时买入同一行权价的看涨和看跌。赌大波动、但方向不定——涨跌都赚，只有横盘亏光两份权利金。最大损失 = 两份权利金，收益无界。',
+      params: [
+        { key: 'K', label: '行权价', def: 100 },
+        { key: 'callPrem', label: '看涨权利金', def: 5, step: 0.5 },
+        { key: 'putPrem', label: '看跌权利金', def: 5, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'call', dir: 'long', K: p.K, premium: p.callPrem, qty: 1 },
+        { type: 'put', dir: 'long', K: p.K, premium: p.putPrem, qty: 1 },
+      ],
+    },
+    'strangle': {
+      name: '宽跨式 Strangle',
+      desc: '买入低行权价的看跌 + 高行权价的看涨。和跨式一样赌波动，但成本更低（两份权利金都更便宜）；代价是需要更大的波动才盈利。',
+      params: [
+        { key: 'putK', label: '看跌行权价', def: 90 },
+        { key: 'callK', label: '看涨行权价', def: 110 },
+        { key: 'putPrem', label: '看跌权利金', def: 3, step: 0.5 },
+        { key: 'callPrem', label: '看涨权利金', def: 3, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'put', dir: 'long', K: p.putK, premium: p.putPrem, qty: 1 },
+        { type: 'call', dir: 'long', K: p.callK, premium: p.callPrem, qty: 1 },
+      ],
+    },
+    'bull-spread': {
+      name: '牛市价差 Bull Spread',
+      desc: '买入低行权价看涨 + 卖出高行权价看涨。温和看多：用一部分上涨空间换取更低的成本。最大收益和最大损失都有界。',
+      params: [
+        { key: 'lowK', label: '低行权价', def: 100 },
+        { key: 'highK', label: '高行权价', def: 110 },
+        { key: 'lowPrem', label: '买入权利金', def: 5, step: 0.5 },
+        { key: 'highPrem', label: '卖出权利金', def: 3, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'call', dir: 'long', K: p.lowK, premium: p.lowPrem, qty: 1 },
+        { type: 'call', dir: 'short', K: p.highK, premium: p.highPrem, qty: 1 },
+      ],
+    },
+    'bear-spread': {
+      name: '熊市价差 Bear Spread',
+      desc: '买入高行权价看跌 + 卖出低行权价看跌。温和看空，风险和收益都有界，成本低于裸买看跌。',
+      params: [
+        { key: 'highK', label: '高行权价', def: 110 },
+        { key: 'lowK', label: '低行权价', def: 100 },
+        { key: 'highPrem', label: '买入权利金', def: 5, step: 0.5 },
+        { key: 'lowPrem', label: '卖出权利金', def: 3, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'put', dir: 'long', K: p.highK, premium: p.highPrem, qty: 1 },
+        { type: 'put', dir: 'short', K: p.lowK, premium: p.lowPrem, qty: 1 },
+      ],
+    },
+    'butterfly': {
+      name: '蝶式 Butterfly',
+      desc: '买低、买高，卖两份中间。赌标的横盘在中间行权价附近。最大收益在中间点，两端损失有限。是"赌不动"的策略。',
+      params: [
+        { key: 'lowK', label: '低行权价', def: 90 },
+        { key: 'midK', label: '中间行权价', def: 100 },
+        { key: 'highK', label: '高行权价', def: 110 },
+        { key: 'wingPrem', label: '翼部权利金', def: 1, step: 0.5 },
+        { key: 'midPrem', label: '中间权利金', def: 5, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'call', dir: 'long', K: p.lowK, premium: p.wingPrem, qty: 1 },
+        { type: 'call', dir: 'short', K: p.midK, premium: p.midPrem, qty: 2 },
+        { type: 'call', dir: 'long', K: p.highK, premium: p.wingPrem, qty: 1 },
+      ],
+    },
+    'iron-butterfly': {
+      name: '铁蝶 Iron Butterfly',
+      desc: '蝶式的纯期权版（不持有股票）。卖两份中间行权价，买两侧保护。同样赌横盘，最大收益和最大损失都有界。',
+      params: [
+        { key: 'lowK', label: '低行权价', def: 90 },
+        { key: 'midK', label: '中间行权价', def: 100 },
+        { key: 'highK', label: '高行权价', def: 110 },
+        { key: 'wingPrem', label: '翼部权利金', def: 1, step: 0.5 },
+        { key: 'midPrem', label: '中间权利金', def: 5, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'put', dir: 'long', K: p.lowK, premium: p.wingPrem, qty: 1 },
+        { type: 'put', dir: 'short', K: p.midK, premium: p.midPrem, qty: 1 },
+        { type: 'call', dir: 'short', K: p.midK, premium: p.midPrem, qty: 1 },
+        { type: 'call', dir: 'long', K: p.highK, premium: p.wingPrem, qty: 1 },
+      ],
+    },
+    'iron-condor': {
+      name: '铁鹰 Iron Condor',
+      desc: '卖中间两个行权价 + 买外侧两个保护。赌标的在一个区间内震荡。收益有限、损失有限，是最经典的"区间震荡"策略。',
+      params: [
+        { key: 'p2', label: '卖权外侧', def: 85 },
+        { key: 'p1', label: '卖权内侧', def: 90 },
+        { key: 'c1', label: '买权内侧', def: 110 },
+        { key: 'c2', label: '买权外侧', def: 115 },
+        { key: 'innerPrem', label: '内侧权利金', def: 2, step: 0.5 },
+        { key: 'outerPrem', label: '外侧权利金', def: 1, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'put', dir: 'long', K: p.p2, premium: p.outerPrem, qty: 1 },
+        { type: 'put', dir: 'short', K: p.p1, premium: p.innerPrem, qty: 1 },
+        { type: 'call', dir: 'short', K: p.c1, premium: p.innerPrem, qty: 1 },
+        { type: 'call', dir: 'long', K: p.c2, premium: p.outerPrem, qty: 1 },
+      ],
+    },
+    'covered-call': {
+      name: '备兑看涨 Covered Call',
+      desc: '持有股票 + 卖出看涨。用上涨空间换权利金收入。温和看多或横盘时最划算；代价是涨过行权价后收益被封顶。',
+      params: [
+        { key: 'stockK', label: '股票成本价', def: 100 },
+        { key: 'callK', label: '看涨行权价', def: 110 },
+        { key: 'callPrem', label: '看涨权利金', def: 3, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'stock', dir: 'long', K: p.stockK, premium: 0, qty: 1 },
+        { type: 'call', dir: 'short', K: p.callK, premium: p.callPrem, qty: 1 },
+      ],
+    },
+    'protective-put': {
+      name: '保护性看跌 Protective Put',
+      desc: '持有股票 + 买入看跌。给持仓买保险：下方损失被锁定，保留上涨空间。代价是权利金（相当于保费）。',
+      params: [
+        { key: 'stockK', label: '股票成本价', def: 100 },
+        { key: 'putK', label: '看跌行权价', def: 95 },
+        { key: 'putPrem', label: '看跌权利金', def: 4, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'stock', dir: 'long', K: p.stockK, premium: 0, qty: 1 },
+        { type: 'put', dir: 'long', K: p.putK, premium: p.putPrem, qty: 1 },
+      ],
+    },
+    'collar': {
+      name: '领口 Collar',
+      desc: '持有股票 + 买入看跌 + 卖出看涨。用卖出看涨的权利金抵消买看跌的成本，低成本锁住持仓区间——牺牲上方收益，换取下方保护。',
+      params: [
+        { key: 'stockK', label: '股票成本价', def: 100 },
+        { key: 'putK', label: '看跌行权价', def: 95 },
+        { key: 'putPrem', label: '看跌权利金', def: 4, step: 0.5 },
+        { key: 'callK', label: '看涨行权价', def: 110 },
+        { key: 'callPrem', label: '看涨权利金', def: 3, step: 0.5 },
+      ],
+      legs: (p) => [
+        { type: 'stock', dir: 'long', K: p.stockK, premium: 0, qty: 1 },
+        { type: 'put', dir: 'long', K: p.putK, premium: p.putPrem, qty: 1 },
+        { type: 'call', dir: 'short', K: p.callK, premium: p.callPrem, qty: 1 },
+      ],
+    },
+  };
+
+  let chart;
+  let currentStrategy = 'free';
+  let freeLegs = [];
+
+  function legPayoff(leg, S) {
+    let p;
+    if (leg.type === 'call') p = Math.max(S - leg.K, 0) - leg.premium;
+    else if (leg.type === 'put') p = Math.max(leg.K - S, 0) - leg.premium;
+    else p = S - leg.K;
+    if (leg.dir === 'short') p = -p;
+    return p * leg.qty;
+  }
+
+  function getCurrentLegs() {
+    if (currentStrategy === 'free') {
+      return freeLegs;
+    }
+    const strat = strategies[currentStrategy];
+    const params = {};
+    paramsEl.querySelectorAll('input').forEach((inp) => {
+      params[inp.dataset.key] = parseFloat(inp.value) || 0;
+    });
+    return strat.legs(params);
+  }
+
+  function recalc() {
+    const legs = getCurrentLegs();
+    if (legs.length === 0) {
+      $('option-r-breakeven').textContent = '—';
+      $('option-r-max').textContent = '—';
+      $('option-r-min').textContent = '—';
+      if (chart) chart.destroy();
+      chart = null;
+      return;
+    }
+
+    const Ks = legs.map((l) => l.K);
+    const maxK = Math.max(...Ks);
+    const Smin = 0;
+    const Smax = Math.max(maxK * 1.5, maxK + 20, 50);
+
+    const sampleSet = new Set();
+    const N = 240;
+    for (let i = 0; i <= N; i++) sampleSet.add(Smin + (Smax - Smin) * i / N);
+    Ks.forEach((k) => sampleSet.add(k));
+    const Ss = Array.from(sampleSet).sort((a, b) => a - b);
+
+    const pts = Ss.map((S) => ({ S, p: legs.reduce((sum, l) => sum + legPayoff(l, S), 0) }));
+
+    const beSet = new Set();
+    for (let i = 0; i < pts.length - 1; i++) {
+      const a = pts[i], b = pts[i + 1];
+      if (a.p === 0) { beSet.add(a.S); }
+      else if ((a.p < 0 && b.p > 0) || (a.p > 0 && b.p < 0)) {
+        const t = a.p / (a.p - b.p);
+        beSet.add(a.S + t * (b.S - a.S));
+      }
+    }
+    const bes = Array.from(beSet).sort((a, b) => a - b);
+
+    const maxP = Math.max(...pts.map((p) => p.p));
+    const minP = Math.min(...pts.map((p) => p.p));
+
+    const fmt2 = (n) => (Math.abs(n) < 0.005 ? '0' : n.toFixed(2));
+    $('option-r-breakeven').textContent = bes.length ? bes.map((v) => fmt2(v)).join('、') : '无';
+    $('option-r-max').textContent = fmt2(maxP);
+    $('option-r-min').textContent = fmt2(minP);
+
+    draw(pts);
+  }
+
+  function draw(pts) {
+    const data = {
+      labels: pts.map((p) => p.S.toFixed(1)),
+      datasets: [
+        {
+          label: '到期盈亏',
+          data: pts.map((p) => p.p),
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.08)',
+          fill: false,
+          tension: 0,
+          pointRadius: 0,
+          borderWidth: 2,
+        },
+        {
+          label: '0 盈亏线',
+          data: pts.map(() => 0),
+          borderColor: '#9ca3af',
+          borderWidth: 1,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          fill: false,
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              if (ctx.datasetIndex === 1) return '';
+              return '到期盈亏：' + ctx.parsed.y.toFixed(2);
+            },
+          },
+        },
+      },
+      scales: {
+        x: { title: { display: true, text: '到期标的价' } },
+        y: { title: { display: true, text: '盈亏' } },
+      },
+    };
+
+    if (chart) chart.destroy();
+    chart = new Chart($('option-chart'), { type: 'line', data, options });
+  }
+
+  // ============ 策略模式 ============
+  function renderStrategyParams(strat) {
+    paramsEl.innerHTML = '';
+    strat.params.forEach((p) => {
+      const field = document.createElement('div');
+      field.className = 'param-field';
+      field.innerHTML = '<label>' + p.label + '</label>' +
+        '<input type="number" data-key="' + p.key + '" value="' + p.def + '" step="' + (p.step || 1) + '" min="0">';
+      paramsEl.appendChild(field);
+      field.querySelector('input').addEventListener('input', recalc);
+    });
+  }
+
+  presetEl.addEventListener('change', () => {
+    currentStrategy = presetEl.value;
+    if (currentStrategy === 'free') {
+      descEl.textContent = '自由组合：手动添加期权腿（看涨 / 看跌 / 股票），任意方向、任意数量。适合想从零构造自定义产品的"工程师玩法"。';
+      paramsEl.innerHTML = '';
+      legsWrapEl.style.display = 'block';
+    } else {
+      const strat = strategies[currentStrategy];
+      descEl.textContent = strat.desc;
+      renderStrategyParams(strat);
+      legsWrapEl.style.display = 'none';
+    }
+    recalc();
+  });
+
+  // ============ 自由腿管理 ============
+  function syncPremiumState(row) {
+    const isStock = row.querySelector('.leg-type').value === 'stock';
+    const premiumEl = row.querySelector('.leg-premium');
+    premiumEl.disabled = isStock;
+    if (isStock) premiumEl.value = '';
+  }
+
+  function createLegRow(leg) {
+    const row = document.createElement('div');
+    row.className = 'option-leg';
+    row.innerHTML =
+      '<select class="leg-type"><option value="call">看涨</option><option value="put">看跌</option><option value="stock">股票</option></select>' +
+      '<select class="leg-dir"><option value="long">买入</option><option value="short">卖出</option></select>' +
+      '<input type="number" class="leg-k" placeholder="行权价" step="1" min="0">' +
+      '<input type="number" class="leg-premium" placeholder="权利金" step="0.5">' +
+      '<input type="number" class="leg-qty" value="1" min="1" step="1">' +
+      '<button class="leg-remove" title="删除">×</button>';
+
+    row.querySelector('.leg-type').value = leg.type;
+    row.querySelector('.leg-dir').value = leg.dir;
+    row.querySelector('.leg-k').value = leg.K;
+    row.querySelector('.leg-premium').value = leg.premium;
+    row.querySelector('.leg-qty').value = leg.qty;
+    syncPremiumState(row);
+
+    row.querySelector('.leg-type').addEventListener('change', () => { syncPremiumState(row); collectFreeLegs(); });
+    row.querySelector('.leg-remove').addEventListener('click', () => { row.remove(); collectFreeLegs(); });
+    ['leg-type', 'leg-dir', 'leg-k', 'leg-premium', 'leg-qty'].forEach((cls) => {
+      const el = row.querySelector('.' + cls);
+      el.addEventListener('input', collectFreeLegs);
+      el.addEventListener('change', collectFreeLegs);
+    });
+
+    legsEl.appendChild(row);
+  }
+
+  function collectFreeLegs() {
+    freeLegs = [];
+    legsEl.querySelectorAll('.option-leg').forEach((row) => {
+      const type = row.querySelector('.leg-type').value;
+      const dir = row.querySelector('.leg-dir').value;
+      const K = parseFloat(row.querySelector('.leg-k').value);
+      const premium = type === 'stock' ? 0 : (parseFloat(row.querySelector('.leg-premium').value) || 0);
+      const qty = parseFloat(row.querySelector('.leg-qty').value) || 1;
+      if (isFinite(K)) {
+        freeLegs.push({ type, dir, K, premium, qty });
+      }
+    });
+    recalc();
+  }
+
+  addBtn.addEventListener('click', () => {
+    createLegRow({ type: 'call', dir: 'long', K: 100, premium: 0, qty: 1 });
+    collectFreeLegs();
+  });
+
+  // ============ 初始化：默认跨式示例 ============
+  presetEl.value = 'straddle';
+  currentStrategy = 'straddle';
+  descEl.textContent = strategies.straddle.desc;
+  renderStrategyParams(strategies.straddle);
+  legsWrapEl.style.display = 'none';
+  recalc();
+})();
+</script>
