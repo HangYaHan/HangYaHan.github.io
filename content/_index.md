@@ -3,16 +3,16 @@ title: ""
 date: 2025-07-25
 ---
 
-First time here? → [About / 关于](/about/)
-
-想看我的个人品味收藏？→ [Curated / 收藏](/curated/)
-
----
-
-**Posts / 文章** 🚧 施工中
-
-我自己写的思考，正在归档中。
-
-**Categories / 分类** 🚧 施工中
-
-笔记与知识整理，正在归档中。
+<div class="site-tree">
+<pre>
+涵舍
+├── <a href="/curated/">燕居图志</a>（未来）🚧
+├── <a href="/categories/风雅涵章/">风雅涵章</a>（当下）🚧
+├── <a href="/categories/雅望停云/">雅望停云</a>（过去）🚧
+└── 【待定】🚧
+    ├── 书籍读后感 🚧
+    ├── teach myself 🚧
+    └── 知识搬运 🚧
+</pre>
+<p class="site-tree-note">🚧 施工中，分类重构进行中</p>
+</div>

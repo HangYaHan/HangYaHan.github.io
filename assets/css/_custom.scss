@@ -586,3 +586,37 @@
         flex-basis: 7rem;
     }
 }
+
+/* ============================================
+   Homepage — site tree 分类地图
+   ============================================ */
+.site-tree pre {
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    background: transparent;
+    border: none;
+    font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", monospace;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    overflow-x: auto;
+    color: $global-font-color;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+
+    a {
+        color: $single-link-color;
+        text-decoration: none;
+
+        html[data-theme="dark"] & { color: $single-link-color-dark; }
+
+        &:hover { text-decoration: underline; }
+    }
+}
+
+.site-tree-note {
+    margin: 0.3rem 0 0;
+    font-size: 0.75rem;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
