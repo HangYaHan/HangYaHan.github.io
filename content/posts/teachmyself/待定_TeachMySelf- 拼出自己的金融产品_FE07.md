@@ -1,9 +1,9 @@
 ﻿---
-title: "[涵芬撷英] 拼出自己的金融产品_FE07"
+title: "[待定_teachmyself] 拼出自己的金融产品_FE07"
 date: 2026-07-02
 draft: false
-categories: ["涵芬撷英"]
-tags: ["涵芬撷英"]
+categories: ["待定_teachmyself"]
+tags: ["待定_teachmyself"]
 ---
 
 # 拼出自己的金融产品

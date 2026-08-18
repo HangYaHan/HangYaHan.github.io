@@ -1,9 +1,9 @@
 ﻿---
-title: "[涵芬撷英] 借条、债券与期货、远期_FE02"
+title: "[待定_teachmyself] 借条、债券与期货、远期_FE02"
 date: 2026-07-01
 draft: false
-categories: ["涵芬撷英"]
-tags: ["涵芬撷英"]
+categories: ["待定_teachmyself"]
+tags: ["待定_teachmyself"]
 ---
 
 # 借条、债券与期货、远期

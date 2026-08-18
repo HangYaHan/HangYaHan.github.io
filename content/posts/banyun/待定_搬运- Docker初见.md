@@ -1,9 +1,9 @@
 ﻿---
-title: "[格物致雅] Docker初见"
+title: "[待定_搬运] Docker初见"
 date: 2025-11-03
 draft: false
-categories: ["格物致雅"]
-tags: ["格物致雅"]
+categories: ["待定_搬运"]
+tags: ["待定_搬运"]
 ---
 
 > 吾尝终日而思矣，不如须臾之所学也。

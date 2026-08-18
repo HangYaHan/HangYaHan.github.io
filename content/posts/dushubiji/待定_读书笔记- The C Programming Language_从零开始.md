@@ -1,9 +1,9 @@
 ﻿---
-title: "[涵芬撷英] The C Programming Language_从零开始"
+title: "[待定_读书笔记] The C Programming Language_从零开始"
 date: 2025-09-06
 draft: false
-categories: ["涵芬撷英"]
-tags: ["涵芬撷英"]
+categories: ["待定_读书笔记"]
+tags: ["待定_读书笔记"]
 ---
 
 > 好的书就是你一看就会，不看还真就不会。

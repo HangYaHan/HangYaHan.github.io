@@ -1,9 +1,9 @@
 ﻿---
-title: "[涵芬撷英] 一条连续曲线和它救不了的市场_FE06"
+title: "[待定_teachmyself] 一条连续曲线和它救不了的市场_FE06"
 date: 2026-07-02
 draft: false
-categories: ["涵芬撷英"]
-tags: ["涵芬撷英"]
+categories: ["待定_teachmyself"]
+tags: ["待定_teachmyself"]
 ---
 
 # 一条连续曲线和它救不了的市场

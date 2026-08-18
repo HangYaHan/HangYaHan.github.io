@@ -78,6 +78,52 @@
             {{- /* ========== Right: Main Content ========== */ -}}
             <div class="home-main">
 
+            {{- /* Daily Pick / 每日一歌一句 */ -}}
+            <div class="home-card daily-pick">
+                <div class="daily-pick-header">
+                    <span class="daily-pick-title">Daily Pick / 每日一歌一句</span>
+                    <button id="dp-refresh" class="dp-refresh" title="重新抽取">↻</button>
+                </div>
+                <div class="daily-pick-quote" id="dp-quote">加载中…</div>
+                <div class="daily-pick-song" id="dp-song">加载中…</div>
+            </div>
+
+            <script>
+            (function () {
+              var quotes = [], songs = [];
+
+              function render(randFn) {
+                if (!quotes.length || !songs.length) return;
+                document.getElementById('dp-quote').textContent = quotes[Math.floor(randFn() * quotes.length)];
+                document.getElementById('dp-song').textContent = songs[Math.floor(randFn() * songs.length)];
+              }
+
+              function dateSeed() {
+                var today = new Date().toISOString().slice(0, 10);
+                var seed = 0;
+                for (var i = 0; i < today.length; i++) seed = (seed * 31 + today.charCodeAt(i)) % 1000003;
+                var x = seed;
+                return function () {
+                  x = (x * 9301 + 49297) % 233280;
+                  return x / 233280;
+                };
+              }
+
+              Promise.all([
+                fetch('/quotes.txt').then(function (r) { return r.text(); }),
+                fetch('/music_list.txt').then(function (r) { return r.text(); })
+              ]).then(function (results) {
+                quotes = results[0].split('\n').filter(function (s) { return s.trim(); });
+                songs = results[1].split('\n').filter(function (s) { return s.trim(); });
+                render(dateSeed());
+              });
+
+              document.getElementById('dp-refresh').addEventListener('click', function () {
+                render(Math.random);
+              });
+            })();
+            </script>
+
             {{- /* Now / 此刻 */ -}}
             {{- with .Site.Params.home.now -}}
             <div class="home-now">
@@ -142,10 +188,10 @@
 
             {{- /* Navigation */ -}}
             {{- $navItems := slice
+                (dict "url" "/archive/" "icon" "fa-regular fa-box-archive" "name" "Archive / 归档" "desc" "All articles")
                 (dict "url" "/about/" "icon" "fa-regular fa-user" "name" "About / 关于" "desc" "Who I am")
-                (dict "url" "/posts/" "icon" "fa-regular fa-newspaper" "name" "Posts / 文章" "desc" "All articles")
-                (dict "url" "/categories/" "icon" "fa-regular fa-folder-open" "name" "Categories / 分类" "desc" "Browse by topic")
                 (dict "url" "/curated/" "icon" "fa-regular fa-star" "name" "Curated / 收藏" "desc" "Things I like")
+                (dict "url" "/utility/" "icon" "fa-regular fa-calculator" "name" "Utility / 工具" "desc" "Calculators")
             -}}
             <div class="home-card home-nav">
                 <h2 class="home-card-title">Explore / 探索</h2>
