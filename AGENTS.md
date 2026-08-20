@@ -42,6 +42,13 @@ tags: ["风雅涵章"]
 - Triggered by `push` to `main` or `reconstruct_LoveIt`, and by `workflow_dispatch`.
 - No auto-commit back to the repo; deployment only.
 
+## Git / push responsibility
+
+- **Never push.** Pushing to `origin` (GitHub) is the human author's job. The agent must NOT run `git push` (nor `git fetch`/`pull` against the remote when avoidable).
+- The agent may stage and commit locally, but must stop there and leave all commits unpushed.
+- Reason: network access to `github.com` is unreliable on this machine; the author pushes manually when ready.
+- When a task involves "publishing" or "deploying", the agent commits locally, then tells the author to run `git push origin main` themselves.
+
 ## Auto-generated / ignored (do not edit)
 
 - `public/` — Hugo build output (gitignored)
