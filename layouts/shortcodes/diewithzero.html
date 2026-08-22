@@ -1,0 +1,354 @@
+<style>
+.tool-root {
+  --tool-bg: #f5f6f8;
+  --tool-card-bg: #ffffff;
+  --tool-text: #1a1d24;
+  --tool-muted: #6b7280;
+  --tool-border: #e5e7eb;
+  --tool-primary: #2563eb;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"],
+.tool-root .tool-field select {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus,
+.tool-root .tool-field select:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 12px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-chart {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin-top: 12px;
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>输入参数</h2>
+
+    <div class="tool-field">
+      <label for="dwz-mode">计算方向</label>
+      <select id="dwz-mode">
+        <option value="deplete" selected>正算：这笔储蓄能花多少年</option>
+        <option value="reverse">反算：想花 N 年，需要多少储蓄</option>
+      </select>
+    </div>
+
+    <div class="tool-field">
+      <label for="dwz-rate">储蓄年化收益率</label>
+      <input type="number" id="dwz-rate" value="5" min="-90" max="100" step="0.1">
+      <span class="tool-unit">%（名义或实际皆可）</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="dwz-freq">支出频率</label>
+      <select id="dwz-freq">
+        <option value="monthly" selected>每月</option>
+        <option value="daily">每日</option>
+        <option value="yearly">每年</option>
+      </select>
+    </div>
+
+    <div class="tool-field">
+      <label for="dwz-expense">每期支出</label>
+      <input type="number" id="dwz-expense" value="10000" min="0" step="500">
+      <span class="tool-unit">元 / 期</span>
+    </div>
+
+    <div class="tool-field" id="dwz-savings-field">
+      <label for="dwz-savings">现有储蓄</label>
+      <input type="number" id="dwz-savings" value="1000000" min="0" step="10000">
+      <span class="tool-unit">元</span>
+    </div>
+
+    <div class="tool-field" id="dwz-years-field" style="display:none;">
+      <label for="dwz-years">想花多少年</label>
+      <input type="number" id="dwz-years" value="30" min="1" max="100" step="1">
+      <span class="tool-unit">年</span>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>结果</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item">
+        <div class="tool-label" id="dwz-r-label">能花多长时间</div>
+        <div class="tool-value" id="dwz-r-main">—</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">年化支出</div>
+        <div class="tool-value" id="dwz-r-annual">¥0</div>
+      </div>
+    </div>
+    <p class="tool-note" id="dwz-note"></p>
+  </div>
+
+  <div class="tool-card">
+    <h2>储蓄余额变化</h2>
+    <div class="tool-chart">
+      <canvas id="dwz-chart"></canvas>
+    </div>
+    <p class="tool-note">曲线降到 0 的那一刻，就是钱花完的时候。收益率调高一点，或者支出调低一点，看看能多撑多少年。注意：模型假设收益和支出恒定，不考虑通胀、波动和提款顺序风险。</p>
+  </div>
+
+</div>
+
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const modeEl = $('dwz-mode');
+  const rateEl = $('dwz-rate');
+  const freqEl = $('dwz-freq');
+  const expenseEl = $('dwz-expense');
+  const savingsEl = $('dwz-savings');
+  const yearsEl = $('dwz-years');
+  const savingsField = $('dwz-savings-field');
+  const yearsField = $('dwz-years-field');
+
+  const FREQ_PER_YEAR = { monthly: 12, daily: 365, yearly: 1 };
+  const FREQ_REM_LABEL = { monthly: '个月', daily: '天', yearly: '' };
+
+  let chart;
+
+  function fmtMoney(n) {
+    if (!isFinite(n)) return '¥0';
+    return '¥' + Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function formatDuration(periods, freqKey) {
+    const per = FREQ_PER_YEAR[freqKey];
+    const full = Math.floor(periods / per);
+    const rem = Math.round(periods - full * per);
+    if (per === 1) return full + ' 年';
+    return full + ' 年 ' + rem + ' ' + FREQ_REM_LABEL[freqKey];
+  }
+
+  function balances(S, expense, g, per, chartYears) {
+    const labels = [];
+    const data = [];
+    for (let y = 0; y <= chartYears; y++) {
+      const k = y * per;
+      let bal;
+      if (Math.abs(g - 1) < 1e-12) {
+        bal = S - expense * k;
+      } else {
+        bal = S * Math.pow(g, k) - expense * (Math.pow(g, k) - 1) / (g - 1);
+      }
+      labels.push(y + '年');
+      data.push(Math.max(0, bal));
+    }
+    return { labels, data };
+  }
+
+  function calc() {
+    const mode = modeEl.value;
+    const annualRate = (parseFloat(rateEl.value) || 0) / 100;
+    const freqKey = freqEl.value;
+    const per = FREQ_PER_YEAR[freqKey];
+    const expense = parseFloat(expenseEl.value) || 0;
+    const g = Math.pow(1 + annualRate, 1 / per);
+
+    savingsField.style.display = mode === 'deplete' ? 'flex' : 'none';
+    yearsField.style.display = mode === 'reverse' ? 'flex' : 'none';
+
+    $('dwz-r-annual').textContent = fmtMoney(expense * per);
+
+    if (expense <= 0) {
+      $('dwz-r-main').textContent = '—';
+      $('dwz-note').textContent = '请填写大于 0 的每期支出。';
+      return;
+    }
+
+    if (mode === 'deplete') {
+      const S = parseFloat(savingsEl.value) || 0;
+      $('dwz-r-label').textContent = '能花多长时间';
+      if (S <= 0) {
+        $('dwz-r-main').textContent = '—';
+        $('dwz-note').textContent = '请填写大于 0 的现有储蓄。';
+        return;
+      }
+
+      let periods;
+      let infinite = false;
+      if (g > 1 && S * (g - 1) >= expense) {
+        infinite = true;
+      } else if (Math.abs(g - 1) < 1e-12) {
+        periods = S / expense;
+      } else {
+        const denom = expense - (g - 1) * S;
+        if (denom <= 0) {
+          infinite = true;
+        } else {
+          periods = Math.log(expense / denom) / Math.log(g);
+        }
+      }
+
+      if (infinite) {
+        $('dwz-r-main').textContent = '永远花不完';
+        $('dwz-note').textContent = '年化收益已能覆盖支出（收益 ≥ 支出），本金只增不减。这时的问题不再是"够不够花"，而是"要不要现在花、怎么花得值"。';
+        const r = balances(S, expense, g, per, 30);
+        draw(r.labels, r.data);
+      } else {
+        const years = periods / per;
+        $('dwz-r-main').textContent = formatDuration(periods, freqKey);
+        $('dwz-note').textContent = '按当前支出和收益率，储蓄将在约 ' + years.toFixed(1) + ' 年后耗尽。';
+        const r = balances(S, expense, g, per, Math.max(1, Math.ceil(years)));
+        draw(r.labels, r.data);
+      }
+    } else {
+      const years = parseFloat(yearsEl.value) || 0;
+      $('dwz-r-label').textContent = '需要的储蓄';
+      if (years <= 0) {
+        $('dwz-r-main').textContent = '—';
+        $('dwz-note').textContent = '请填写大于 0 的年数。';
+        return;
+      }
+
+      const periods = years * per;
+      let S;
+      if (Math.abs(g - 1) < 1e-12) {
+        S = expense * periods;
+      } else {
+        S = expense * (1 - Math.pow(g, -periods)) / (g - 1);
+      }
+      const totalSpend = expense * periods;
+      const growthCovered = totalSpend - S;
+
+      $('dwz-r-main').textContent = fmtMoney(S);
+      let extra;
+      if (growthCovered >= 0) {
+        extra = '投资收益帮你补上了 ' + fmtMoney(growthCovered);
+      } else {
+        extra = '因为收益率为负，需要比总支出多准备 ' + fmtMoney(-growthCovered);
+      }
+      $('dwz-note').textContent = '想按当前支出花 ' + years + ' 年且最后归零，需要约 ' + fmtMoney(S) + '；累计总支出 ' + fmtMoney(totalSpend) + '，' + extra + '。收益率越高，需要准备的越少。';
+
+      const r = balances(S, expense, g, per, Math.ceil(years));
+      draw(r.labels, r.data);
+    }
+  }
+
+  function draw(labels, data) {
+    const chartData = {
+      labels: labels,
+      datasets: [
+        {
+          label: '储蓄余额',
+          data: data,
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.10)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.dataset.label + '：¥' + Math.round(ctx.parsed.y).toLocaleString('zh-CN'),
+          },
+        },
+      },
+      scales: {
+        x: { title: { display: true, text: '时间' } },
+        y: {
+          title: { display: true, text: '余额（元）' },
+          ticks: {
+            callback: (v) => {
+              if (v >= 10000) return (v / 10000).toFixed(0) + '万';
+              return v;
+            },
+          },
+        },
+      },
+    };
+
+    if (chart) chart.destroy();
+    chart = new Chart($('dwz-chart'), { type: 'line', data: chartData, options });
+  }
+
+  [modeEl, rateEl, freqEl, expenseEl, savingsEl, yearsEl].forEach((el) => {
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>
