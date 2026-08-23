@@ -1,9 +1,9 @@
 ﻿---
-title: "[涵芬撷英] Linux入门"
+title: "[待定_搬运] Linux入门"
 date: 2025-09-10
 draft: false
-categories: ["涵芬撷英"]
-tags: ["涵芬撷英"]
+categories: ["待定_搬运"]
+tags: ["待定_搬运"]
 ---
 
 > [!IMPORTANT]
