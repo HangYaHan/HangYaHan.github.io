@@ -134,6 +134,72 @@ draft: false
 
 </details>
 
+<details class="curated-sec" open>
+<summary>Footprint / 🗺️ 足迹地图</summary>
+
+<div class="curated-updated">去过的地方 — 按生活状态分级（悬停查看详情）</div>
+
+<div id="footprint-map" style="width:100%;height:520px;"></div>
+
+<div class="footprint-legend" style="display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;margin-top:.8rem;font-size:.85rem;">
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#b8c0c6;margin-right:.35rem;"></span>路过</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#8fc4e2;margin-right:.35rem;"></span>短期旅行</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#2f7ca3;margin-right:.35rem;"></span>中期旅行</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#1c3d5c;margin-right:.35rem;"></span>长期旅行</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#d99a2b;margin-right:.35rem;"></span>出差</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#c8402a;margin-right:.35rem;"></span>定居</span>
+</div>
+
+<script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+<script>
+(function () {
+  var LEVELS = {
+    '路过': '#b8c0c6',
+    '短期旅行': '#8fc4e2',
+    '中期旅行': '#2f7ca3',
+    '长期旅行': '#1c3d5c',
+    '出差': '#d99a2b',
+    '定居': '#c8402a'
+  };
+  Promise.all([
+    fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json').then(function (r) { return r.json(); }),
+    fetch('/footprint.json').then(function (r) { return r.json(); })
+  ]).then(function (res) {
+    echarts.registerMap('china', res[0]);
+    var chart = echarts.init(document.getElementById('footprint-map'));
+    var seriesData = [];
+    Object.keys(res[1]).forEach(function (name) {
+      var d = res[1][name];
+      if (!d.level || !LEVELS[d.level]) return;
+      seriesData.push({ name: name, value: 1, itemStyle: { areaColor: LEVELS[d.level] } });
+    });
+    chart.setOption({
+      tooltip: {
+        trigger: 'item',
+        formatter: function (p) {
+          var d = res[1][p.name];
+          if (!d || (!d.level && !d.notes)) return p.name;
+          var html = p.name;
+          if (d.level) html += '<br/>' + d.level;
+          if (d.notes) html += '<br/>' + d.notes;
+          return html;
+        }
+      },
+      series: [{
+        type: 'map', map: 'china', roam: true,
+        label: { show: false },
+        emphasis: { label: { show: true }, itemStyle: { areaColor: '#15506f' } },
+        itemStyle: { areaColor: '#e8eef3', borderColor: '#c3d3dd', borderWidth: 0.6 },
+        data: seriesData
+      }]
+    });
+    window.addEventListener('resize', function () { if (chart) chart.resize(); });
+  });
+})();
+</script>
+
+</details>
+
 <details class="curated-sec">
 <summary>Film & TV / 🎬 影视</summary>
 <p>想到几个写几个，慢慢补。</p>
