@@ -13,6 +13,9 @@ hasCJKLanguage = true
 enableRobotsTXT = true
 enableEmoji = true
 
+# 时区：上海。不设的话 Hugo 按 UTC 解释日期，凌晨发的帖子会被当成"未来"不渲染。
+timezone = "Asia/Shanghai"
+
 # ============================================
 #  导航菜单 — 根据你的内容结构调整
 # ============================================
