@@ -952,3 +952,28 @@
 
     html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
 }
+
+/* ============================================
+   Article typography — 行距 / 段距 / 标题字距
+   ============================================ */
+
+.single .content {
+    line-height: 1.9;
+
+    p {
+        line-height: 1.9;
+        margin: 0.6em 0 1.2em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        letter-spacing: 0.05em;
+    }
+
+    pre, code {
+        line-height: 1.6;
+    }
+}
+
+.single .single-title {
+    letter-spacing: 0.06em;
+}
