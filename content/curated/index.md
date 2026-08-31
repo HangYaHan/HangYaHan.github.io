@@ -137,7 +137,7 @@ draft: false
 <details class="curated-sec" open>
 <summary>Footprint / 🗺️ 足迹地图</summary>
 
-<div class="curated-updated">去过的地方 — 按生活状态分级（悬停查看详情）</div>
+<div class="curated-updated">去过的地方 — 城市级标注（悬停查看详情）</div>
 
 <div id="footprint-map" style="width:100%;height:520px;"></div>
 
@@ -162,31 +162,59 @@ draft: false
     '定居': '#c8402a'
   };
   Promise.all([
-    fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json').then(function (r) { return r.json(); }),
+    fetch('/china-cities.json').then(function (r) { return r.json(); }),
     fetch('/footprint.json').then(function (r) { return r.json(); })
   ]).then(function (res) {
-    echarts.registerMap('china', res[0]);
+    var geo = res[0], data = res[1];
+    echarts.registerMap('cn-cities', geo);
     var chart = echarts.init(document.getElementById('footprint-map'));
+
+    var featNames = geo.features.map(function (f) { return f.properties.name; });
+    function matchCity(name) {
+      for (var i = 0; i < featNames.length; i++) {
+        var k = featNames[i];
+        if (k === name || k.indexOf(name) === 0) return k;
+      }
+      return null;
+    }
+
+    var byFeat = {};
     var seriesData = [];
-    Object.keys(res[1]).forEach(function (name) {
-      var d = res[1][name];
-      if (!d.level || !LEVELS[d.level]) return;
-      seriesData.push({ name: name, value: 1, itemStyle: { areaColor: LEVELS[d.level] } });
+    data.forEach(function (d) {
+      var fn = matchCity(d.name);
+      if (!fn) return;
+      byFeat[fn] = d;
+      var colors = d.levels.map(function (l) { return LEVELS[l]; });
+      var itemStyle;
+      if (colors.length === 1) {
+        itemStyle = { areaColor: colors[0] };
+      } else {
+        itemStyle = {
+          areaColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: colors[0] },
+            { offset: 0.5, color: colors[0] },
+            { offset: 0.5, color: colors[1] },
+            { offset: 1, color: colors[1] }
+          ])
+        };
+      }
+      seriesData.push({ name: fn, value: 1, itemStyle: itemStyle });
     });
+
     chart.setOption({
       tooltip: {
         trigger: 'item',
         formatter: function (p) {
-          var d = res[1][p.name];
-          if (!d || (!d.level && !d.notes)) return p.name;
-          var html = p.name;
-          if (d.level) html += '<br/>' + d.level;
+          var d = byFeat[p.name];
+          if (!d) return p.name;
+          var html = '<b>' + p.name + '</b>';
+          if (d.levels && d.levels.length) html += '<br/>' + d.levels.join(' + ');
           if (d.notes) html += '<br/>' + d.notes;
           return html;
         }
       },
       series: [{
-        type: 'map', map: 'china', roam: true,
+        type: 'map', map: 'cn-cities', roam: true,
         label: { show: false },
         emphasis: { label: { show: true }, itemStyle: { areaColor: '#15506f' } },
         itemStyle: { areaColor: '#e8eef3', borderColor: '#c3d3dd', borderWidth: 0.6 },
