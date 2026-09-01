@@ -1,0 +1,465 @@
+<style>
+.tool-root {
+  --tool-bg: #f5f6f8;
+  --tool-card-bg: #ffffff;
+  --tool-text: #1a1d24;
+  --tool-muted: #6b7280;
+  --tool-border: #e5e7eb;
+  --tool-primary: #2563eb;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"],
+.tool-root .tool-field select {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus,
+.tool-root .tool-field select:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-field input[readonly] {
+  background: var(--tool-bg);
+  color: var(--tool-muted);
+  cursor: default;
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-cols .tool-card {
+  margin-bottom: 0;
+}
+@media (max-width: 720px) {
+  .tool-root .tool-cols {
+    grid-template-columns: 1fr;
+  }
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 12px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-value.gain {
+  color: var(--tool-gain);
+}
+.tool-root .tool-value.loss {
+  color: var(--tool-loss);
+}
+.tool-root .tool-chart {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>共同参数</h2>
+
+    <div class="tool-field">
+      <label for="fundfee-principal">投资本金</label>
+      <input type="number" id="fundfee-principal" value="100000" min="0" step="10000">
+      <span class="tool-unit">元</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-rate">预期年化收益率</label>
+      <input type="number" id="fundfee-rate" value="8" min="-50" max="100" step="0.1">
+      <span class="tool-unit">%（费前，两基金相同）</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-years">最长年限</label>
+      <input type="number" id="fundfee-years" value="20" min="1" max="60" step="1">
+      <span class="tool-unit">年</span>
+    </div>
+  </div>
+
+  <div class="tool-cols">
+
+  <div class="tool-card">
+    <h2>基金 A</h2>
+
+    <div class="tool-field">
+      <label for="fundfee-a-preset">份额预设</label>
+      <select id="fundfee-a-preset">
+        <option value="aDiscount" selected>A 类（前端申购，打折 0.15%）</option>
+        <option value="aFull">A 类（前端申购，原价 1.5%）</option>
+        <option value="cClass">C 类（免申购，收销售服务费）</option>
+        <option value="custom">自定义</option>
+      </select>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-a-sub">申购费率</label>
+      <input type="number" id="fundfee-a-sub" value="0.15" min="0" max="10" step="0.05">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-a-sales">销售服务费</label>
+      <input type="number" id="fundfee-a-sales" value="0" min="0" max="5" step="0.05">
+      <span class="tool-unit">%/年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-a-mgmt">管理费率</label>
+      <input type="number" id="fundfee-a-mgmt" value="1.2" min="0" max="10" step="0.05">
+      <span class="tool-unit">%/年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-a-custody">托管费率</label>
+      <input type="number" id="fundfee-a-custody" value="0.2" min="0" max="5" step="0.05">
+      <span class="tool-unit">%/年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-a-redeem">赎回费率</label>
+      <input type="number" id="fundfee-a-redeem" value="0" min="0" max="10" step="0.05">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-a-annual">每年费用合计</label>
+      <input type="number" id="fundfee-a-annual" value="1.4" readonly step="0.01">
+      <span class="tool-unit">%/年（管理+托管+销售）</span>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>基金 B</h2>
+
+    <div class="tool-field">
+      <label for="fundfee-b-preset">份额预设</label>
+      <select id="fundfee-b-preset">
+        <option value="aDiscount">A 类（前端申购，打折 0.15%）</option>
+        <option value="aFull">A 类（前端申购，原价 1.5%）</option>
+        <option value="cClass" selected>C 类（免申购，收销售服务费）</option>
+        <option value="custom">自定义</option>
+      </select>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-b-sub">申购费率</label>
+      <input type="number" id="fundfee-b-sub" value="0" min="0" max="10" step="0.05">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-b-sales">销售服务费</label>
+      <input type="number" id="fundfee-b-sales" value="0.4" min="0" max="5" step="0.05">
+      <span class="tool-unit">%/年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-b-mgmt">管理费率</label>
+      <input type="number" id="fundfee-b-mgmt" value="1.2" min="0" max="10" step="0.05">
+      <span class="tool-unit">%/年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-b-custody">托管费率</label>
+      <input type="number" id="fundfee-b-custody" value="0.2" min="0" max="5" step="0.05">
+      <span class="tool-unit">%/年</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-b-redeem">赎回费率</label>
+      <input type="number" id="fundfee-b-redeem" value="0" min="0" max="10" step="0.05">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="fundfee-b-annual">每年费用合计</label>
+      <input type="number" id="fundfee-b-annual" value="1.8" readonly step="0.01">
+      <span class="tool-unit">%/年（管理+托管+销售）</span>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="tool-card">
+    <h2>结果（第 <span id="fundfee-r-year">20</span> 年末）</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item">
+        <div class="tool-label">基金 A 净终值</div>
+        <div class="tool-value" id="fundfee-r-a">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">基金 B 净终值</div>
+        <div class="tool-value" id="fundfee-r-b">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">差额（A − B）</div>
+        <div class="tool-value" id="fundfee-r-gap">¥0</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">差额比例</div>
+        <div class="tool-value" id="fundfee-r-gappct">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>净收益随年限变化</h2>
+    <div class="tool-chart">
+      <canvas id="fundfee-chart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  const principalEl = $('fundfee-principal');
+  const rateEl = $('fundfee-rate');
+  const yearsEl = $('fundfee-years');
+
+  const PRESETS = {
+    aDiscount: { sub: 0.15, sales: 0, mgmt: 1.2, custody: 0.2, redeem: 0 },
+    aFull:    { sub: 1.5,  sales: 0, mgmt: 1.2, custody: 0.2, redeem: 0 },
+    cClass:   { sub: 0,    sales: 0.4, mgmt: 1.2, custody: 0.2, redeem: 0 },
+  };
+
+  function fundEls(prefix) {
+    return {
+      preset: $(prefix + '-preset'),
+      sub: $(prefix + '-sub'),
+      sales: $(prefix + '-sales'),
+      mgmt: $(prefix + '-mgmt'),
+      custody: $(prefix + '-custody'),
+      redeem: $(prefix + '-redeem'),
+      annual: $(prefix + '-annual'),
+    };
+  }
+  const A = fundEls('fundfee-a');
+  const B = fundEls('fundfee-b');
+
+  let chart;
+
+  function readFees(f) {
+    const mgmt = parseFloat(f.mgmt.value) || 0;
+    const custody = parseFloat(f.custody.value) || 0;
+    const sales = parseFloat(f.sales.value) || 0;
+    return {
+      sub: (parseFloat(f.sub.value) || 0) / 100,
+      annual: (mgmt + custody + sales) / 100,
+      redeem: (parseFloat(f.redeem.value) || 0) / 100,
+    };
+  }
+
+  function applyPreset(f, key) {
+    const p = PRESETS[key];
+    if (!p) return;
+    f.sub.value = p.sub;
+    f.sales.value = p.sales;
+    f.mgmt.value = p.mgmt;
+    f.custody.value = p.custody;
+    f.redeem.value = p.redeem;
+  }
+
+  function netValue(principal, gross, fees, years) {
+    return principal * (1 - fees.sub) * Math.pow((1 + gross) * (1 - fees.annual), years) * (1 - fees.redeem);
+  }
+
+  function fmtMoney(n) {
+    if (!isFinite(n)) return '¥0';
+    return '¥' + Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function fmtSignedMoney(n) {
+    if (!isFinite(n)) return '¥0';
+    return (n < 0 ? '-' : '+') + '¥' + Math.round(Math.abs(n)).toLocaleString('zh-CN');
+  }
+
+  function calc() {
+    const principal = parseFloat(principalEl.value) || 0;
+    const gross = (parseFloat(rateEl.value) || 0) / 100;
+    const maxYears = Math.max(1, parseInt(yearsEl.value) || 1);
+
+    const fa = readFees(A);
+    const fb = readFees(B);
+
+    const annualA = (parseFloat(A.mgmt.value) || 0) + (parseFloat(A.custody.value) || 0) + (parseFloat(A.sales.value) || 0);
+    const annualB = (parseFloat(B.mgmt.value) || 0) + (parseFloat(B.custody.value) || 0) + (parseFloat(B.sales.value) || 0);
+    A.annual.value = annualA.toFixed(2);
+    B.annual.value = annualB.toFixed(2);
+
+    const labels = [];
+    const seriesA = [];
+    const seriesB = [];
+    for (let y = 0; y <= maxYears; y++) {
+      labels.push(y + '年');
+      seriesA.push(netValue(principal, gross, fa, y));
+      seriesB.push(netValue(principal, gross, fb, y));
+    }
+
+    const va = seriesA[seriesA.length - 1];
+    const vb = seriesB[seriesB.length - 1];
+    const gap = va - vb;
+    const gapPct = vb > 0 ? (gap / vb) * 100 : 0;
+
+    $('fundfee-r-year').textContent = maxYears;
+    $('fundfee-r-a').textContent = fmtMoney(va);
+    $('fundfee-r-b').textContent = fmtMoney(vb);
+    $('fundfee-r-gap').textContent = fmtSignedMoney(gap);
+    $('fundfee-r-gap').className = 'tool-value ' + (gap >= 0 ? 'gain' : 'loss');
+    $('fundfee-r-gappct').textContent = (gapPct >= 0 ? '+' : '') + gapPct.toFixed(2) + '%';
+    $('fundfee-r-gappct').className = 'tool-value ' + (gapPct >= 0 ? 'gain' : 'loss');
+
+    draw(labels, seriesA, seriesB);
+  }
+
+  function draw(labels, seriesA, seriesB) {
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: '基金 A',
+          data: seriesA,
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.10)',
+          fill: false,
+          tension: 0.3,
+          pointRadius: 0,
+          borderWidth: 2,
+        },
+        {
+          label: '基金 B',
+          data: seriesB,
+          borderColor: '#dc2626',
+          backgroundColor: 'rgba(220, 38, 38, 0.06)',
+          fill: false,
+          tension: 0.3,
+          pointRadius: 0,
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.dataset.label + '：¥' + Math.round(ctx.parsed.y).toLocaleString('zh-CN'),
+          },
+        },
+      },
+      scales: {
+        x: { title: { display: true, text: '持有年限' } },
+        y: {
+          title: { display: true, text: '净终值（元）' },
+          ticks: {
+            callback: (v) => {
+              if (v >= 10000) return (v / 10000).toFixed(0) + '万';
+              return v;
+            },
+          },
+        },
+      },
+    };
+
+    if (chart) chart.destroy();
+    chart = new Chart($('fundfee-chart'), { type: 'line', data, options });
+  }
+
+  function wireFund(f) {
+    const feeEls = [f.sub, f.sales, f.mgmt, f.custody, f.redeem];
+    function syncReadOnly() {
+      const locked = f.preset.value !== 'custom';
+      feeEls.forEach((el) => { el.readOnly = locked; });
+    }
+    f.preset.addEventListener('change', () => {
+      if (f.preset.value !== 'custom') {
+        applyPreset(f, f.preset.value);
+      }
+      syncReadOnly();
+      calc();
+    });
+    feeEls.forEach((el) => {
+      el.addEventListener('input', () => {
+        f.preset.value = 'custom';
+        syncReadOnly();
+        calc();
+      });
+      el.addEventListener('change', calc);
+    });
+    syncReadOnly();
+  }
+  wireFund(A);
+  wireFund(B);
+
+  [principalEl, rateEl, yearsEl].forEach((el) => {
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>

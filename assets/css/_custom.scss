@@ -620,3 +620,360 @@
 
     html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
 }
+
+/* ============================================
+   Archive 页面 — 文章列表
+   ============================================ */
+.archive-list-title {
+    margin: 2rem 0 1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.archive-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.archive-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed $global-border-color;
+
+    html[data-theme="dark"] & { border-bottom-color: $global-border-color-dark; }
+}
+
+.archive-date {
+    font-size: 0.8rem;
+    color: $global-font-secondary-color;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.archive-link {
+    color: $global-font-color;
+    text-decoration: none;
+    font-size: 0.9rem;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+
+    &:hover {
+        color: $single-link-color;
+
+        html[data-theme="dark"] & { color: $single-link-color-dark; }
+    }
+}
+
+/* --- Archive 折叠树 --- */
+.archive-cat {
+    margin-bottom: 0.3rem;
+}
+
+.archive-cat > summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.45rem 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: $global-font-color;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.archive-cat > summary::-webkit-details-marker {
+    display: none;
+}
+
+.archive-cat > summary::before {
+    content: "▸";
+    color: $global-font-secondary-color;
+    transition: transform 0.2s;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.archive-cat[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+.archive-cat-label {
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.archive-cat-count {
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.archive-cat .archive-ul {
+    padding-left: 1.4rem;
+    margin: 0.2rem 0 0.8rem;
+}
+
+/* ============================================
+   Curated — 音乐浏览器
+   ============================================ */
+.music-browser {
+    margin-top: 1rem;
+}
+
+.music-toolbar {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.music-search {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid $global-border-color;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: $global-background-color;
+    color: $global-font-color;
+    outline: none;
+
+    html[data-theme="dark"] & {
+        border-color: $global-border-color-dark;
+        background: $global-background-color-dark;
+        color: $global-font-color-dark;
+    }
+
+    &:focus {
+        border-color: $single-link-color;
+    }
+}
+
+.music-count {
+    font-size: 0.8rem;
+    color: $global-font-secondary-color;
+    white-space: nowrap;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.music-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 420px;
+    overflow-y: auto;
+    border: 1px solid $global-border-color;
+    border-radius: 8px;
+
+    html[data-theme="dark"] & { border-color: $global-border-color-dark; }
+}
+
+.music-item {
+    padding: 6px 14px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid $global-border-color;
+
+    html[data-theme="dark"] & { border-bottom-color: $global-border-color-dark; }
+
+    &:last-child { border-bottom: none; }
+
+    &:hover {
+        background: $header-background-color;
+
+        html[data-theme="dark"] & { background: $header-background-color-dark; }
+    }
+}
+
+/* ============================================
+   Curated — 折叠栏目 + 语林
+   ============================================ */
+.curated-sec {
+    margin-bottom: 0.6rem;
+    border: 1px solid $global-border-color;
+    border-radius: 8px;
+    padding: 0 16px;
+
+    html[data-theme="dark"] & { border-color: $global-border-color-dark; }
+}
+
+.curated-sec > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $global-font-color;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.curated-sec > summary::-webkit-details-marker {
+    display: none;
+}
+
+.curated-sec > summary::before {
+    content: "▸";
+    color: $global-font-secondary-color;
+    transition: transform 0.2s;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.curated-sec[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+.curated-updated {
+    font-size: 0.8rem;
+    color: $global-font-secondary-color;
+    margin: 4px 0 12px;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.curated-intro {
+    font-size: 0.9rem;
+    color: $global-font-secondary-color;
+    line-height: 1.75;
+    margin: 0 0 16px;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.curated-tags {
+    font-size: 0.85rem;
+    color: $global-font-secondary-color;
+    margin-bottom: 12px;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.curated-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+.curated-table th,
+.curated-table td {
+    border: 1px solid $global-border-color;
+    padding: 6px 10px;
+    text-align: left;
+
+    html[data-theme="dark"] & { border-color: $global-border-color-dark; }
+}
+
+.curated-table th {
+    background: $header-background-color;
+    font-weight: 600;
+
+    html[data-theme="dark"] & { background: $header-background-color-dark; }
+}
+
+.curated-sec h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 16px 0 10px;
+}
+
+.curated-sec ul {
+    margin: 0 0 16px;
+    padding-left: 1.4em;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+/* ============================================
+   Homepage — Daily Pick
+   ============================================ */
+.daily-pick-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.daily-pick-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.dp-refresh {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $global-font-secondary-color;
+    font-size: 1.1rem;
+    padding: 2px 6px;
+    line-height: 1;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+
+    &:hover {
+        color: $single-link-color;
+
+        html[data-theme="dark"] & { color: $single-link-color-dark; }
+    }
+}
+
+.daily-pick-quote {
+    font-size: 0.95rem;
+    color: $global-font-color;
+    margin-bottom: 6px;
+    line-height: 1.6;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.daily-pick-song {
+    font-size: 0.88rem;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+/* ============================================
+   Article typography — 行距 / 段距 / 标题字距
+   ============================================ */
+
+.single .content {
+    line-height: 1.9;
+
+    p {
+        line-height: 1.9;
+        margin: 0.6em 0 1.2em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        letter-spacing: 0.05em;
+    }
+
+    pre, code {
+        line-height: 1.6;
+    }
+}
+
+.single .single-title {
+    letter-spacing: 0.06em;
+}

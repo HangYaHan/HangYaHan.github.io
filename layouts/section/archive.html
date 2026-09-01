@@ -1,0 +1,41 @@
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    <div class="page single special">
+        <h1 class="single-title animate__animated animate__pulse animate__faster">
+            {{- .Title -}}
+        </h1>
+
+        <div class="content" id="content">
+            {{- .Content -}}
+        </div>
+
+        {{- $cats := slice "风雅涵章" "雅望停云" "待定_读书笔记" "待定_搬运" "待定_teachmyself" "涵芬撷英" -}}
+        {{- $labels := dict "风雅涵章" "当下" "雅望停云" "过去" -}}
+        {{- $display := dict "待定_读书笔记" "读书笔记" "待定_搬运" "搬运" "待定_teachmyself" "TeachMySelf" -}}
+        <div class="archive-cats">
+        {{- range $cats -}}
+            {{- $name := . -}}
+            {{- $tax := index $.Site.Taxonomies.categories $name -}}
+            {{- if $tax -}}
+            <details class="archive-cat">
+                <summary class="archive-cat-title">
+                    <span class="archive-cat-name">{{ index $display $name | default $name }}</span>
+                    {{- with index $labels $name -}}<span class="archive-cat-label">（{{ . }}）</span>{{- end -}}
+                    <span class="archive-cat-count">{{ len $tax }} 篇</span>
+                </summary>
+                <ul class="archive-ul">
+                {{- range sort $tax "Page.Date" "desc" -}}
+                    {{- $page := .Page -}}
+                    <li class="archive-item">
+                        <span class="archive-date">{{ $page.Date.Format "2006-01-02" }}</span>
+                        <a href="{{ $page.RelPermalink }}" class="archive-link">{{ $page.Title }}</a>
+                    </li>
+                {{- end -}}
+                </ul>
+            </details>
+            {{- end -}}
+        {{- end -}}
+        </div>
+    </div>
+{{- end -}}
