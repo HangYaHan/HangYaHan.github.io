@@ -10,9 +10,10 @@
             {{- .Content -}}
         </div>
 
-        {{- $cats := slice "风雅涵章" "雅望停云" "待定_读书笔记" "待定_搬运" "待定_teachmyself" "涵芬撷英" -}}
+        {{- $cats := slice "风雅涵章" "雅望停云" "读书笔记" "搬运" "teachmyself" -}}
         {{- $labels := dict "风雅涵章" "当下" "雅望停云" "过去" -}}
-        {{- $display := dict "待定_读书笔记" "读书笔记" "待定_搬运" "搬运" "待定_teachmyself" "TeachMySelf" -}}
+        {{- $display := dict "teachmyself" "TeachMySelf" -}}
+        {{- $subcats := slice "金融工程 FE" "计算光谱 SPC" "光谱入门 SPI" "机器学习数学基础 MLM" "机器学习计算机基础 MLC" "机器学习进阶分支 MLA" "摄影前端 PHF" "摄影后端 PHB" "操作系统之上 OSA" "操作系统之下 OSB" -}}
         <div class="archive-cats">
         {{- range $cats -}}
             {{- $name := . -}}
@@ -24,6 +25,33 @@
                     {{- with index $labels $name -}}<span class="archive-cat-label">（{{ . }}）</span>{{- end -}}
                     <span class="archive-cat-count">{{ len $tax }} 篇</span>
                 </summary>
+                {{- if eq $name "teachmyself" -}}
+                <div class="archive-subs">
+                {{- range $subcats -}}
+                    {{- $sub := . -}}
+                    {{- $subpages := slice -}}
+                    {{- range sort $tax "Page.Date" "desc" -}}
+                        {{- $page := .Page -}}
+                        {{- if eq (index $page.Params.categories 1) $sub -}}
+                            {{- $subpages = $subpages | append $page -}}
+                        {{- end -}}
+                    {{- end -}}
+                    {{- if $subpages -}}
+                    <div class="archive-sub">
+                        <h4 class="archive-sub-title">{{ $sub }}<span class="archive-sub-count">{{ len $subpages }} 篇</span></h4>
+                        <ul class="archive-ul">
+                        {{- range $subpages -}}
+                            <li class="archive-item">
+                                <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
+                                <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
+                            </li>
+                        {{- end -}}
+                        </ul>
+                    </div>
+                    {{- end -}}
+                {{- end -}}
+                </div>
+                {{- else -}}
                 <ul class="archive-ul">
                 {{- range sort $tax "Page.Date" "desc" -}}
                     {{- $page := .Page -}}
@@ -33,6 +61,7 @@
                     </li>
                 {{- end -}}
                 </ul>
+                {{- end -}}
             </details>
             {{- end -}}
         {{- end -}}

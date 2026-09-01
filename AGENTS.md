@@ -13,10 +13,13 @@ Posts are plain Markdown files, grouped by category directory:
 | Directory | Category |
 |-----------|----------|
 | `content/posts/fengya/` | 风雅涵章 |
-| `content/posts/gewu/` | 格物致雅 |
-| `content/posts/hanfen/` | 涵芬撷英 |
 | `content/posts/yawang/` | 雅望停云 |
+| `content/posts/banyun/` | 搬运 |
+| `content/posts/dushubiji/` | 读书笔记 |
+| `content/posts/teachmyself/` | TeachMySelf |
 | `content/posts/youyi/` | 游艺 |
+
+`teachmyself/` posts carry a subcategory as the second item of `categories` (e.g. `["TeachMySelf", "金融工程 FE"]`), grouped under the TeachMySelf block on the archive page.
 
 ## Front matter format (YAML)
 
@@ -58,16 +61,15 @@ tags: ["风雅涵章"]
 ## Config & content you can edit
 
 - `hugo.toml` — main config (title, menu, params, languages)
-- `content/` — posts (`content/posts/...`) and pages (`about/`, `curated/`, `utility/`, `_index.md`)
+- `content/` — posts (`content/posts/...`) and pages (`about/`, `archive/`, `curated/`, `utility/`, `_index.md`)
 - `static/` — static assets (images, files) referenced from posts
 - `assets/` — stylesheets (`_custom.scss`) etc.
 - `archetypes/` — Hugo content templates
 
 ## Unrelated content
 
-- `workbench/` — scratch/draft directory
+- `workbench/` — scratch/draft directory (holds `TODO.md` with content/refactoring plans)
 - `heritage/` — archived versions of writing skill definitions
-- `reconstruct/` — migration/refactoring notes (see `TODO.md`)
 - `.opencode/` — opencode configuration (writing skills)
 
 ## Known inconsistencies

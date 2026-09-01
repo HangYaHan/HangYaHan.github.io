@@ -1,8 +1,10 @@
 ---
-title: "Curated / 收藏"
+title: "Curated"
 date: 2025-07-25
 draft: false
 ---
+
+<script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
 
 <details class="curated-sec" open>
 <summary>Music / 🎵 音乐</summary>
@@ -30,24 +32,24 @@ draft: false
 </tbody>
 </table>
 
-<h3>Languages / 语种</h3>
-
-<div class="bar-row"><span class="bar-label">华语 Mandarin</span><span class="bar-track"><span class="bar-fill" style="width:55%"></span></span><span class="bar-pct">~55%</span></div>
-<div class="bar-row"><span class="bar-label">英语 English</span><span class="bar-track"><span class="bar-fill" style="width:32%"></span></span><span class="bar-pct">~32%</span></div>
-<div class="bar-row"><span class="bar-label">粤语 Cantonese</span><span class="bar-track"><span class="bar-fill" style="width:8%"></span></span><span class="bar-pct">~8%</span></div>
-<div class="bar-row"><span class="bar-label">日语 Japanese</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-pct">~4%</span></div>
-<div class="bar-row"><span class="bar-label">其他 Other</span><span class="bar-track"><span class="bar-fill" style="width:1%"></span></span><span class="bar-pct">~1%</span></div>
-
-<h3>Genres / 曲风</h3>
-
-<div class="bar-row"><span class="bar-label">情歌 Ballad</span><span class="bar-track"><span class="bar-fill" style="width:40%"></span></span><span class="bar-pct">~40%</span></div>
-<div class="bar-row"><span class="bar-label">流行 Pop</span><span class="bar-track"><span class="bar-fill" style="width:25%"></span></span><span class="bar-pct">~25%</span></div>
-<div class="bar-row"><span class="bar-label">电子 EDM</span><span class="bar-track"><span class="bar-fill" style="width:18%"></span></span><span class="bar-pct">~18%</span></div>
-<div class="bar-row"><span class="bar-label">摇滚 Rock</span><span class="bar-track"><span class="bar-fill" style="width:6%"></span></span><span class="bar-pct">~6%</span></div>
-<div class="bar-row"><span class="bar-label">民谣 Folk</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-pct">~4%</span></div>
-<div class="bar-row"><span class="bar-label">原声 OST</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-pct">~4%</span></div>
-<div class="bar-row"><span class="bar-label">Hip-Hop / Rap</span><span class="bar-track"><span class="bar-fill" style="width:1%"></span></span><span class="bar-pct">~1%</span></div>
-<div class="bar-row"><span class="bar-label">其他 Other</span><span class="bar-track"><span class="bar-fill" style="width:2%"></span></span><span class="bar-pct">~2%</span></div>
+<div class="record-charts">
+  <div class="record-chart-wrap">
+    <h4 class="record-title">Languages / 语种</h4>
+    <div class="record-chart">
+      <div class="record-chart-label">语种<br>Languages</div>
+      <div id="lang-chart" class="record-chart-canvas"></div>
+    </div>
+    <div class="record-legend" id="lang-legend"></div>
+  </div>
+  <div class="record-chart-wrap">
+    <h4 class="record-title">Genres / 曲风</h4>
+    <div class="record-chart">
+      <div class="record-chart-label">曲风<br>Genres</div>
+      <div id="genre-chart" class="record-chart-canvas"></div>
+    </div>
+    <div class="record-legend" id="genre-legend"></div>
+  </div>
+</div>
 
 <div class="music-browser">
 <div class="music-toolbar">
@@ -86,6 +88,44 @@ draft: false
 })();
 </script>
 
+<script>
+(function () {
+  if (typeof echarts === 'undefined') return;
+  function buildRecord(chartId, legendId, data, palette) {
+    var el = document.getElementById(chartId);
+    if (!el) return;
+    var chart = echarts.init(el);
+    chart.setOption({
+      tooltip: { trigger: 'item', formatter: '{b}：{c}%' },
+      series: [{
+        type: 'pie',
+        radius: ['40%', '80%'],
+        center: ['50%', '50%'],
+        itemStyle: { borderRadius: 4, borderColor: 'rgba(0,0,0,0.35)', borderWidth: 1 },
+        label: { show: false },
+        labelLine: { show: false },
+        emphasis: { scale: true, scaleSize: 6, itemStyle: { shadowBlur: 12, shadowColor: 'rgba(0,0,0,0.3)' } },
+        data: data.map(function (d, i) {
+          return { name: d.name, value: d.value, itemStyle: { color: palette[i % palette.length] } };
+        })
+      }]
+    });
+    var legend = document.getElementById(legendId);
+    if (legend) {
+      legend.innerHTML = data.map(function (d, i) {
+        return '<span class="record-legend-item"><i style="background:' + palette[i % palette.length] + '"></i>' + d.name + ' ' + d.value + '%</span>';
+      }).join('');
+    }
+  }
+  buildRecord('lang-chart', 'lang-legend', [
+    { name: '华语', value: 55 }, { name: '英语', value: 32 }, { name: '粤语', value: 8 }, { name: '日语', value: 4 }, { name: '其他', value: 1 }
+  ], ['#f6a6b2', '#8fc4e2', '#f6d365', '#a8d8a8', '#c9c9c9']);
+  buildRecord('genre-chart', 'genre-legend', [
+    { name: '情歌', value: 40 }, { name: '流行', value: 25 }, { name: '电子', value: 18 }, { name: '摇滚', value: 6 }, { name: '民谣', value: 4 }, { name: '原声', value: 4 }, { name: 'Hip-Hop', value: 1 }, { name: '其他', value: 2 }
+  ], ['#f6a6b2', '#8fc4e2', '#b39ddb', '#f08585', '#a8d8a8', '#f6d365', '#80cbc4', '#c9c9c9']);
+})();
+</script>
+
 </details>
 
 <details class="curated-sec" open>
@@ -94,6 +134,17 @@ draft: false
 <div class="curated-updated">Last Updated: 2026.08.18 — Quotes: 258</div>
 
 <p class="curated-intro">这部分的内容的由来要从“哲学本”说起，它最初是我高中时期用来摘抄喜欢句子的笔记本，最初只是为了写作积累素材，后来慢慢变成了收集“至理名言”的小小宝库。可惜那本本子后来遗失了，至今仍未找到，实在令人遗憾。我清楚地记得里面记录了许多让我心动的句子，或许它现在正静静地躺在家中某个角落吃灰，也可能早已在垃圾场化为废纸，飘向了异世界。前些日子回家大扫除时，我还特意想找回那本旧本子，把家翻了个底朝天，依然没有找到。真的就这样丢失了吗？实在有些不甘心。毕竟，正常打扫卫生时看到那样一本整理得井井有条的本子，怎么会舍得丢掉呢？现在只要世界上有一台计算机保存着我的 repository，我的“哲学本”就再也不会丢了。本科时，我又新开了一本“哲学本”，并一直延续至今。现在有了个人博客，我也不再需要手抄内容，毕竟每一次 git 提交都会自动保存历史，所以这里的内容也成了“哲学本”的超集。现在我将持续往其中添加新的内容。</p>
+
+<div class="qt-player">
+  <div class="qt-text" id="qt-text"></div>
+  <div class="qt-source" id="qt-source"></div>
+  <div class="qt-bar">
+    <span class="qt-progress" id="qt-progress"></span>
+    <button class="qt-btn" id="qt-prev" type="button" title="上一句">⏮</button>
+    <button class="qt-btn" id="qt-play" type="button" title="暂停/继续">⏸</button>
+    <button class="qt-btn" id="qt-next" type="button" title="下一句">⏭</button>
+  </div>
+</div>
 
 <div class="music-browser">
 <div class="music-toolbar">
@@ -109,6 +160,64 @@ draft: false
     .then(function (r) { return r.text(); })
     .then(function (text) {
       var quotes = text.split('\n').filter(function (s) { return s.trim(); });
+      for (var i = quotes.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = quotes[i]; quotes[i] = quotes[j]; quotes[j] = t;
+      }
+      var idx = 0, typing = false, paused = false, timer = null;
+      var textEl = document.getElementById('qt-text');
+      var srcEl = document.getElementById('qt-source');
+      var progEl = document.getElementById('qt-progress');
+      var playEl = document.getElementById('qt-play');
+      function parse(q) {
+        var p = q.split(' -- ');
+        return { text: p[0], src: p.length > 1 ? '—— ' + p[1] : '' };
+      }
+      function showProgress() {
+        if (progEl) progEl.textContent = (idx + 1) + ' / ' + quotes.length;
+      }
+      function typeQuote() {
+        if (paused) return;
+        if (typing) return;
+        var q = parse(quotes[idx]);
+        typing = true;
+        textEl.textContent = '';
+        srcEl.textContent = '';
+        showProgress();
+        var pos = 0;
+        timer = setInterval(function () {
+          if (paused) return;
+          pos++;
+          textEl.textContent = q.text.slice(0, pos);
+          if (pos >= q.text.length) {
+            clearInterval(timer);
+            typing = false;
+            srcEl.textContent = q.src;
+            timer = setTimeout(function () { next(true); }, 6000);
+          }
+        }, 45);
+      }
+      function next(auto) {
+        clearTimeout(timer);
+        clearInterval(timer);
+        typing = false;
+        idx = (idx + 1) % quotes.length;
+        typeQuote();
+      }
+      function prev() {
+        clearTimeout(timer);
+        clearInterval(timer);
+        typing = false;
+        idx = (idx - 1 + quotes.length) % quotes.length;
+        typeQuote();
+      }
+      document.getElementById('qt-next').addEventListener('click', function () { next(); });
+      document.getElementById('qt-prev').addEventListener('click', prev);
+      playEl.addEventListener('click', function () {
+        paused = !paused;
+        playEl.textContent = paused ? '▶' : '⏸';
+      });
+      typeQuote();
       var ul = document.getElementById('quote-list');
       var count = document.getElementById('quote-count');
       var search = document.getElementById('quote-search');
@@ -150,7 +259,6 @@ draft: false
   <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#c8402a;margin-right:.35rem;"></span>定居</span>
 </div>
 
-<script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
 <script>
 (function () {
   var LEVELS = {
