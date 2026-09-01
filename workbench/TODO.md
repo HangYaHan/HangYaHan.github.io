@@ -21,7 +21,7 @@
 
 ## 页面完善
 
-- [ ] `about/index.md` —— 已写主体，可继续打磨
+- [ ] `about/index.md` —— 已写主体，可继续打磨（两个具体问题：第 55 行"我想"悬空碎片；开头 Deepseek 鼓励段是 AI 套话，建议删短）
 - [ ] `curated/index.md` —— 影视、书籍、博主、网站、网课 五个栏目还是空的（已折叠）
 - [x] `curated` 的 Music / Genres 条形图改成唱片式饼图
 - [x] 语林（Quotes）加一个 fancy 组件，让它更可爱

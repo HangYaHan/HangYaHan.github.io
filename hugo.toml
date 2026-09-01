@@ -65,7 +65,7 @@ timezone = "Asia/Shanghai"
       logo = ""
       name = "涵舍"
       pre = ""
-      post = "- 年轻的我对现实的恐怖一无所知。<br>- Too young too simple, sometimes naive.<br>"
+      post = ""
       typeit = false
 
   # --- 底部 ---
@@ -118,7 +118,7 @@ timezone = "Asia/Shanghai"
       gravatarEmail = ""
       avatarURL = "https://avatars.githubusercontent.com/u/168107882?v=4"
       title = ""
-      subtitle = ""
+      subtitle = "年轻的我对现实的恐怖一无所知。<br>Too young too simple, sometimes naive."
       typeit = true
       social = true
       disclaimer = ""
@@ -189,7 +189,7 @@ timezone = "Asia/Shanghai"
           enable = true
           avatarURL = "https://avatars.githubusercontent.com/u/168107882?v=4"
           title = ""
-          subtitle = ""
+          subtitle = "年轻的我对现实的恐怖一无所知。<br>Too young too simple, sometimes naive."
           typeit = true
           social = true
       [languages.zh-cn.params.social]
