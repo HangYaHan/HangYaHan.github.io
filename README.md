@@ -11,13 +11,18 @@ https://HangYaHan.github.io
 
 ## 文章分类
 
+文章放在 `content/posts/<分类>/` 下；`content/archive/` 是按分类折叠的全部文章归档页。
+
 | 目录 | 分类 |
 |------|------|
-| `fengya` | 风雅涵章 · 生活思考碎片 |
-| `gewu` | 格物致雅 · 技术项目 |
-| `hanfen` | 涵芬撷英 · 读书笔记 |
-| `yawang` | 雅望停云 · 记录 |
-| `youyi` | 游艺 · 杂记 |
+| `fengya` | 风雅涵章 |
+| `yawang` | 雅望停云 |
+| `banyun` | 搬运 |
+| `dushubiji` | 读书笔记 |
+| `teachmyself` | TeachMySelf |
+| `youyi` | 游艺 |
+
+`teachmyself` 分类下按系列分子类（金融工程、光谱、机器学习、摄影、操作系统等），体现在每篇文章 front matter 的 `categories` 第二项。
 
 ## 写文章
 

@@ -22,14 +22,14 @@ timezone = "Asia/Shanghai"
 [menu]
   [[menu.main]]
     weight = 1
-    identifier = "archive"
-    name = "Archive"
-    url = "/archive/"
-  [[menu.main]]
-    weight = 2
     identifier = "about"
     name = "About"
     url = "/about/"
+  [[menu.main]]
+    weight = 2
+    identifier = "archive"
+    name = "Archive"
+    url = "/archive/"
   [[menu.main]]
     weight = 3
     identifier = "curated"

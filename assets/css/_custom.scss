@@ -588,6 +588,231 @@
 }
 
 /* ============================================
+   Curated — 唱片式饼图
+   ============================================ */
+.record-charts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 1.2rem 0 1.6rem;
+}
+
+.record-chart-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.record-title {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: $global-font-color;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.record-chart {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: repeating-radial-gradient(circle at center, #161616 0, #161616 2px, #262626 3px, #262626 4px);
+    box-shadow:
+        0 0 0 5px #0d0d0d,
+        0 0 0 8px #3a3a3a,
+        0 0 0 9px #0d0d0d,
+        0 12px 26px rgba(0, 0, 0, 0.35);
+}
+
+.record-chart-canvas {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.record-chart-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #f5f8fa;
+    color: #2c3a46;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    font-weight: 600;
+    box-shadow: 0 0 0 3px #ffffff, 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.record-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 0.9rem;
+    max-width: 260px;
+}
+
+.record-legend-item {
+    font-size: 0.76rem;
+    color: $global-font-secondary-color;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+
+    i {
+        width: 0.6em;
+        height: 0.6em;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .record-chart {
+        width: 200px;
+        height: 200px;
+    }
+
+    .record-chart-label {
+        width: 72px;
+        height: 72px;
+        font-size: 0.72rem;
+    }
+}
+
+/* ============================================
+   Curated — 语林打字机轮播
+   ============================================ */
+.qt-player {
+    margin: 1rem 0 1.4rem;
+    padding: 1.2rem 1.4rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #fdeef0 0%, #fdf6e3 100%);
+    border: 1px solid #f6d8dc;
+    box-shadow: 0 4px 16px rgba(214, 69, 69, 0.08);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    html[data-theme="dark"] & {
+        background: linear-gradient(135deg, #2b2233 0%, #2a2430 100%);
+        border-color: #4a3a52;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    &::before {
+        content: "\275D";
+        position: absolute;
+        top: -0.2rem;
+        left: 0.6rem;
+        font-size: 2.6rem;
+        color: rgba(214, 69, 69, 0.18);
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+
+    &::after {
+        content: "|";
+        position: absolute;
+        top: -0.2rem;
+        right: 0.8rem;
+        font-size: 2.4rem;
+        color: rgba(214, 69, 69, 0.15);
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+}
+
+.qt-text {
+    min-height: 3em;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: $global-font-color;
+    font-weight: 500;
+    cursor: pointer;
+
+    html[data-theme="dark"] & { color: $global-font-color-dark; }
+
+    &::after {
+        content: "▌";
+        margin-left: 2px;
+        color: $single-link-color;
+        animation: qt-blink 0.8s steps(1) infinite;
+
+        html[data-theme="dark"] & { color: $single-link-color-dark; }
+    }
+}
+
+@keyframes qt-blink {
+    50% { opacity: 0; }
+}
+
+.qt-source {
+    margin-top: 0.5rem;
+    min-height: 1.2em;
+    font-size: 0.82rem;
+    color: $global-font-secondary-color;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.qt-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+.qt-progress {
+    font-size: 0.78rem;
+    color: $global-font-secondary-color;
+    margin-right: 0.4rem;
+    font-variant-numeric: tabular-nums;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.qt-btn {
+    padding: 0.2rem 0.7rem;
+    font-size: 0.82rem;
+    border-radius: 999px;
+    border: 1px solid $global-border-color;
+    background: rgba(255, 255, 255, 0.6);
+    color: $global-font-color;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+
+    html[data-theme="dark"] & {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: $global-border-color-dark;
+        color: $global-font-color-dark;
+    }
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
    Homepage — site tree 分类地图
    ============================================ */
 .site-tree pre {
@@ -725,6 +950,37 @@
 .archive-cat .archive-ul {
     padding-left: 1.4rem;
     margin: 0.2rem 0 0.8rem;
+}
+
+/* --- Archive 子类分组（TeachMySelf） --- */
+.archive-subs {
+    padding-left: 1.4rem;
+}
+
+.archive-sub {
+    margin-bottom: 0.5rem;
+}
+
+.archive-sub-title {
+    margin: 0.5rem 0 0.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $global-font-secondary-color;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+
+    html[data-theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.archive-sub-count {
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+.archive-sub .archive-ul {
+    padding-left: 1.2rem;
+    margin: 0.1rem 0 0.4rem;
 }
 
 /* ============================================
