@@ -1,7 +1,7 @@
 {{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
 
 {{- define "content" -}}
-    <div class="page single special">
+    <div class="page single special archive-graph-page">
         <h1 class="single-title animate__animated animate__pulse animate__faster">
             {{- .Title -}}
         </h1>
@@ -10,61 +10,132 @@
             {{- .Content -}}
         </div>
 
+        {{- /* ============ Blog Graph / 图谱 ============ */ -}}
+        <div class="archive-graph" id="archive-graph">
+            <div class="graph-layout">
+                <section class="graph-main">
+                    <div class="graph-toolbar">
+                        <label class="search-box">
+                            <span class="search-icon" aria-hidden="true">⌕</span>
+                            <input id="graph-search" type="search" placeholder="搜索文章、分类、关键词" autocomplete="off" />
+                        </label>
+                        <div class="mode-tabs" id="graph-modes" role="tablist" aria-label="图谱关系筛选">
+                            <button type="button" class="mode-tab active" data-mode="all">全部</button>
+                            <button type="button" class="mode-tab" data-mode="tags">关键词</button>
+                            <button type="button" class="mode-tab" data-mode="categories">分类</button>
+                        </div>
+                    </div>
+                    <main class="graph-canvas-shell" id="graph-canvas-shell">
+                        <div id="graph-canvas"></div>
+                        <div class="graph-hint">滚轮缩放 · 拖拽移动 · 点击节点聚焦</div>
+                        <div class="empty-graph" id="graph-empty" hidden><strong></strong><span></span></div>
+                    </main>
+                </section>
+
+                <aside class="graph-sidebar">
+                    <section class="sidebar-block" id="sb-selected">
+                        <div class="panel-heading">当前节点</div>
+                        <p class="muted" id="sb-selected-hint">选择任意节点查看文章和关键词关系。</p>
+                        <div id="sb-selected-body" hidden></div>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <div class="panel-heading">高频关键词</div>
+                        <div class="sidebar-tags" id="sb-tags"></div>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <div class="panel-heading">图谱统计</div>
+                        <div class="stats-grid" id="sb-stats"></div>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <div class="panel-heading">最近文章</div>
+                        <div class="recent-list" id="sb-recent"></div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+
+        <div id="archive-graph-data" hidden>
+        {{- $pages := sort (where .Site.RegularPages "Type" "posts") "Date" "desc" -}}
+        {{- $rows := slice -}}
+        {{- range $pages -}}
+            {{- $p := . -}}
+            {{- $cats := $p.Params.categories | default slice -}}
+            {{- $cat := index $cats 0 | default "未分类" -}}
+            {{- $sub := "" -}}
+            {{- if ge (len $cats) 2 }}{{ $sub = index $cats 1 }}{{ end -}}
+            {{- $clean := $p.Title | replaceRE `^\[[^\]]*\]\s*` "" -}}
+            {{- $sum := $p.Summary | plainify | htmlUnescape | strings.TrimSpace | strings.Truncate 90 -}}
+            {{- $rows = $rows | append (dict "title" $clean "url" $p.RelPermalink "date" ($p.Date.Format "2006-01-02") "cat" $cat "sub" $sub "tags" ($p.Params.tags | default slice) "sum" $sum) -}}
+        {{- end -}}
+        <script type="application/json">{{- $rows | jsonify | safeJS -}}</script>
+        </div>
+
+        {{- /* ============ 分类折叠树（默认折叠） ============ */ -}}
         {{- $cats := slice "风雅涵章" "雅望停云" "读书笔记" "搬运" "teachmyself" -}}
         {{- $labels := dict "风雅涵章" "当下" "雅望停云" "过去" -}}
         {{- $display := dict "teachmyself" "TeachMySelf" -}}
         {{- $subcats := slice "金融工程 FE" "计算光谱 SPC" "光谱入门 SPI" "机器学习数学基础 MLM" "机器学习计算机基础 MLC" "机器学习进阶分支 MLA" "摄影前端 PHF" "摄影后端 PHB" "操作系统之上 OSA" "操作系统之下 OSB" -}}
-        <div class="archive-cats">
-        {{- range $cats -}}
-            {{- $name := . -}}
-            {{- $tax := index $.Site.Taxonomies.categories $name -}}
-            {{- if $tax -}}
-            <details class="archive-cat">
-                <summary class="archive-cat-title">
-                    <span class="archive-cat-name">{{ index $display $name | default $name }}</span>
-                    {{- with index $labels $name -}}<span class="archive-cat-label">（{{ . }}）</span>{{- end -}}
-                    <span class="archive-cat-count">{{ len $tax }} 篇</span>
-                </summary>
-                {{- if eq $name "teachmyself" -}}
-                <div class="archive-subs">
-                {{- range $subcats -}}
-                    {{- $sub := . -}}
-                    {{- $subpages := slice -}}
+        <details class="archive-tree" id="archive-tree">
+            <summary>按分类浏览文章</summary>
+            <div class="archive-cats">
+            {{- range $cats -}}
+                {{- $name := . -}}
+                {{- $tax := index $.Site.Taxonomies.categories $name -}}
+                {{- if $tax -}}
+                <details class="archive-cat">
+                    <summary class="archive-cat-title">
+                        <span class="archive-cat-name">{{ index $display $name | default $name }}</span>
+                        {{- with index $labels $name -}}<span class="archive-cat-label">（{{ . }}）</span>{{- end -}}
+                        <span class="archive-cat-count">{{ len $tax }} 篇</span>
+                    </summary>
+                    {{- if eq $name "teachmyself" -}}
+                    <div class="archive-subs">
+                    {{- range $subcats -}}
+                        {{- $sub := . -}}
+                        {{- $subpages := slice -}}
+                        {{- range sort $tax "Page.Date" "desc" -}}
+                            {{- $page := .Page -}}
+                            {{- if eq (index $page.Params.categories 1) $sub -}}
+                                {{- $subpages = $subpages | append $page -}}
+                            {{- end -}}
+                        {{- end -}}
+                        {{- if $subpages -}}
+                        <div class="archive-sub">
+                            <h4 class="archive-sub-title">{{ $sub }}<span class="archive-sub-count">{{ len $subpages }} 篇</span></h4>
+                            <ul class="archive-ul">
+                            {{- range $subpages -}}
+                                <li class="archive-item">
+                                    <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
+                                    <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
+                                </li>
+                            {{- end -}}
+                            </ul>
+                        </div>
+                        {{- end -}}
+                    {{- end -}}
+                    </div>
+                    {{- else -}}
+                    <ul class="archive-ul">
                     {{- range sort $tax "Page.Date" "desc" -}}
                         {{- $page := .Page -}}
-                        {{- if eq (index $page.Params.categories 1) $sub -}}
-                            {{- $subpages = $subpages | append $page -}}
-                        {{- end -}}
+                        <li class="archive-item">
+                            <span class="archive-date">{{ $page.Date.Format "2006-01-02" }}</span>
+                            <a href="{{ $page.RelPermalink }}" class="archive-link">{{ $page.Title }}</a>
+                        </li>
                     {{- end -}}
-                    {{- if $subpages -}}
-                    <div class="archive-sub">
-                        <h4 class="archive-sub-title">{{ $sub }}<span class="archive-sub-count">{{ len $subpages }} 篇</span></h4>
-                        <ul class="archive-ul">
-                        {{- range $subpages -}}
-                            <li class="archive-item">
-                                <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
-                                <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
-                            </li>
-                        {{- end -}}
-                        </ul>
-                    </div>
+                    </ul>
                     {{- end -}}
+                </details>
                 {{- end -}}
-                </div>
-                {{- else -}}
-                <ul class="archive-ul">
-                {{- range sort $tax "Page.Date" "desc" -}}
-                    {{- $page := .Page -}}
-                    <li class="archive-item">
-                        <span class="archive-date">{{ $page.Date.Format "2006-01-02" }}</span>
-                        <a href="{{ $page.RelPermalink }}" class="archive-link">{{ $page.Title }}</a>
-                    </li>
-                {{- end -}}
-                </ul>
-                {{- end -}}
-            </details>
             {{- end -}}
-        {{- end -}}
-        </div>
+            </div>
+        </details>
+
+        {{- /* echarts 与图谱逻辑，defer 保证顺序执行 */ -}}
+        <script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js" defer></script>
+        <script src="{{ "js/bloggraph.js" | relURL }}" defer></script>
     </div>
 {{- end -}}

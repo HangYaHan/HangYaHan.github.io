@@ -637,6 +637,11 @@ draft: false
 </ul>
 </details>
 
+<details class="curated-sec" id="gunpla-sec">
+<summary>Gunpla &amp; Kits / 🤖 胶库</summary>
+<p class="curated-intro">保存我买过、拼过的拼装模型：约九成是万代高达（Gunpla），其余是其他品牌的拼装套件。清单整理中，先从 workbench 迁过来。</p>
+</details>
+
 <details class="curated-sec">
 <summary>Bloggers / ✍️ 博主</summary>
 <p>你关注的博客、UP主。</p>

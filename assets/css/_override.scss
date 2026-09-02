@@ -23,7 +23,7 @@ $global-link-color-dark: #aebcc6;
 
 // 链接悬停：天青（深一档）
 $global-link-hover-color: #2f7ca3;
-$global-link-hover-color-dark: #7cb9d8;
+$global-link-hover-color-dark: #8fa7b8;
 
 // 边框：淡蓝灰（深一档）
 $global-border-color: #d3dde6;
@@ -32,7 +32,7 @@ $global-border-color-dark: #3a4d58;
 
 // ========== Selection ========== //
 $selection-color: rgba(47, 124, 163, 0.28);
-$selection-color-dark: rgba(75, 148, 180, 0.4);
+$selection-color-dark: rgba(125, 155, 172, 0.38);
 // ========== Selection ========== //
 
 // ========== Header ========== //
@@ -48,12 +48,12 @@ $search-background-color-dark: #2a3a46;
 // ========== Header ========== //
 
 // ========== Single Content ========== //
-// 文章内链接：天青（深一档）
+// 文章内链接：天青（深一档）// 暗色去饱和压暗 → 雾蓝灰，参考小Q dark 的灰蓝系
 $single-link-color: #2f7ca3;
-$single-link-color-dark: #6daacd;
+$single-link-color-dark: #9db4c4;
 
 $single-link-hover-color: #15506f;
-$single-link-hover-color-dark: #a9dcf0;
+$single-link-hover-color-dark: #b7cbd9;
 
 $table-background-color: #fbfdfe;
 $table-background-color-dark: #21303b;
@@ -63,7 +63,7 @@ $table-thead-color-dark: #1a2731;
 
 // 引用（blockquote）：淡青蓝（深一档）
 $blockquote-color: #4a92b5;
-$blockquote-color-dark: #5fa5c8;
+$blockquote-color-dark: #7897ab;
 // ========== Single Content ========== //
 
 // ========== Code ========== //
