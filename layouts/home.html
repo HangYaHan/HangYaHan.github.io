@@ -132,7 +132,7 @@
             </div>
             {{- end -}}
 
-            {{- /* Two-Column: About + (Recent + Pinned) */ -}}
+            {{- /* Two-Column: About + Recent */ -}}
             <div class="home-row">
                 <div class="home-card home-about">
                     <h2 class="home-card-title">Navigation / 导航</h2>
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="home-right-col">
-                    {{- $recentPosts := first 3 (where .Site.RegularPages "Type" "posts") -}}
+                    {{- $recentPosts := first 8 (where .Site.RegularPages "Type" "posts") -}}
                     {{- if $recentPosts -}}
                     <div class="home-card home-recent">
                         <div class="home-card-header">
@@ -163,23 +163,6 @@
                                 {{- end -}}
                             </ul>
                             <a href="/posts/" class="home-recent-more">View all posts / 查看全部 →</a>
-                        </div>
-                    </div>
-                    {{- end -}}
-
-                    {{- $pinned := where (where .Site.RegularPages "Type" "posts") "Params.pinned" true -}}
-                    {{- if $pinned -}}
-                    <div class="home-card home-pinned">
-                        <h2 class="home-card-title">Pinned / 置顶</h2>
-                        <div class="home-card-body">
-                            <ul class="home-recent-list">
-                                {{- range $pinned -}}
-                                <li class="home-recent-item">
-                                    <span class="home-recent-item-date">{{ .Date.Format "2006-01-02" }}</span>
-                                    <a href="{{ .RelPermalink }}" class="home-recent-item-link">{{ .Title }}</a>
-                                </li>
-                                {{- end -}}
-                            </ul>
                         </div>
                     </div>
                     {{- end -}}
