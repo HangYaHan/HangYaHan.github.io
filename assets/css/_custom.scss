@@ -1270,3 +1270,52 @@
 .single .single-title {
     letter-spacing: 0.06em;
 }
+
+/* ============================================
+   Homepage — Navigation 入口指南
+   ============================================ */
+.home-nav-guide {
+    font-size: 0.92rem;
+
+    .home-nav-intro {
+        font-weight: 600;
+        margin: 0 0 0.8rem;
+        color: $global-font-color;
+
+        html[data-theme="dark"] & { color: $global-font-color-dark; }
+
+        a {
+            color: $single-link-color;
+            text-decoration: none;
+
+            html[data-theme="dark"] & { color: $single-link-color-dark; }
+
+            &:hover { text-decoration: underline; }
+        }
+    }
+
+    .home-nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed $global-border-color;
+
+            html[data-theme="dark"] & { border-bottom-color: $global-border-color-dark; }
+
+            &:last-child { border-bottom: none; }
+
+            a {
+                color: $single-link-color;
+                text-decoration: none;
+                font-weight: 600;
+
+                html[data-theme="dark"] & { color: $single-link-color-dark; }
+
+                &:hover { text-decoration: underline; }
+            }
+        }
+    }
+}

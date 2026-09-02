@@ -12,13 +12,13 @@
 
 - [ ] 重新整理文章分类层级
 - [x] Hello World：删除文中图片
-- [ ] 用class写C的我：图片用文字 / 纯字符串代替
-- [ ] The C Programming Language_从零开始：删掉习题相关内容
+- [x] 用class写C的我：图片用文字 / 纯字符串代替
+- [x] The C Programming Language_从零开始：删掉习题相关内容
 - [x] 片语人生 → 语林（quotes.txt 258 句 + Daily Pick，文章已删除）
 - [ ] 藏书阁、贮影轩：合并进 curated
 - [ ] Linux入门、羽毛球场上蠕动的我：未归类（暂挂）
 - [x] 分类定名（读书笔记 / 搬运 / TeachMySelf）
-- [ ] `static/pics` 的图片（1.png / 2024FUPAN.png / Cpp.png 等）在文章里的替代 —— 下次再做
+- [x] `static/pics` 的图片（1.png / 2024FUPAN.png / Cpp.png）已删，文章引用已替代
 
 ## 页面完善
 
@@ -26,14 +26,14 @@
 - [ ] `curated/index.md` —— 影视、书籍、博主、网站、网课 五个栏目还是空的（已折叠）
 - [x] `curated` 的 Music / Genres 条形图改成唱片式饼图
 - [x] 语林（Quotes）加一个 fancy 组件，让它更可爱
-- [ ] `hugo.toml` 里 `subtitle` 还是空
+- [x] `hugo.toml` 里 `subtitle` 还是空
 - [ ] 友情链接 —— 用占位数据，等真实友链替换
 
 ## 首页重构
 
-- [ ] **Navigation 模块**需要重做
+- [x] **Navigation 模块**需要重做（改为 4 入口指南卡："New here? Start with…" + About/Archive/Curated/Utility）
 - [x] 移除 Pinned 模块
-- [ ] 移除并整合 Explore 模块（内容并入其他导航入口）
+- [x] 移除并整合 Explore 模块（已删，内容并入 Navigation 卡）
 - [ ] 和 AI 讨论首页还能加什么模块，需参考别人博客的设计
 - [ ] 添加「友链列车」——随机跳转到一个友链博客的功能
 - [ ] 欢迎页面（splash / 欢迎横幅）
