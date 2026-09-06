@@ -6,6 +6,31 @@ draft: false
 
 <script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
 
+<div class="curated-actions">
+<button id="curated-fold-all" type="button" class="curated-fold-btn">全部展开</button>
+</div>
+<script>
+(function () {
+    var btn = document.getElementById('curated-fold-all');
+    if (!btn) return;
+    var sections = function () {
+        return Array.prototype.slice.call(document.querySelectorAll('.curated-sec'));
+    };
+    function anyClosed() {
+        return sections().some(function (s) { return !s.open; });
+    }
+    function refresh() {
+        btn.textContent = anyClosed() ? '全部展开' : '全部收起';
+    }
+    btn.addEventListener('click', function () {
+        var open = anyClosed();
+        sections().forEach(function (s) { s.open = open; });
+        refresh();
+    });
+    refresh();
+})();
+</script>
+
 <details class="curated-sec" id="music-sec">
 <summary>Music / 🎵 音乐</summary>
 
@@ -639,7 +664,57 @@ draft: false
 
 <details class="curated-sec" id="gunpla-sec">
 <summary>Gunpla &amp; Kits / 🤖 胶库</summary>
-<p class="curated-intro">保存我买过、拼过的拼装模型：约九成是万代高达（Gunpla），其余是其他品牌的拼装套件。清单整理中，先从 workbench 迁过来。</p>
+<p class="curated-intro">保存我买过、拼过的拼装模型，九成是万代高达（Gunpla），其余是其他品牌的拼装套件。默认都是素组，</p>
+
+<h3>RG 1/144</h3>
+<ul>
+<li>Sazabi 沙扎比 ×2 — 一台贴纸没贴；一台哑光漆喷白了</li>
+<li>Gundam Hi-ν海牛</li>
+<li>Gundam RX-93 ν Gundam 牛</li>
+<li>Gundam Build Strike 创制强袭</li>
+<li>Gundam RX-78-2  Ver.2.0 元祖 2.0</li>
+<li>Gundam RX-78 GP01 陆战型 GP01</li>
+<li>Gundam RX-78 GP01 宇宙型 GP01</li>
+<li>RX-0 Unicorn Gundam（Destroy Mode）独角兽一号机·毁灭模式</li>
+<li>RX-0 Unicorn Gundam（Awakened）独角兽一号机·觉醒·全装备</li>
+<li>RX-0 Unicorn Gundam Banshee 独角兽二号机</li>
+<li>Gundam 00 Raiser 七剑</li>
+<li>Gundam RX-178 Mark-II 白兔</li>
+</ul>
+
+<h3>HGUC 1/144</h3>
+<ul>
+<li>Zaku I Sniper Type 狙击型扎古</li>
+<li>Psycho Zaku 精神力扎古（全装备）</li>
+<li>Full Armor Gundam 全装甲高达</li>
+</ul>
+
+<h3>EG 1/144</h3>
+<ul>
+<li>Gundam RX-78-2 元祖</li>
+</ul>
+
+<h3>PG 万代 1/60</h3>
+<ul>
+<li>Gundam GP01 — 贴纸没贴</li>
+<li>Gundam Mk-II — 贴纸没贴</li>
+<li>Perfect Strike Gundam 完美强袭</li>
+</ul>
+
+<h3>PG 大班 1/60</h3>
+<ul>
+<li>PGU 元祖（PG Unleashed RX-78-2）— 内构完成，外甲没装</li>
+<li>Strike Gundam — 贴纸没贴</li>
+<li>Avalanche Exia 雪崩能天使</li>
+</ul>
+
+<h3>其他</h3>
+<ul>
+<li>BearPanda × SNK 不知火舞（Mai Shiranui）1/6</li>
+<li>Kotobukiya 寿屋 · 朱罗忍者 九尾（KP515）</li>
+<li>Kotobukiya 寿屋 · 朱罗黑九尾 玉藻前（KP590）</li>
+<li>圣斯基 · 地球形态擎天柱（拼装）</li>
+</ul>
 </details>
 
 <details class="curated-sec">

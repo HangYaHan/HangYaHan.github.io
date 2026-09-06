@@ -1,4 +1,5 @@
 {{- /* Desktop header */ -}}
+{{- partial "splash.html" . -}}
 <header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -57,11 +58,9 @@
                 <a href="javascript:void(0);" class="menu-item theme-switch" title="{{ T "switchTheme" }}">
                     <i class="fas fa-adjust" aria-hidden="true"></i>
                 </a>
-                {{- if .Site.Params.friends -}}
-                <a href="javascript:void(0);" class="menu-item friends-toggle" title="友链 / Friends">
-                    <i class="fas fa-link" aria-hidden="true"></i>
+                <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" class="menu-item" title="开往 / Travellings">
+                    <i class="fas fa-subway" aria-hidden="true"></i>
                 </a>
-                {{- end -}}
                 {{- if hugo.IsMultilingual -}}
                 <a href="javascript:void(0);" class="menu-item language" title="{{ T "selectLanguage" }}">
                     <i class="fa fa-globe" aria-hidden="true"></i>
@@ -89,33 +88,10 @@
     </div>
 </header>
 
-{{- if .Site.Params.friends -}}
-<div class="friends-dropdown" id="friends-dropdown">
-    {{- range .Site.Params.friends -}}
-    <a href="{{ .url }}" target="_blank" rel="noopener noreffer">
-        <span class="friend-name">{{ .name }}</span>
-        {{- with .desc -}}<span class="friend-desc">{{ . }}</span>{{- end -}}
-    </a>
-    {{- end -}}
-</div>
-<script>
-(function () {
-    var toggle = document.querySelector('.friends-toggle');
-    var dropdown = document.getElementById('friends-dropdown');
-    if (!toggle || !dropdown) return;
-    toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-    });
-    document.addEventListener('click', function (e) {
-        if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
-    });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') dropdown.classList.remove('open');
-    });
-})();
-</script>
-{{- end -}}
+{{- /* =========================================
+     Travellings / 开往（webring）
+     https://www.travellings.cn/go.html
+     ========================================= */ -}}
 
 {{- /* Mobile header */ -}}
 <header class="mobile" id="header-mobile">
@@ -182,14 +158,7 @@
             <a href="javascript:void(0);" class="menu-item theme-switch" title="{{ T "switchTheme" }}">
                 <i class="fas fa-adjust" aria-hidden="true"></i>
             </a>
-            {{- if .Site.Params.friends -}}
-            <div class="menu-item friends-mobile-title">友链 / Friends</div>
-            {{- range .Site.Params.friends -}}
-            <a class="menu-item friends-mobile-item" href="{{ .url }}" target="_blank" rel="noopener noreffer">
-                {{ .name }}
-            </a>
-            {{- end -}}
-            {{- end -}}
+            <a class="menu-item" href="https://www.travellings.cn/go.html" target="_blank" rel="noopener noreffer">🚇 开往 Travellings</a>
             {{- if hugo.IsMultilingual -}}
                 <a href="javascript:void(0);" class="menu-item" title="{{ T "selectLanguage" }}">
                     <i class="fa fa-globe" aria-hidden="true"></i>

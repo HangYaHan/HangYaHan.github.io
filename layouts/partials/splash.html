@@ -1,0 +1,61 @@
+{{- /* ============================================
+     Welcome Splash / 全屏入场覆盖层
+     技术已就位；以下文案/美术均为占位，待定稿后替换。
+     - showEveryLoad: false = 每个浏览器会话只出现一次
+     - 纯 CSS/JS，无依赖；点任意处 / 按钮 / 自动 ~2.6s 淡出
+     - prefers-reduced-motion: 无动画、不自动，点了立刻消失
+     ============================================ */ -}}
+<div id="welcome-splash" class="welcome-splash" aria-hidden="true">
+    <div class="welcome-inner">
+        <!-- 【文案区】主标题 / 副句 / 按钮 -->
+        <div class="welcome-name" id="welcome-name">涵舍</div>
+        <div class="welcome-line" id="welcome-line">年轻的我对现实的恐怖一无所知</div>
+        <!-- 【文案区结束】 -->
+    </div>
+</div>
+<script>
+(function () {
+    var el = document.getElementById('welcome-splash');
+    if (!el) return;
+
+    var showEveryLoad = false;   // true = 每次刷新都播
+    var autoMs = 2600;           // 自动淡出前停留
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!showEveryLoad) {
+        try {
+            if (sessionStorage.getItem('welcome_seen')) { el.remove(); return; }
+        } catch (e) { /* 隐私模式等场景忽略 */ }
+    }
+
+    function dismiss(instant) {
+        if (el.classList.contains('leaving')) return;
+        el.classList.add('leaving');
+        if (instant || reduced) {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.visibility = 'hidden';
+            return;
+        }
+        window.setTimeout(function () {
+            el.style.visibility = 'hidden';
+            el.style.pointerEvents = 'none';
+        }, 480);
+    }
+
+    function done() {
+        try { sessionStorage.setItem('welcome_seen', '1'); } catch (e) {}
+    }
+
+    el.addEventListener('click', function () { dismiss(false); done(); });
+
+    window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === ' ') { dismiss(false); done(); }
+    });
+
+    if (!reduced) {
+        window.setTimeout(function () { dismiss(false); done(); }, autoMs);
+    }
+})();
+</script>

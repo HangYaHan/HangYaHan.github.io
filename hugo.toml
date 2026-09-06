@@ -122,7 +122,7 @@ timezone = "Asia/Shanghai"
       gravatarEmail = ""
       avatarURL = "https://avatars.githubusercontent.com/u/168107882?v=4"
       title = ""
-      subtitle = "年轻的我对现实的恐怖一无所知。<br>Too young too simple, sometimes naive."
+      subtitle = ""
       typeit = true
       social = true
       disclaimer = ""
@@ -136,16 +136,6 @@ timezone = "Asia/Shanghai"
     Email = "18930093438@163.com"
     Bilibili = "19353940"
     RSS = true
-
-  # --- 友链 / Friend links ---
-  [[params.friends]]
-    name = "示例友链一"
-    url = "https://example.com"
-    desc = "替换成你的朋友"
-  [[params.friends]]
-    name = "示例友链二"
-    url = "https://example.org"
-    desc = "再替换一个"
 
   # --- 文章页面 ---
   [params.page.share]
@@ -193,7 +183,7 @@ timezone = "Asia/Shanghai"
           enable = true
           avatarURL = "https://avatars.githubusercontent.com/u/168107882?v=4"
           title = ""
-          subtitle = "年轻的我对现实的恐怖一无所知。<br>Too young too simple, sometimes naive."
+          subtitle = ""
           typeit = true
           social = true
       [languages.zh-cn.params.social]
