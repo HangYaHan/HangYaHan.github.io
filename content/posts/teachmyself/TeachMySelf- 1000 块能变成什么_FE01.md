@@ -1,9 +1,11 @@
-﻿---
+---
 title: "[TeachMySelf] 1000 块能变成什么_FE01"
 date: 2026-07-01
 draft: false
 categories: ["TeachMySelf", "金融工程 FE"]
-tags: ["TeachMySelf"]
+tags: ["金融工程"]
+series: "TeachMySelf"
+subseries: "金融工程 FE"
 ---
 
 # 1000 块能变成什么

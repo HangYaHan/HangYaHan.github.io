@@ -1,9 +1,9 @@
-﻿---
-title: "[风雅涵章] Beruto开发随笔"
+---
+title: "[雅望停云] Beruto开发随笔"
 date: 2025-12-10
 draft: false
-categories: ["风雅涵章"]
-tags: ["风雅涵章"]
+categories: ["雅望停云"]
+tags: ["随笔", "人文思考"]
 ---
 
 > Talk is cheap. Show me the code. -- Linus Torvalds

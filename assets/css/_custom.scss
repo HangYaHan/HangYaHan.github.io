@@ -21,6 +21,7 @@
     --g-surface: #ffffff;
     --g-line-tag: rgba(47, 124, 163, 0.32);
     --g-line-cat: rgba(22, 74, 99, 0.30);
+    --g-line-link: rgba(22, 74, 99, 0.45);
 }
 
 body[theme="dark"] {
@@ -42,6 +43,7 @@ body[theme="dark"] {
     --g-surface: #22303b;
     --g-line-tag: rgba(159, 192, 208, 0.30);
     --g-line-cat: rgba(207, 226, 236, 0.22);
+    --g-line-link: rgba(207, 226, 236, 0.45);
 }
 
 /* ============================================
@@ -1833,6 +1835,182 @@ body[theme="dark"] {
         animation: none;
         opacity: 1;
     }
+}
+
+/* ============================================
+   Archive — 系列文章
+   ============================================ */
+.archive-series {
+    margin: 1.1rem 0 1.5rem;
+}
+
+.archive-series-title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.7rem;
+
+    body[theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.archive-series-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 0.8rem;
+}
+
+.archive-series-item {
+    border: 1px solid var(--ui-card-border);
+    border-radius: 0.75rem;
+    background: var(--ui-surface);
+    box-shadow: var(--ui-card-shadow);
+    padding: 0 0.95rem;
+
+    > summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.6rem;
+        padding: 0.75rem 0;
+        font-weight: 600;
+        color: $global-font-color;
+
+        body[theme="dark"] & { color: $global-font-color-dark; }
+
+        &::-webkit-details-marker { display: none; }
+
+        &::before {
+            content: "\25B8 ";
+            color: $global-font-secondary-color;
+            transition: transform 0.2s;
+
+            body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+        }
+    }
+
+    &[open] > summary::before { transform: rotate(90deg); }
+}
+
+.series-count {
+    font-weight: 400;
+    font-size: 0.76rem;
+    color: $global-font-secondary-color;
+
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.series-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.55rem;
+}
+
+.series-li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.32rem 0;
+    border-top: 1px dashed $global-border-color;
+
+    body[theme="dark"] & { border-top-color: $global-border-color-dark; }
+}
+
+.series-date {
+    flex-shrink: 0;
+    font-size: 0.74rem;
+    color: $global-font-secondary-color;
+    font-variant-numeric: tabular-nums;
+
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.series-link {
+    font-size: 0.86rem;
+    color: $global-font-color;
+    text-decoration: none;
+
+    body[theme="dark"] & { color: $global-font-color-dark; }
+
+    &:hover {
+        color: $single-link-color;
+
+        body[theme="dark"] & { color: $single-link-color-dark; }
+    }
+}
+
+/* --- 子系列 --- */
+.series-sub {
+    margin: 0.15rem 0 0.2rem;
+}
+
+.series-sub-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.4rem 0 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $global-font-secondary-color;
+    border-top: 1px dashed $global-border-color;
+
+    body[theme="dark"] & {
+        color: $global-font-secondary-color-dark;
+        border-top-color: $global-border-color-dark;
+    }
+}
+
+.series-sub-count {
+    font-weight: 400;
+    font-size: 0.72rem;
+}
+
+/* ============================================
+   Archive — 时间归档（半年折叠）
+   ============================================ */
+.archive-periods {
+    padding: 0.1rem 0 0.4rem;
+}
+
+.archive-period > summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.45rem 0;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: $global-font-color;
+
+    body[theme="dark"] & { color: $global-font-color-dark; }
+
+    &::-webkit-details-marker { display: none; }
+
+    &::before {
+        content: "\25B8 ";
+        color: $global-font-secondary-color;
+        transition: transform 0.2s;
+
+        body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+    }
+}
+
+.archive-period[open] > summary::before { transform: rotate(90deg); }
+
+.archive-period-count {
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: $global-font-secondary-color;
+
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+
+.archive-period .archive-ul {
+    padding-left: 1.2rem;
+    margin: 0.1rem 0 0.6rem;
 }
 
 

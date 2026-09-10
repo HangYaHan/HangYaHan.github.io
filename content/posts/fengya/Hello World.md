@@ -1,9 +1,9 @@
-﻿---
-title: "[风雅涵章] Hello World"
+---
+title: "[雅望停云] Hello World"
 date: 2025-07-24
 draft: false
-categories: ["风雅涵章"]
-tags: ["风雅涵章"]
+categories: ["雅望停云"]
+tags: ["随笔"]
 ---
 
 # Test

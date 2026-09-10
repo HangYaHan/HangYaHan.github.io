@@ -1,9 +1,11 @@
-﻿---
+---
 title: "[TeachMySelf] 当利率本身变成交易对象——FRA、互换与期货的三种用法_FE04"
 date: 2026-07-02
 draft: false
 categories: ["TeachMySelf", "金融工程 FE"]
-tags: ["TeachMySelf"]
+tags: ["金融工程"]
+series: "TeachMySelf"
+subseries: "金融工程 FE"
 ---
 
 # 当利率本身变成交易对象——FRA、互换与期货的三种用法

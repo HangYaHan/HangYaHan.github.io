@@ -1,9 +1,9 @@
-﻿---
-title: "[风雅涵章] 福兮祸兮_DiskFailure"
+---
+title: "[雅望停云] 福兮祸兮_DiskFailure"
 date: 2025-09-05
 draft: false
-categories: ["风雅涵章"]
-tags: ["风雅涵章"]
+categories: ["雅望停云"]
+tags: ["随笔", "技术思考", "操作系统"]
 ---
 
 # Timeline of Disk Failure Incident

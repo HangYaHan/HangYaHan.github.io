@@ -1,9 +1,10 @@
-﻿---
+---
 title: "[搬运] Linux入门"
 date: 2025-09-10
 draft: false
 categories: ["搬运"]
-tags: ["搬运"]
+tags: ["搬运"]
+series: "搬运"
 ---
 
 > [!IMPORTANT]

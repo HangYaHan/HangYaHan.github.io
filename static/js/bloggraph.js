@@ -53,7 +53,8 @@
       border: cssVar('--g-border', '#d3dde6'),
       surface: cssVar('--g-surface', '#ffffff'),
       lineTag: cssVar('--g-line-tag', 'rgba(47,124,163,.32)'),
-      lineCat: cssVar('--g-line-cat', 'rgba(161,121,63,.30)')
+      lineCat: cssVar('--g-line-cat', 'rgba(161,121,63,.30)'),
+      linkLine: cssVar('--g-line-link', 'rgba(22,74,99,.45)')
     };
   }
   function norm(s) { return String(s || '').toLowerCase(); }
@@ -115,6 +116,26 @@
     }
     var showCat = mode === 'categories' || mode === 'all';
     var showTag = mode === 'tags' || mode === 'all';
+    var showLink = mode === 'links';
+
+    if (showLink) {
+      var inList = {};
+      list.forEach(function (p) { inList[p.url] = true; });
+      list.forEach(function (p) {
+        (p.links || []).forEach(function (u) {
+          if (!inList[u] || u === p.url) return;
+          var pid = 'p:' + p.url;
+          var qid = 'p:' + u;
+          var q = findPostByUrl(u);
+          nid(pid, p.title, 'post', 20);
+          if (!ids[qid]) nid(qid, q ? q.title : u, 'post', 20);
+          edge(pid, qid, 'link');
+        });
+      });
+      state.nodes = nodes;
+      state.links = links;
+      return list;
+    }
 
     list.forEach(function (p) {
       var pid = 'p:' + p.url;
@@ -144,7 +165,7 @@
 
   function option() {
     var c = colors();
-    var showPostLabels = query !== '' || activeTag !== '' || mode === 'tags';
+    var showPostLabels = query !== '' || activeTag !== '' || mode === 'tags' || mode === 'links';
     return {
       backgroundColor: 'transparent',
       tooltip: {
@@ -191,13 +212,14 @@
           };
         }),
         links: state.links.map(function (l) {
+          var ls = l.kind === 'link'
+            ? { width: 1.8, opacity: 0.5, color: c.linkLine }
+            : (l.kind === 'tag'
+              ? { width: 1, opacity: 0.32, color: c.lineTag }
+              : { width: 1.2, opacity: 0.28, color: c.lineCat });
           return {
             source: l.source, target: l.target,
-            lineStyle: {
-              width: l.kind === 'tag' ? 1 : 1.2,
-              opacity: l.kind === 'tag' ? 0.32 : 0.28,
-              color: l.kind === 'tag' ? c.lineTag : c.lineCat
-            }
+            lineStyle: ls
           };
         }),
         force: { repulsion: 220, edgeLength: [58, 104], gravity: 0.15, friction: 0.3, layoutAnimation: true },
@@ -408,7 +430,11 @@
     var list = buildState();
     if (!state.nodes.length) {
       hideEmpty();
-      showEmpty('没有找到匹配的内容', '试试更短的搜索词，或清除筛选');
+      if (mode === 'links' && !query && !activeTag) {
+        showEmpty('暂时还没有双链关系', '文章里用 /posts/ 互相链接后，它们会在这里连起来');
+      } else {
+        showEmpty('没有找到匹配的内容', '试试更短的搜索词，或清除筛选');
+      }
       chart && chart.clear();
       renderAll(list);
       return;

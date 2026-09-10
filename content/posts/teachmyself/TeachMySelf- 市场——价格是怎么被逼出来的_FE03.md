@@ -1,9 +1,11 @@
-﻿---
+---
 title: "[TeachMySelf] 市场——价格是怎么被逼出来的_FE03"
 date: 2026-07-02
 draft: false
 categories: ["TeachMySelf", "金融工程 FE"]
-tags: ["TeachMySelf"]
+tags: ["金融工程"]
+series: "TeachMySelf"
+subseries: "金融工程 FE"
 ---
 
 # 市场——价格是怎么被逼出来的

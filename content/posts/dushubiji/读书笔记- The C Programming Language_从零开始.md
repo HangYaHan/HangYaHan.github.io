@@ -1,9 +1,10 @@
-﻿---
+---
 title: "[读书笔记] The C Programming Language_从零开始"
 date: 2025-09-06
 draft: false
 categories: ["读书笔记"]
-tags: ["读书笔记"]
+tags: ["技术思考", "编程语言", "读书笔记"]
+series: "读书笔记"
 ---
 
 > 好的书就是你一看就会，不看还真就不会。

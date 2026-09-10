@@ -1,9 +1,11 @@
-﻿---
+---
 title: "[TeachMySelf] 期权——当你有权说不_FE05"
 date: 2026-07-02
 draft: false
 categories: ["TeachMySelf", "金融工程 FE"]
-tags: ["TeachMySelf"]
+tags: ["金融工程"]
+series: "TeachMySelf"
+subseries: "金融工程 FE"
 ---
 
 # 期权——当你有权说不

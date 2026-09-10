@@ -3,7 +3,9 @@ title: "[TeachMySelf] 机器学习计算机基础_MLC"
 date: 2026-08-23
 draft: true
 categories: ["TeachMySelf", "机器学习计算机基础 MLC"]
-tags: ["TeachMySelf"]
+tags: ["TeachMySelf"]
+series: "TeachMySelf"
+subseries: "机器学习计算机基础 MLC"
 ---
 
 # 机器学习计算机基础

@@ -1,9 +1,11 @@
-﻿---
+---
 title: "[TeachMySelf] 借条、债券与期货、远期_FE02"
 date: 2026-07-01
 draft: false
 categories: ["TeachMySelf", "金融工程 FE"]
-tags: ["TeachMySelf"]
+tags: ["金融工程"]
+series: "TeachMySelf"
+subseries: "金融工程 FE"
 ---
 
 # 借条、债券与期货、远期

@@ -1,9 +1,10 @@
-﻿---
+---
 title: "[搬运] Docker初见"
 date: 2025-11-03
 draft: false
 categories: ["搬运"]
-tags: ["搬运"]
+tags: ["搬运"]
+series: "搬运"
 ---
 
 > 吾尝终日而思矣，不如须臾之所学也。

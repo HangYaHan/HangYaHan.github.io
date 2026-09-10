@@ -1,9 +1,10 @@
-﻿---
+---
 title: "[搬运] 入门基础教程Qt5"
 date: 2025-12-29
 draft: false
 categories: ["搬运"]
-tags: ["搬运"]
+tags: ["搬运"]
+series: "搬运"
 ---
 
 > [!IMPORTANT]
