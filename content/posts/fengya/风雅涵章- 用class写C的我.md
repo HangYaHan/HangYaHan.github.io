@@ -1,9 +1,9 @@
-﻿---
-title: "[风雅涵章] 用class写C的我"
+---
+title: "[雅望停云] 用class写C的我"
 date: 2025-08-28
 draft: false
-categories: ["风雅涵章"]
-tags: ["风雅涵章"]
+categories: ["雅望停云"]
+tags: ["随笔", "技术思考", "编程语言"]
 ---
 
 # A Conversation

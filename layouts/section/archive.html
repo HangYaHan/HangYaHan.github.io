@@ -10,6 +10,77 @@
             {{- .Content -}}
         </div>
 
+        {{- /* ============ 系列文章（两级：系列 / 子系列） ============ */ -}}
+        {{- $all := where .Site.RegularPages "Type" "posts" -}}
+        {{- $seriesNames := slice -}}
+        {{- range $all -}}
+            {{- with .Params.series -}}
+                {{- if not (in $seriesNames .) -}}{{- $seriesNames = $seriesNames | append . -}}{{- end -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if $seriesNames -}}
+        <div class="archive-series">
+            <h2 class="archive-series-title">系列 / Series</h2>
+            <div class="archive-series-list">
+            {{- range $seriesNames -}}
+                {{- $name := . -}}
+                {{- $members := sort (where $all "Params.series" $name) "Date" "asc" -}}
+                <details class="archive-series-item">
+                    <summary>
+                        <span class="series-name">{{ $name }}</span>
+                        <span class="series-count">{{ len $members }} 篇</span>
+                    </summary>
+                    {{- $subs := slice -}}
+                    {{- range $members -}}
+                        {{- with .Params.subseries -}}
+                            {{- if not (in $subs .) -}}{{- $subs = $subs | append . -}}{{- end -}}
+                        {{- end -}}
+                    {{- end -}}
+                    {{- if $subs -}}
+                        {{- range $subs -}}
+                            {{- $sub := . -}}
+                            {{- $group := slice -}}
+                            {{- range $members -}}{{- if eq .Params.subseries $sub -}}{{- $group = $group | append . -}}{{- end -}}{{- end -}}
+                            <div class="series-sub">
+                                <div class="series-sub-title">{{ $sub }}<span class="series-sub-count">{{ len $group }} 篇</span></div>
+                                <ul class="series-ul">
+                                {{- range $group -}}
+                                    <li class="series-li">
+                                        <span class="series-date">{{ .Date.Format "2006-01-02" }}</span>
+                                        <a href="{{ .RelPermalink }}" class="series-link">{{ .Title | replaceRE `^\[[^\]]*\]\s*` "" }}</a>
+                                    </li>
+                                {{- end -}}
+                                </ul>
+                            </div>
+                        {{- end -}}
+                        {{- $loose := slice -}}
+                        {{- range $members -}}{{- if not .Params.subseries -}}{{- $loose = $loose | append . -}}{{- end -}}{{- end -}}
+                        {{- if $loose -}}
+                            <ul class="series-ul">
+                            {{- range $loose -}}
+                                <li class="series-li">
+                                    <span class="series-date">{{ .Date.Format "2006-01-02" }}</span>
+                                    <a href="{{ .RelPermalink }}" class="series-link">{{ .Title | replaceRE `^\[[^\]]*\]\s*` "" }}</a>
+                                </li>
+                            {{- end -}}
+                            </ul>
+                        {{- end -}}
+                    {{- else -}}
+                        <ul class="series-ul">
+                        {{- range $members -}}
+                            <li class="series-li">
+                                <span class="series-date">{{ .Date.Format "2006-01-02" }}</span>
+                                <a href="{{ .RelPermalink }}" class="series-link">{{ .Title | replaceRE `^\[[^\]]*\]\s*` "" }}</a>
+                            </li>
+                        {{- end -}}
+                        </ul>
+                    {{- end -}}
+                </details>
+            {{- end -}}
+            </div>
+        </div>
+        {{- end -}}
+
         {{- /* ============ Blog Graph / 图谱 ============ */ -}}
         <div class="archive-graph" id="archive-graph">
             <div class="graph-layout">
@@ -21,6 +92,7 @@
                         </label>
                         <div class="mode-tabs" id="graph-modes" role="tablist" aria-label="图谱关系筛选">
                             <button type="button" class="mode-tab active" data-mode="all">全部</button>
+                            <button type="button" class="mode-tab" data-mode="links">双链</button>
                             <button type="button" class="mode-tab" data-mode="tags">关键词</button>
                             <button type="button" class="mode-tab" data-mode="categories">分类</button>
                         </div>
@@ -59,6 +131,10 @@
 
         <div id="archive-graph-data" hidden>
         {{- $pages := sort (where .Site.RegularPages "Type" "posts") "Date" "desc" -}}
+        {{- $slugMap := dict -}}
+        {{- range $pages -}}
+            {{- $slugMap = merge $slugMap (dict (.File.ContentBaseName | replaceRE `\s+` "-") .RelPermalink) -}}
+        {{- end -}}
         {{- $rows := slice -}}
         {{- range $pages -}}
             {{- $p := . -}}
@@ -68,68 +144,54 @@
             {{- if ge (len $cats) 2 }}{{ $sub = index $cats 1 }}{{ end -}}
             {{- $clean := $p.Title | replaceRE `^\[[^\]]*\]\s*` "" -}}
             {{- $sum := $p.Summary | plainify | htmlUnescape | strings.TrimSpace | strings.Truncate 90 -}}
-            {{- $rows = $rows | append (dict "title" $clean "url" $p.RelPermalink "date" ($p.Date.Format "2006-01-02") "cat" $cat "sub" $sub "tags" ($p.Params.tags | default slice) "sum" $sum) -}}
+            {{- $links := slice -}}
+            {{- $self := $p.File.ContentBaseName | replaceRE `\s+` "-" -}}
+            {{- range findRE `\((/posts/[^)\s]+)\)` $p.RawContent -}}
+                {{- $u := . | strings.TrimPrefix "(" | strings.TrimSuffix ")" -}}
+                {{- $seg := path.Base (strings.TrimSuffix "/" $u) -}}
+                {{- if and (ne $seg $self) (index $slugMap $seg) -}}
+                    {{- $links = $links | append (index $slugMap $seg) -}}
+                {{- end -}}
+            {{- end -}}
+            {{- $rows = $rows | append (dict "title" $clean "url" $p.RelPermalink "date" ($p.Date.Format "2006-01-02") "cat" $cat "sub" $sub "tags" ($p.Params.tags | default slice) "sum" $sum "links" $links) -}}
         {{- end -}}
         <script type="application/json">{{- $rows | jsonify | safeJS -}}</script>
         </div>
 
-        {{- /* ============ 分类折叠树（默认折叠） ============ */ -}}
-        {{- $cats := slice "风雅涵章" "雅望停云" "读书笔记" "搬运" "teachmyself" -}}
-        {{- $labels := dict "风雅涵章" "当下" "雅望停云" "过去" -}}
-        {{- $display := dict "teachmyself" "TeachMySelf" -}}
-        {{- $subcats := slice "金融工程 FE" "计算光谱 SPC" "光谱入门 SPI" "机器学习数学基础 MLM" "机器学习计算机基础 MLC" "机器学习进阶分支 MLA" "摄影前端 PHF" "摄影后端 PHB" "操作系统之上 OSA" "操作系统之下 OSB" -}}
-        <details class="archive-tree" id="archive-tree">
-            <summary>按分类浏览文章</summary>
-            <div class="archive-cats">
-            {{- range $cats -}}
-                {{- $name := . -}}
-                {{- $tax := index $.Site.Taxonomies.categories $name -}}
-                {{- if $tax -}}
-                <details class="archive-cat">
-                    <summary class="archive-cat-title">
-                        <span class="archive-cat-name">{{ index $display $name | default $name }}</span>
-                        {{- with index $labels $name -}}<span class="archive-cat-label">（{{ . }}）</span>{{- end -}}
-                        <span class="archive-cat-count">{{ len $tax }} 篇</span>
+        {{- /* ============ 时间归档（按半年折叠） ============ */ -}}
+        {{- $byTime := sort (where .Site.RegularPages "Type" "posts") "Date" "desc" -}}
+        {{- $periods := slice -}}
+        {{- range $byTime -}}
+            {{- $mon := int (.Date.Format "1") -}}
+            {{- $half := cond (le $mon 6) "上半年" "下半年" -}}
+            {{- $key := printf "%s %s" (.Date.Format "2006") $half -}}
+            {{- if not (in $periods $key) -}}{{- $periods = $periods | append $key -}}{{- end -}}
+        {{- end -}}
+        <details class="archive-tree" id="archive-time">
+            <summary>按时间浏览全部文章</summary>
+            <div class="archive-periods">
+            {{- range $periods -}}
+                {{- $key := . -}}
+                {{- $group := slice -}}
+                {{- range $byTime -}}
+                    {{- $mon := int (.Date.Format "1") -}}
+                    {{- $half := cond (le $mon 6) "上半年" "下半年" -}}
+                    {{- if eq (printf "%s %s" (.Date.Format "2006") $half) $key -}}{{- $group = $group | append . -}}{{- end -}}
+                {{- end -}}
+                <details class="archive-period">
+                    <summary class="archive-period-title">
+                        <span class="archive-period-name">{{ $key }}</span>
+                        <span class="archive-period-count">{{ len $group }} 篇</span>
                     </summary>
-                    {{- if eq $name "teachmyself" -}}
-                    <div class="archive-subs">
-                    {{- range $subcats -}}
-                        {{- $sub := . -}}
-                        {{- $subpages := slice -}}
-                        {{- range sort $tax "Page.Date" "desc" -}}
-                            {{- $page := .Page -}}
-                            {{- if eq (index $page.Params.categories 1) $sub -}}
-                                {{- $subpages = $subpages | append $page -}}
-                            {{- end -}}
-                        {{- end -}}
-                        {{- if $subpages -}}
-                        <div class="archive-sub">
-                            <h4 class="archive-sub-title">{{ $sub }}<span class="archive-sub-count">{{ len $subpages }} 篇</span></h4>
-                            <ul class="archive-ul">
-                            {{- range $subpages -}}
-                                <li class="archive-item">
-                                    <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
-                                    <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
-                                </li>
-                            {{- end -}}
-                            </ul>
-                        </div>
-                        {{- end -}}
-                    {{- end -}}
-                    </div>
-                    {{- else -}}
                     <ul class="archive-ul">
-                    {{- range sort $tax "Page.Date" "desc" -}}
-                        {{- $page := .Page -}}
+                    {{- range $group -}}
                         <li class="archive-item">
-                            <span class="archive-date">{{ $page.Date.Format "2006-01-02" }}</span>
-                            <a href="{{ $page.RelPermalink }}" class="archive-link">{{ $page.Title }}</a>
+                            <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
+                            <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title | replaceRE `^\[[^\]]*\]\s*` "" }}</a>
                         </li>
                     {{- end -}}
                     </ul>
-                    {{- end -}}
                 </details>
-                {{- end -}}
             {{- end -}}
             </div>
         </details>

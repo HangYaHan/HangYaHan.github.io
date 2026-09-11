@@ -1,9 +1,9 @@
-﻿---
-title: "[风雅涵章] BeyondTheHype_我对AI的观察与思考"
+---
+title: "[雅望停云] BeyondTheHype_我对AI的观察与思考"
 date: 2025-12-26
 draft: false
-categories: ["风雅涵章"]
-tags: ["风雅涵章"]
+categories: ["雅望停云"]
+tags: ["随笔", "AI", "技术思考"]
 ---
 
 > 我们准备学习的，是有关计算过程的知识。

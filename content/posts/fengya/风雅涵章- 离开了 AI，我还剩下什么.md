@@ -1,9 +1,9 @@
-﻿---
-title: "[风雅涵章] 离开了 AI，我还剩下什么"
+---
+title: "[雅望停云] 离开了 AI，我还剩下什么"
 date: 2026-04-13
 draft: false
-categories: ["风雅涵章"]
-tags: ["风雅涵章"]
+categories: ["雅望停云"]
+tags: ["随笔", "技术思考", "AI"]
 ---
 
 > “聪明”的努力，最后只值一句 prompt。  
