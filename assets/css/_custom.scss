@@ -2013,4 +2013,238 @@ body[theme="dark"] {
     margin: 0.1rem 0 0.6rem;
 }
 
+/* ============================================
+   Terminal homepage — / （命令行首页）
+   自绘 shell，非 xterm；不做等宽列对齐，中文用正文字体。
+   ============================================ */
+.page.terminal-page {
+    --term-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --term-accent: #{$single-link-color};
+    --term-scan: rgba(0, 0, 0, 0.035);
+    --term-vignette: rgba(28, 40, 51, 0.10);
+
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0.5rem 0 1.5rem;
+
+    body[theme="dark"] & {
+        --term-accent: #{$single-link-color-dark};
+        --term-scan: rgba(255, 255, 255, 0.025);
+        --term-vignette: rgba(0, 0, 0, 0.35);
+    }
+}
+
+.term-window {
+    position: relative;
+    border: 1px solid $global-border-color;
+    border-radius: 10px;
+    background: $global-background-color;
+    box-shadow: var(--ui-card-shadow);
+    overflow: hidden;
+
+    body[theme="dark"] & {
+        border-color: $global-border-color-dark;
+        background: #182430;
+    }
+
+    /* CRT 扫描线 */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+        background: repeating-linear-gradient(to bottom, var(--term-scan) 0 1px, transparent 1px 3px);
+        mix-blend-mode: multiply;
+
+        body[theme="dark"] & { mix-blend-mode: screen; }
+    }
+
+    /* CRT 暗角 */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        pointer-events: none;
+        background: radial-gradient(ellipse 125% 125% at 50% 50%, transparent 58%, var(--term-vignette) 100%);
+    }
+}
+
+.term-screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 68vh;
+    max-height: 82vh;
+}
+
+.term-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.1rem 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: $global-font-color;
+    scrollbar-width: thin;
+
+    body[theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.term-line { word-break: break-word; }
+.term-sp { height: 0.55rem; }
+
+.term-dim  { color: $global-font-secondary-color; body[theme="dark"] & { color: $global-font-secondary-color-dark; } }
+.term-err  { color: #b4534b; body[theme="dark"] & { color: #e08a80; } }
+.term-key  { color: var(--term-accent); font-family: var(--term-mono); }
+.term-cmd  { color: $global-font-color; body[theme="dark"] & { color: $global-font-color-dark; } }
+
+.term-banner {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: $global-font-color;
+    body[theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.term-prompt-inline,
+.term-prompt {
+    font-family: var(--term-mono);
+    color: var(--term-accent);
+    white-space: nowrap;
+}
+
+.term-a {
+    color: var(--term-accent);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    &:hover { border-bottom-color: var(--term-accent); }
+}
+
+.term-date {
+    font-family: var(--term-mono);
+    font-size: 0.8rem;
+    color: $global-font-secondary-color;
+    margin-right: 0.6rem;
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+.term-tag {
+    display: inline-block;
+    font-size: 0.74rem;
+    color: $global-font-secondary-color;
+    margin-right: 0.5rem;
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
+}
+.term-idx {
+    font-family: var(--term-mono);
+    font-size: 0.78rem;
+    color: var(--term-accent);
+    margin-right: 0.35rem;
+    opacity: 0.85;
+}
+
+.term-cmdtbl { display: flex; gap: 0.8rem; }
+.term-cmdtbl-k {
+    flex: 0 0 15rem;
+    font-family: var(--term-mono);
+    font-size: 0.85rem;
+    color: var(--term-accent);
+}
+.term-cmdtbl-v { color: $global-font-secondary-color; body[theme="dark"] & { color: $global-font-secondary-color-dark; } }
+
+.term-chip {
+    display: inline-block;
+    margin: 0.15rem 0.3rem 0.15rem 0;
+    padding: 0.05rem 0.5rem;
+    font-size: 0.78rem;
+    border-radius: 999px;
+    background: var(--ui-pill-bg);
+    color: $global-font-color;
+    body[theme="dark"] & { color: $global-font-color-dark; }
+}
+
+/* 文章渲染 */
+.term-article { margin: 0.4rem 0 0.2rem; }
+.term-h { font-weight: 700; margin: 0.7rem 0 0.25rem; }
+.term-h1 { font-size: 1.18rem; }
+.term-h2 { font-size: 1.06rem; }
+.term-h3, .term-h4, .term-h5, .term-h6 { font-size: 0.96rem; color: $global-font-secondary-color; body[theme="dark"] & { color: $global-font-secondary-color-dark; } }
+.term-p { margin: 0.18rem 0; }
+.term-li { margin: 0.12rem 0 0.12rem 1rem; }
+.term-tr { font-family: var(--term-mono); font-size: 0.82rem; white-space: pre-wrap; }
+.term-quote {
+    margin: 0.3rem 0;
+    padding: 0.2rem 0.8rem;
+    border-left: 3px solid $blockquote-color;
+    color: $global-font-secondary-color;
+    body[theme="dark"] & { border-left-color: $blockquote-color-dark; color: $global-font-secondary-color-dark; }
+}
+.term-hr { height: 1px; margin: 0.7rem 0; background: $global-border-color; body[theme="dark"] & { background: $global-border-color-dark; } }
+.term-ic {
+    font-family: var(--term-mono);
+    font-size: 0.85rem;
+    padding: 0.05rem 0.3rem;
+    border-radius: 4px;
+    background: $code-background-color;
+    body[theme="dark"] & { background: $code-background-color-dark; }
+}
+.term-code {
+    margin: 0.45rem 0;
+    padding: 0.7rem 0.9rem;
+    overflow-x: auto;
+    border-radius: 6px;
+    background: $code-background-color;
+    font-family: var(--term-mono);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    body[theme="dark"] & { background: $code-background-color-dark; }
+}
+
+/* 输入行 */
+.term-inputline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.25rem;
+    border-top: 1px solid $global-border-color;
+    background: var(--ui-surface);
+    body[theme="dark"] & { border-top-color: $global-border-color-dark; }
+}
+.term-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--term-mono);
+    font-size: 0.92rem;
+    color: $global-font-color;
+    caret-color: var(--term-accent);
+    body[theme="dark"] & { color: $global-font-color-dark; }
+}
+
+.term-noscript {
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid $global-border-color;
+    border-radius: 8px;
+    font-size: 0.9rem;
+
+    ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+    body[theme="dark"] & { border-color: $global-border-color-dark; }
+}
+
+@media (max-width: 680px) {
+    .terminal-page { padding: 0.2rem 0 1rem; }
+    .term-screen { min-height: 62vh; max-height: 78vh; }
+    .term-body { padding: 0.9rem; font-size: 0.88rem; }
+    .term-inputline { padding: 0.6rem 0.9rem; }
+    .term-cmdtbl { flex-direction: column; gap: 0.1rem; }
+    .term-cmdtbl-k { flex-basis: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .term-window::before { display: none; }
+}
+
 

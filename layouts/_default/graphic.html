@@ -1,0 +1,178 @@
+{{- define "title" }}图形首页 - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+    <div class="page home home-graphic">
+        <div class="home-layout">
+            {{- /* ========== Left Sidebar: Profile ========== */ -}}
+            <aside class="home-sidebar">
+                {{- $avatar := $profile.avatarURL -}}
+                {{- with $profile.gravatarEmail -}}
+                    {{- $avatar = md5 . | printf "https://www.gravatar.com/avatar/%v?s=240&d=mp" -}}
+                {{- end -}}
+                {{- if $avatar -}}
+                <div class="home-sidebar-avatar">
+                    {{- dict "Src" $avatar | partial "plugin/img.html" -}}
+                </div>
+                {{- end -}}
+
+                <div class="home-sidebar-name">杭雅涵</div>
+
+                {{- with .Site.Title -}}
+                <div class="home-sidebar-author">{{ . }}</div>
+                {{- end -}}
+
+                {{- with $profile.subtitle -}}
+                <div class="home-sidebar-bio">{{ . | safeHTML }}</div>
+                {{- end -}}
+
+                {{- if $profile.social -}}
+                <div class="home-sidebar-links">
+                    {{- $socialMap := resources.Get "data/social.yml" | transform.Unmarshal -}}
+                    {{- $socialArr := slice -}}
+                    {{- range $key, $value := .Site.Params.social -}}
+                        {{- $social := $key | lower | index $socialMap | default dict -}}
+                        {{- with $social.Alias -}}
+                            {{- $social = index $socialMap . | default dict -}}
+                        {{- end -}}
+                        {{- if $value -}}
+                            {{- if reflect.IsMap $value -}}
+                                {{- with $value.id -}}{{- $social = dict "Id" . | merge $social -}}{{- end -}}
+                            {{- else if ne $value true -}}
+                                {{- $social = dict "Id" $value | merge $social -}}
+                            {{- end -}}
+                            {{- if $social.Icon.Simpleicons -}}
+                                {{- $prefix := ($.Scratch.Get "cdn" | default dict).simpleIconsPrefix -}}
+                                {{- $social = dict "Prefix" $prefix | dict "Icon" | merge $social -}}
+                            {{- end -}}
+                            {{- $socialArr = $socialArr | append $social -}}
+                        {{- end -}}
+                    {{- end -}}
+                    {{- range sort $socialArr "Weight" -}}
+                        {{- partial "plugin/social.html" . -}}
+                    {{- end -}}
+                </div>
+                {{- end -}}
+
+                {{- with .Site.Params.home.tags -}}
+                <div class="home-sidebar-tags">
+                    {{- range . -}}
+                    <span class="home-sidebar-tag">{{ . }}</span>
+                    {{- end -}}
+                </div>
+                {{- end -}}
+
+                {{- $postCount := len (where .Site.RegularPages "Type" "posts") -}}
+                {{- $catCount := len .Site.Taxonomies.categories -}}
+                {{- $since := .Site.Params.footer.since | default "2025" -}}
+                <div class="home-sidebar-stats">
+                    <span>{{ $postCount }} posts</span>
+                    <span>{{ $catCount }} categories</span>
+                    <span>Since {{ $since }}</span>
+                </div>
+            </aside>
+
+            {{- /* ========== Right: Main Content ========== */ -}}
+            <div class="home-main">
+
+            {{- /* Daily Pick / 每日一歌一句 */ -}}
+            <div class="home-card daily-pick">
+                <div class="daily-pick-header">
+                    <span class="daily-pick-title">Daily Pick / 每日一歌一句</span>
+                    <button id="dp-refresh" class="dp-refresh" title="重新抽取">↻</button>
+                </div>
+                <div class="daily-pick-quote" id="dp-quote">加载中…</div>
+                <div class="daily-pick-song" id="dp-song">加载中…</div>
+            </div>
+
+            <script>
+            (function () {
+              var quotes = [], songs = [];
+
+              function render(randFn) {
+                if (!quotes.length || !songs.length) return;
+                document.getElementById('dp-quote').textContent = quotes[Math.floor(randFn() * quotes.length)];
+                document.getElementById('dp-song').textContent = songs[Math.floor(randFn() * songs.length)];
+              }
+
+              function dateSeed() {
+                var today = new Date().toISOString().slice(0, 10);
+                var seed = 0;
+                for (var i = 0; i < today.length; i++) seed = (seed * 31 + today.charCodeAt(i)) % 1000003;
+                var x = seed;
+                return function () {
+                  x = (x * 9301 + 49297) % 233280;
+                  return x / 233280;
+                };
+              }
+
+              Promise.all([
+                fetch('/quotes.txt').then(function (r) { return r.text(); }),
+                fetch('/music_list.txt').then(function (r) { return r.text(); })
+              ]).then(function (results) {
+                quotes = results[0].split('\n').filter(function (s) { return s.trim(); });
+                songs = results[1].split('\n').filter(function (s) { return s.trim(); });
+                render(dateSeed());
+              });
+
+              document.getElementById('dp-refresh').addEventListener('click', function () {
+                render(Math.random);
+              });
+            })();
+            </script>
+
+            {{- /* Now / 此刻 */ -}}
+            {{- with .Site.Params.home.now -}}
+            <div class="home-now">
+                <span class="home-now-label">Now / 此刻</span>
+                <span class="home-now-text">{{ . | markdownify }}</span>
+            </div>
+            {{- end -}}
+
+            {{- /* Two-Column: About + Recent */ -}}
+            <div class="home-row">
+                <div class="home-card home-about">
+                    <h2 class="home-card-title">Navigation / 导航</h2>
+                    <div class="home-card-body home-nav-guide">
+                        <p class="home-nav-intro"><a href="/about/">New here? Click me.</a></p>
+                        <ul class="home-nav-list">
+                            <li>关于我，关于本站 — <a href="/about/">About / 关于</a></li>
+                            <li>档案馆，查看所有博客文章 — <a href="/archive/">Archive / 归档</a></li>
+                            <li>我的收藏与喜好 — <a href="/curated/">Curated / 收藏</a></li>
+                            <li>一些小玩具 — <a href="/utility/">Utility / 工具</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="home-right-col">
+                    {{- $recentPosts := first 8 (where .Site.RegularPages "Type" "posts") -}}
+                    {{- if $recentPosts -}}
+                    <div class="home-card home-recent">
+                        <div class="home-card-header">
+                            <h2 class="home-card-title">Recent / 最近更新</h2>
+                            {{- with index $recentPosts 0 -}}
+                            <span class="home-recent-date">Last updated: {{ .Date.Format "2006-01-02" }}</span>
+                            {{- end -}}
+                        </div>
+                        <div class="home-card-body">
+                            <ul class="home-recent-list">
+                                {{- range $recentPosts -}}
+                                <li class="home-recent-item">
+                                    <span class="home-recent-item-date">{{ .Date.Format "2006-01-02" }}</span>
+                                    <a href="{{ .RelPermalink }}" class="home-recent-item-link">{{ .Title }}</a>
+                                </li>
+                                {{- end -}}
+                            </ul>
+                            <a href="/posts/" class="home-recent-more">View all posts / 查看全部 →</a>
+                        </div>
+                    </div>
+                    {{- end -}}
+                </div>
+            </div>
+
+            </div>{{- /* end home-main */ -}}
+        </div>{{- /* end home-layout */ -}}
+    </div>
+{{- end -}}

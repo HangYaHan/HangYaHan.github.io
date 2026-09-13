@@ -193,6 +193,22 @@ timezone = "Asia/Shanghai"
         RSS = true
 
 # ============================================
+#  Output formats
+#  - home JSON  → LoveIt Fuse 搜索索引（/index.json），不配则搜索失效
+#  - page MarkDown → 终端 `cat` 读取的纯文本原文（/posts/…/index.md）
+# ============================================
+[outputFormats.MarkDown]
+  mediaType = "text/markdown"
+  isPlainText = true
+  isHTML = false
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "MarkDown"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+
+# ============================================
 #  Markup — 允许 raw HTML（工具页内嵌 HTML/JS）
 # ============================================
 [markup]
