@@ -30,12 +30,18 @@
 - [ ] `about/index.md` —— 已写主体，可继续打磨（第 55 行"我想"悬空碎片；开头 Deepseek 鼓励段是 AI 套话，建议删短）
 - [ ] `curated` 空栏目：Books / Bloggers / Websites / Courses 逐栏补料（需作者给清单）
 - [ ] `curated` 已有栏目回扫：音乐 / 足迹 / 语林 / 影视 / 胶库 的更新与勘误（如影片英文名、模型 ·待补·）
+- [ ] **Skill / Agent 打包上传 Utility**：先对 skill / agent 稍作修改整理，再打包发布到 Utility 页
 
 ## 首页重构
 
 - [x] 开往（Travellings）webring 加入：顶栏 🚇 + 移动端入口已挂 go.html（原友链下拉与占位数据已删）
 - [ ] 网站建成后提交 Issue，加入开往组织（Travellings 申请收录，GitHub 需人工操作）——站内入口已就位，收录后再勾
 - [ ] 欢迎页面（splash / 欢迎横幅）—— 技术已就位（`layouts/partials/splash.html`，全屏覆盖/点击·自动淡出/每会话一次），待定**文案与美术**
+
+## 终端系统
+
+- [ ] **终端文件系统**：把各类内容组织成 `ls` 下的文件系统（目录/文件），并据此把其他内容也合理归置进去
+- [ ] **终端功能扩展**：持续为终端添加更多有意义的功能
 
 ## Archive 图谱迭代
 
