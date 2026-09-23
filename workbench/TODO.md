@@ -32,6 +32,7 @@
 - [ ] `curated` 空栏目：Books / Bloggers / Websites / Courses 逐栏补料（需作者给清单）
 - [ ] `curated` 已有栏目回扫：音乐 / 足迹 / 语林 / 影视 / 胶库 的更新与勘误（如影片英文名、模型 ·待补·）
 - [ ] **Skill / Agent 打包上传 Utility**：先对 skill / agent 稍作修改整理，再打包发布到 Utility 页
+- [ ] 不要再按半年分了
 
 ## 首页重构
 
