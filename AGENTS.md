@@ -14,11 +14,9 @@
 | `content/posts/yawang/` | 雅望停云 | |
 | `content/posts/dushubiji/` | 读书笔记 | |
 | `content/posts/banyun/` | 搬运 | |
-| `content/posts/teachmyself/` | TeachMySelf | 2nd `categories` item = subcategory |
 | `content/posts/youyi/` | 游艺 | |
 
 - **`风雅涵章` was merged into `雅望停云`** (2026-09). Titles now read `[雅望停云] …`. Old category URL `/categories/风雅涵章/` is gone.
-- `teachmyself/` posts carry a subcategory as the second `categories` item (e.g. `["TeachMySelf", "金融工程 FE"]`). Many of these are `draft: true`.
 
 ## Front matter (YAML)
 
@@ -37,7 +35,7 @@ subseries: "年度投资复盘"        # optional; requires series
 - `title` carries the category prefix in brackets, matching the category.
 - `date`: `YYYY-MM-DD`.
 - `draft: true` hides the post.
-- `series` / `subseries` drive the Archive series area. Current series: `年度记录`(→ 年度总结 / 年度投资复盘), `TeachMySelf`(→ course subseries), `读书笔记`, `搬运`, `东湖往事`, `别后`.
+- `series` / `subseries` drive the Archive series area. Current series: `年度记录`(→ 年度总结 / 年度投资复盘), `读书笔记`, `搬运`, `东湖往事`, `别后`.
 - Tag vocabulary + plan live in `workbench/tags-plan.md` and `workbench/tags-review.md`.
 
 ## Key templates & assets (project overrides)

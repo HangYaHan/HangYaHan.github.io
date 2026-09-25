@@ -33,11 +33,9 @@ https://HangYaHan.github.io
 | `yawang` | 雅望停云 |
 | `banyun` | 搬运 |
 | `dushubiji` | 读书笔记 |
-| `teachmyself` | TeachMySelf |
 | `youyi` | 游艺 |
 
 - `风雅涵章` 已并入 `雅望停云`（2026-09）。
-- `teachmyself` 下第二项 `categories` 为子分类（金融工程、光谱、机器学习、摄影、操作系统等）。
 
 ## 写文章
 

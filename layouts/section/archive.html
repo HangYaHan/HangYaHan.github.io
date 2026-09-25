@@ -158,42 +158,18 @@
         <script type="application/json">{{- $rows | jsonify | safeJS -}}</script>
         </div>
 
-        {{- /* ============ 时间归档（按半年折叠） ============ */ -}}
+        {{- /* ============ 时间归档（全部文章，按时间倒序） ============ */ -}}
         {{- $byTime := sort (where .Site.RegularPages "Type" "posts") "Date" "desc" -}}
-        {{- $periods := slice -}}
-        {{- range $byTime -}}
-            {{- $mon := int (.Date.Format "1") -}}
-            {{- $half := cond (le $mon 6) "上半年" "下半年" -}}
-            {{- $key := printf "%s %s" (.Date.Format "2006") $half -}}
-            {{- if not (in $periods $key) -}}{{- $periods = $periods | append $key -}}{{- end -}}
-        {{- end -}}
         <details class="archive-tree" id="archive-time">
             <summary>按时间浏览全部文章</summary>
-            <div class="archive-periods">
-            {{- range $periods -}}
-                {{- $key := . -}}
-                {{- $group := slice -}}
-                {{- range $byTime -}}
-                    {{- $mon := int (.Date.Format "1") -}}
-                    {{- $half := cond (le $mon 6) "上半年" "下半年" -}}
-                    {{- if eq (printf "%s %s" (.Date.Format "2006") $half) $key -}}{{- $group = $group | append . -}}{{- end -}}
-                {{- end -}}
-                <details class="archive-period">
-                    <summary class="archive-period-title">
-                        <span class="archive-period-name">{{ $key }}</span>
-                        <span class="archive-period-count">{{ len $group }} 篇</span>
-                    </summary>
-                    <ul class="archive-ul">
-                    {{- range $group -}}
-                        <li class="archive-item">
-                            <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
-                            <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title | replaceRE `^\[[^\]]*\]\s*` "" }}</a>
-                        </li>
-                    {{- end -}}
-                    </ul>
-                </details>
+            <ul class="archive-ul">
+            {{- range $byTime -}}
+                <li class="archive-item">
+                    <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
+                    <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title | replaceRE `^\[[^\]]*\]\s*` "" }}</a>
+                </li>
             {{- end -}}
-            </div>
+            </ul>
         </details>
 
         {{- /* echarts 与图谱逻辑，defer 保证顺序执行 */ -}}

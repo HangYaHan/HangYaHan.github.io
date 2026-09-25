@@ -885,7 +885,7 @@ body[theme="dark"] {
     margin: 0.2rem 0 0.8rem;
 }
 
-/* --- Archive 子类分组（TeachMySelf） --- */
+/* --- Archive 子类分组 --- */
 .archive-subs {
     padding-left: 1.4rem;
 }
@@ -1864,6 +1864,7 @@ body[theme="dark"] {
 .archive-series-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    align-items: start;
     gap: 0.8rem;
 }
 
