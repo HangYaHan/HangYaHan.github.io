@@ -49,24 +49,10 @@
   }
 
   /* ---------- post lookup ---------- */
-  function slugOf(url) {
-    var parts = String(url || '').replace(/\/+$/, '').split('/');
-    return parts[parts.length - 1] || '';
-  }
   function resolve(token) {
-    if (!token) return null;
-    if (/^\d+$/.test(token)) {
-      var i = parseInt(token, 10);
-      return posts[i - 1] || null;
-    }
-    var t = String(token).toLowerCase();
-    for (var i = 0; i < posts.length; i++) {
-      if (slugOf(posts[i].url).toLowerCase() === t) return posts[i];
-    }
-    for (var j = 0; j < posts.length; j++) {
-      if (posts[j].title.toLowerCase().indexOf(t) >= 0) return posts[j];
-    }
-    return null;
+    if (!token || !/^\d+$/.test(String(token))) return null;
+    var i = parseInt(token, 10);
+    return posts[i - 1] || null;
   }
   function link(p) {
     return '<a class="term-a" href="' + esc(p.url) + '">' + esc(p.title) + '</a>';
@@ -109,13 +95,12 @@
   /* ---------- commands ---------- */
   function cmdHelp() {
     var rows = [
-      ['ls [category]', 'list posts; -t for the 10 most recent'],
-      ['cat <n|slug>', 'read a post in the terminal'],
-      ['find <keyword>', 'search title / summary / tags (alias: grep)'],
-      ['categories / tags', 'list categories / tags'],
-      ['about / archive / curated / utility', 'open the page'],
-      ['whoami / pwd / date / echo / history', 'small utilities'],
-      ['banner / clear / help', 'banner / clear / this help']
+      ['ls [category] [@tag] [-t [n]] [-r]', 'list posts; -t recent n, -r reverse'],
+      ['cat <n>', 'read a post by its [n] index'],
+      ['tags [-n <k>] [-a]', 'list tags + counts; -n top k, -a A-Z'],
+      ['server', 'site / client / runtime info'],
+      ['banner / clear / echo <text>', 'banner / clear / print text'],
+      ['help', 'this help']
     ];
     raw('Available commands:', 'term-dim');
     for (var i = 0; i < rows.length; i++) {
@@ -123,12 +108,17 @@
     }
   }
 
-  function catFilter(token) {
-    if (!token) return posts.slice();
-    var t = String(token).toLowerCase();
-    return posts.filter(function (p) {
-      return (p.cat || '').toLowerCase() === t || (p.sub || '').toLowerCase() === t ||
-             (p.series || '').toLowerCase() === t || (p.subseries || '').toLowerCase() === t;
+  function catFilter(p, cats) {
+    return cats.every(function (c) {
+      return (p.cat || '').toLowerCase() === c ||
+             (p.sub || '').toLowerCase() === c ||
+             (p.series || '').toLowerCase() === c ||
+             (p.subseries || '').toLowerCase() === c;
+    });
+  }
+  function tagFilter(p, tags) {
+    return tags.every(function (t) {
+      return (p.tags || []).some(function (x) { return String(x).toLowerCase() === t; });
     });
   }
   function listPosts(arr) {
@@ -141,16 +131,32 @@
           '<span class="term-tag">' + esc(tag) + '</span>' +
           '<span class="term-idx">[' + n + ']</span> ' + link(p));
     }
-    raw('<span class="term-dim">' + arr.length + ' post(s) · open with cat/open &lt;n&gt;</span>');
+    raw('<span class="term-dim">' + arr.length + ' post(s) · open with cat &lt;n&gt;</span>');
   }
   function cmdLs(args) {
-    if (args[0] === '-t') { listPosts(posts.slice(0, 10)); return; }
-    listPosts(catFilter(args[0]));
+    var cats = [], tags = [], recent = -1, reverse = false;
+    for (var i = 0; i < args.length; i++) {
+      var a = args[i];
+      if (a === '-r') { reverse = true; }
+      else if (a === '-t') {
+        var n = parseInt(args[i + 1], 10);
+        if (!isNaN(n)) { recent = n; i++; } else { recent = 10; }
+      }
+      else if (a.charAt(0) === '@') { tags.push(a.slice(1).toLowerCase()); }
+      else if (a.charAt(0) === '-') { plain('ls: unknown option: ' + a, 'term-err'); return; }
+      else { cats.push(a.toLowerCase()); }
+    }
+    var arr = posts.filter(function (p) { return catFilter(p, cats) && tagFilter(p, tags); });
+    if (recent >= 0) arr = arr.slice(0, recent);
+    if (reverse) arr = arr.slice().reverse();
+    listPosts(arr);
   }
 
   function cmdCat(args) {
-    var p = resolve(args[0]);
-    if (!p) { plain('cat: no such post: ' + (args[0] || ''), 'term-err'); return; }
+    var token = args[0];
+    if (!/^\d+$/.test(token || '')) { plain('cat: usage cat <n>', 'term-err'); return; }
+    var p = resolve(token);
+    if (!p) { plain('cat: no such post: ' + token, 'term-err'); return; }
     plain('### ' + p.title + '  (' + p.date + ')', 'term-dim');
     var target = p.md || (p.url + 'index.md');
     raw('<span class="term-dim">reading ' + esc(target) + ' …</span>');
@@ -166,16 +172,6 @@
     });
   }
 
-  function cmdFind(args) {
-    var q = args.join(' ').toLowerCase();
-    if (!q) { plain('find: usage find <keyword>', 'term-err'); return; }
-    var hits = posts.filter(function (p) {
-      return [p.title, p.summary, p.cat, p.sub, p.series, p.subseries].concat(p.tags || [])
-        .join(' ').toLowerCase().indexOf(q) >= 0;
-    });
-    listPosts(hits);
-  }
-
   function uniqCount(arr) {
     var m = {};
     for (var i = 0; i < arr.length; i++) {
@@ -186,18 +182,78 @@
     return Object.keys(m).map(function (k) { return { name: k, n: m[k] }; })
       .sort(function (a, b) { return b.n - a.n; });
   }
-  function cmdCategories() {
-    var c = uniqCount(posts.map(function (p) { return p.cat; }));
-    for (var i = 0; i < c.length; i++) {
-      raw('<span class="term-idx">' + esc(String(c[i].n)) + ' posts</span> <span class="term-cmdtbl-k">' + esc(c[i].name) + '</span>');
+  function cmdTags(args) {
+    var alpha = false, top = 0;
+    for (var i = 0; i < args.length; i++) {
+      var a = args[i];
+      if (a === '-a') { alpha = true; }
+      else if (a === '-n') {
+        var n = parseInt(args[i + 1], 10);
+        if (!isNaN(n)) { top = n; i++; }
+        else { plain('tags: -n needs a number', 'term-err'); return; }
+      }
+      else { plain('tags: unknown option: ' + a, 'term-err'); return; }
+    }
+    var all = [];
+    for (var j = 0; j < posts.length; j++) all = all.concat(posts[j].tags || []);
+    var c = uniqCount(all);
+    if (alpha) c.sort(function (a, b) { return a.name.localeCompare(b.name, 'zh-Hans-CN'); });
+    if (top > 0) c = c.slice(0, top);
+    raw('Tags' + (alpha ? ' (A-Z)' : ' (by count)') + ':', 'term-dim');
+    raw(c.map(function (t) { return '<span class="term-chip">' + esc(t.name) + ' <span class="term-dim">' + t.n + '</span></span>'; }).join(''));
+  }
+
+  function serverRows(title, rows) {
+    raw('<span class="term-cmdtbl-k">' + esc(title) + '</span>', 'term-cmdtbl');
+    for (var i = 0; i < rows.length; i++) {
+      raw('<span class="term-dim">' + esc(rows[i][0]) + '</span>  ' + esc(rows[i][1]));
     }
   }
-  function cmdTags() {
-    var all = [];
-    for (var i = 0; i < posts.length; i++) all = all.concat(posts[i].tags || []);
-    var c = uniqCount(all);
-    raw('Top tags:', 'term-dim');
-    raw(c.map(function (t) { return '<span class="term-chip">' + esc(t.name) + ' <span class="term-dim">' + t.n + '</span></span>'; }).join(''));
+  function cmdServer() {
+    serverRows('host', [
+      ['addr', window.location.host],
+      ['proto', window.location.protocol.replace(':', '')],
+      ['path', window.location.pathname]
+    ]);
+
+    var build = [];
+    build.push((meta.title || '') + ' · ' + (meta.postCount || posts.length) + ' posts · ' + (meta.catCount || 0) + ' categories');
+    if (meta.hugo) build.push('Hugo ' + meta.hugo + (meta.build ? ' · built ' + meta.build : ''));
+    if (meta.since) build.push('since ' + meta.since);
+    serverRows('build', [['site', build.join(' · ')]]);
+
+    var ua = navigator.userAgent || '';
+    var os = /Windows/i.test(ua) ? 'Windows' : /Mac OS X/i.test(ua) ? 'macOS'
+           : /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iOS'
+           : /Linux/i.test(ua) ? 'Linux' : 'unknown';
+    var br = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome'
+           : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'unknown';
+    var conn = navigator.connection || {};
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { tz = ''; }
+    var net = (navigator.onLine ? 'online' : 'offline');
+    if (conn.effectiveType) net += ' · ' + conn.effectiveType;
+    if (conn.downlink) net += ' · ~' + conn.downlink + ' Mb/s';
+    serverRows('client', [
+      ['ua', br + ' on ' + os],
+      ['locale', navigator.language + (tz ? ' · ' + tz : '')],
+      ['screen', screen.width + 'x' + screen.height + ' · viewport ' + window.innerWidth + 'x' + window.innerHeight + ' · dpr ' + (window.devicePixelRatio || 1)],
+      ['net', net],
+      ['cpu', (navigator.hardwareConcurrency || 'n/a') + ' cores · ' + (navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'n/a')]
+    ]);
+
+    var perf = [];
+    try {
+      var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      if (nav) {
+        perf.push('TTFB ' + Math.round(nav.responseStart) + 'ms');
+        perf.push('DOMContentLoaded ' + Math.round(nav.domContentLoadedEventEnd) + 'ms');
+        perf.push('load ' + Math.round(nav.loadEventEnd || nav.duration) + 'ms');
+      }
+    } catch (e) { /* ignore */ }
+    serverRows('perf', [[perf.length ? perf.join(' · ') : 'n/a']]);
+
+    raw('<span class="term-dim">static hosting (GitHub Pages) — no backend server attached.</span>');
   }
 
   function banner() {
@@ -218,26 +274,11 @@
     help: cmdHelp,
     ls: cmdLs,
     cat: cmdCat,
-    find: cmdFind,
-    grep: cmdFind,
-    categories: cmdCategories,
-    cats: cmdCategories,
     tags: cmdTags,
-    about: function () { window.location.href = '/about/'; },
-    archive: function () { window.location.href = '/archive/'; },
-    curated: function () { window.location.href = '/curated/'; },
-    utility: function () { window.location.href = '/utility/'; },
-    posts: function () { window.location.href = '/posts/'; },
-    whoami: function () { plain('visitor — just someone passing by.'); plain('Hanshe terminal — a personal space.'); },
-    pwd: function () { plain('/'); },
-    date: function () { plain(new Date().toString()); },
-    echo: function (args) { plain(args.join(' ')); },
-    history: function () {
-      for (var i = 0; i < history.length; i++) raw('<span class="term-idx">' + (i + 1) + '</span> ' + esc(history[i]));
-    },
+    server: cmdServer,
     banner: banner,
     clear: function () { body.innerHTML = ''; },
-    exit: function () { plain('There is no exit here.', 'term-dim'); }
+    echo: function (args) { plain(args.join(' ')); }
   };
 
   /* ---------- input loop ---------- */

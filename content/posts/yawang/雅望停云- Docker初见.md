@@ -3,7 +3,7 @@ title: "[雅望停云] Docker初见"
 date: 2025-11-03
 draft: false
 categories: ["雅望停云"]
-tags: ["Docker", "容器", "技术思考", "随笔"]
+tags: ["技术思考", "随笔"]
 ---
 
 > 吾尝终日而思矣，不如须臾之所学也。

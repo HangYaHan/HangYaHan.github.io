@@ -4,7 +4,7 @@
     {{- $profile := .Site.Params.home.profile -}}
     {{- $social := .Site.Params.social -}}
 
-    {{- /* ===== 文章索引：供终端 ls / find / cat 使用 ===== */ -}}
+    {{- /* ===== 文章索引：供终端 ls / cat / tags / server 使用 ===== */ -}}
     {{- $pages := sort (where .Site.RegularPages "Type" "posts") "Date" "desc" -}}
     {{- $index := slice -}}
     {{- range $pages -}}
@@ -40,6 +40,8 @@
         "since" (.Site.Params.footer.since | default "2025")
         "postCount" (len $pages)
         "catCount" (len .Site.Taxonomies.categories)
+        "hugo" hugo.Version
+        "build" (now.Format "2006-01-02 15:04")
         "menu" $menu
     -}}
 

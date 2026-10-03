@@ -3,7 +3,7 @@ title: "[读书笔记] The C Programming Language_从零开始"
 date: 2025-09-06
 draft: false
 categories: ["读书笔记"]
-tags: ["技术思考", "编程语言", "读书笔记"]
+tags: ["技术思考", "读书笔记"]
 series: "读书笔记"
 ---
 
