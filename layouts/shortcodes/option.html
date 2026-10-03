@@ -1,11 +1,11 @@
 <style>
 .tool-root {
-  --tool-bg: #f5f6f8;
+  --tool-bg: #efefef;
   --tool-card-bg: #ffffff;
-  --tool-text: #1a1d24;
-  --tool-muted: #6b7280;
-  --tool-border: #e5e7eb;
-  --tool-primary: #2563eb;
+  --tool-text: #111111;
+  --tool-muted: #555555;
+  --tool-border: #d6d6d6;
+  --tool-primary: #111111;
   --tool-gain: #dc2626;
   --tool-loss: #059669;
   color: var(--tool-text);
@@ -540,8 +540,8 @@
         {
           label: '到期盈亏',
           data: pts.map((p) => p.p),
-          borderColor: '#2563eb',
-          backgroundColor: 'rgba(37, 99, 235, 0.08)',
+          borderColor: '#111111',
+          backgroundColor: 'rgba(17, 17, 17, 0.08)',
           fill: false,
           tension: 0,
           pointRadius: 0,
@@ -550,7 +550,7 @@
         {
           label: '0 盈亏线',
           data: pts.map(() => 0),
-          borderColor: '#9ca3af',
+          borderColor: '#8a8a8a',
           borderWidth: 1,
           borderDash: [4, 4],
           pointRadius: 0,

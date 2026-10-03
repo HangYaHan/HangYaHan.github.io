@@ -146,10 +146,10 @@ draft: false
   }
   buildRecord('lang-chart', 'lang-legend', [
     { name: '华语', value: 55 }, { name: '英语', value: 32 }, { name: '粤语', value: 8 }, { name: '日语', value: 4 }, { name: '其他', value: 1 }
-  ], ['#f6a6b2', '#8fc4e2', '#f6d365', '#a8d8a8', '#c9c9c9']);
+  ], ['#111111', '#555555', '#8a8a8a', '#b5b5b5', '#dcdcdc']);
   buildRecord('genre-chart', 'genre-legend', [
     { name: '情歌', value: 40 }, { name: '流行', value: 25 }, { name: '电子', value: 18 }, { name: '摇滚', value: 6 }, { name: '民谣', value: 4 }, { name: '原声', value: 4 }, { name: 'Hip-Hop', value: 1 }, { name: '其他', value: 2 }
-  ], ['#f6a6b2', '#8fc4e2', '#b39ddb', '#f08585', '#a8d8a8', '#f6d365', '#80cbc4', '#c9c9c9']);
+  ], ['#111111', '#3d3d3d', '#666666', '#8a8a8a', '#a8a8a8', '#c2c2c2', '#d8d8d8', '#ebebeb']);
   var sec = document.getElementById('music-sec');
   if (sec) sec.addEventListener('toggle', function () { if (sec.open) charts.forEach(function (c) { c.resize(); }); });
 })();
@@ -215,23 +215,23 @@ draft: false
 <div id="footprint-map" style="width:100%;height:520px;"></div>
 
 <div class="footprint-legend" style="display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;margin-top:.8rem;font-size:.85rem;">
-  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#b8c0c6;margin-right:.35rem;"></span>路过</span>
-  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#8fc4e2;margin-right:.35rem;"></span>短期旅行</span>
-  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#2f7ca3;margin-right:.35rem;"></span>中期旅行</span>
-  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#1c3d5c;margin-right:.35rem;"></span>长期旅行</span>
-  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#d99a2b;margin-right:.35rem;"></span>出差</span>
-  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#c8402a;margin-right:.35rem;"></span>定居</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#d9d9d9;margin-right:.35rem;"></span>路过</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#b3b3b3;margin-right:.35rem;"></span>短期旅行</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#808080;margin-right:.35rem;"></span>中期旅行</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#4d4d4d;margin-right:.35rem;"></span>长期旅行</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#999999;margin-right:.35rem;"></span>出差</span>
+  <span><span style="display:inline-block;width:.8em;height:.8em;border-radius:.15rem;background:#111111;margin-right:.35rem;"></span>定居</span>
 </div>
 
 <script>
 (function () {
   var LEVELS = {
-    '路过': '#b8c0c6',
-    '短期旅行': '#8fc4e2',
-    '中期旅行': '#2f7ca3',
-    '长期旅行': '#1c3d5c',
-    '出差': '#d99a2b',
-    '定居': '#c8402a'
+    '路过': '#d9d9d9',
+    '短期旅行': '#b3b3b3',
+    '中期旅行': '#808080',
+    '长期旅行': '#4d4d4d',
+    '出差': '#999999',
+    '定居': '#111111'
   };
   Promise.all([
     fetch('/china-cities.json').then(function (r) { return r.json(); }),
@@ -288,8 +288,8 @@ draft: false
       series: [{
         type: 'map', map: 'cn-cities', roam: true,
         label: { show: false },
-        emphasis: { label: { show: true }, itemStyle: { areaColor: '#15506f' } },
-        itemStyle: { areaColor: '#e8eef3', borderColor: '#c3d3dd', borderWidth: 0.6 },
+        emphasis: { label: { show: true }, itemStyle: { areaColor: '#333333' } },
+        itemStyle: { areaColor: '#f0f0f0', borderColor: '#d0d0d0', borderWidth: 0.6 },
         data: seriesData
       }]
     });

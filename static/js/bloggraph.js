@@ -45,16 +45,16 @@
   }
   function colors() {
     return {
-      post: cssVar('--g-node-post', '#2c3a46'),
-      tag: cssVar('--g-node-tag', '#2f7ca3'),
-      cat: cssVar('--g-node-cat', '#a1793f'),
-      text: cssVar('--g-text', '#2c3a46'),
-      muted: cssVar('--g-text-muted', '#8a9aa6'),
-      border: cssVar('--g-border', '#d3dde6'),
+      post: cssVar('--g-node-post', '#7a7a7a'),
+      tag: cssVar('--g-node-tag', '#333333'),
+      cat: cssVar('--g-node-cat', '#111111'),
+      text: cssVar('--g-text', '#111111'),
+      muted: cssVar('--g-text-muted', '#555555'),
+      border: cssVar('--g-border', '#d6d6d6'),
       surface: cssVar('--g-surface', '#ffffff'),
-      lineTag: cssVar('--g-line-tag', 'rgba(47,124,163,.32)'),
-      lineCat: cssVar('--g-line-cat', 'rgba(161,121,63,.30)'),
-      linkLine: cssVar('--g-line-link', 'rgba(22,74,99,.45)')
+      lineTag: cssVar('--g-line-tag', 'rgba(0,0,0,.25)'),
+      lineCat: cssVar('--g-line-cat', 'rgba(0,0,0,.35)'),
+      linkLine: cssVar('--g-line-link', 'rgba(0,0,0,.45)')
     };
   }
   function norm(s) { return String(s || '').toLowerCase(); }

@@ -1,72 +1,73 @@
 // ==============================
 // Override Variables
-// 覆盖变量 — 浅蓝主题（天青 / 月白 / 黛蓝）
+// 覆盖变量 — 中性黑白灰（无彩色倾向）
 // 注意：这里用普通赋值覆盖 _variables.scss 里的 !default 值，不要加 !default。
+// 色板规范见 workbench/design-language.md
 // ==============================
 
 // ========== Global ========== //
-// 背景：月白（淡青白）；暗色：黛蓝
-$global-background-color: #f5f8fa;
-$global-background-color-dark: #1c2833;
+// 页面底：中浅灰；暗色：近黑
+$global-background-color: #f1f1f1;
+$global-background-color-dark: #0e0e0e;
 
-// 正文文字：墨蓝；暗色：淡蓝灰
-$global-font-color: #2c3a46;
-$global-font-color-dark: #aebcc6;
+// 正文：近黑；暗色：近白
+$global-font-color: #111111;
+$global-font-color-dark: #e8e8e8;
 
-// 次要文字：灰蓝
-$global-font-secondary-color: #8a9aa6;
-$global-font-secondary-color-dark: #6b7a86;
+// 次要文字：深中灰；暗色：浅灰
+$global-font-secondary-color: #555555;
+$global-font-secondary-color-dark: #a8a8a8;
 
 // 链接：随正文
-$global-link-color: #2c3a46;
-$global-link-color-dark: #aebcc6;
+$global-link-color: #111111;
+$global-link-color-dark: #f0f0f0;
 
-// 链接悬停：天青（深一档）
-$global-link-hover-color: #2f7ca3;
-$global-link-hover-color-dark: #8fa7b8;
+// 链接悬停：深灰 / 灰白
+$global-link-hover-color: #444444;
+$global-link-hover-color-dark: #cfcfcf;
 
-// 边框：淡蓝灰（深一档）
-$global-border-color: #d3dde6;
-$global-border-color-dark: #3a4d58;
+// 边框：中灰
+$global-border-color: #d6d6d6;
+$global-border-color-dark: #2f2f2f;
 // ========== Global ========== //
 
 // ========== Selection ========== //
-$selection-color: rgba(47, 124, 163, 0.28);
-$selection-color-dark: rgba(125, 155, 172, 0.38);
+$selection-color: rgba(0, 0, 0, 0.18);
+$selection-color-dark: rgba(255, 255, 255, 0.18);
 // ========== Selection ========== //
 
 // ========== Header ========== //
-// 顶栏背景：淡青（深一档）
-$header-background-color: #e8f0f5;
-$header-background-color-dark: #182430;
+// 顶栏背景：浅灰
+$header-background-color: #e9e9e9;
+$header-background-color-dark: #141414;
 
-$header-hover-color: #2c3a46;
-$header-hover-color-dark: #aebcc6;
+$header-hover-color: #111111;
+$header-hover-color-dark: #e8e8e8;
 
-$search-background-color: #dce7ef;
-$search-background-color-dark: #2a3a46;
+$search-background-color: #dedede;
+$search-background-color-dark: #222222;
 // ========== Header ========== //
 
 // ========== Single Content ========== //
-// 文章内链接：天青（深一档）// 暗色去饱和压暗 → 雾蓝灰，参考小Q dark 的灰蓝系
-$single-link-color: #2f7ca3;
-$single-link-color-dark: #9db4c4;
+// 文章内链接：与正文同色，靠下划线区分（规则见 _custom.scss）
+$single-link-color: #111111;
+$single-link-color-dark: #f0f0f0;
 
-$single-link-hover-color: #15506f;
-$single-link-hover-color-dark: #b7cbd9;
+$single-link-hover-color: #444444;
+$single-link-hover-color-dark: #cfcfcf;
 
-$table-background-color: #fbfdfe;
-$table-background-color-dark: #21303b;
+$table-background-color: #ffffff;
+$table-background-color-dark: #191919;
 
-$table-thead-color: #dfe9f0;
-$table-thead-color-dark: #1a2731;
+$table-thead-color: #ededed;
+$table-thead-color-dark: #202020;
 
-// 引用（blockquote）：淡青蓝（深一档）
-$blockquote-color: #4a92b5;
-$blockquote-color-dark: #7897ab;
+// 引用（blockquote）
+$blockquote-color: #444444;
+$blockquote-color-dark: #b0b0b0;
 // ========== Single Content ========== //
 
 // ========== Code ========== //
-$code-background-color: #eef2f5;
-$code-background-color-dark: #24323d;
+$code-background-color: #ededed;
+$code-background-color-dark: #202020;
 // ========== Code ========== //

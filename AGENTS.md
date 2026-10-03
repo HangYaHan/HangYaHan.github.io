@@ -10,13 +10,12 @@
 
 | Directory | front-matter category | Notes |
 |-----------|----------------------|-------|
-| `content/posts/fengya/` | 雅望停云 | dir name is legacy; URLs still contain `风雅涵章` |
 | `content/posts/yawang/` | 雅望停云 | |
 | `content/posts/dushubiji/` | 读书笔记 | |
 | `content/posts/banyun/` | 搬运 | |
 | `content/posts/youyi/` | 游艺 | |
 
-- **`风雅涵章` was merged into `雅望停云`** (2026-09). Titles now read `[雅望停云] …`. Old category URL `/categories/风雅涵章/` is gone.
+- **`风雅涵章` was merged into `雅望停云`** (2026-09). Titles now read `[雅望停云] …`; filenames follow `雅望停云- …`. Old category URL `/categories/风雅涵章/` is gone, and the legacy `content/posts/fengya/` dir was merged into `content/posts/yawang/` (no aliases).
 
 ## Front matter (YAML)
 
@@ -97,4 +96,3 @@ subseries: "年度投资复盘"        # optional; requires series
 ## Known inconsistencies
 
 - `archetypes/default.md` uses TOML front matter (`+++`); all posts use YAML (`---`). Edit manually after `hugo new`.
-- Post dir `fengya/` now belongs to category `雅望停云`; kept for stable URLs. If renaming, add Hugo aliases to avoid dead links.
