@@ -1,6 +1,7 @@
 ---
 title: "[雅望停云] 福兮祸兮_DiskFailure"
 date: 2025-09-05
+lastmod: 2025-09-10
 draft: false
 categories: ["雅望停云"]
 tags: ["随笔", "技术思考"]

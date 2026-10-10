@@ -1,6 +1,7 @@
 ---
 title: "[搬运] Linux入门"
 date: 2025-09-10
+lastmod: 2025-12-29
 draft: false
 categories: ["搬运"]
 tags: ["搬运"]

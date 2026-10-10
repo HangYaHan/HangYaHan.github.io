@@ -195,7 +195,7 @@
                         <div class="home-card-header">
                             <h2 class="home-card-title">Recent / 最近更新</h2>
                             {{- with index $recentPosts 0 -}}
-                            <span class="home-recent-date">Last updated: {{ .Date.Format "2006-01-02" }}</span>
+                            <span class="home-recent-date">Last updated: {{ .Lastmod.Format "2006-01-02" }}</span>
                             {{- end -}}
                         </div>
                         <div class="home-card-body">

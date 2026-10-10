@@ -1,6 +1,7 @@
 ---
 title: "[搬运] Linux 启动流程"
 date: 2026-09-28
+lastmod: 2026-09-28
 draft: false
 categories: ["搬运"]
 tags: ["搬运"]

@@ -1,6 +1,7 @@
 ---
 title: "[雅望停云] 写作设备，同步问题以及 Git 给我的一次提醒"
 date: 2026-08-31
+lastmod: 2026-08-31
 draft: false
 categories: ["雅望停云"]
 tags: ["随笔", "技术思考"]

@@ -1,6 +1,7 @@
 ---
 title: "[雅望停云] Docker初见"
 date: 2025-11-03
+lastmod: 2026-10-04
 draft: false
 categories: ["雅望停云"]
 tags: ["技术思考", "随笔"]

@@ -1,6 +1,7 @@
 ---
 title: "[雅望停云] Beruto开发随笔"
 date: 2025-12-10
+lastmod: 2025-12-10
 draft: false
 categories: ["雅望停云"]
 tags: ["随笔", "人文思考"]

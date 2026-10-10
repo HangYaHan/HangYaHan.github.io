@@ -1,6 +1,7 @@
 ---
 title: "[雅望停云] BeyondTheHype_我对AI的观察与思考"
 date: 2025-12-26
+lastmod: 2026-05-08
 draft: false
 categories: ["雅望停云"]
 tags: ["随笔", "技术思考"]

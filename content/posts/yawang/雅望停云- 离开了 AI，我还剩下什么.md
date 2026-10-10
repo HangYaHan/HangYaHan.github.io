@@ -1,6 +1,7 @@
 ---
 title: "[雅望停云] 离开了 AI，我还剩下什么"
 date: 2026-04-13
+lastmod: 2026-04-17
 draft: false
 categories: ["雅望停云"]
 tags: ["随笔", "技术思考"]

@@ -1,6 +1,7 @@
 ---
 title: "[搬运] OS"
 date: 2026-09-20
+lastmod: 2026-09-20
 draft: false
 categories: ["搬运"]
 tags: ["搬运"]
