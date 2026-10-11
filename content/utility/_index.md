@@ -38,4 +38,10 @@ draft: false
 <span class="utility-card-go">去用 →</span>
 </a>
 
+<a class="utility-card" href="/utility/army/">
+<span class="utility-card-name">指挥官作战室</span>
+<span class="utility-card-desc">我在这里记录我的证券持仓</span>
+<span class="utility-card-go">去用 →</span>
+</a>
+
 </div>

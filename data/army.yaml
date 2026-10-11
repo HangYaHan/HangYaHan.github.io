@@ -1,0 +1,110 @@
+# 最近更新（仅展示，手动维护）
+updated: "2026-10-11"
+
+# 换算基准，仅后台使用，不渲染
+account:
+  per_soldier: 100
+
+# 三位指挥官 = 三份独立子账户；amount 用于算军职与饼图切片
+commanders:
+  - key: eagle
+    name: "Eagle"
+    amount: 100000
+    nation:
+      key: "ge"
+      name: "绿地球"
+      name_en: "Green Earth"
+      color: "#2f9e44"
+      flag: "/army/flags/ge.png"
+      flag_small: "/army/flags/ge_small.png"
+    moods:
+      normal: "/army/commanders/eagle_1.png"
+      happy: "/army/commanders/eagle_2.png"
+      sad: "/army/commanders/eagle_3.png"
+    mini: "/army/commanders/eagle_mini.png"
+    holdings:
+      - { hint: "某猪肉龙头", amount: 41000, unit: mech }
+      - { hint: "某航空股", amount: 13000, unit: fighter }
+      - { hint: "黄金ETF", amount: 12000, unit: commando }
+      - { hint: "旅游ETF", amount: 7000, unit: duster }
+      - { hint: "50ETF", amount: 6000, unit: heavy_tank }
+      - { hint: "酒ETF", amount: 5000, unit: artillery }
+      - { hint: "纳指/标普ETF", amount: 2000, unit: bomber }
+      - { hint: "国债逆回购", amount: 1000, unit: infantry }
+      - { hint: "养老ETF", amount: 400, unit: apc }
+      - { hint: "红利基金", amount: 100, unit: transport }
+
+  - key: sonja
+    name: "Sonja"
+    amount: 10000
+    nation:
+      key: "yc"
+      name: "黄彗星"
+      name_en: "Yellow Comet"
+      color: "#b8a800"
+      flag: "/army/flags/yc.png"
+      flag_small: "/army/flags/yc_small.png"
+    moods:
+      normal: "/army/commanders/sonja_1.png"
+      happy: "/army/commanders/sonja_2.png"
+      sad: "/army/commanders/sonja_3.png"
+    mini: "/army/commanders/sonja_mini.png"
+    holdings:
+      - { hint: "养殖ETF", amount: 4000, unit: light_tank }
+      - { hint: "现金", amount: 3500, unit: infantry }
+      - { hint: "债券", amount: 2000, unit: apc }
+      - { hint: "黄金ETF", amount: 500, unit: commando }
+
+  - key: sasha
+    name: "Sasha"
+    amount: 16000
+    nation:
+      key: "bm"
+      name: "蓝月"
+      name_en: "Blue Moon"
+      color: "#3468d0"
+      flag: "/army/flags/bm.png"
+      flag_small: "/army/flags/bm_small.png"
+    moods:
+      normal: "/army/commanders/sasha_1.png"
+      happy: "/army/commanders/sasha_2.png"
+      sad: "/army/commanders/sasha_3.png"
+    mini: "/army/commanders/sasha_mini.png"
+    holdings:
+      - { hint: "某猪肉龙头", amount: 8000, unit: mech }
+      - { hint: "畜牧ETF", amount: 6000, unit: light_tank }
+      - { hint: "现金", amount: 2000, unit: infantry }
+
+# 军职阶梯（仅用于把 amount 换算成军职；不在页面渲染成表）
+ranks:
+  - { key: militia, name: 民兵, min: 0, troops: 0, unit: infantry, deputy: false }
+  - { key: private, name: 列兵, min: 100, troops: 1, unit: infantry, deputy: false }
+  - { key: private_first, name: 上等兵, min: 500, troops: 5, unit: infantry, deputy: false }
+  - { key: squad_leader, name: 班长, min: 1000, troops: 10, unit: infantry, deputy: false }
+  - { key: deputy_platoon, name: 副排长, min: 2000, troops: 20, unit: mech, deputy: true }
+  - { key: platoon_leader, name: 排长, min: 3000, troops: 30, unit: mech, deputy: false }
+  - { key: deputy_company, name: 副连长, min: 5000, troops: 50, unit: recon, deputy: true }
+  - { key: company_leader, name: 连长, min: 10000, troops: 100, unit: recon, deputy: false }
+  - { key: deputy_battalion, name: 副营长, min: 25000, troops: 250, unit: light_tank, deputy: true }
+  - { key: battalion_leader, name: 营长, min: 50000, troops: 500, unit: light_tank, deputy: false }
+  - { key: deputy_regiment, name: 副团长, min: 100000, troops: 1000, unit: heavy_tank, deputy: true }
+  - { key: regiment_leader, name: 团长, min: 200000, troops: 2000, unit: heavy_tank, deputy: false }
+  - { key: deputy_brigade, name: 副旅长, min: 300000, troops: 3000, unit: neotank, deputy: true }
+  - { key: brigade_leader, name: 旅长, min: 500000, troops: 5000, unit: neotank, deputy: false }
+  - { key: deputy_division, name: 副师长, min: 700000, troops: 7000, unit: megatank, deputy: true }
+  - { key: division_leader, name: 师长, min: 1000000, troops: 10000, unit: megatank, deputy: false }
+  - { key: deputy_corps, name: 副军长, min: 2000000, troops: 20000, unit: bomber, deputy: true }
+  - { key: corps_leader, name: 军长, min: 3000000, troops: 30000, unit: bomber, deputy: false }
+  - { key: deputy_commander, name: 副司令, min: 5000000, troops: 50000, unit: carrier, deputy: true }
+  - { key: commander_in_chief, name: 总司令, min: 10000000, troops: 100000, unit: carrier, deputy: false }
+
+# 荣誉墙（star = 星章图序号，earned = 是否已获得）
+medals:
+  - { key: neg_cost, name: "成本归零", desc: "把成本 T 到负数", star: 11, earned: true }
+  - { key: gain_10, name: "十厘之喜", desc: "单标的收益达 10%", star: 1, earned: true }
+  - { key: gain_20, name: "廿然而立", desc: "单标的收益达 20%", star: 13, earned: true }
+  - { key: hold_1, name: "一年之约", desc: "持有一个标的满 1 年", star: 5, earned: true }
+  - { key: hold_2, name: "两年之守", desc: "持有满 2 年", star: 4, earned: false }
+  - { key: hold_3, name: "三年之持", desc: "持有满 3 年", star: 7, earned: false }
+  - { key: hold_4, name: "四年之志", desc: "持有满 4 年", star: 6, earned: false }
+  - { key: hold_5, name: "五年之成", desc: "持有满 5 年", star: 12, earned: false }

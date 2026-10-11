@@ -2281,4 +2281,241 @@ body:has(.terminal-page) footer.footer {
     padding: 0.25rem 0;
 }
 
+/* ============================================
+   Army — 指挥官作战室（Utility 组件）
+   灰阶为底，主展示走红方(橙星)单位，指挥官各执一色
+   ============================================ */
+.army-root {
+    --army-accent: #d1495b;          /* 主展示（橙星红方）强调色 */
+    --co: var(--army-accent);        /* 指挥官色，卡/行内被覆盖 */
+    --army-text: #{$global-font-color};
+    --army-muted: #{$global-font-secondary-color};
 
+    body[theme="dark"] & {
+        --army-text: #{$global-font-color-dark};
+        --army-muted: #{$global-font-secondary-color-dark};
+    }
+
+    color: var(--army-text);
+    line-height: 1.7;
+
+    img {
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+    }
+
+    .army-updated {
+        text-align: right;
+        font-size: 0.76rem;
+        color: var(--army-muted);
+        margin-bottom: 0.6rem;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .army-panel {
+        background: var(--ui-surface);
+        border: 1px solid var(--ui-card-border);
+        border-radius: 0.75rem;
+        box-shadow: var(--ui-card-shadow);
+        padding: 1.25rem 1.35rem;
+        margin-bottom: 1.1rem;
+    }
+
+    .army-panel-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin: 0 0 0.15rem;
+    }
+
+    .army-panel-sub {
+        font-size: 0.8rem;
+        color: var(--army-muted);
+        margin: 0 0 1rem;
+    }
+
+    /* ---- 指挥官名册 ---- */
+    .army-roster {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .army-co {
+        --co: var(--army-accent);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 0.8rem;
+        border: 1px solid var(--ui-card-border);
+        border-top: 3px solid var(--co);
+        border-radius: 0.7rem;
+        background: var(--ui-surface);
+    }
+
+    .army-co-body {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 0.55rem;
+    }
+
+    .army-co-face {
+        width: 96px;
+        height: 96px;
+        display: block;
+        border: 1px solid var(--ui-card-border);
+        border-radius: 0.5rem;
+        background: var(--ui-surface-hover);
+    }
+
+    .army-co-flag {
+        position: absolute;
+        top: -6px;
+        left: -7px;
+        width: 16px;
+        height: auto;
+        border-radius: 2px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    .army-co-mini {
+        position: absolute;
+        right: -8px;
+        bottom: -8px;
+        width: 32px;
+        height: auto;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    }
+
+    .army-co-name {
+        font-size: 1.12rem;
+        font-weight: 800;
+    }
+
+    .army-co-rank {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--co);
+    }
+
+    /* ---- 兵力部署图（每位一行） ---- */
+    .army-deploy-row {
+        & + .army-deploy-row {
+            margin-top: 1.3rem;
+            padding-top: 1.2rem;
+            border-top: 1px dashed var(--ui-card-border);
+        }
+    }
+
+    .army-deploy-head {
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .army-deploy-name {
+        font-size: 1.02rem;
+        font-weight: 800;
+        color: var(--co);
+    }
+
+    .army-deploy-rank {
+        font-size: 0.74rem;
+        color: var(--army-muted);
+        border: 1px solid var(--ui-card-border);
+        border-radius: 999px;
+        padding: 1px 9px;
+    }
+
+    .army-deploy-body {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        flex-wrap: wrap;
+    }
+
+    .army-pie {
+        position: relative;
+        width: 220px;
+        height: 220px;
+        flex: 0 0 auto;
+    }
+
+    .army-pie-legend {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex: 1 1 240px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+    }
+
+    .army-legend-sprite {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+    }
+
+    .army-legend-name { font-weight: 600; }
+
+    .army-legend-weight {
+        margin-left: auto;
+        font-weight: 700;
+        color: var(--army-muted);
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* ---- 荣誉墙 ---- */
+    .army-medals {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .army-medal {
+        text-align: center;
+        padding: 0.85rem 0.5rem;
+        border: 1px solid var(--ui-card-border);
+        border-radius: 0.6rem;
+        background: var(--ui-surface-hover);
+    }
+
+    .army-medal-star {
+        width: 34px;
+        height: 34px;
+    }
+
+    .army-medal-name {
+        font-size: 0.84rem;
+        font-weight: 700;
+        margin-top: 0.35rem;
+    }
+
+    .army-medal-desc {
+        font-size: 0.72rem;
+        color: var(--army-muted);
+        line-height: 1.5;
+    }
+
+    .army-medal--locked { opacity: 0.5; }
+    .army-medal--locked .army-medal-star { filter: grayscale(1); }
+
+    @media (max-width: 680px) {
+        .army-roster { grid-template-columns: 1fr; }
+        .army-deploy-body {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .army-pie { width: 200px; height: 200px; }
+    }
+}

@@ -1,0 +1,121 @@
+{{- $a := hugo.Data.army -}}
+{{- $ranks := $a.ranks -}}
+{{- $palette := slice "#c0392b" "#e67e22" "#f1c40f" "#27ae60" "#16a085" "#2980b9" "#8e44ad" "#d35400" "#7f8c8d" "#c2185b" "#00838f" "#6d4c41" -}}
+
+{{- $pies := slice -}}
+{{- range $c := $a.commanders -}}
+  {{- $slices := slice -}}
+  {{- range $i, $h := $c.holdings -}}
+    {{- $slices = $slices | append (dict "hint" $h.hint "value" $h.amount "color" (index $palette (mod $i (len $palette)))) -}}
+  {{- end -}}
+  {{- $pies = $pies | append (dict "id" $c.key "slices" $slices) -}}
+{{- end -}}
+
+<div class="army-root">
+
+  <div class="army-updated">最近更新 · {{ $a.updated }}</div>
+
+  {{/* 指挥官名册 */}}
+  <section class="army-panel">
+    <h3 class="army-panel-title">指挥官名册</h3>
+    <p class="army-panel-sub">三军并立，各执一色</p>
+    <div class="army-roster">
+      {{- range $c := $a.commanders -}}
+        {{- $rank := index $ranks 0 -}}
+        {{- range $ranks -}}{{ if le (int .min) (int $c.amount) }}{{ $rank = . }}{{ end }}{{ end -}}
+        <article class="army-co" style="--co: {{ $c.nation.color }};">
+          <div class="army-co-body">
+            <img class="army-co-face" src="{{ index $c.moods "normal" }}" alt="{{ $c.name }}">
+            <img class="army-co-flag" src="{{ $c.nation.flag }}" alt="{{ $c.nation.name }}">
+            <img class="army-co-mini" src="{{ $c.mini }}" alt="{{ $c.name }}">
+          </div>
+          <div class="army-co-name">{{ $c.name }}</div>
+          <div class="army-co-rank">{{ $rank.name }}</div>
+        </article>
+      {{- end -}}
+    </div>
+  </section>
+
+  {{/* 兵力部署图（每位指挥官一张） */}}
+  <section class="army-panel">
+    <h3 class="army-panel-title">兵力部署图</h3>
+    <p class="army-panel-sub">每格一支部队，各按兵种布防</p>
+    {{- range $c := $a.commanders -}}
+      {{- $rank := index $ranks 0 -}}
+      {{- range $ranks -}}{{ if le (int .min) (int $c.amount) }}{{ $rank = . }}{{ end }}{{ end -}}
+      <div class="army-deploy-row" style="--co: {{ $c.nation.color }};">
+        <div class="army-deploy-head">
+          <span class="army-deploy-name">{{ $c.name }}</span>
+          <span class="army-deploy-rank">{{ $rank.name }}</span>
+        </div>
+        <div class="army-deploy-body">
+          <div class="army-pie"><canvas id="army-pie-{{ $c.key }}"></canvas></div>
+          {{- $sum := 0 -}}
+          {{- range $c.holdings -}}{{- $sum = add $sum (int .amount) -}}{{- end -}}
+          <ul class="army-pie-legend">
+            {{- range $c.holdings -}}
+              <li>
+                <img class="army-legend-sprite" src="/army/units/os/{{ .unit }}.png" alt="">
+                <span class="army-legend-name">{{ .hint }}</span>
+                <span class="army-legend-weight">{{ printf "%.1f" (mul (div (float .amount) $sum) 100) }}%</span>
+              </li>
+            {{- end -}}
+          </ul>
+        </div>
+      </div>
+    {{- end -}}
+  </section>
+
+  {{/* 荣誉墙 */}}
+  <section class="army-panel">
+    <h3 class="army-panel-title">荣誉墙</h3>
+    <p class="army-panel-sub">已得 {{ len (where $a.medals "earned" true) }} / {{ len $a.medals }} 枚</p>
+    <div class="army-medals">
+      {{- range $a.medals -}}
+        <div class="army-medal{{ if not .earned }} army-medal--locked{{ end }}">
+          <img class="army-medal-star" src="/army/medals/star_{{ .star }}.png" alt="">
+          <div class="army-medal-name">{{ .name }}</div>
+          <div class="army-medal-desc">{{ .desc }}</div>
+        </div>
+      {{- end -}}
+    </div>
+  </section>
+
+</div>
+
+<script>window.__ARMY_PIES__ = {{ $pies | jsonify | safeJS }};</script>
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  var pies = window.__ARMY_PIES__ || [];
+  if (!window.Chart) return;
+  pies.forEach(function (p) {
+    var el = document.getElementById('army-pie-' + p.id);
+    if (!el || !p.slices || !p.slices.length) return;
+    new Chart(el, {
+      type: 'pie',
+      data: {
+        labels: p.slices.map(function (s) { return s.hint; }),
+        datasets: [{
+          data: p.slices.map(function (s) { return s.value; }),
+          backgroundColor: p.slices.map(function (s) { return s.color; }),
+          borderColor: 'rgba(255,255,255,0.85)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: function (ctx) {
+            var total = p.slices.reduce(function (a, s) { return a + s.value; }, 0);
+            var s = p.slices[ctx.dataIndex];
+            return s.hint + ' · ' + (s.value / total * 100).toFixed(1) + '%';
+          } } }
+        }
+      }
+    });
+  });
+})();
+</script>
