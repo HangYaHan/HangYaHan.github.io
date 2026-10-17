@@ -1,0 +1,140 @@
+<div class="life-gallery">
+  <figure class="life-pattern">
+    <canvas data-pattern="glider"></canvas>
+    <figcaption>滑翔机<span>Glider</span></figcaption>
+  </figure>
+  <figure class="life-pattern">
+    <canvas data-pattern="lwss"></canvas>
+    <figcaption>轻型飞船<span>LWSS</span></figcaption>
+  </figure>
+  <figure class="life-pattern">
+    <canvas data-pattern="pulsar"></canvas>
+    <figcaption>脉冲星<span>Pulsar</span></figcaption>
+  </figure>
+  <figure class="life-pattern">
+    <canvas data-pattern="rpent"></canvas>
+    <figcaption>R 五连<span>R-pentomino</span></figcaption>
+  </figure>
+  <figure class="life-pattern">
+    <canvas data-pattern="gun"></canvas>
+    <figcaption>高斯帕滑翔机枪<span>Gosper Glider Gun</span></figcaption>
+  </figure>
+  <figure class="life-pattern">
+    <canvas data-pattern="blinker"></canvas>
+    <figcaption>闪烁灯<span>Blinker</span></figcaption>
+  </figure>
+</div>
+
+<script src="/js/life-patterns.js"></script>
+<script>
+(function () {
+  var patterns = window.LIFE_PATTERNS || [];
+  if (!patterns.length) return;
+  var boxes = document.querySelectorAll('.life-pattern');
+  if (!boxes.length) return;
+
+  function palette() {
+    var dark = document.body.getAttribute('theme') === 'dark';
+    return dark
+      ? { dead: '#191919', alive: '#e8e8e8' }
+      : { dead: '#f7f7f7', alive: '#1a1a1a' };
+  }
+
+  function makeBoard(canvas, pat) {
+    var cols = pat.grid[0], rows = pat.grid[1];
+    var grid = new Uint8Array(cols * rows);
+    var gen = 0;
+    var cell = 4;
+    var ctx = canvas.getContext('2d');
+
+    function reset() {
+      grid.fill(0);
+      var ox = Math.floor((cols - pat.w) / 2);
+      var oy = Math.floor((rows - pat.h) / 2);
+      for (var i = 0; i < pat.cells.length; i++) {
+        var x = ox + pat.cells[i][0];
+        var y = oy + pat.cells[i][1];
+        if (x >= 0 && y >= 0 && x < cols && y < rows) grid[y * cols + x] = 1;
+      }
+      gen = 0;
+    }
+
+    function resize() {
+      var avail = canvas.parentElement.clientWidth || 150;
+      cell = Math.max(3, Math.min(8, Math.floor(avail / cols)));
+      var w = cell * cols, h = cell * rows;
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+      var p = palette();
+      var w = cell * cols, h = cell * rows;
+      ctx.fillStyle = p.dead;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = p.alive;
+      var size = Math.max(1, cell - 1);
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          if (grid[y * cols + x]) ctx.fillRect(x * cell + 1, y * cell + 1, size, size);
+        }
+      }
+    }
+
+    function step() {
+      var next = new Uint8Array(grid.length);
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          var n = 0;
+          for (var dy = -1; dy <= 1; dy++) {
+            for (var dx = -1; dx <= 1; dx++) {
+              if (!dx && !dy) continue;
+              n += grid[((y + dy + rows) % rows) * cols + ((x + dx + cols) % cols)];
+            }
+          }
+          var i = y * cols + x;
+          next[i] = grid[i] ? (n === 2 || n === 3 ? 1 : 0) : (n === 3 ? 1 : 0);
+        }
+      }
+      grid = next;
+      gen++;
+      if (gen >= pat.cycle) reset();
+    }
+
+    reset();
+    resize();
+    return { resize: resize, draw: draw, step: step };
+  }
+
+  var boards = [];
+  for (var i = 0; i < boxes.length; i++) {
+    var canvas = boxes[i].querySelector('canvas');
+    if (!canvas) continue;
+    var key = canvas.getAttribute('data-pattern');
+    var pat = null;
+    for (var j = 0; j < patterns.length; j++) {
+      if (patterns[j].key === key) { pat = patterns[j]; break; }
+    }
+    if (pat) boards.push(makeBoard(canvas, pat));
+  }
+
+  boards.forEach(function (b) { b.draw(); });
+  setInterval(function () {
+    boards.forEach(function (b) { b.step(); b.draw(); });
+  }, 180);
+
+  window.addEventListener('resize', function () {
+    boards.forEach(function (b) { b.resize(); b.draw(); });
+  });
+
+  if (window.MutationObserver) {
+    new MutationObserver(function () {
+      boards.forEach(function (b) { b.draw(); });
+    }).observe(document.body, { attributes: true, attributeFilter: ['theme'] });
+  }
+})();
+</script>

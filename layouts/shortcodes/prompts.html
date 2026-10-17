@@ -1,0 +1,63 @@
+{{- $items := hugo.Data.prompts -}}
+<div class="prompt-lib">
+{{- if $items -}}
+  {{- $groups := dict -}}
+  {{- range $items -}}
+    {{- $s := .stage | default "其他" -}}
+    {{- $cur := index $groups $s | default slice -}}
+    {{- $groups = merge $groups (dict $s ($cur | append .)) -}}
+  {{- end -}}
+  {{- range $s, $arr := $groups -}}
+    <h3 class="prompt-stage">{{ $s }}</h3>
+    <div class="prompt-grid">
+      {{- range $arr -}}
+        <article class="prompt-card">
+          <div class="prompt-head">
+            <span class="prompt-title">{{ .title }}</span>
+            <button class="prompt-copy" type="button">复制</button>
+          </div>
+          {{- with .desc -}}<p class="prompt-desc">{{ . }}</p>{{- end -}}
+          <pre class="prompt-body">{{ .body }}</pre>
+        </article>
+      {{- end -}}
+    </div>
+  {{- end -}}
+{{- else -}}
+  <div class="prompt-empty">待补。</div>
+{{- end -}}
+</div>
+
+<script>
+(function () {
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('.prompt-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var pre = card && card.querySelector('.prompt-body');
+      if (!pre) return;
+      var text = pre.textContent;
+      var old = btn.textContent;
+      function done() {
+        btn.textContent = '已复制';
+        setTimeout(function () { btn.textContent = old; }, 1200);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () {
+          fallback(text); done();
+        });
+      } else {
+        fallback(text); done();
+      }
+    });
+  });
+})();
+</script>

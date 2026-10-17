@@ -1,0 +1,328 @@
+<style>
+.tool-root {
+  --tool-bg: #efefef;
+  --tool-card-bg: #ffffff;
+  --tool-text: #111111;
+  --tool-muted: #555555;
+  --tool-border: #d6d6d6;
+  --tool-primary: #111111;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .life-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.tool-root .life-btn {
+  padding: 7px 14px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--tool-text);
+  background: var(--tool-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.tool-root .life-btn:hover {
+  border-color: var(--tool-primary);
+}
+.tool-root .life-btn.primary {
+  color: #fff;
+  background: var(--tool-primary);
+  border-color: var(--tool-primary);
+}
+.tool-root .life-speed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--tool-muted);
+  margin-left: auto;
+}
+.tool-root .life-speed input[type="range"] {
+  width: 120px;
+  accent-color: var(--tool-primary);
+}
+.tool-root .life-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.84rem;
+  color: var(--tool-muted);
+  margin-bottom: 12px;
+}
+.tool-root .life-stats b {
+  color: var(--tool-text);
+  font-size: 0.95rem;
+}
+.tool-root .life-canvas-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+.tool-root .life-canvas-wrap canvas {
+  display: block;
+  max-width: 100%;
+  border: 1px solid var(--tool-border);
+  border-radius: 6px;
+  cursor: crosshair;
+  touch-action: none;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin: 12px 0 0;
+}
+</style>
+
+<div class="tool-root">
+  <div class="tool-card">
+    <h2>康威生命游戏</h2>
+
+    <div class="life-bar">
+      <button class="life-btn primary" id="life-play" type="button">播放</button>
+      <button class="life-btn" id="life-step" type="button">单步</button>
+      <button class="life-btn" id="life-random" type="button">随机</button>
+      <button class="life-btn" id="life-clear" type="button">清空</button>
+      <label class="life-speed">速度
+        <input type="range" id="life-speed" min="1" max="30" value="10">
+        <span id="life-speed-val">10</span> 代/秒
+      </label>
+    </div>
+
+    <div class="life-stats">
+      <span>阵型 <b id="life-pattern">随机</b></span>
+      <span>代数 <b id="life-gen">0</b></span>
+      <span>存活 <b id="life-pop">0</b></span>
+    </div>
+
+    <div class="life-canvas-wrap" id="life-wrap">
+      <canvas id="life-canvas"></canvas>
+    </div>
+
+    <p class="tool-note">点格子或按住拖动来画；播放后按规则自己演化。边界环绕。</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var COLS = 60, ROWS = 34;
+  var canvas = document.getElementById('life-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var wrap = document.getElementById('life-wrap');
+  var playBtn = document.getElementById('life-play');
+  var stepBtn = document.getElementById('life-step');
+  var randomBtn = document.getElementById('life-random');
+  var clearBtn = document.getElementById('life-clear');
+  var speedEl = document.getElementById('life-speed');
+  var speedVal = document.getElementById('life-speed-val');
+  var genEl = document.getElementById('life-gen');
+  var popEl = document.getElementById('life-pop');
+  var patternEl = document.getElementById('life-pattern');
+
+  var grid = new Uint8Array(COLS * ROWS);
+  var cell = 10;
+  var generation = 0;
+  var running = false;
+  var timer = null;
+
+  function idx(x, y) { return y * COLS + x; }
+
+  function resize() {
+    var avail = wrap.clientWidth || 600;
+    cell = Math.max(6, Math.floor(avail / COLS));
+    var w = cell * COLS, h = cell * ROWS;
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  function palette() {
+    var dark = document.body.getAttribute('theme') === 'dark';
+    return dark
+      ? { dead: '#191919', alive: '#e8e8e8', line: 'rgba(255,255,255,0.07)' }
+      : { dead: '#f7f7f7', alive: '#1a1a1a', line: 'rgba(0,0,0,0.06)' };
+  }
+
+  function draw() {
+    var p = palette();
+    var w = cell * COLS, h = cell * ROWS;
+    ctx.fillStyle = p.dead;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.strokeStyle = p.line;
+    ctx.lineWidth = 1;
+    for (var x = 0; x <= COLS; x++) {
+      ctx.beginPath();
+      ctx.moveTo(x * cell + 0.5, 0);
+      ctx.lineTo(x * cell + 0.5, h);
+      ctx.stroke();
+    }
+    for (var y = 0; y <= ROWS; y++) {
+      ctx.beginPath();
+      ctx.moveTo(0, y * cell + 0.5);
+      ctx.lineTo(w, y * cell + 0.5);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = p.alive;
+    for (var j = 0; j < ROWS; j++) {
+      for (var i = 0; i < COLS; i++) {
+        if (grid[idx(i, j)]) {
+          ctx.fillRect(i * cell + 1, j * cell + 1, cell - 2, cell - 2);
+        }
+      }
+    }
+  }
+
+  function stats() {
+    var n = 0;
+    for (var i = 0; i < grid.length; i++) n += grid[i];
+    genEl.textContent = generation;
+    popEl.textContent = n;
+  }
+
+  function neighbors(x, y) {
+    var n = 0;
+    for (var dy = -1; dy <= 1; dy++) {
+      for (var dx = -1; dx <= 1; dx++) {
+        if (dx === 0 && dy === 0) continue;
+        var nx = (x + dx + COLS) % COLS;
+        var ny = (y + dy + ROWS) % ROWS;
+        n += grid[idx(nx, ny)];
+      }
+    }
+    return n;
+  }
+
+  function step() {
+    var next = new Uint8Array(grid.length);
+    for (var y = 0; y < ROWS; y++) {
+      for (var x = 0; x < COLS; x++) {
+        var i = idx(x, y);
+        var n = neighbors(x, y);
+        next[i] = grid[i] ? (n === 2 || n === 3 ? 1 : 0) : (n === 3 ? 1 : 0);
+      }
+    }
+    grid = next;
+    generation++;
+    draw();
+    stats();
+  }
+
+  function tick() {
+    if (!running) return;
+    step();
+    timer = setTimeout(tick, 1000 / Math.max(1, parseInt(speedEl.value, 10) || 10));
+  }
+
+  function play() {
+    if (running) return;
+    running = true;
+    playBtn.textContent = '暂停';
+    tick();
+  }
+  function pause() {
+    running = false;
+    if (timer) { clearTimeout(timer); timer = null; }
+    playBtn.textContent = '播放';
+  }
+
+  function randomize() {
+    for (var i = 0; i < grid.length; i++) grid[i] = Math.random() < 0.22 ? 1 : 0;
+    generation = 0;
+    patternEl.textContent = '随机';
+    draw();
+    stats();
+  }
+
+  function clear() {
+    grid.fill(0);
+    generation = 0;
+    patternEl.textContent = '空';
+    draw();
+    stats();
+  }
+
+  function pointAt(e) {
+    var r = canvas.getBoundingClientRect();
+    var x = Math.floor((e.clientX - r.left) / cell);
+    var y = Math.floor((e.clientY - r.top) / cell);
+    if (x < 0 || y < 0 || x >= COLS || y >= ROWS) return null;
+    return { x: x, y: y };
+  }
+
+  var drawing = false;
+  var drawVal = 1;
+
+  canvas.addEventListener('pointerdown', function (e) {
+    var p = pointAt(e);
+    if (!p) return;
+    patternEl.textContent = '自定义';
+    drawing = true;
+    drawVal = grid[idx(p.x, p.y)] ? 0 : 1;
+    grid[idx(p.x, p.y)] = drawVal;
+    draw();
+    stats();
+    if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
+  });
+
+  canvas.addEventListener('pointermove', function (e) {
+    if (!drawing) return;
+    var p = pointAt(e);
+    if (!p) return;
+    if (grid[idx(p.x, p.y)] !== drawVal) {
+      grid[idx(p.x, p.y)] = drawVal;
+      draw();
+      stats();
+    }
+  });
+
+  window.addEventListener('pointerup', function () { drawing = false; });
+
+  playBtn.addEventListener('click', function () {
+    if (running) { pause(); }
+    else { play(); }
+  });
+  stepBtn.addEventListener('click', function () { pause(); step(); patternEl.textContent = '自定义'; });
+  randomBtn.addEventListener('click', function () { pause(); randomize(); });
+  clearBtn.addEventListener('click', function () { pause(); clear(); });
+  speedEl.addEventListener('input', function () {
+    speedVal.textContent = speedEl.value;
+  });
+
+  window.addEventListener('resize', resize);
+
+  if (window.MutationObserver) {
+    new MutationObserver(function () { draw(); }).observe(document.body, {
+      attributes: true,
+      attributeFilter: ['theme']
+    });
+  }
+
+  randomize();
+  resize();
+})();
+</script>

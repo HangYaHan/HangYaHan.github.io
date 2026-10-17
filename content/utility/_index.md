@@ -44,4 +44,28 @@ draft: false
 <span class="utility-card-go">去用 →</span>
 </a>
 
+<a class="utility-card" href="/utility/climb/">
+<span class="utility-card-name">复利攀登</span>
+<span class="utility-card-desc">同样一个目标，25 岁和 45 岁开始，每月各要投多少？</span>
+<span class="utility-card-go">去用 →</span>
+</a>
+
+<a class="utility-card" href="/utility/rule72/">
+<span class="utility-card-name">72 原则</span>
+<span class="utility-card-desc">你的钱多久翻一倍？72 除以收益率。</span>
+<span class="utility-card-go">去用 →</span>
+</a>
+
+<a class="utility-card" href="/utility/life/">
+<span class="utility-card-name">生命游戏</span>
+<span class="utility-card-desc">康威生命游戏：点几格，看它自己长。</span>
+<span class="utility-card-go">去用 →</span>
+</a>
+
+<a class="utility-card" href="/utility/ai_working/">
+<span class="utility-card-name">AI_working</span>
+<span class="utility-card-desc">写稿五阶段、标注符号与好用提示词。</span>
+<span class="utility-card-go">去用 →</span>
+</a>
+
 </div>

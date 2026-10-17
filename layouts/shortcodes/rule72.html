@@ -1,0 +1,242 @@
+<style>
+.tool-root {
+  --tool-bg: #efefef;
+  --tool-card-bg: #ffffff;
+  --tool-text: #111111;
+  --tool-muted: #555555;
+  --tool-border: #d6d6d6;
+  --tool-primary: #111111;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"] {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 14px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-result-item .tool-note {
+  font-size: 0.74rem;
+  color: var(--tool-muted);
+  margin-top: 4px;
+}
+.tool-root .tool-table-wrap {
+  overflow-x: auto;
+}
+.tool-root .tool-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.tool-root .tool-table th,
+.tool-root .tool-table td {
+  text-align: right;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--tool-border);
+  white-space: nowrap;
+}
+.tool-root .tool-table th:first-child,
+.tool-root .tool-table td:first-child {
+  text-align: left;
+}
+.tool-root .tool-table th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tool-muted);
+}
+.tool-root .tool-table tr:last-child td {
+  border-bottom: none;
+}
+.tool-root .tool-table td:last-child {
+  font-weight: 700;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin-top: 12px;
+}
+.tool-root .tool-err {
+  color: var(--tool-loss);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>输入</h2>
+
+    <div class="tool-field">
+      <label for="r72-rate">年化收益率</label>
+      <input type="number" id="r72-rate" value="8" min="0.1" max="100" step="0.1">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="r72-principal">初始本金</label>
+      <input type="number" id="r72-principal" value="100000" min="0" step="10000">
+      <span class="tool-unit">元</span>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>翻倍年数</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item">
+        <div class="tool-label">72 法则</div>
+        <div class="tool-value" id="r72-rule">0 年</div>
+        <div class="tool-note">72 ÷ 收益率</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">精确计算</div>
+        <div class="tool-value" id="r72-exact">0 年</div>
+        <div class="tool-note">ln2 ÷ ln(1+r)</div>
+      </div>
+      <div class="tool-result-item">
+        <div class="tool-label">法则误差</div>
+        <div class="tool-value" id="r72-diff">0 年</div>
+        <div class="tool-note">精确 − 72 法则</div>
+      </div>
+    </div>
+    <p class="tool-err" id="r72-err" style="display:none;"></p>
+  </div>
+
+  <div class="tool-card">
+    <h2>翻倍里程碑</h2>
+    <div class="tool-table-wrap">
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>里程碑</th>
+            <th>72 法则年份</th>
+            <th>精确年份</th>
+            <th>金额</th>
+          </tr>
+        </thead>
+        <tbody id="r72-rows"></tbody>
+      </table>
+    </div>
+    <p class="tool-note">翻倍次数越多，72 法则的误差越会被放大；高收益率下尤其明显。</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var rateEl = $('r72-rate');
+  var principalEl = $('r72-principal');
+
+  function fmt(n) {
+    if (!isFinite(n)) return '¥0';
+    return '¥' + Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function calc() {
+    var rate = parseFloat(rateEl.value) / 100;
+    var principal = Math.max(0, parseFloat(principalEl.value) || 0);
+    var err = $('r72-err');
+
+    if (!(rate > 0)) {
+      err.style.display = 'block';
+      err.textContent = '收益率需大于 0。';
+      $('r72-rule').textContent = '—';
+      $('r72-exact').textContent = '—';
+      $('r72-diff').textContent = '—';
+      $('r72-rows').innerHTML = '';
+      return;
+    }
+    err.style.display = 'none';
+
+    var rule = 72 / (rate * 100);
+    var exact = Math.log(2) / Math.log(1 + rate);
+    var diff = exact - rule;
+
+    $('r72-rule').textContent = rule.toFixed(1) + ' 年';
+    $('r72-exact').textContent = exact.toFixed(2) + ' 年';
+    $('r72-diff').textContent = (diff >= 0 ? '+' : '') + diff.toFixed(2) + ' 年';
+
+    var rows = [];
+    for (var n = 0; n <= 4; n++) {
+      var multiple = Math.pow(2, n);
+      rows.push(
+        '<tr>' +
+        '<td>' + multiple + '×</td>' +
+        '<td>' + (n * rule).toFixed(1) + ' 年</td>' +
+        '<td>' + (n * exact).toFixed(1) + ' 年</td>' +
+        '<td>' + fmt(principal * multiple) + '</td>' +
+        '</tr>'
+      );
+    }
+    $('r72-rows').innerHTML = rows.join('');
+  }
+
+  [rateEl, principalEl].forEach(function (el) {
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>

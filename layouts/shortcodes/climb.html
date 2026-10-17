@@ -1,0 +1,335 @@
+<style>
+.tool-root {
+  --tool-bg: #efefef;
+  --tool-card-bg: #ffffff;
+  --tool-text: #111111;
+  --tool-muted: #555555;
+  --tool-border: #d6d6d6;
+  --tool-primary: #111111;
+  --tool-gain: #dc2626;
+  --tool-loss: #059669;
+  color: var(--tool-text);
+  line-height: 1.6;
+}
+.tool-root .tool-card {
+  background: var(--tool-card-bg);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.tool-root .tool-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.tool-root .tool-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.tool-root .tool-field label {
+  min-width: 110px;
+  font-size: 0.9rem;
+  color: var(--tool-muted);
+}
+.tool-root .tool-field input[type="number"] {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  color: var(--tool-text);
+  outline: none;
+}
+.tool-root .tool-field input[type="number"]:focus {
+  border-color: var(--tool-primary);
+}
+.tool-root .tool-unit {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  min-width: 24px;
+}
+.tool-root .tool-startgrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-startgrid .tool-field {
+  margin-bottom: 0;
+}
+.tool-root .tool-startgrid label {
+  min-width: 0;
+}
+.tool-root .tool-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+.tool-root .tool-result-item {
+  padding: 14px;
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+  background: var(--tool-bg);
+  border-left: 3px solid var(--tool-primary);
+}
+.tool-root .tool-result-item .tool-label {
+  font-size: 0.82rem;
+  color: var(--tool-muted);
+  margin-bottom: 4px;
+}
+.tool-root .tool-result-item .tool-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+.tool-root .tool-result-item .tool-note {
+  font-size: 0.76rem;
+  color: var(--tool-muted);
+  margin-top: 6px;
+}
+.tool-root .tool-chart {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+.tool-root .tool-note {
+  font-size: 0.85rem;
+  color: var(--tool-muted);
+  margin-top: 12px;
+}
+</style>
+
+<div class="tool-root">
+
+  <div class="tool-card">
+    <h2>目标与条件</h2>
+
+    <div class="tool-field">
+      <label for="climb-target">目标金额</label>
+      <input type="number" id="climb-target" value="1000000" min="1000" step="10000">
+      <span class="tool-unit">元</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="climb-rate">年化收益率</label>
+      <input type="number" id="climb-rate" value="7" min="0.1" max="50" step="0.1">
+      <span class="tool-unit">%</span>
+    </div>
+
+    <div class="tool-field">
+      <label for="climb-end">终点年龄</label>
+      <input type="number" id="climb-end" value="60" min="30" max="100" step="1">
+      <span class="tool-unit">岁</span>
+    </div>
+
+    <div class="tool-field">
+      <label>三个起始年龄</label>
+      <span class="tool-unit">越早开始，每月越轻松</span>
+    </div>
+
+    <div class="tool-startgrid">
+      <div class="tool-field">
+        <label for="climb-a1">起始 1</label>
+        <input type="number" id="climb-a1" value="25" min="1" max="99" step="1">
+        <span class="tool-unit">岁</span>
+      </div>
+      <div class="tool-field">
+        <label for="climb-a2">起始 2</label>
+        <input type="number" id="climb-a2" value="35" min="1" max="99" step="1">
+        <span class="tool-unit">岁</span>
+      </div>
+      <div class="tool-field">
+        <label for="climb-a3">起始 3</label>
+        <input type="number" id="climb-a3" value="45" min="1" max="99" step="1">
+        <span class="tool-unit">岁</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <h2>每月需投</h2>
+    <div class="tool-result-grid">
+      <div class="tool-result-item" id="climb-item1">
+        <div class="tool-label" id="climb-l1">25 岁开始</div>
+        <div class="tool-value" id="climb-c1">¥0</div>
+        <div class="tool-note" id="climb-n1"></div>
+      </div>
+      <div class="tool-result-item" id="climb-item2">
+        <div class="tool-label" id="climb-l2">35 岁开始</div>
+        <div class="tool-value" id="climb-c2">¥0</div>
+        <div class="tool-note" id="climb-n2"></div>
+      </div>
+      <div class="tool-result-item" id="climb-item3">
+        <div class="tool-label" id="climb-l3">45 岁开始</div>
+        <div class="tool-value" id="climb-c3">¥0</div>
+        <div class="tool-note" id="climb-n3"></div>
+      </div>
+    </div>
+    <p class="tool-note" id="climb-summary"></p>
+  </div>
+
+  <div class="tool-card">
+    <h2>攀登曲线</h2>
+    <div class="tool-chart">
+      <canvas id="climb-chart"></canvas>
+    </div>
+    <p class="tool-note">同一终点、同一目标：越晚开始，曲线越陡，每月要背的越重。这就是时间在复利里的分量。</p>
+  </div>
+
+</div>
+
+<script src="/lib/chart.umd.min.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var targetEl = $('climb-target');
+  var rateEl = $('climb-rate');
+  var endEl = $('climb-end');
+  var ageEls = [$('climb-a1'), $('climb-a2'), $('climb-a3')];
+
+  var COLORS = ['#111111', '#d1495b', '#3d7ea6'];
+  var chart;
+
+  function fmt(n) {
+    if (!isFinite(n)) return '¥0';
+    return '¥' + Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function monthlyRate(annual) {
+    return Math.pow(1 + annual, 1 / 12) - 1;
+  }
+
+  // required monthly contribution to reach target over `years`
+  function requiredMonthly(target, annual, years) {
+    var i = monthlyRate(annual);
+    var n = Math.round(years * 12);
+    if (n <= 0) return null;
+    if (i === 0) return target / n;
+    return target * i / (Math.pow(1 + i, n) - 1);
+  }
+
+  function balanceAt(monthly, annual, months) {
+    var i = monthlyRate(annual);
+    if (months <= 0) return 0;
+    if (i === 0) return monthly * months;
+    return monthly * (Math.pow(1 + i, months) - 1) / i;
+  }
+
+  function calc() {
+    var target = Math.max(0, parseFloat(targetEl.value) || 0);
+    var annual = Math.max(0, parseFloat(rateEl.value) || 0) / 100;
+    var endAge = Math.min(100, Math.max(1, parseInt(endEl.value, 10) || 60));
+    var ages = [];
+    for (var k = 0; k < 3; k++) {
+      ages.push(Math.min(99, Math.max(1, parseInt(ageEls[k].value, 10) || (25 + k * 10))));
+    }
+
+    var rows = [];
+    for (var j = 0; j < 3; j++) {
+      var years = endAge - ages[j];
+      var c = years > 0 ? requiredMonthly(target, annual, years) : null;
+      rows.push({ age: ages[j], years: years, c: c, color: COLORS[j] });
+    }
+
+    for (var m = 0; m < 3; m++) {
+      var r = rows[m];
+      var label = $('climb-l' + (m + 1));
+      var val = $('climb-c' + (m + 1));
+      var note = $('climb-n' + (m + 1));
+      var item = $('climb-item' + (m + 1));
+      item.style.borderLeftColor = r.color;
+      label.textContent = r.age + ' 岁开始 · 投 ' + Math.max(0, r.years) + ' 年';
+      if (!r.c || !isFinite(r.c)) {
+        val.textContent = '—';
+        note.textContent = '起始年龄需早于终点年龄';
+      } else {
+        var total = r.c * r.years * 12;
+        var growthPct = target > 0 ? (target - total) / target * 100 : 0;
+        val.textContent = fmt(r.c) + ' / 月';
+        note.textContent = '总投入 ' + fmt(total) + ' · 复利占 ' + growthPct.toFixed(0) + '%';
+      }
+    }
+
+    var sorted = rows.slice().sort(function (a, b) { return a.age - b.age; });
+    var first = sorted[0], last = sorted[sorted.length - 1];
+    var sum = $('climb-summary');
+    if (first.c && last.c && isFinite(first.c) && isFinite(last.c) && last.age > first.age) {
+      var extra = last.c - first.c;
+      var extraPct = first.c > 0 ? extra / first.c * 100 : 0;
+      sum.textContent = '同样目标，' + last.age + ' 岁开始比 ' + first.age + ' 岁开始，每月要多投 '
+        + fmt(extra) + '（多 ' + extraPct.toFixed(0) + '%）。';
+    } else {
+      sum.textContent = '';
+    }
+
+    draw(rows, endAge, annual, target);
+  }
+
+  function draw(rows, endAge, annual, target) {
+    var minAge = Math.min.apply(null, rows.map(function (r) { return r.age; }));
+    var labels = [];
+    for (var a = minAge; a <= endAge; a++) labels.push(a);
+
+    var datasets = rows.map(function (r) {
+      var data = labels.map(function (a) {
+        if (a < r.age) return null;
+        if (!r.c || !isFinite(r.c)) return null;
+        return balanceAt(r.c, annual, (a - r.age) * 12);
+      });
+      return {
+        label: r.age + ' 岁开始',
+        data: data,
+        borderColor: r.color,
+        backgroundColor: r.color + '14',
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.25,
+        spanGaps: false
+      };
+    });
+
+    var data = { labels: labels, datasets: datasets };
+    var options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true } },
+        tooltip: {
+          callbacks: {
+            title: function (items) { return items[0].label + ' 岁'; },
+            label: function (ctx) { return ctx.dataset.label + '：' + fmt(ctx.parsed.y); }
+          }
+        }
+      },
+      scales: {
+        x: { title: { display: true, text: '年龄' } },
+        y: {
+          title: { display: true, text: '资产（元）' },
+          ticks: {
+            callback: function (v) {
+              if (Math.abs(v) >= 10000) return (v / 10000).toFixed(0) + '万';
+              return v;
+            }
+          }
+        }
+      }
+    };
+
+    if (chart) chart.destroy();
+    chart = new Chart($('climb-chart'), { type: 'line', data: data, options: options });
+  }
+
+  [targetEl, rateEl, endEl].concat(ageEls).forEach(function (el) {
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+
+  calc();
+})();
+</script>
