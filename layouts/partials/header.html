@@ -25,6 +25,11 @@
                     {{- .Site.Title -}}
                 {{- end -}}
             </a>
+            {{- with .Site.Params.header.subtitle -}}
+            <span class="header-subtitle">
+                {{- range . -}}<span class="header-subtitle-line">{{ . }}</span>{{- end -}}
+            </span>
+            {{- end -}}
         </div>
         <div class="menu">
             <div class="menu-inner">

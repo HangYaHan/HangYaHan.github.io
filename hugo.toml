@@ -65,6 +65,10 @@ timezone = "Asia/Shanghai"
   [params.header]
     desktopMode = "fixed"
     mobileMode = "auto"
+    subtitle = [
+      "Too young, too simple. Sometimes naive.",
+      "一个人的命运啊，当然要靠自我奋斗，但也要考虑到历史的进程。"
+    ]
     [params.header.title]
       logo = ""
       name = "涵舍"

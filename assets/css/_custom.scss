@@ -450,9 +450,48 @@ body[theme="dark"] {
 }
 
 .header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
     line-height: 1.4;
     white-space: normal;
     overflow: visible;
+}
+
+.header-title > a {
+    flex: 0 0 auto;
+}
+
+.header-subtitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 2.1rem;              /* = 1.5rem × 1.4，与「涵舍」等高 */
+    font-size: 0.62rem;
+    font-weight: normal;
+    line-height: 1.05rem;
+    letter-spacing: 0.02em;
+    color: $global-font-secondary-color;
+
+    body[theme="dark"] & {
+        color: $global-font-secondary-color-dark;
+    }
+}
+
+.header-subtitle-line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 900px) {
+    .header-subtitle {
+        display: none;
+    }
 }
 
 .header-title-post {
@@ -2169,6 +2208,28 @@ body[theme="dark"] {
     color: var(--term-accent);
     margin-right: 0.35rem;
     opacity: 0.85;
+}
+.term-status {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    padding: 0 0.35rem;
+    border: 1px solid var(--term-accent);
+    border-radius: 3px;
+    color: var(--term-accent);
+    vertical-align: middle;
+}
+.term-dir {
+    font-family: var(--term-mono);
+    font-weight: 600;
+    color: var(--term-accent);
+}
+.term-tree {
+    font-family: var(--term-mono);
+    white-space: pre;
+    color: $global-font-secondary-color;
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
 }
 
 .term-cmdtbl { display: flex; gap: 0.8rem; }
