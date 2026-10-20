@@ -64,7 +64,7 @@ draft: false
 
 <a class="utility-card" href="/utility/ai_working/">
 <span class="utility-card-name">AI_working</span>
-<span class="utility-card-desc">写稿五阶段、标注符号与好用提示词。</span>
+<span class="utility-card-desc">我的 AI 工作流、协作原则与可复制提示词。</span>
 <span class="utility-card-go">去用 →</span>
 </a>
 

@@ -2582,35 +2582,8 @@ body:has(.terminal-page) footer.footer {
 }
 
 /* ============================================
-   AI_working — 写作流程与好用提示词
+   AI_working — 工作流与提示词
    ============================================ */
-.sop-flow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.45rem;
-    margin: 1rem 0 1.6rem;
-}
-
-.sop-step {
-    padding: 0.32rem 0.85rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: $global-font-color;
-    background: var(--ui-surface);
-    border: 1px solid var(--ui-card-border);
-    border-radius: 999px;
-
-    body[theme="dark"] & { color: $global-font-color-dark; }
-}
-
-.sop-arrow {
-    font-size: 0.9rem;
-    color: $global-font-secondary-color;
-
-    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
-}
-
 .prompt-stage {
     font-size: 0.95rem;
     font-weight: 700;

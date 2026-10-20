@@ -7,7 +7,17 @@
     {{- $cur := index $groups $s | default slice -}}
     {{- $groups = merge $groups (dict $s ($cur | append .)) -}}
   {{- end -}}
+  {{- $order := slice "通用" "写作" "学术" -}}
+  {{- $stages := slice -}}
+  {{- range $order -}}
+    {{- if index $groups . -}}{{- $stages = $stages | append . -}}{{- end -}}
+  {{- end -}}
   {{- range $s, $arr := $groups -}}
+    {{- if not (in $order $s) -}}{{- $stages = $stages | append $s -}}{{- end -}}
+  {{- end -}}
+  {{- range $stages -}}
+    {{- $s := . -}}
+    {{- $arr := index $groups $s -}}
     <h3 class="prompt-stage">{{ $s }}</h3>
     <div class="prompt-grid">
       {{- range $arr -}}

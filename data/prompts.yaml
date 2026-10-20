@@ -1,8 +1,65 @@
-# 好用提示词：按阶段分组，留空即为待补。
+# 好用提示词：按阶段分组。
 # 每项格式：
-# - title: 素材识别
-#   stage: 梳理
-#   desc: 给碎片素材，先理主线并提问
+# - title: 通用生成
+#   stage: 通用
+#   desc: 角色 + 任务 + 目标 + 背景 + 格式
 #   body: |
-#     我先给你一些碎片素材，不要急着成文……
-[]
+#     ...
+
+- title: 通用生成
+  stage: 通用
+  desc: 角色 + 任务 + 目标 + 背景 + 格式
+  body: |
+    我是一名[角色]，现在要完成[任务]。
+    背景：[已有信息/材料/限制]
+    目标：[定性/定量标准/对齐指标]
+    请按以下格式输出：[表格/清单/分节 + 小标题顺序 + 字数范围]
+    要求：[禁比喻；只写事实与推理；标注引用来源/假设]
+    输入将提供：[一段话/一个文件/数据字段清单]
+
+- title: 让 AI 先出计划
+  stage: 通用
+  desc: 先思考、先给框架，再执行
+  body: |
+    先不要给结论。Think step by step and build a plan first.
+    请先分步骤思考，给出计划或框架；等我确认后，再按计划执行。
+
+- title: 让 AI 要求你补料
+  stage: 通用
+  desc: 把“不知道该做什么”交还给 AI
+  body: |
+    你需要我做什么，我该如何协助你工作？
+    请列出：为完成当前任务，你还需要我提供哪些信息、做哪些决定。
+    如果信息不足，不要猜测，直接列出缺失清单。
+
+- title: 专家视角反问
+  stage: 通用
+  desc: 让 AI 先反问，再给建议
+  body: |
+    我在做 [X]。如果你是这个领域的专家，你会怎么做？
+    请先反问我 3 个关键问题，再给出你的判断与行动建议。
+
+- title: 写作整理
+  stage: 写作
+  desc: 把无序片段整理成完整文章
+  body: |
+    我将提供一组无序的片段，请：
+    1) 归纳主题与结构；2) 合理排序并补齐过渡；3) 扩写为完整文章；
+    注意：用简洁语言；避免比喻；所有结论给出依据；段落顺畅衔接。
+
+- title: SCI 英文润色
+  stage: 学术
+  desc: 翻译 / 润色 / 降重
+  body: |
+    I'm writing a paper on [topic] for a leading [discipline] academic journal.
+    What I tried to say in the following section is [specific point].
+    Please rephrase it for clarity, coherence, and conciseness, ensuring
+    each paragraph flows into the next. Remove jargon. Use a professional tone.
+
+- title: SCI 中文润色
+  stage: 学术
+  desc: 翻译 / 润色 / 降重
+  body: |
+    我正在为顶级[学科]期刊撰写一篇关于[主题]的论文。
+    本段想表达的核心观点是：[具体论点]。
+    请优化表达，提升清晰度、连贯性与简洁性，保证段落顺畅衔接，去除非专业表达。
