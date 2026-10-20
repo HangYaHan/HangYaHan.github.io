@@ -35,19 +35,19 @@ subseries: "年度投资复盘"        # optional; requires series
 - `date`: `YYYY-MM-DD`.
 - `draft: true` hides the post.
 - `series` / `subseries` drive the Archive series area. Current series: `年度记录`(→ 年度总结 / 年度投资复盘), `读书笔记`, `搬运`, `东湖往事`, `别后`.
-- Tag vocabulary + plan live in `workbench/tags-plan.md` and `workbench/tags-review.md`.
 
 ## Key templates & assets (project overrides)
 
 - `layouts/partials/header.html` — custom desktop/mobile header; holds the **开往/Travellings** link and includes the splash partial.
 - `layouts/partials/splash.html` — full-screen welcome overlay (copy inside marked `【文案区】`).
-- `layouts/home.html` — homepage (sidebar / Daily Pick / Now / Navigation / Recent).
+- `layouts/home.html` — homepage (sidebar / Daily Pick / Now / Navigation / Recent) + terminal (`ls`/`cat`/`tags`/`server`, reads `#term-index`).
 - `layouts/section/archive.html` — Archive page: **系列区 (series/subseries)** + **ECharts graph** (injects JSON + loads `bloggraph.js`) + **按半年折叠的时间归档**. Category tree was removed.
-- `layouts/section/utility.html`, `layouts/shortcodes/{dca,mortgage,option,fundfee,diewithzero}.html` — finance tools.
+- `layouts/section/utility.html`, `layouts/shortcodes/{dca,mortgage,option,fundfee,diewithzero,army,climb,rule72,life,life-gallery,prompts}.html` — finance tools, 指挥官作战室, 复利攀登/72 原则, 生命游戏, 提示词库.
+- Utility pages: `content/utility/{dca,mortgage,option,fundfee,diewithzero,army,climb,rule72,life,ai_working}.md`.
 - `static/js/bloggraph.js` — Archive graph logic (modes: 全部/双链/关键词/分类).
 - `assets/css/_override.scss` — palette variables (月白 / 天青 / 黛蓝).
-- `assets/css/_custom.scss` — components & design tokens (`--ui-*`, `--g-*`); homepage, graph, curated, splash, series.
-- `static/footprint.json`, `static/china-cities.json`, `static/lib/chart.umd.min.js`. ECharts also loaded from `registry.npmmirror.com` CDN (archive/curated).
+- `assets/css/_custom.scss` — components & design tokens (`--ui-*`, `--g-*`); homepage, terminal, graph, curated, splash, series, header subtitle, army, SOP/prompts, life gallery.
+- `static/footprint.json`, `static/china-cities.json`, `static/lib/chart.umd.min.js`, `static/army/` (unit sprites/commanders/flags/medals), `static/js/{terminal,life-patterns,bloggraph}.js`. ECharts also loaded from `registry.npmmirror.com` CDN (archive/curated).
 
 ## Dark mode gotcha (important)
 
@@ -76,12 +76,13 @@ subseries: "年度投资复盘"        # optional; requires series
 
 ## Auto-generated / ignored (do not edit)
 
-- `public/` (build output), `.hugo_build.lock`, `resources/` — gitignored.
+- `public/` (build output), `.hugo_build.lock`, `resources/`, `static/pics/`, `.opencode/node_modules/` — gitignored.
 
 ## Config & content you can edit
 
 - `hugo.toml` — main config (title, menu, `params`, timezone `Asia/Shanghai`, footer).
 - `content/` — posts and pages (`about/`, `archive/`, `curated/`, `utility/`, `_index.md`).
+- `data/` — `army.yaml`（指挥官作战室）、`prompts.yaml`（AI_working 好用提示词）.
 - `static/` — static assets (`js/`, `lib/`, `.json`, images).
 - `assets/` — stylesheets (`_override.scss`, `_custom.scss`).
 - `layouts/` — template overrides listed above.
@@ -89,9 +90,8 @@ subseries: "年度投资复盘"        # optional; requires series
 
 ## Scratch / unrelated
 
-- `workbench/` — plans & drafts: `TODO.md`, `design-language.md`, `tags-plan.md`, `tags-review.md`, `模型清单.md`.
-- `heritage/` — archived writing-skill definitions.
-- `.opencode/` — opencode config (writing skills).
+- `workbench/` — plans & drafts: `TODO.md`, `Utility.md`, `writing-framework.md`, `写作结构模板.md`, `共同基金常识读书笔记.md`, `金融工程.md`.
+- `.opencode/` — opencode config (`agent-additions.md`); project agents/skills currently removed.
 
 ## Known inconsistencies
 
