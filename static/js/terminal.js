@@ -20,6 +20,9 @@
   var FS = {};
   var DIRS = [];
   var DIRNAME = {};
+  var DIRNAME_EN = { yawang: 'essays', dushubiji: 'reading-notes', banyun: 'reposts', youyi: 'recreation' };
+  var CAT_EN = {};
+  var lang = 'en';
   var LOGO = " _    _                __     __   _    _\n| |  | |               \\ \\   / /  | |  | |\n| |__| | __ _ _ __   __ \\ \\_/ /_ _| |__| | __ _ _ __\n|  __  |/ _` | '_ \\ / _` \\   / _` |  __  |/ _` | '_ \\\n| |  | | (_| | | | | (_| || | (_| | |  | | (_| | | | |\n|_|  |_|\\__,_|_| |_|\\__, ||_|\\__,_|_|  |_|\\__,_|_| |_|\n                     __/ |\n                    |___/";
   var history = [];
   var hIndex = -1;
@@ -77,7 +80,13 @@
     for (var i = 0; i < posts.length; i++) {
       var u = urlParts(posts[i]);
       if (!u.dir || !u.file) continue;
-      if (!FS[u.dir]) { FS[u.dir] = []; DIRS.push(u.dir); DIRNAME[u.dir] = posts[i].cat || u.dir; }
+      if (!FS[u.dir]) {
+        FS[u.dir] = [];
+        DIRS.push(u.dir);
+        var catName = posts[i].cat || u.dir;
+        DIRNAME[u.dir] = catName;
+        CAT_EN[catName] = DIRNAME_EN[u.dir] || catName;
+      }
       FS[u.dir].push(posts[i]);
     }
     DIRS.sort(function (a, b) { return a.localeCompare(b); });
@@ -100,7 +109,7 @@
   function dirSlug(name) {
     if (FS[name]) return name;
     for (var i = 0; i < DIRS.length; i++) {
-      if (DIRNAME[DIRS[i]] === name) return DIRS[i];
+      if (DIRNAME[DIRS[i]] === name || DIRNAME_EN[DIRS[i]] === name) return DIRS[i];
     }
     return null;
   }
@@ -112,11 +121,41 @@
     segs[0] = slug;
     return '/' + segs.join('/');
   }
+  function displayName(slug) {
+    if (lang === 'en') return DIRNAME_EN[slug] || DIRNAME[slug] || slug;
+    return DIRNAME[slug] || slug;
+  }
   function displayPath(path) {
     if (!path || path === '/') return '/';
     var segs = path.slice(1).split('/');
-    if (DIRNAME[segs[0]]) segs[0] = DIRNAME[segs[0]];
+    segs[0] = displayName(segs[0]);
     return '/' + segs.join('/');
+  }
+  function langOfName(name) {
+    if (!name) return null;
+    if (FS[name]) return 'en';
+    for (var i = 0; i < DIRS.length; i++) {
+      if (DIRNAME[DIRS[i]] === name) return 'zh';
+      if (DIRNAME_EN[DIRS[i]] === name) return 'en';
+    }
+    return null;
+  }
+  function pathLang(input, base) {
+    var direct = langOfName(input);
+    if (direct) return direct;
+    var p = normalizePath(input, base);
+    if (p === '/') return null;
+    return langOfName(p.slice(1).split('/')[0]);
+  }
+  function setLang(next) {
+    if (!next || next === lang) return;
+    lang = next;
+    plain('language: ' + (lang === 'en' ? 'English' : '中文'), 'term-dim');
+  }
+  function resolveDirArg(arg, base) {
+    var slug = dirSlug(arg);
+    if (slug) return '/' + slug;
+    return canonicalPath(normalizePath(arg, base));
   }
   function isDir(path) {
     var p = canonicalPath(path);
@@ -175,7 +214,7 @@
   function cmdHelp() {
     var rows = [
       ['ls [path] [-t [n]] [-r] [-ongoing] [@tag]', 'list dir/files; -t recent n, -r reverse, -ongoing updating'],
-      ['cd <dir> / pwd', 'change / print directory'],
+      ['cd <dir> / pwd', 'change / print directory (zh or en names)'],
       ['cat <path|n>', 'read a post by path or [n] index'],
       ['tree [dir]', 'show the directory tree'],
       ['tags [-n <k>] [-a]', 'list tags + counts; -n top k, -a A-Z'],
@@ -207,7 +246,8 @@
     for (var i = 0; i < arr.length; i++) {
       var p = arr[i];
       var n = posts.indexOf(p) + 1;
-      var tag = p.sub ? (p.cat + '/' + p.sub) : p.cat;
+      var catLabel = lang === 'en' ? (CAT_EN[p.cat] || p.cat) : p.cat;
+      var tag = p.sub ? (catLabel + '/' + p.sub) : catLabel;
       var status = (p.status === 'ongoing') ? '<span class="term-status">[更新中]</span>' : '';
       raw('<span class="term-date">' + esc(p.date) + '</span>' +
           '<span class="term-tag">' + esc(tag) + '</span>' +
@@ -218,13 +258,13 @@
   function listDirs() {
     if (!DIRS.length) { plain('(empty)', 'term-dim'); return; }
     for (var i = 0; i < DIRS.length; i++) {
-      raw('<span class="term-dir">' + esc(DIRNAME[DIRS[i]] || DIRS[i]) + '/</span> <span class="term-dim">(' + FS[DIRS[i]].length + ')</span>');
+      raw('<span class="term-dir">' + esc(displayName(DIRS[i])) + '/</span> <span class="term-dim">(' + FS[DIRS[i]].length + ')</span>');
     }
     raw('<span class="term-dim">' + DIRS.length + ' dir(s) · cd &lt;dir&gt; to enter · tree for all</span>');
   }
 
   function cmdLs(args) {
-    var cats = [], tags = [], recent = -1, reverse = false, onlyOngoing = false, pathArg = null;
+    var cats = [], tags = [], recent = -1, reverse = false, onlyOngoing = false, pathArg = null, pathLangArg = null;
     for (var i = 0; i < args.length; i++) {
       var a = args[i];
       if (a === '-r') { reverse = true; }
@@ -235,7 +275,7 @@
       }
       else if (a.charAt(0) === '@') { tags.push(a.slice(1).toLowerCase()); }
       else if (a.charAt(0) === '-') { plain('ls: unknown option: ' + a, 'term-err'); return; }
-      else if (pathArg === null && isDir(normalizePath(a, cwd))) { pathArg = canonicalPath(normalizePath(a, cwd)); }
+      else if (pathArg === null && isDir(resolveDirArg(a, cwd))) { pathArg = resolveDirArg(a, cwd); pathLangArg = pathLang(a, cwd); }
       else { cats.push(a.toLowerCase()); }
     }
 
@@ -251,6 +291,7 @@
 
     var target = pathArg || cwd;
     if (!isDir(target)) { plain('ls: not a directory: ' + target, 'term-err'); return; }
+    if (pathLangArg) setLang(pathLangArg);
     if (target === '/') { listDirs(); return; }
 
     var files = FS[target.slice(1)].slice();
@@ -290,8 +331,9 @@
   }
 
   function cmdCd(args) {
-    var target = canonicalPath(args.length ? normalizePath(args[0], cwd) : '/');
+    var target = args.length ? resolveDirArg(args[0], cwd) : '/';
     if (!target || !isDir(target)) { plain('cd: not a directory: ' + (args[0] || '/'), 'term-err'); return; }
+    if (args.length) setLang(pathLang(args[0], cwd));
     cwd = target;
     setPrompt();
   }
@@ -311,7 +353,7 @@
       var branch = last ? '└─ ' : '├─ ';
       var next = prefix + (last ? '   ' : '│  ');
       if (it.type === 'dir') {
-        raw('<span class="term-tree">' + esc(prefix + branch) + '</span><span class="term-dir">' + esc(DIRNAME[it.name] || it.name) + '/</span>');
+        raw('<span class="term-tree">' + esc(prefix + branch) + '</span><span class="term-dir">' + esc(displayName(it.name)) + '/</span>');
         treeDir(it.path, next);
       } else {
         var st = it.post.status === 'ongoing' ? ' <span class="term-status">[更新中]</span>' : '';
@@ -321,8 +363,9 @@
   }
 
   function cmdTree(args) {
-    var target = canonicalPath(args.length ? normalizePath(args[0], cwd) : cwd);
+    var target = args.length ? resolveDirArg(args[0], cwd) : cwd;
     if (!target || !isDir(target)) { plain('tree: not a directory: ' + (args[0] || cwd), 'term-err'); return; }
+    if (args.length) setLang(pathLang(args[0], cwd));
     raw('<span class="term-dir">' + esc(displayPath(target)) + '</span>');
     treeDir(target, '');
   }

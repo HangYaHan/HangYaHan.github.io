@@ -190,7 +190,13 @@
                 </div>
 
                 <div class="home-right-col">
-                    {{- $recentPosts := first 8 (where .Site.RegularPages "Type" "posts") -}}
+                    {{- $recentPosts := slice -}}
+                    {{- range where .Site.RegularPages "Type" "posts" -}}
+                        {{- if not (in .Params.categories "搬运") -}}
+                            {{- $recentPosts = $recentPosts | append . -}}
+                        {{- end -}}
+                    {{- end -}}
+                    {{- $recentPosts = first 8 $recentPosts -}}
                     {{- if $recentPosts -}}
                     <div class="home-card home-recent">
                         <div class="home-card-header">
