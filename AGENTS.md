@@ -34,19 +34,19 @@ subseries: "年度投资复盘"        # optional; requires series
 - `title` carries the category prefix in brackets, matching the category.
 - `date`: `YYYY-MM-DD`.
 - `draft: true` hides the post.
-- `series` / `subseries` drive the Archive series area. Current series: `年度记录`(→ 年度总结 / 年度投资复盘), `读书笔记`, `搬运`, `东湖往事`, `别后`.
+- `series` / `subseries` 供终端 `cat` 按系列筛选；归档页不再展示系列区。当前系列：`年度记录`(→ 年度总结 / 年度投资复盘), `读书笔记`, `搬运`, `东湖往事`, `别后`.
 
 ## Key templates & assets (project overrides)
 
 - `layouts/partials/header.html` — custom desktop/mobile header; holds the **开往/Travellings** link and includes the splash partial.
 - `layouts/partials/splash.html` — full-screen welcome overlay (copy inside marked `【文案区】`).
 - `layouts/home.html` — homepage (sidebar / Daily Pick / Now / Navigation / Recent) + terminal (`ls`/`cat`/`tags`/`server`, reads `#term-index`).
-- `layouts/section/archive.html` — Archive page: **系列区 (series/subseries)** + **ECharts graph** (injects JSON + loads `bloggraph.js`) + **按半年折叠的时间归档**. Category tree was removed.
+- `layouts/section/archive.html` — Archive page: **ECharts graph** (injects JSON + loads `bloggraph.js`) + **按半年折叠的时间归档**. Category tree and series area were removed.
 - `layouts/section/utility.html`, `layouts/shortcodes/{dca,mortgage,option,fundfee,diewithzero,army,climb,rule72,life,life-gallery,prompts}.html` — finance tools, 指挥官作战室, 复利攀登/72 原则, 生命游戏, 提示词库.
 - Utility pages: `content/utility/{dca,mortgage,option,fundfee,diewithzero,army,climb,rule72,life,ai_working}.md`.
 - `static/js/bloggraph.js` — Archive graph logic (modes: 全部/双链/关键词/分类).
 - `assets/css/_override.scss` — palette variables (月白 / 天青 / 黛蓝).
-- `assets/css/_custom.scss` — components & design tokens (`--ui-*`, `--g-*`); homepage, terminal, graph, curated, splash, series, header subtitle, army, SOP/prompts, life gallery.
+- `assets/css/_custom.scss` — components & design tokens (`--ui-*`, `--g-*`); homepage, terminal, graph, curated, splash, header subtitle, army, SOP/prompts, life gallery.
 - `static/footprint.json`, `static/china-cities.json`, `static/lib/chart.umd.min.js`, `static/army/` (unit sprites/commanders/flags/medals), `static/js/{terminal,life-patterns,bloggraph}.js`. ECharts also loaded from `registry.npmmirror.com` CDN (archive/curated).
 
 ## Dark mode gotcha (important)

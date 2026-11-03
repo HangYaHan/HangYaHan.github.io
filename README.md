@@ -47,13 +47,13 @@ date: 2026-09-06
 draft: false
 categories: ["雅望停云"]
 tags: ["随笔", "人文思考"]   # 真实关键词，不是分类镜像
-series: "东湖往事"            # 可选：归档页系列区
+series: "东湖往事"            # 可选：终端系列筛选
 subseries: "年度投资复盘"     # 可选：子系列（需先有 series）
 ---
 ```
 
 - `title` 的方括号前缀与分类一致；`draft: true` 暂不发布。
-- `series` / `subseries` 会自动出现在归档页「系列」区。
+- `series` / `subseries` 供终端 `cat` 按系列筛选（归档页不展示系列区）。
 - `tags` 用于归档页图谱的「关键词」模式与站内搜索。
 
 推送到 `main` 后，GitHub Actions 自动构建并部署。
