@@ -174,51 +174,79 @@
             </div>
             {{- end -}}
 
-            {{- /* Two-Column: About + Recent */ -}}
-            <div class="home-row">
-                <div class="home-card home-about">
-                    <h2 class="home-card-title">Navigation / 导航</h2>
-                    <div class="home-card-body home-nav-guide">
-                        <p class="home-nav-intro"><a href="/about/">New here? Click me.</a></p>
-                        <ul class="home-nav-list">
-                            <li>关于我，关于本站 — <a href="/about/">About / 关于</a></li>
-                            <li>档案馆，查看所有博客文章 — <a href="/archive/">Archive / 归档</a></li>
-                            <li>我的收藏与喜好 — <a href="/curated/">Curated / 收藏</a></li>
-                            <li>一些小玩具 — <a href="/utility/">Utility / 工具</a></li>
+            {{- /* Navigation / 导航 —— 通栏方块 */ -}}
+            <div class="home-card home-about">
+                <h2 class="home-card-title">Navigation / 导航</h2>
+                <div class="home-card-body home-nav-guide">
+                    <p class="home-nav-intro"><a href="/about/">New here? Click me.</a></p>
+                    <div class="home-nav-grid">
+                        <a class="home-nav-block" href="/about/"><i class="fa-regular fa-user" aria-hidden="true"></i><span>About / 关于</span></a>
+                        <a class="home-nav-block" href="/archive/"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Archive / 归档</span></a>
+                        <a class="home-nav-block" href="/curated/"><i class="fa-regular fa-star" aria-hidden="true"></i><span>Curated / 收藏</span></a>
+                        <a class="home-nav-block" href="/utility/"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span>Utility / 工具</span></a>
+                        <a class="home-nav-block" href="/research/"><i class="fa-solid fa-atom" aria-hidden="true"></i><span>Research / 研究</span></a>
+                        <a class="home-nav-block" href="/experience/"><i class="fa-solid fa-glasses" aria-hidden="true"></i><span>Experience / 人生的经验</span></a>
+                    </div>
+                </div>
+            </div>
+
+            {{- /* Featured + Recent 两栏 */ -}}
+            {{- $recentPosts := slice -}}
+            {{- range where .Site.RegularPages "Type" "posts" -}}
+                {{- if not (in .Params.categories "搬运") -}}
+                    {{- $recentPosts = $recentPosts | append . -}}
+                {{- end -}}
+            {{- end -}}
+            {{- $recentPosts = first 6 $recentPosts -}}
+            {{- $featured := sort (where (where .Site.RegularPages "Type" "posts") "Params.featured" true) "Params.featured_rank" -}}
+            <div class="home-row{{ if or (not $featured) (not $recentPosts) }} home-row--single{{ end }}">
+                {{- if $featured -}}
+                <div class="home-card home-featured">
+                    <div class="home-card-header">
+                        <h2 class="home-card-title">Featured / 推荐</h2>
+                    </div>
+                    <div class="home-card-body">
+                        <ul class="home-featured-list">
+                            {{- range $i, $p := $featured -}}
+                            <li class="home-featured-item">
+                                <a href="{{ $p.RelPermalink }}">
+                                    <span class="home-featured-num">{{ printf "%02d" (add $i 1) }}</span>
+                                    <span class="home-featured-line">
+                                        <span class="home-featured-title">{{ with $p.Params.featured_label }}{{ . }}{{ else }}{{ $p.Title | replaceRE `^\[[^\]]*\]\s*` "" }}{{ end }}</span>
+                                        {{- with $p.Params.tags -}}
+                                        <span class="home-featured-tags">{{ delimit . " · " }}</span>
+                                        {{- end -}}
+                                    </span>
+                                    <span class="home-featured-date">{{ $p.Date.Format "2006-01-02" }}</span>
+                                </a>
+                            </li>
+                            {{- end -}}
                         </ul>
                     </div>
                 </div>
+                {{- end -}}
 
-                <div class="home-right-col">
-                    {{- $recentPosts := slice -}}
-                    {{- range where .Site.RegularPages "Type" "posts" -}}
-                        {{- if not (in .Params.categories "搬运") -}}
-                            {{- $recentPosts = $recentPosts | append . -}}
+                {{- if $recentPosts -}}
+                <div class="home-card home-recent">
+                    <div class="home-card-header">
+                        <h2 class="home-card-title">Recent / 最近更新</h2>
+                        {{- with index $recentPosts 0 -}}
+                        <span class="home-recent-date">Last updated: {{ .Lastmod.Format "2006-01-02" }}</span>
                         {{- end -}}
-                    {{- end -}}
-                    {{- $recentPosts = first 8 $recentPosts -}}
-                    {{- if $recentPosts -}}
-                    <div class="home-card home-recent">
-                        <div class="home-card-header">
-                            <h2 class="home-card-title">Recent / 最近更新</h2>
-                            {{- with index $recentPosts 0 -}}
-                            <span class="home-recent-date">Last updated: {{ .Lastmod.Format "2006-01-02" }}</span>
-                            {{- end -}}
-                        </div>
-                        <div class="home-card-body">
-                            <ul class="home-recent-list">
-                                {{- range $recentPosts -}}
-                                <li class="home-recent-item">
-                                    <span class="home-recent-item-date">{{ .Date.Format "2006-01-02" }}</span>
-                                    <a href="{{ .RelPermalink }}" class="home-recent-item-link">{{ .Title }}</a>
-                                </li>
-                                {{- end -}}
-                            </ul>
-                            <a href="/posts/" class="home-recent-more">View all posts / 查看全部 →</a>
-                        </div>
                     </div>
-                    {{- end -}}
+                    <div class="home-card-body">
+                        <ul class="home-recent-list">
+                            {{- range $recentPosts -}}
+                            <li class="home-recent-item">
+                                <span class="home-recent-item-date">{{ .Date.Format "2006-01-02" }}</span>
+                                <a href="{{ .RelPermalink }}" class="home-recent-item-link">{{ .Title }}</a>
+                            </li>
+                            {{- end -}}
+                        </ul>
+                        <a href="/posts/" class="home-recent-more">View all posts / 查看全部 →</a>
+                    </div>
                 </div>
+                {{- end -}}
             </div>
 
             </div>{{- /* end home-main */ -}}

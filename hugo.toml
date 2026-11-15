@@ -30,7 +30,7 @@ timezone = "Asia/Shanghai"
     weight = 2
     identifier = "archive"
     name = "Archive"
-    pre = '<i class="fa-regular fa-box-archive" aria-hidden="true"></i> '
+    pre = '<i class="fa-solid fa-book" aria-hidden="true"></i> '
     url = "/archive/"
   [[menu.main]]
     weight = 3
@@ -44,6 +44,18 @@ timezone = "Asia/Shanghai"
     name = "Utility"
     pre = '<i class="fa-solid fa-calculator" aria-hidden="true"></i> '
     url = "/utility/"
+  [[menu.main]]
+    weight = 5
+    identifier = "research"
+    name = "Research"
+    pre = '<i class="fa-solid fa-atom" aria-hidden="true"></i> '
+    url = "/research/"
+  [[menu.main]]
+    weight = 6
+    identifier = "experience"
+    name = "Experience"
+    pre = '<i class="fa-solid fa-glasses" aria-hidden="true"></i> '
+    url = "/experience/"
 
 # ============================================
 #  LoveIt 主题参数
@@ -118,7 +130,7 @@ timezone = "Asia/Shanghai"
     rss = 10
     # "Now" section — a one-line status update on the homepage
     # "此刻" — 首页的一行状态更新
-    now = "📖 在读《共同基金常识》&nbsp;&nbsp;·&nbsp;&nbsp;🎓 准备秋招中"
+    now = "📖 在读《命若琴弦》&nbsp;&nbsp;·&nbsp;&nbsp;🎓 准备毕业中（干苦力）"
     # Personal tags in sidebar / 侧栏个人标签
     tags = ["多愁善感", "孤独", "理工男", "游手好闲", "穷鬼"]
     [params.home.profile]
