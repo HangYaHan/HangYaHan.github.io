@@ -109,12 +109,14 @@
 
                 {{- $postCount := len (where .Site.RegularPages "Type" "posts") -}}
                 {{- $catCount := len .Site.Taxonomies.categories -}}
+                {{- $tagCount := len .Site.Taxonomies.tags -}}
                 {{- $since := .Site.Params.footer.since | default "2025" -}}
                 <div class="home-sidebar-stats">
-                    <span>{{ $postCount }} posts</span>
-                    <span>{{ $catCount }} categories</span>
-                    <span>Since {{ $since }}</span>
+                    <div class="home-sidebar-stat"><strong>{{ $postCount }}</strong><span>文章</span></div>
+                    <div class="home-sidebar-stat"><strong>{{ $catCount }}</strong><span>分类</span></div>
+                    <div class="home-sidebar-stat"><strong>{{ $tagCount }}</strong><span>标签</span></div>
                 </div>
+                <div class="home-sidebar-since">Since {{ $since }}</div>
             </aside>
 
             {{- /* Right: Main Content */ -}}

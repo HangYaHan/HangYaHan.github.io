@@ -554,7 +554,7 @@
     input.focus({ preventScroll: true });
   });
 
-  /* ---------- fit the terminal to the remaining first-screen height ---------- */
+  /* ---------- clamp terminal height ---------- */
   function fitTerminal() {
     var page = document.querySelector('.terminal-page');
     var screenEl = document.querySelector('.term-screen');
@@ -562,8 +562,12 @@
     var top = page.getBoundingClientRect().top + window.scrollY;
     var footer = document.querySelector('footer');
     var fh = footer ? footer.getBoundingClientRect().height : 0;
+    var mobile = window.innerWidth <= 680;
+    var minH = mobile ? 300 : 360;
+    var maxH = mobile ? 480 : 560;
     var h = window.innerHeight - top - fh - 12;
-    if (h < 170) h = 170;
+    if (h < minH) h = minH;
+    if (h > maxH) h = maxH;
     screenEl.style.height = h + 'px';
   }
 

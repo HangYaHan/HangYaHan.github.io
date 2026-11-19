@@ -719,12 +719,20 @@ draft: false
 
 <details class="curated-sec">
 <summary>Bloggers / ✍️ 博主</summary>
-<p>你关注的博客、UP主。</p>
+<p>默认 B 站，按方向分类。</p>
+<ul>
+<li>葫芦军师（B站）— 金融、红利、套利</li>
+<li>硅谷101（B站）— 科技、宏观经济</li>
+<li>why_hy_y（B站）— C++、操作系统</li>
+</ul>
 </details>
 
 <details class="curated-sec">
 <summary>Websites / 🌐 网站</summary>
-<p>常用工具站、资源站。</p>
+<ul>
+<li><a href="https://www.jisilu.cn/" target="_blank" rel="noopener">集思录</a> — 低风险投资社区：可转债、打新、套利</li>
+<li><a href="https://www.runoob.com/" target="_blank" rel="noopener">菜鸟教程</a> — 编程入门与语法速查</li>
+</ul>
 </details>
 
 <details class="curated-sec">
