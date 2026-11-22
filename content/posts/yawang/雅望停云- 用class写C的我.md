@@ -4,7 +4,7 @@ date: 2025-08-28
 lastmod: 2026-09-02
 draft: false
 categories: ["雅望停云"]
-tags: ["随笔", "技术思考"]
+tags: ["随笔", "技术思考", "猛火爆炒"]
 ---
 
 # A Conversation

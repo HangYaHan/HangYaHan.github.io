@@ -4,7 +4,7 @@ date: 2025-12-10
 lastmod: 2025-12-10
 draft: false
 categories: ["雅望停云"]
-tags: ["随笔", "人文思考"]
+tags: ["随笔", "人文思考", "机器切配L"]
 ---
 
 > Talk is cheap. Show me the code. -- Linus Torvalds

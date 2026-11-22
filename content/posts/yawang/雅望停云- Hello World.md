@@ -4,7 +4,7 @@ date: 2025-07-24
 lastmod: 2026-09-02
 draft: false
 categories: ["雅望停云"]
-tags: ["随笔"]
+tags: ["随笔", "猛火爆炒"]
 ---
 
 # Test
