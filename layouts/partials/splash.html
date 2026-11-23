@@ -2,14 +2,28 @@
      Welcome Splash / 全屏入场覆盖层
      技术已就位；以下文案/美术均为占位，待定稿后替换。
      - showEveryLoad: false = 每个浏览器会话只出现一次
-     - 纯 CSS/JS，无依赖；点任意处 / 按钮 / 自动 ~2.6s 淡出
-     - prefers-reduced-motion: 无动画、不自动，点了立刻消失
+     - 纯 CSS/JS，无依赖；点任意处 / 按钮 / 自动 ~4s 淡出
+     - hover / focus 时暂停自动淡出；prefers-reduced-motion: 无动画、不自动
      ============================================ */ -}}
-<div id="welcome-splash" class="welcome-splash" aria-hidden="true">
+<div id="welcome-splash" class="welcome-splash">
     <div class="welcome-inner">
         <!-- 【文案区】主标题 / 副句 / 按钮 -->
         <div class="welcome-name" id="welcome-name">涵舍</div>
         <div class="welcome-line" id="welcome-line">年轻的我对现实的恐怖一无所知</div>
+
+        <div class="welcome-actions">
+            <a class="welcome-ai" href="{{ "/about/#ai" | relURL }}" aria-label="初次到访？查看关于本站与 AIGC 的说明">
+                <span class="welcome-ai-badge">
+                    <span class="welcome-ai-mark" aria-hidden="true">!</span>
+                    <span class="welcome-ai-label">初次到访？ / New here?</span>
+                    <span class="welcome-ai-arrow" aria-hidden="true">→</span>
+                </span>
+                <span class="welcome-ai-panel">
+                    <span class="welcome-ai-panel-inner">查看关于本站与 AIGC 的说明。 / A note on this site and AIGC.</span>
+                </span>
+            </a>
+        </div>
+        <div class="welcome-hint">点击空白处进入首页</div>
         <!-- 【文案区结束】 -->
     </div>
 </div>
@@ -19,9 +33,12 @@
     if (!el) return;
 
     var showEveryLoad = false;   // true = 每次刷新都播
-    var autoMs = 2600;           // 自动淡出前停留
+    var autoMs = 4000;           // 自动淡出前停留
+    var aiLink = el.querySelector('.welcome-ai');
 
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var autoTimer = null;
+    var dismissed = false;
 
     if (!showEveryLoad) {
         try {
@@ -29,8 +46,26 @@
         } catch (e) { /* 隐私模式等场景忽略 */ }
     }
 
+    function stopAuto() {
+        if (autoTimer) {
+            window.clearTimeout(autoTimer);
+            autoTimer = null;
+        }
+    }
+
+    function startAuto() {
+        if (reduced || dismissed || autoTimer) return;
+        autoTimer = window.setTimeout(function () {
+            autoTimer = null;
+            dismiss(false);
+            done();
+        }, autoMs);
+    }
+
     function dismiss(instant) {
-        if (el.classList.contains('leaving')) return;
+        if (dismissed) return;
+        dismissed = true;
+        stopAuto();
         el.classList.add('leaving');
         if (instant || reduced) {
             el.style.transition = 'none';
@@ -48,14 +83,34 @@
         try { sessionStorage.setItem('welcome_seen', '1'); } catch (e) {}
     }
 
-    el.addEventListener('click', function () { dismiss(false); done(); });
+    function close() {
+        dismiss(false);
+        done();
+    }
+
+    el.addEventListener('click', function (e) {
+        if (aiLink && aiLink.contains(e.target)) {
+            done();
+            dismiss(true);
+            return;
+        }
+        close();
+    });
+
+    el.addEventListener('pointerenter', stopAuto);
+    el.addEventListener('pointerleave', startAuto);
+    el.addEventListener('focusin', stopAuto);
+    el.addEventListener('focusout', function (e) {
+        if (!el.contains(e.relatedTarget)) startAuto();
+    });
 
     window.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' || e.key === ' ') { dismiss(false); done(); }
+        if (e.key === 'Escape') { close(); return; }
+        if (e.key === ' ' && !(aiLink && aiLink.contains(e.target))) { close(); }
     });
 
     if (!reduced) {
-        window.setTimeout(function () { dismiss(false); done(); }, autoMs);
+        startAuto();
     }
 })();
 </script>

@@ -1285,6 +1285,41 @@ body[theme="dark"] {
     letter-spacing: 0.06em;
 }
 
+/* 标题下标签：无边框药丸，无计数 */
+.single .post-meta .post-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+}
+
+.single .post-meta .post-meta-tags > i {
+    flex: 0 0 auto;
+}
+
+.single .post-meta .post-meta-tags a {
+    display: inline-block;
+    padding: 0.08rem 0.6rem;
+    border-radius: 999px;
+    background: var(--ui-pill-bg);
+    color: var(--g-text);
+    font-size: 0.76rem;
+    line-height: 1.7;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.single .post-meta .post-meta-tags a:hover {
+    background: var(--ui-surface-hover);
+    color: var(--g-text);
+}
+
+/* 底部标签已移到标题下，返回/首页单独一行靠右 */
+.single .post-footer .post-info-more--no-tags {
+    justify-content: flex-end;
+}
+
 /* LoveIt 给标题加进场动画（animate__pulse / animate__flipInX），
    进入 About/Archive/分类/文章页时字会跳一下。全站禁掉。 */
 .single-title {
@@ -1296,23 +1331,6 @@ body[theme="dark"] {
    ============================================ */
 .home-nav-guide {
     font-size: 0.92rem;
-
-    .home-nav-intro {
-        font-weight: 600;
-        margin: 0 0 0.8rem;
-        color: $global-font-color;
-
-        body[theme="dark"] & { color: $global-font-color-dark; }
-
-        a {
-            color: $single-link-color;
-            text-decoration: none;
-
-            body[theme="dark"] & { color: $single-link-color-dark; }
-
-            &:hover { text-decoration: underline; }
-        }
-    }
 
     .home-nav-grid {
         display: grid;
@@ -1910,15 +1928,134 @@ body[theme="dark"] {
     body[theme="dark"] & { color: $global-font-secondary-color-dark; }
 }
 
-.welcome-hint {
-    margin-top: 1.6rem;
+.welcome-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.15rem;
+}
+
+.welcome-ai {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: calc(100vw - 3rem);
+    color: var(--g-text);
+    text-decoration: none;
+}
+
+.welcome-ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    max-width: calc(100vw - 3rem);
+    padding: 0.18rem 0.65rem;
+    border: 1px solid var(--ui-card-border);
+    border-radius: 999px;
+    background: var(--ui-surface);
+    box-shadow: var(--ui-card-shadow);
+    color: var(--g-text-muted);
     font-size: 0.74rem;
-    letter-spacing: 0.2em;
-    color: $single-link-color;
+    line-height: 1.6;
+    transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.welcome-ai:hover .welcome-ai-badge,
+.welcome-ai:focus-visible .welcome-ai-badge {
+    transform: translateY(-1px);
+    border-color: var(--ui-ring);
+    color: var(--g-text);
+    box-shadow: var(--ui-hover-shadow);
+}
+
+.welcome-ai:focus-visible {
+    outline: none;
+}
+
+.welcome-ai:focus-visible .welcome-ai-badge {
+    outline: 2px solid var(--ui-ring);
+    outline-offset: 3px;
+}
+
+.welcome-ai-mark {
+    display: grid;
+    place-items: center;
+    flex: 0 0 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: var(--g-text);
+    color: var(--g-surface);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.welcome-ai-label {
+    min-width: 0;
+}
+
+.welcome-ai-arrow {
+    flex: 0 0 auto;
+    color: var(--g-text-muted);
+    font-size: 0.82rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.welcome-ai:hover .welcome-ai-arrow {
+    color: var(--g-text);
+    transform: translateX(2px);
+}
+
+.welcome-ai-panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 2;
+    width: max-content;
+    max-width: calc(100vw - 3rem);
+    padding-top: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.welcome-ai:hover .welcome-ai-panel,
+.welcome-ai:focus-visible .welcome-ai-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.welcome-ai-panel-inner {
+    display: block;
+    padding: 0.5rem 0.72rem;
+    border: 1px solid var(--ui-card-border);
+    border-radius: 0.55rem;
+    background: var(--ui-surface);
+    box-shadow: var(--ui-card-shadow);
+    color: var(--g-text-muted);
+    font-size: 0.74rem;
+    line-height: 1.55;
+    text-align: left;
+}
+
+.welcome-actions:hover ~ .welcome-hint,
+.welcome-actions:focus-within ~ .welcome-hint {
+    visibility: hidden;
+}
+
+.welcome-hint {
+    margin-top: 0.9rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    color: $global-font-secondary-color;
     opacity: 0;
     animation: welcome-hint 0.4s ease 1.1s forwards;
 
-    body[theme="dark"] & { color: $single-link-color-dark; }
+    body[theme="dark"] & { color: $global-font-secondary-color-dark; }
 }
 
 @keyframes welcome-in {
@@ -1937,12 +2074,47 @@ body[theme="dark"] {
         letter-spacing: 0.18em;
         margin-right: -0.18em;
     }
+
+    .welcome-actions {
+        margin-top: 1rem;
+    }
+
+    .welcome-ai-badge {
+        max-width: calc(100vw - 2rem);
+        font-size: 0.7rem;
+    }
+
+    .welcome-ai-panel-inner {
+        font-size: 0.7rem;
+    }
+}
+
+@media (hover: none) {
+    .welcome-ai-panel {
+        position: static;
+        width: auto;
+        max-width: calc(100vw - 3rem);
+        padding-top: 0.5rem;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    .welcome-actions:hover ~ .welcome-hint,
+    .welcome-actions:focus-within ~ .welcome-hint {
+        visibility: visible;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .welcome-inner, .welcome-hint {
         animation: none;
         opacity: 1;
+    }
+
+    .welcome-ai-badge, .welcome-ai-panel, .welcome-ai-arrow {
+        transition: none;
     }
 }
 
