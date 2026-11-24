@@ -13,7 +13,6 @@
 | `content/posts/yawang/` | 雅望停云 | |
 | `content/posts/dushubiji/` | 读书笔记 | |
 | `content/posts/banyun/` | 搬运 | |
-| `content/posts/youyi/` | 游艺 | |
 
 - **`风雅涵章` was merged into `雅望停云`** (2026-09). Titles now read `[雅望停云] …`; filenames follow `雅望停云- …`. Old category URL `/categories/风雅涵章/` is gone, and the legacy `content/posts/fengya/` dir was merged into `content/posts/yawang/` (no aliases).
 
@@ -32,6 +31,7 @@ subseries: "年度投资复盘"        # optional; requires series
 ```
 
 - `title` carries the category prefix in brackets, matching the category.
+- **类型标签五选一**：`读书笔记` / `搬运` / `人文思考` / `技术思考` / `总结类`，每篇恰好一个；`书籍/语文/理财/随笔` 等普通关键词可共存。搬运免 AI 评级。
 - `date`: `YYYY-MM-DD`.
 - `draft: true` hides the post.
 - `series` / `subseries` 供终端 `cat` 按系列筛选；归档页不再展示系列区。当前系列：`年度记录`(→ 年度总结 / 年度投资复盘), `读书笔记`, `搬运`, `东湖往事`, `别后`.
