@@ -34,12 +34,6 @@
                 </section>
 
                 <aside class="graph-sidebar">
-                    <section class="sidebar-block" id="sb-selected">
-                        <div class="panel-heading">当前节点</div>
-                        <p class="muted" id="sb-selected-hint">选择任意节点查看文章和关键词关系。</p>
-                        <div id="sb-selected-body" hidden></div>
-                    </section>
-
                     <section class="sidebar-block">
                         <div class="panel-heading">高频关键词</div>
                         <div class="sidebar-tags" id="sb-tags"></div>
@@ -48,11 +42,6 @@
                     <section class="sidebar-block">
                         <div class="panel-heading">图谱统计</div>
                         <div class="stats-grid" id="sb-stats"></div>
-                    </section>
-
-                    <section class="sidebar-block">
-                        <div class="panel-heading">最近文章</div>
-                        <div class="recent-list" id="sb-recent"></div>
                     </section>
                 </aside>
             </div>
@@ -102,7 +91,7 @@
         </details>
 
         {{- /* echarts 与图谱逻辑，defer 保证顺序执行 */ -}}
-        <script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js" defer></script>
+        <script src="/lib/echarts.min.js" defer></script>
         <script src="{{ "js/bloggraph.js" | relURL }}" defer></script>
     </div>
 {{- end -}}

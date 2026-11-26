@@ -14,11 +14,6 @@
   var posts = [];
   try { posts = JSON.parse(scriptEl.textContent); } catch (e) { posts = []; }
   if (!posts || !posts.length) return;
-  if (typeof echarts === 'undefined') {
-    var shell0 = document.getElementById('graph-canvas-shell');
-    if (shell0) shell0.setAttribute('data-load-fail', '1');
-    return;
-  }
 
   var canvasEl = document.getElementById('graph-canvas');
   var shellEl = document.getElementById('graph-canvas-shell');
@@ -26,17 +21,15 @@
   var searchEl = document.getElementById('graph-search');
   var tagBox = document.getElementById('sb-tags');
   var statsEl = document.getElementById('sb-stats');
-  var recentEl = document.getElementById('sb-recent');
-  var selectedBody = document.getElementById('sb-selected-body');
-  var selectedHint = document.getElementById('sb-selected-hint');
   var modeBtns = Array.prototype.slice.call(document.querySelectorAll('#graph-modes .mode-tab'));
-  if (!canvasEl || !shellEl || !emptyEl || !searchEl || !tagBox || !statsEl || !recentEl) return;
+  if (!canvasEl || !shellEl || !emptyEl || !searchEl || !tagBox || !statsEl) return;
+
+  if (typeof echarts === 'undefined') shellEl.setAttribute('data-load-fail', '1');
 
   var chart = null;
   var mode = 'all';
   var query = '';
   var activeTag = '';
-  var selected = null;
   var state = { nodes: [], links: [] };
 
   function cssVar(name, fb) {
@@ -236,6 +229,7 @@
   }
 
   function ensureChart() {
+    if (typeof echarts === 'undefined') return;
     if (!chart) chart = echarts.init(canvasEl);
   }
 
@@ -248,89 +242,6 @@
   function hideEmpty() {
     emptyEl.style.display = 'none';
     shellEl.classList.remove('is-empty');
-  }
-
-  /* ---------- 侧栏渲染 ---------- */
-  function renderSelected() {
-    if (!selected) {
-      selectedHint.style.display = '';
-      selectedBody.style.display = 'none';
-      selectedBody.textContent = '';
-      return;
-    }
-    selectedHint.style.display = 'none';
-    selectedBody.style.display = '';
-    selectedBody.textContent = '';
-    var d = selected;
-
-    var pill = document.createElement('span');
-    pill.className = 'node-type node-type-' + d.type;
-    pill.textContent = typeName(d.type);
-    selectedBody.appendChild(pill);
-
-    var h2 = document.createElement('h2');
-    h2.textContent = d.raw;
-    selectedBody.appendChild(h2);
-
-    if (d.type === 'post') {
-      if (d.sum) {
-        var sum = document.createElement('p');
-        sum.className = 'selected-sum';
-        sum.textContent = d.sum;
-        selectedBody.appendChild(sum);
-      }
-      var meta = document.createElement('div');
-      meta.className = 'selected-meta';
-      if (d.date) { var dt = document.createElement('span'); dt.textContent = d.date; meta.appendChild(dt); }
-      var seg = [d.cat, d.sub].filter(Boolean).join(' · ');
-      if (seg) { var cg = document.createElement('span'); cg.textContent = seg; meta.appendChild(cg); }
-      selectedBody.appendChild(meta);
-
-      var post = findPostByUrl(d.url);
-      if (post && realTags(post).length) {
-        var chips = document.createElement('div');
-        chips.className = 'selected-tags';
-        realTags(post).forEach(function (t) {
-          var b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'tag-pill';
-          b.textContent = '#' + t;
-          b.addEventListener('click', function () { goTag(t); });
-          chips.appendChild(b);
-        });
-        selectedBody.appendChild(chips);
-      }
-      if (d.url) {
-        var a = document.createElement('a');
-        a.className = 'open-post-btn';
-        a.href = d.url;
-        a.textContent = '打开文章';
-        selectedBody.appendChild(a);
-      }
-    } else {
-      var info = document.createElement('p');
-      info.className = 'muted selected-sum';
-      if (d.type === 'tag') {
-        var tcount = 0;
-        posts.forEach(function (p) { if (realTags(p).indexOf(d.raw) >= 0) tcount++; });
-        info.textContent = '含此关键词的文章 ' + tcount + ' 篇，点击下方标签可只显示相关文章。';
-        if (activeTag) {
-          var clear = document.createElement('button');
-          clear.type = 'button';
-          clear.className = 'tag-pill';
-          clear.textContent = '清除筛选';
-          clear.addEventListener('click', function () { goTag(''); });
-          selectedBody.appendChild(info);
-          selectedBody.appendChild(clear);
-          return;
-        }
-      } else {
-        var ccount = 0;
-        posts.forEach(function (p) { if (p.cat === d.raw || p.sub === d.raw) ccount++; });
-        info.textContent = '此分类共 ' + ccount + ' 篇。';
-      }
-      selectedBody.appendChild(info);
-    }
   }
 
   function renderTags() {
@@ -391,38 +302,9 @@
     });
   }
 
-  function renderRecent() {
-    recentEl.textContent = '';
-    posts.slice(0, 8).forEach(function (p) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'recent-row';
-      var title = document.createElement('span');
-      title.className = 'recent-title';
-      title.textContent = p.title;
-      var meta = document.createElement('span');
-      meta.className = 'recent-meta';
-      meta.textContent = p.cat || '未分类';
-      b.appendChild(title);
-      b.appendChild(meta);
-      b.addEventListener('click', function () {
-        query = '';
-        activeTag = '';
-        mode = 'all';
-        syncModeButtons();
-        if (searchEl.value) searchEl.value = '';
-        render();
-        focusNode('p:' + p.url);
-      });
-      recentEl.appendChild(b);
-    });
-  }
-
   function renderAll(list) {
     renderTags();
     renderStats(list);
-    renderRecent();
-    renderSelected();
   }
 
   /* ---------- 主渲染 ---------- */
@@ -440,10 +322,9 @@
       return;
     }
     hideEmpty();
-    ensureChart();
-    chart.setOption(option(), true);
-    if (selected && !state.nodes.some(function (n) { return n.id === selected.id; })) {
-      selected = null;
+    if (typeof echarts !== 'undefined') {
+      ensureChart();
+      chart.setOption(option(), true);
     }
     renderAll(list);
   }
@@ -457,11 +338,10 @@
     chart.dispatchAction({ type: 'downplay', seriesIndex: 0 });
     chart.dispatchAction({ type: 'highlight', seriesIndex: 0, dataIndex: idx });
     chart.dispatchAction({ type: 'focusNodeAdjacency', seriesIndex: 0, dataIndex: idx });
-    selected = n;
-    renderSelected();
   }
 
   function selectNode(node) {
+    if (!chart) return;
     var idx = -1;
     state.nodes.some(function (n, i) { if (n.id === node.id) { idx = i; return true; } return false; });
     if (idx >= 0) {
@@ -469,8 +349,6 @@
       chart.dispatchAction({ type: 'highlight', seriesIndex: 0, dataIndex: idx });
       chart.dispatchAction({ type: 'focusNodeAdjacency', seriesIndex: 0, dataIndex: idx });
     }
-    selected = node;
-    renderSelected();
   }
 
   function findPostByUrl(url) {
@@ -481,7 +359,6 @@
   function goTag(t) {
     activeTag = t;
     if (t) { mode = 'tags'; syncModeButtons(); }
-    selected = null;
     if (!t) render();
     else { query = ''; if (searchEl.value) searchEl.value = ''; render(); }
   }
@@ -493,7 +370,6 @@
   function setMode(m) {
     mode = m;
     if (m !== 'tags') activeTag = '';
-    selected = null;
     syncModeButtons();
     render();
   }
@@ -505,8 +381,7 @@
     });
     searchEl.addEventListener('input', function () {
       query = searchEl.value;
-      selected = null;
-      render();
+        render();
     });
     if (chart) {
       chart.on('click', function (p) {
@@ -523,7 +398,6 @@
     mo = new MutationObserver(function () {
       if (!chart) return;
       chart.setOption(option(), true);
-      renderSelected();
     });
     mo.observe(document.body, { attributes: true, attributeFilter: ['theme'] });
   }

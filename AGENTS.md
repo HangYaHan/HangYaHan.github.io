@@ -47,7 +47,7 @@ subseries: "年度投资复盘"        # optional; requires series
 - `static/js/bloggraph.js` — Archive graph logic (modes: 全部/双链/关键词/分类).
 - `assets/css/_override.scss` — palette variables (月白 / 天青 / 黛蓝).
 - `assets/css/_custom.scss` — components & design tokens (`--ui-*`, `--g-*`); homepage, terminal, graph, curated, splash, header subtitle, army, SOP/prompts, life gallery.
-- `static/footprint.json`, `static/china-cities.json`, `static/lib/chart.umd.min.js`, `static/army/` (unit sprites/commanders/flags/medals), `static/icons/` (4 个导航图标 SVG + 许可说明), `static/js/{terminal,life-patterns,bloggraph}.js`. ECharts also loaded from `registry.npmmirror.com` CDN (archive/curated).
+- `static/footprint.json`, `static/china-cities.json`, `static/lib/chart.umd.min.js`, `static/lib/echarts.min.js` (ECharts 5.5.1), `static/army/` (unit sprites/commanders/flags/medals), `static/icons/` (4 个导航图标 SVG + 许可说明), `static/js/{terminal,life-patterns,bloggraph}.js`. Archive/Curated 使用本地 ECharts，不走 CDN。
 
 ## Dark mode gotcha (important)
 

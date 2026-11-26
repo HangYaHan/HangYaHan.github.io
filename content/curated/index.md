@@ -4,7 +4,7 @@ date: 2025-07-25
 draft: false
 ---
 
-<script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+<script src="/lib/echarts.min.js"></script>
 
 <div class="curated-actions">
 <button id="curated-fold-all" type="button" class="curated-fold-btn">全部展开</button>
